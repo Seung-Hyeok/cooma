@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>dogDetail</title>
+</th:block>
+<th:block layout:fragment="content">
+
+<script th:inline="javascript">
+        function dogConfirm() {
+          var result = confirm("애견등록을 해제하시겠습니까?");
+
+          if (result) {
+            // 확인을 선택한 경우 처리할 작업
+
+            location.href="/user/myPage/dogDelete/"+[[${dogData.dname}]];
+
+
+          } else {
+            // 취소를 선택한 경우 처리할 작업
+            alert("취소하였습니다");
+          }
+        }
+</script>
+
+<h1>나의 애견 정보</h1>
+<table border="">
+	<tr>
+		<td>이름</td><td th:text="${dogData.dname}" />
+	</tr>
+	<tr>
+		<td>견종</td><td th:text="${dogData.breed}" />
+	</tr>
+	<tr>
+		<td>무게</td><td th:text="${dogData.weight}" /> 
+	</tr>
+	<tr>
+		<td>크기</td><td th:text="${dogData.dogsize}" />
+	</tr>
+	<tr>
+		<td>성별</td><td th:text="${dogData.gender}" />
+	</tr>
+	<tr>
+		<td>태어난년도</td><td th:text="${dogData.dyear}" />
+	</tr>
+	<tr>
+		<td>태어난달</td><td th:text="${dogData.dmonth}" />
+	</tr>
+	<tr>
+		<td>사진</td><td><img th:src="|/dimg/${dogData.photo}|" alt="" width="500px"/></td>
+	</tr>
+	<tr>
+		<td>특이사항</td><td th:text="${dogData.notes}" />
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+			<a th:href="|/user/myPage/dogList|" th:text="목록으로" />
+			<a th:href="|/user/myPage/dogModify/${dogData.dname}|" th:text="수정"/>
+			<button onclick="dogConfirm()">등록해제</button>
+		</td>
+	</tr>
+</table>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_예약</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<div class="shresermenu">
+		<a href="/admin/reservation/1">예약내역</a>
+		<a href="/admin/refund">환불내역</a>
+	</div>
+	<h3>예약리스트</h3>
+	
+	<table border="" align="center" style="">
+		<form action="" th:object="${PData}" method="post">
+			<tr>
+				<td colspan="9" align="right">
+					아이디 검색
+					<input type="text" th:field="*{sch}" /> 
+					<!-- 갯수
+					<select th:field="*{cnt}">
+						<option th:each="no : ${#numbers.sequence(0,10,2)}" th:value="${no}" th:text="${no}"></option>
+					</select> -->
+					<input type="submit" value="검색" />
+				</td>
+			</tr>
+		</form>
+		
+		<tr style=""align="center">
+			<td>예약번호</td>
+			<td>아이디</td>
+			<td>강아지이름</td>
+			<td>크기</td>
+			<td>이용권종류</td>
+			<td>교육</td>
+			<td>시작일</td>
+			<td>종료일</td>
+			<td>신청요일</td>
+			
+		</tr>
+		<tr th:each="dto, dtostat : ${mainData}">
+			<td align="center"><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.reserNo}"></a></td>
+			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.pid}"></td>
+			<td th:text="${dto.dname}"/>
+			<td th:text="${dto.dogsize}"/>
+			<td th:text="|${dto.kind} (${dto.gap()})|"/>
+			<td th:text="${dto.edu}" align="center"/>
+			<td th:text="${dto.sDate()}"/>
+			<td th:text="${dto.eDate()}"/>
+			<td th:text="${dto.weeks}"/>
+			
+		</tr>
+		<tr>
+			<td colspan="9" align="center">
+				
+			</td>
+		</tr>
+	
+	</table>
+	
+	
+</th:block>
+
+</html>

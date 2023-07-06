@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>joinForm</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<h1>회원가입</h1>
+<form method="post" th:object="${hmMemberDTO}">
+	<table border="">
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" th:field="*{pid}" /></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="text" th:field="*{pw}" /></td>
+		</tr>
+		<tr>
+			<td>비밀번호 확인</td>
+			<td><input type="text" name="pw2" /></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" th:field="*{pname}" /></td>
+		</tr>
+		<tr>
+			<td>전화번호</td>
+			<td><input type="text" th:field="*{tel}" /></td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td><input type="text" th:field="*{addr1}" /></td>
+		</tr>
+		<tr>
+			<td>상세주소</td>
+			<td><input type="text" th:field="*{addr2}" /></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" th:field="*{email}" /></td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td><input type="date" name="birthstr" /></td>
+		</tr>
+		<tr>
+			<td colspan="2" align=center><input type="submit" value="가입하기" /></td>
+		</tr>
+	</table>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+<h1>강아지 등록</h1>
+<form method="post" th:object="${hmDogsDTO}" enctype="multipart/form-data">
+	<table border="">
+		<tr>
+			<td>강아지 이름</td>
+			<td><input type="text" th:field="*{dname}" /></td>
+		</tr>
+		<tr>
+			<td>무게</td>
+			<td><input type="text" th:field="*{weight}" /></td>
+		</tr>
+		<tr>
+			<td>크기</td>
+			<td>
+				<input type="radio" th:field="*{dogsize}" value="소형견" />소형견
+				<input type="radio" th:field="*{dogsize}" value="중형견" />중형견
+				<input type="radio" th:field="*{dogsize}" value="대형견" />대형견
+			</td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td>
+				<input type="radio" th:field="*{gender}" value="암컷" />암컷
+				<input type="radio" th:field="*{gender}" value="수컷" />수컷
+			</td>
+		</tr>
+		<tr>
+			<td>견종</td>
+			<td><input type="text" th:field="*{breed}" /></td>
+		</tr>
+		<tr>
+			<td>태어난 년,월</td>
+			<td>
+				<select th:field="*{dyear}">
+					<option th:each="num: ${#numbers.sequence(2000,2023)}" th:value="${num}" th:text="${num}" ></option>
+				</select>
+				<select th:field="*{dmonth}">
+					<option th:each="num: ${#numbers.sequence(1,12)}" th:value="${num}" th:text="${num}" ></option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>사진</td>
+			<td><input type="file" name="dogimg"/></td>
+		</tr>
+		<tr>
+			<td>특이사항</td>
+			<td><textarea th:field="*{notes}"/></td>
+		</tr>
+		<tr>
+			<td>중성화 여부</td>
+			<td>
+				<input type="checkbox" name="chk" required/>중성화한 강아지 입니다.
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align=center><input type="button" value="등록하기" /></td>
+		</tr>
+	</table>
+</form>
+</th:block>
+</html>

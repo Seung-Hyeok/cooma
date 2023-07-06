@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>login</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<h1>로그인</h1>
+<form method="post" th:object="${hmMemberDTO}">
+	<div class="hm_loginWrapper">
+		<div>
+			<h3>LOGIN</h3>
+		</div>
+		<div>
+			<input type="text" th:field="*{pid}" />
+		</div>
+		<div>
+			<input type="text" th:field="*{pw}" />
+		</div>
+		<div>
+			<input type="submit" value="로그인" />
+			<a href="/user/log/joinForm">회원가입</a>
+		</div>
+	</div>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>
