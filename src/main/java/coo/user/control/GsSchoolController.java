@@ -48,7 +48,7 @@ public class GsSchoolController {
 	}
 	
 	@PostMapping("/user/school/gsBuy")
-	String pay(HttpSession session,Model mm, GsReserDTO drto) {
+	String pay(HttpSession session,Model mm, GsReserDTO drto, GsDogDTO gdto) {
 		String pid = (String)session.getAttribute("pid");
 		drto.setPid(pid);
 		System.out.println("gsBuy 진입");

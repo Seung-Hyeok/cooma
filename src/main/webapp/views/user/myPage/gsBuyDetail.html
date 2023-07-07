@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>회원 이용권</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
+<div class="myBuyMenu">
+<a href="/user/myPage/gsMyList">현재 이용권</a>
+<a href="/user/myPage/gsMyOld">지난(환불) 이용권</a>
+</div>
+<h1>디테일 페이지</h1>
+	<div class="buyList">
+	
+			번호 : <span th:text="${myDetail.reserNo}"></span>&nbsp;&nbsp;&nbsp;
+			강아지 이름 : <span th:text="${myDetail.dname}"></span> &nbsp;&nbsp;&nbsp;
+			강아지 크기 : <span th:text="${myDetail.dogsize}"></span> &nbsp;&nbsp;&nbsp;
+			이용권 종류 : <span th:text="${myDetail.kind}"></span> &nbsp;&nbsp;&nbsp;
+			추가 교육 : <span th:text="${myDetail.edu}"></span> &nbsp;&nbsp;&nbsp;
+			등원 날짜 : <span th:text="${myDetail.startD}"></span> &nbsp;&nbsp;&nbsp;
+			종료 날짜 : <span th:text="${myDetail.endD}"></span> &nbsp;&nbsp;&nbsp;
+			요일 : <span th:text="${myDetail.weeks}"></span> &nbsp;&nbsp;&nbsp;
+		</div>	
+		<a href="">수정</a>
+		<a href="">환불</a>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

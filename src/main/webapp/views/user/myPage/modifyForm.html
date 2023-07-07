@@ -7,6 +7,11 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
 <h1>회원정보 수정</h1>
 <form method="post" th:object="${myData}">
 	<table border="">
