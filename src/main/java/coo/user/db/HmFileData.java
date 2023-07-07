@@ -8,4 +8,6 @@ public class HmFileData {
 	MultipartFile dogimg;
 	
 	String birthstr;
+	
+	String email2;
 }

@@ -3,6 +3,7 @@ package coo.user.control;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Date;
 import java.util.List;
 
@@ -34,9 +35,9 @@ public class HmLoginController {
 	}
 	
 	@PostMapping("/user/log/joinForm")
-	String joinComplete(HttpServletRequest request, Model mm, HmMemberDTO dto, HmDogsDTO dog, HmFileData fd) {
-		dto.setGrade("일반");
+	String joinComplete(HttpServletRequest request, Model mm, HmDogsDTO dog, HmMemberDTO dto, HmFileData fd) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		dto.setEmail(dto.getEmail()+"@"+fd.getEmail2());
 	    try {
 	        Date birthDate = format.parse(fd.getBirthstr());
 	        dto.setBirth(birthDate);
@@ -44,64 +45,13 @@ public class HmLoginController {
 	        // 날짜 변환 실패 시
 	        e.printStackTrace();
 	    }
-		lm.insert(dto);
-		
-		String pid = dto.getPid();
-		dto.setPid(pid);
-		dog.setPhoto(fd.getDogimg().getOriginalFilename());
-		
-		HmMemberDTO memData = lm.my(pid);
+	    dog.setPhoto(fd.getDogimg().getOriginalFilename());
 		fileSave(fd.getDogimg(), request);
 		lm.insertDog(dog);
-		
-		if(memData.getDog1()==null || memData.getDog1().equals("")) {
-			memData.setDog1(dog.getDname());
-			lm.dnameset(memData);
-		}
-		else if(memData.getDog2()==null || memData.getDog2().equals("")) {
-			memData.setDog2(dog.getDname());
-			lm.dnameset(memData);
-		}
-		else if(memData.getDog3()==null || memData.getDog3().equals("")) {
-			memData.setDog3(dog.getDname());
-			lm.dnameset(memData);
-		}
+	    dto.setDog1(dog.getDname());
+	    lm.insert(dto);
 		
 		mm.addAttribute("msg","회원가입이 완료되었습니다.");
-		mm.addAttribute("goUrl","/user");
-		return "user/log/alert";
-	}
-	
-	//애견등록///////////////////////////////////////
-	@GetMapping("/user/log/dogJoinForm")
-	String dogJoinForm(HmDogsDTO dto) {
-		return "user/log/dogJoinForm";
-	}
-	
-	@PostMapping("/user/log/dogJoinForm")
-	String dogJoinComplete(HttpServletRequest request, HttpSession session, Model mm, HmDogsDTO dto, HmMemberDTO member, HmFileData fd) {
-		String pid = (String)session.getAttribute("pid");
-		dto.setPid(pid);
-		dto.setPhoto(fd.getDogimg().getOriginalFilename());
-		
-		HmMemberDTO memData = lm.my(pid);
-		fileSave(fd.getDogimg(), request);
-		lm.insertDog(dto);
-		
-		if(memData.getDog1()==null || memData.getDog1().equals("")) {
-			memData.setDog1(dto.getDname());
-			lm.dnameset(memData);
-		}
-		else if(memData.getDog2()==null || memData.getDog2().equals("")) {
-			memData.setDog2(dto.getDname());
-			lm.dnameset(memData);
-		}
-		else if(memData.getDog3()==null || memData.getDog3().equals("")) {
-			memData.setDog3(dto.getDname());
-			lm.dnameset(memData);
-		}
-		
-		mm.addAttribute("msg","강아지 등록이 완료되었습니다.");
 		mm.addAttribute("goUrl","/user");
 		return "user/log/alert";
 	}

@@ -59,9 +59,8 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	</select>
 	
 	<update id="dogModify" parameterType="hmDogsDTO">
-		update dogs set dname = #{dname}, weight =  #{weight}, dogsize = #{dogsize}, gender = #{gender},
-		breed = #{breed}, photo = #{photo}, notes = #{notes}, dyear = #{dyear}, dmonth = #{dmonth}
-		where pid = #{pid} and dname = #{dname1}
+		update dogs set weight =  #{weight}, photo = #{photo}, notes = #{notes}
+		where pid = #{pid} and dname = #{dname}
 	</update>
 	
 	<delete id="dogDelete"  parameterType="hmDogsDTO">

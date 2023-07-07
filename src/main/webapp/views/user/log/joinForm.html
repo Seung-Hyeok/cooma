@@ -7,9 +7,21 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+</script>
 <h1>회원가입</h1>
-<form method="post" th:object="${hmMemberDTO}">
+<form method="post" th:object="${hmMemberDTO}" enctype="multipart/form-data">
 	<table border="">
+		<tr>
+			<td colspan="2" align=center>회원정보</td>
+		</tr>
 		<tr>
 			<td>아이디</td>
 			<td><input type="text" th:field="*{pid}" /></td>
@@ -40,57 +52,57 @@ layout:decorate="total/userTemp">
 		</tr>
 		<tr>
 			<td>이메일</td>
-			<td><input type="text" th:field="*{email}" /></td>
+			<td><input type="text" th:field="*{email}" />@
+				<select name="email2" >
+					<option value="naver.com" th:text="naver.com"></option>
+					<option value="gmail.com" th:text="gmail.com"></option>
+					<option value="daum.net" th:text="daum.net"></option>
+					<option value="nate.com" th:text="nate.com"></option>
+					<option value="kakao.com" th:text="kakao.com"></option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<td>생년월일</td>
 			<td><input type="date" name="birthstr" /></td>
 		</tr>
 		<tr>
-			<td colspan="2" align=center><input type="submit" value="가입하기" /></td>
+			<td colspan="2" align=center>애견정보</td>
 		</tr>
-	</table>
-</form>
-</th:block>
-
-<th:block layout:fragment="add-content">
-<h1>강아지 등록</h1>
-<form method="post" th:object="${hmDogsDTO}" enctype="multipart/form-data">
-	<table border="">
 		<tr>
 			<td>강아지 이름</td>
-			<td><input type="text" th:field="*{dname}" /></td>
+			<td><input type="text" name="dname" /></td>
 		</tr>
 		<tr>
 			<td>무게</td>
-			<td><input type="text" th:field="*{weight}" /></td>
+			<td><input type="text" name="weight" />kg</td>
 		</tr>
 		<tr>
 			<td>크기</td>
 			<td>
-				<input type="radio" th:field="*{dogsize}" value="소형견" />소형견
-				<input type="radio" th:field="*{dogsize}" value="중형견" />중형견
-				<input type="radio" th:field="*{dogsize}" value="대형견" />대형견
+				<label><input type="radio" name="dogsize" value="소형견" />소형견</label>
+				<label><input type="radio" name="dogsize" value="중형견" />중형견</label>
+				<label><input type="radio" name="dogsize" value="대형견" />대형견</label>
 			</td>
 		</tr>
 		<tr>
 			<td>성별</td>
 			<td>
-				<input type="radio" th:field="*{gender}" value="암컷" />암컷
-				<input type="radio" th:field="*{gender}" value="수컷" />수컷
+				<label><input type="radio" name="gender" value="암컷" />암컷</label>
+				<label><input type="radio" name="gender" value="수컷" />수컷</label>
 			</td>
 		</tr>
 		<tr>
 			<td>견종</td>
-			<td><input type="text" th:field="*{breed}" /></td>
+			<td><input type="text" name="breed" /></td>
 		</tr>
 		<tr>
-			<td>태어난 년,월</td>
+			<td>태어난 날짜</td>
 			<td>
-				<select th:field="*{dyear}">
-					<option th:each="num: ${#numbers.sequence(2000,2023)}" th:value="${num}" th:text="${num}" ></option>
+				<select name="dyear">
+					<option th:each="num: ${#numbers.sequence(2000,#dates.year(#dates.createNow()))}" th:value="${num}" th:text="${num}" ></option>
 				</select>
-				<select th:field="*{dmonth}">
+				<select name="dmonth">
 					<option th:each="num: ${#numbers.sequence(1,12)}" th:value="${num}" th:text="${num}" ></option>
 				</select>
 			</td>
@@ -101,18 +113,22 @@ layout:decorate="total/userTemp">
 		</tr>
 		<tr>
 			<td>특이사항</td>
-			<td><textarea th:field="*{notes}"/></td>
+			<td><textarea name="notes"></textarea></td>
 		</tr>
 		<tr>
 			<td>중성화 여부</td>
 			<td>
-				<input type="checkbox" name="chk" required/>중성화한 강아지 입니다.
+				<label><input type="checkbox" name="chk" required/>중성화한 강아지 입니다.</label>
+				<br/> <font size="2">*쿠키마루는 중성화한 강아지만 등록할 수 있습니다.</font>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" align=center><input type="button" value="등록하기" /></td>
+			<td colspan="2" align=center><input type="submit" value="가입하기" /></td>
 		</tr>
 	</table>
 </form>
+</th:block>
+
+<th:block layout:fragment="add-content">
 </th:block>
 </html>
