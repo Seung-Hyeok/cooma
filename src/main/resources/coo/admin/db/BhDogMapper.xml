@@ -31,8 +31,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	<select id="bhFindMemName" parameterType="bhdDTO" resultType="java.lang.String">
 		select pname from member where pid = #{pid}
 	</select>
-	
-	
+
 	
 <!-- 디테일 -->
 	<select id="bhDogDetail" parameterType="bhdDTO" resultType="bhdDTO">
@@ -41,6 +40,10 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 
 	<select id="bhDogsMem" parameterType="bhdDTO" resultType="bhmDTO">
 		select * from member where pid = #{pid}
+	</select>	
+	
+	<select id="bhDogsReser" parameterType="bhdDTO" resultType="bhAtDTO">
+		select * from reser where dname = #{dname} and pid = #{pid} order by startD 
 	</select>	
 	
 <!-- 수정 -->

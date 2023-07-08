@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface BhAttendMapper {
-	List<BhAttendReserDTO> listBig();
-	List<BhAttendReserDTO> listSmall();
+	List<BhAttendReserDTO> todayListBig(BhAttendReserDTO reser);
+	List<BhAttendReserDTO> todayListSmall(BhAttendReserDTO reser);
 }

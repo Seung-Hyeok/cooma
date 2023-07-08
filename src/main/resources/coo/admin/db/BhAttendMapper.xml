@@ -4,22 +4,13 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="coo.admin.db.BhAttendMapper">
-	<sql id="dateChk">
-		<!-- 그냥 '<='를 사용하면 에러이기에 '&lt;='로 표기한다. -->
-		#{startD} &lt;= #{today} AND #{endD} &gt;= #{today}
-	</sql>
 
-	<!-- resultType 별칭 사용 안됨 (bhAtDTO) -->
-	<select id="listBig" resultType="coo.admin.db.BhAttendReserDTO"> 
-		select * from reser where dogsize = "대형견"
-		And
-		<include refid="dateChk" />
+	<select id="todayListBig" resultType="bhAtDTO">
+		select * from reser where dogsize = "대형견" and #{today} BETWEEN startD AND endD and weeks like concat('%',#{dayStr},'%')
 	</select>
 
-	<select id="listSmall" resultType="coo.admin.db.BhAttendReserDTO">
-		select * from reser where dogsize IN ('중형견', '소형견')
-		And
-		<include refid="dateChk" />
+	<select id="todayListSmall" resultType="bhAtDTO">
+		select * from reser where dogsize = "중/소형견" and #{today} BETWEEN startD AND endD and weeks like concat('%',#{dayStr},'%')
 	</select>
 
 </mapper>

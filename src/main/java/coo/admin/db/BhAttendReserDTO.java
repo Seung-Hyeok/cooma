@@ -1,5 +1,8 @@
 package coo.admin.db;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
@@ -30,8 +33,40 @@ public class BhAttendReserDTO {
 	  refundD datetime -- 환불일자
 	 */
 	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account;
-	Date payD, startD, endD, refundD, today = new Date();
+	Date payD, startD, endD, refundD, today = new Date(123, 6, 7); //today = new Date();
 	Integer reserNo, pay, eduFee, totFee, gap, refund;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 EEE");
+	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy년 MM월 dd일");
+
+		
+	public String todayStr() {
+		String todayStr = sdf.format(today); // today => 포맷팅할 날짜 객체
+		return todayStr;
+	}
+	
+	public String startDStr() {
+		String startDStr = sdf1.format(startD); 
+		return startDStr;
+	}
+	
+	public String endDStr() {
+		String endDStr = sdf1.format(endD); 
+		return endDStr;
+	}
+	
+	//Calendar calendar = Calendar.getInstance(); //오늘 요일 번호 알아내는 코드
+	//int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1(일요일)부터 7(토요일)까지의 값
+	int dayOfWeek = 6;
+	String dayStr = "일월화수목금토".substring(dayOfWeek-1, dayOfWeek);
+	
+	public String getTerm() {
+		String term = "1일";
+		if(gap == 84) { term = "3개월"; }
+		if(gap == 28) { term = "1개월"; }
+		if(gap == 14) { term = "2주"; }
+		return term;
+	}
 	
 	
 }
