@@ -51,13 +51,8 @@ layout:decorate="total/adTemp">
 
 		<tr>
 			<td colspan="2" align="center">
-				<th:block th:if="${beforePage.equals('dogs')}">
-					<a th:href="|/admin/dogs|">애견목록</a>
-				</th:block>
-<!--				<a th:href="|/admin/dogs|" th:text="목록으로" ></a>-->
-				<th:block th:if="${beforePage.equals('admin')}">
-					<a th:href="|/admin|">오늘강아지리스트</a>
-				</th:block>
+				<a th:href="|/admin/dogs|"  th:if="${beforePage.equals('dogs')}">애견목록</a>
+				<a th:href="|/admin|"  th:if="${beforePage.equals('admin')}">오늘등원리스트</a>
 				<a th:href="|/admin/dogModi/${bhDogData.dname}/${bhDogData.pid}|" th:text="수정" ></a>
 				<a th:href="|/admin/dogDelete/${bhDogData.dname}/${bhDogData.pid}|" th:text="삭제" ></a>	
 			</td>

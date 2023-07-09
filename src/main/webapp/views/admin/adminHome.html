@@ -8,6 +8,51 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
+	<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+	<script th:inline="javascript">
+		function attend(button) {
+			var todayNo = button.value; // 버튼의 값 가져오기
+			
+			$.ajax({
+				url: "/admin/attendTime", //실행코드가 있는 컨트롤러의 메소드
+				type: "POST",
+				data: { todayNo: todayNo },
+				success: function (res) {
+					alert("등원");
+					location.reload(); //화면새로고침
+				},
+				error: function (ee) {
+					// 실패하면 에러메시지
+					console.log(ee);
+					console.log(todayNo);
+				},
+			});
+		}
+		
+		function afterSchool(button) {
+			var todayNo = button.value; // 버튼의 값 가져오기
+			
+			$.ajax({
+				url: "/admin/afterHome", //실행코드가 있는 컨트롤러의 메소드
+				type: "POST",
+				data: { todayNo: todayNo },
+				success: function (res) {
+					alert("하원");
+					location.reload(); //화면새로고침
+				},
+				error: function (ee) {
+					// 실패하면 에러메시지
+					console.log(ee);
+					console.log(todayNo);
+				},
+			});
+		}
+	</script>
+
+	<div>
+		<a href="/admin">오늘의 등원</a>
+<!--		<a href="/admin/bhAttList">등원리스트</a>-->
+	</div>
 	
 	<div class="bhAttend">
 		<h2 th:text="${reser.todayStr()}"/>
@@ -40,7 +85,12 @@ layout:decorate="total/adTemp">
 						<td th:text="${dto.edu}"/>
 						<td th:text="${dto.reque}"/>
 						<td th:text="${dto.kind}"/>
-						<td>버튼</td>
+						<td>
+							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}"/>
+							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" th:text="하원" th:value="${dto.todayNo}"/>
+							<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
+							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}"/>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -64,7 +114,12 @@ layout:decorate="total/adTemp">
 						<td th:text="${dto.edu}"/>
 						<td th:text="${dto.reque}"/>
 						<td th:text="${dto.kind}"/>
-						<td>버튼</td>
+						<td>
+							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}"/>
+							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" th:text="하원" th:value="${dto.todayNo}"/>
+							<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
+							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}"/>
+						</td>
 					</tr>
 				</table>
 			</div>
