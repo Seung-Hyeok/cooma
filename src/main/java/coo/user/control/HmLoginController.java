@@ -3,14 +3,11 @@ package coo.user.control;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -122,9 +119,18 @@ public class HmLoginController {
     public String checkId(@RequestParam("pid") String pid) {
         String result="N";
         
-        int flag = lm.checkId(pid);
-        
-        if(flag == 1) result ="Y"; 
+        if(pid.isEmpty()) {
+            return "F"; // "F"를 반환하여 사용 불가능한 아이디임을 알립니다.
+        }
+        else {
+            int flag = lm.checkId(pid);
+            if(flag == 1) {
+            	result="Y"; // "Y"를 반환하여 사용 가능한 아이디임을 알립니다.
+            }
+            else {
+            	result="N"; // "N"을 반환하여 사용 불가능한 아이디임을 알립니다.
+            }
+        }
         //아이디가 있을시 Y 없을시 N 으로jsp view 로 보냄
         return result;
     }

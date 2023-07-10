@@ -10,9 +10,6 @@ layout:decorate="total/userTemp">
 <script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
 <script th:inline="javascript">
 $(function(){
- 
-    
-    
     $("#checkId").click(function(){
     
         let pid = $("#pid").val();
@@ -27,11 +24,15 @@ $(function(){
                     result = "사용 가능한 아이디입니다.";
                     $("#result_checkId").html(result).css("color", "green");
                  
-             }else{ // 만약 실패할시
+             }else if(data == "Y"){ // 만약 실패할시
                  result="이미 사용중인 아이디입니다.";
                      $("#result_checkId").html(result).css("color","red");
                      $("#pid").val("").trigger("focus");
-             }
+             }else{ // 만약 실패할시
+                 result="아이디를 적어주세요.";
+                 $("#result_checkId").html(result).css("color","red");
+                 $("#pid").val("").trigger("focus");
+         }
                  
          },
             error : function(error){
@@ -43,8 +44,6 @@ $(function(){
     });
     
 });
- 
- 
 </script>
 <h1>회원가입</h1>
 <form method="post" th:object="${hmMemberDTO}" enctype="multipart/form-data">
