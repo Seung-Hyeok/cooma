@@ -95,7 +95,7 @@ public class AdminHomeController {
 		if (goHome.getTime() > deadline.getTime()) {
 			System.out.println("추가금 지불");
 			timeGap = (double) (goHome.getTime() - deadline.getTime());
-			timeGap = timeGap/1000;
+			timeGap = timeGap/1000-600; //정각이 아닌 10분 여유 줌
 			System.out.println("timeGap:"+timeGap);
 			System.out.println("시:"+(int)timeGap/(3600));
 			System.out.println("분:"+(int)(timeGap%3600)/60);
@@ -106,7 +106,6 @@ public class AdminHomeController {
 			chkTime.setTimeGap(addPanelty);
 			
 			am.bhAddPanelty(chkTime);
-			
 		}
 		/*
 		String goUrl = "/admin/adminHome";
@@ -115,7 +114,7 @@ public class AdminHomeController {
 		*/
 		String msg = "하원완료";
 		if(addPanelty>0) {
-			msg = ""+(addPanelty*10000);
+			msg = "패널티fee: "+(addPanelty*10000);
 		}
 		return msg;
 	}
