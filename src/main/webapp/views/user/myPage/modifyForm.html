@@ -7,6 +7,11 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinChk">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
 <h1>회원정보 수정</h1>
 <form method="post" th:object="${myData}">
 	<table border="">
@@ -24,7 +29,7 @@ layout:decorate="total/userTemp">
 		</tr>
 		<tr>
 			<td>생년월일</td>
-			<td th:text="${myData.birth}"/>
+			<td>[[${birth}]]</td>
 		</tr>
 		<tr>
 			<td>주소</td>
@@ -37,10 +42,6 @@ layout:decorate="total/userTemp">
 		<tr>
 			<td>이메일</td>
 			<td><input type="text" th:field="*{email}"/></td>
-		</tr>
-		<tr>
-			<td>강아지</td>
-			<td><input type="text" th:field="*{dog1}"/></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>

@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	<insert id="insert" parameterType="hmMemberDTO">
 		insert into member (pid, pw, pname, tel, birth, reg_date, addr1, addr2, email, grade, dog1, dog2, dog3) 
 		values
-		(#{pid}, #{pw}, #{pname}, #{tel}, #{birth}, sysdate(), #{addr1}, #{addr2}, #{email}, #{grade}, #{dog1}, #{dog2}, #{dog3})
+		(#{pid}, #{pw}, #{pname}, #{tel}, #{birth}, sysdate(), #{addr1}, #{addr2}, #{email}, '일반', #{dog1}, '', '')
 	</insert>
 	
 	<insert id="insertDog" parameterType="hmDogsDTO">
@@ -67,5 +67,10 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	<delete id="dogDelete"  parameterType="hmDogsDTO">
 		delete from dogs where pid = #{pid} and dname = #{dname}
 	</delete>
+	 
+	<select id="checkId" parameterType="String" resultType="int">
+	        select count(*) from member where pid=#{pid}
+    </select>
+	
 	
 </mapper>

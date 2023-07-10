@@ -7,36 +7,42 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinChk">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
 <h1>애견 정보 수정</h1>
 <form method="post" th:object="${dogData}">
 	<table border="">
 		<tr>
 			<td>이름</td>
-			<td><input type="text" th:field="*{dname}"/></td>
+			<td th:text="${dogData.dname}"/>
 		</tr>
 		<tr>
 			<td>견종</td>
-			<td><input type="text" th:field="*{breed}"/></td>
+			<td th:text="${dogData.breed}"/>
 		</tr>
 		<tr>
 			<td>무게</td>
 			<td><input type="text" th:field="*{weight}"/></td>
 		</tr>
 		<tr>
-			<td>크기</td>
-			<td><input type="text" th:field="*{dogsize}"/></td>
+			<td>사이즈</td>
+			<td th:text="${dogData.dogsize}"/>
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td><input type="text" th:field="*{gender}"/></td>
+			<td th:text="${dogData.gender}"/>
 		</tr>
 		<tr>
-			<td>태어난년도</td>
-			<td><input type="text" th:field="*{dyear}"/></td>
+			<td>태어난 해</td>
+			<td th:text="${dogData.dyear}"/>
 		</tr>
 		<tr>
-			<td>태어난달</td>
-			<td><input type="text" th:field="*{dmonth}"/></td>
+			<td>태어난 달</td>
+			<td th:text="${dogData.dmonth}"/>
+		</tr>
 		<tr>
 			<td>사진</td>
 			<td><input type="file" th:field="*{photo}"/></td>

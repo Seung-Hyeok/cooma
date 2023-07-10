@@ -12,6 +12,8 @@ public class HomeController {
 	@RequestMapping("/user")
 	String home(HttpSession session, Model mm) {
 		System.out.println("home 실행");
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		
 		Object pname = session.getAttribute("pname");
 		

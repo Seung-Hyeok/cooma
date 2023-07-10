@@ -7,6 +7,11 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
 <h1>강아지 등록</h1>
 <form method="post" th:object="${hmDogsDTO}" enctype="multipart/form-data">
 	<table border="">
@@ -16,21 +21,21 @@ layout:decorate="total/userTemp">
 		</tr>
 		<tr>
 			<td>무게</td>
-			<td><input type="text" th:field="*{weight}" /></td>
+			<td><input type="text" th:field="*{weight}" />kg</td>
 		</tr>
 		<tr>
-			<td>크기</td>
+			<td>사이즈</td>
 			<td>
-				<input type="radio" th:field="*{dogsize}" value="소형견" />소형견
-				<input type="radio" th:field="*{dogsize}" value="중형견" />중형견
-				<input type="radio" th:field="*{dogsize}" value="대형견" />대형견
+				<label><input type="radio" th:field="*{dogsize}" value="소형견" />소형견</label>
+				<label><input type="radio" th:field="*{dogsize}" value="중형견" />중형견</label>
+				<label><input type="radio" th:field="*{dogsize}" value="대형견" />대형견</label>
 			</td>
 		</tr>
 		<tr>
 			<td>성별</td>
 			<td>
-				<input type="radio" th:field="*{gender}" value="암컷" />암컷
-				<input type="radio" th:field="*{gender}" value="수컷" />수컷
+				<label><input type="radio" th:field="*{gender}" value="암컷" />암컷</label>
+				<label><input type="radio" th:field="*{gender}" value="수컷" />수컷</label>
 			</td>
 		</tr>
 		<tr>
@@ -38,7 +43,7 @@ layout:decorate="total/userTemp">
 			<td><input type="text" th:field="*{breed}" /></td>
 		</tr>
 		<tr>
-			<td>태어난 년,월</td>
+			<td>태어난 날짜</td>
 			<td>
 				<select th:field="*{dyear}">
 					<option th:each="num: ${#numbers.sequence(2000,2023)}" th:value="${num}" th:text="${num}" ></option>
@@ -59,7 +64,8 @@ layout:decorate="total/userTemp">
 		<tr>
 			<td>중성화 여부</td>
 			<td>
-				<input type="checkbox" name="chk" required/>중성화한 강아지 입니다.
+				<label><input type="checkbox" name="chk" required/>중성화한 강아지 입니다.</label>
+				<br/> <font size="2">*쿠키마루는 중성화한 강아지만 등록할 수 있습니다.</font>
 			</td>
 		</tr>
 		<tr>
