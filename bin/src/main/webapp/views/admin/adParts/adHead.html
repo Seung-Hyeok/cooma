@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<style>
+	body{
+		margin: auto;
+		width: 1200px;
+		
+		border: 3px solid#000;
+	}
+	.menu{
+		width: 1200px;
+		height: 100px;
+		border: 1px solid#0aa;
+		background: #aaa;
+	}
+	.main{
+		width: 1200px;
+		min-height: 1000px;
+		border: 1px solid#faa;
+		background: #eee;
+		justify-content: space-evenly;
+	}
+	.shresermenu{
+		border: 1px solid#000;
+	}
+	/*관리자 홈 화면 css*/
+
+	.bhAttend{
+		height: 150px;
+		text-align: center;
+		line-height: 150px;
+	}
+	.bhAttendBig{
+		display: flex;
+		justify-content: space-evenly;
+	}
+
+	.bhAttendBig > .bhAttendS{
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.bhAttendS{
+		width: 40%;
+		height: 500px; /*나중에 스크롤로 볼수 있게..*/
+		border: 1px solid #000;
+	}
+	
+	.bhAttendS > div:first-child{
+		width: 100%;
+		height: 50px; 
+		border: 1px solid #000;
+		text-align: center;
+		line-height: 50px;
+	}
+	.bhAttendS > div:first-child > h3{
+		margin:0;
+	}
+	
+	.bhAttendS > div:last-child{
+		width: 100%;
+		height: 100%; /*나중에 스크롤로 볼수 있게..*/
+		border: 1px solid #000;
+	}
+</style>
+
+<div class="menu">
+<th:block layout:fragment="adTitle"></th:block>
+<a href="/admin">관리자</a>
+<a href="/admin/member">회원관리</a>
+<a href="/admin/dogs">애견관리</a>
+<a href="/admin/reservation/1">예약관리</a>
+<a href="/admin/sales">매출관리</a>
+</div>
+</head>

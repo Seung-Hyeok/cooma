@@ -31,7 +31,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	.bhAttend{
 		height: 150px;
 		text-align: center;
-		line-height: 150px;
+		line-height: 50px;
 	}
 	.bhAttendBig{
 		display: flex;
@@ -44,7 +44,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	}
 	
 	.bhAttendS{
-		width: 40%;
+		width: 45%;
 		height: 500px; /*나중에 스크롤로 볼수 있게..*/
 		border: 1px solid #000;
 	}
@@ -65,14 +65,30 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		height: 100%; /*나중에 스크롤로 볼수 있게..*/
 		border: 1px solid #000;
 	}
+	
+/*관리자 메인 화면 버튼 css*/
+	
+	.bhAtBtn{
+		background: orangered;
+	}
+	
+	.bhGoBtn{
+		background: dodgerblue;
+	}
+	
+	.bhPanelty{
+		color: red;
+	}
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <div class="menu">
 <th:block layout:fragment="adTitle"></th:block>
 <a href="/admin">관리자</a>
 <a href="/admin/member">회원관리</a>
 <a href="/admin/dogs">애견관리</a>
-<a href="/admin/reservation/1">예약관리</a>
+<a href="/admin/reservation/1">이용권관리</a>
 <a href="/admin/sales">매출관리</a>
 </div>
 </head>

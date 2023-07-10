@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org/DTD Mapper3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="coo.user.db.GsMyPageMapper">
+	<select id="reserArr" parameterType="String" resultType="gsrDTO">
+		select * from reser 
+		<where>
+			pid = #{pid} and refund = 0
+		</where>
+	</select>
+	
+	<select id="oldArr" parameterType="String" resultType="gsrDTO">
+		select * from reser 
+		<where>
+			pid = #{pid}  and (refund > 0 or endD &lt;= date_sub(sysdate(), interval 1 day))
+		</where>
+	</select>
+	
+	<select id="buyDetail" parameterType="gsrDTO" resultType="gsrDTO">
+		select * from reser 
+		<where>
+			reserNo = #{reserNo}
+		</where>
+	</select>
+	
+	<update id="myRefun" parameterType="gsrDTO">
+		update reser set refund = #{refund}, refundD = sysdate()
+		<where>
+			reserNo = #{reserNo}
+		</where>
+	</update>
+	
+	
+</mapper>
+
+

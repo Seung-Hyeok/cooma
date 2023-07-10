@@ -1,5 +1,7 @@
 package coo.admin.control;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,31 @@ public class ShReservationController {
 		return "admin/reser/reservation";
 	}
 	
+	@RequestMapping("/admin/endreservation/{nowPage}")
+	String endreser(Model mm, PData pd) {
+		List<ShReservationDTO> mainData = rm.endlist(pd);
+		
+		System.out.println(mainData);
+		System.out.println("endreservation 진입");
+		
+		System.out.println("list:"+pd.getSch());
+		//System.out.println("cnt:"+dto.getCnt());
+		
+		mm.addAttribute("mainData", mainData);
+		
+		return "admin/reser/endreservation";
+	}
+	@RequestMapping("/admin/endreservation/detail/{reserNo}")
+    String endreserdetail(Model mm, ShReservationDTO dto) {
+        System.out.println(rm.detail(dto));
+        mm.addAttribute("mainData", rm.detail(dto));
+
+        System.out.println(dto.getEdu());
+
+        System.out.println("endreserdetail 진입");
+
+        return "admin/reser/endreserdetail";
+    }
 	@RequestMapping("/admin/reservation/detail/{reserNo}")
 	String detail(Model mm, ShReservationDTO dto) {
 		
@@ -73,9 +100,36 @@ public class ShReservationController {
 	@RequestMapping("/admin/delete/{reserNo}")
 	String delete(Model mm, ShReservationDTO dto) {
 		System.out.println("delete 진입");
-		int cnt = rm.delete(dto);
+		dto = rm.detail(dto);
+		System.out.println(dto);
+		Date today = new Date();
 		
-		
+        long diff = dto.getStartD().getTime() - today.getTime();
+        int chk = (int)(diff / (24 * 60 * 60 * 1000));
+        
+        if(chk>0) {
+	        if(chk<=1) {
+	        	dto.setRefund(dto.getTotFee()/5*4);
+	        }
+	        else if(chk<=5) {
+	        	dto.setRefund(dto.getTotFee()/10*9);
+	        }
+	        else {
+	        	dto.setRefund(dto.getTotFee());
+	        }
+        }
+        else {
+	    	if(-chk <= dto.getGap()/10*3) {
+	        	dto.setRefund(dto.getTotFee()/5*2);
+	    	}
+	    	else if(-chk <= dto.getGap()/2) {
+	        	dto.setRefund(dto.getTotFee()/5*1);
+	    	}
+	    	else if(-chk < dto.getGap()) {
+	    		dto.setRefund(0);
+	    	}
+        }
+        int cnt = rm.delete(dto);
 		System.out.println("삭제갯수:"+cnt);
 		mm.addAttribute("msg","삭제되었습니다.");
 		mm.addAttribute("goUrl", "/admin/reservation/1");
@@ -85,15 +139,15 @@ public class ShReservationController {
 	
 	
 	@RequestMapping("/admin/refund")
-	String refund(Model mm, ShReservationDTO dto) {
+	String refund(Model mm, PData pd) {
 		
-		List<ShReservationDTO> mainData = rm.refundList(dto);
+		List<ShReservationDTO> mainData = rm.refundList(pd);
 		
 		System.out.println(mainData);
 		System.out.println("refund 진입");
 		
 		mm.addAttribute("mainData", mainData);
-		
+		System.out.println("환불내역 페이지 가기직전!!!");
 		return "admin/reser/refund";
 	}
 

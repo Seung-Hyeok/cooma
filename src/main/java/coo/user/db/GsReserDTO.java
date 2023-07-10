@@ -10,8 +10,9 @@ import lombok.Data;
 @Data
 public class GsReserDTO {
 	String pid,dname,edu,reque,kind,dogsize,weeks,bank,account;
-	Integer reserNo,pay,refund,gap;
-	String payD,startD,endD;
+	Integer reserNo,pay,refund,gap,totFee,eduFee;
+	String payD,startD;
+	Date oneDay,endD;
 	
 	public String gap() {
 

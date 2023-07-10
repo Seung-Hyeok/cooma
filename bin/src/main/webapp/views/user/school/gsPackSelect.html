@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+
+
+<th:block layout:fragment="title">
+	<title>패키지 선택</title>
+</th:block>
+
+<th:block layout:fragment="content">
+	<th:block th:if="${packFilter.equals('중형견') || packFilter.equals('소형견')}">
+    	<div class="packWrapper">
+	<h1>일일권</h1>
+		<div >
+			<a href="">일일 소형권</a>	
+			
+		<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="일일권" />
+			<input type="hidden" name="gap" value="0" />
+			<input type="hidden" name="weeks" value="0" />
+			<input type="hidden" name="pay" value="40000" />
+			<input type="submit" />
+		</form>
+		</div>
+		
+	<h1>정기권</h1>
+		<h2>2주패키지</h2>
+		<div >
+			<a href="">정기5일소형권</a>	
+		<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="14" />
+			<input type="hidden" name="weeks" value="월화수목금" />
+			<input type="hidden" name="pay" value="380000" />
+			<input type="submit" />
+		</form>
+		</div>
+		<div >
+			<a href="">정기3일소형권(월수금)</a>	
+		<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="14" />
+			<input type="hidden" name="weeks" value="월수금" />
+			<input type="hidden" name="pay" value="230000" />
+			<input type="submit" />
+		</form>
+		</div>
+		<div >
+			<a href="">정기2일소형권(화목)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="14" />
+			<input type="hidden" name="weeks" value="화목" />
+			<input type="hidden" name="pay" value="155000" />
+			<input type="submit" />
+		</form>
+		</div>
+		<h2>한달패키지</h2>
+		<div >
+			<a href="">정기5일소형권</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="28" />
+			<input type="hidden" name="weeks" value="월화수목금" />
+			<input type="hidden" name="pay" value="700000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기3일소형권(월수금)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="28" />
+			<input type="hidden" name="weeks" value="월수금" />
+			<input type="hidden" name="pay" value="430000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기2일소형권(화목)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="28" />
+			<input type="hidden" name="weeks" value="화목" />
+			<input type="hidden" name="pay" value="280000" />
+			<input type="submit" />
+		</form>
+		<h2>3개월패키지</h2>
+		<div >
+			<a href="">정기5일소형권</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="84" />
+			<input type="hidden" name="weeks" value="월화수목금" />
+			<input type="hidden" name="pay" value="1800000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기3일소형권(월수금)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="84" />
+			<input type="hidden" name="weeks" value="월수금" />
+			<input type="hidden" name="pay" value="1200000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기2일소형권(화목)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="중/소형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="84" />
+			<input type="hidden" name="weeks" value="화목" />
+			<input type="hidden" name="pay" value="820000" />
+			<input type="submit" />
+		</form>
+	</div>
+    </th:block>
+    <th:block th:if="${packFilter.equals('대형견')}">
+   	<div class="packWrapper">
+	<h1>일일권</h1>
+		<div >
+			<a href="">일일대형권</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="일일권" />
+			<input type="hidden" name="gap" value="0" />
+			<input type="hidden" name="weeks" value="0" />
+			<input type="hidden" name="pay" value="50000" />
+			<input type="submit" />
+		</form>
+	<h1>정기권</h1>
+		<h2>2주패키지</h2>
+		<div >
+			<a href="">정기5일대형권</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="14" />
+			<input type="hidden" name="weeks" value="월화수목금" />
+			<input type="hidden" name="pay" value="480000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기3일대형권(월수금)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="14" />
+			<input type="hidden" name="weeks" value="월수금" />
+			<input type="hidden" name="pay" value="290000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기2일대형권(화목)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="14" />
+			<input type="hidden" name="weeks" value="화목" />
+			<input type="hidden" name="pay" value="195000" />
+			<input type="submit" />
+		</form>
+		<h2>한달패키지</h2>
+		<div >
+			<a href="">정기5일대형권</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="28" />
+			<input type="hidden" name="weeks" value="월화수목금" />
+			<input type="hidden" name="pay" value="900000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기3일대형권(월수금)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="28" />
+			<input type="hidden" name="weeks" value="월수금" />
+			<input type="hidden" name="pay" value="550000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기2일대형권(화목)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="28" />
+			<input type="hidden" name="weeks" value="화목" />
+			<input type="hidden" name="pay" value="370000" />
+			<input type="submit" />
+		</form>
+		<h2>3개월패키지</h2>
+		<div >
+			<a href="">정기5일대형권</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="84" />
+			<input type="hidden" name="weeks" value="월화수목금" />
+			<input type="hidden" name="pay" value="2400000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기3일대형권(월수금)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="84" />
+			<input type="hidden" name="weeks" value="월수금" />
+			<input type="hidden" name="pay" value="1550000" />
+			<input type="submit" />
+		</form>
+		<div >
+			<a href="">정기2일대형권(화목)</a>	
+			<form action="" method="post">
+			<input type="hidden" name="dogsize" value="대형견" />
+			<input type="hidden" name="kind" value="정기권" />
+			<input type="hidden" name="gap" value="84" />
+			<input type="hidden" name="weeks" value="화목" />
+			<input type="hidden" name="pay" value="1050000" />
+			<input type="submit" />
+		</form>
+		
+	</div>
+    </th:block>
+
+</th:block>
+
+<th:block layout:fragment="add-content">
+	<h3>나는 추가내용</h3>
+</th:block>
+
+</html>

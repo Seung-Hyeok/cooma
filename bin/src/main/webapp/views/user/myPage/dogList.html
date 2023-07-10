@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>dogList</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<h1>나의 애견 목록</h1>
+<table border="">
+	<tr>
+		<td>번호</td>
+		<td>이름</td>
+		<td>견종</td>
+		<td>나이</td>
+	</tr>
+	<tr th:each="dto, dtoStat : ${dogData}">
+		<td th:text="${dtoStat.index}+1"/>
+		<td><a th:href="@{|/user/myPage/dogDetail/${dto.dname}|}" th:text="${dto.dname}"/></td>
+		<td th:text="${dto.breed}"></td>
+		<td th:text="${dto.dyear}"></td>
+	</tr>
+</table>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

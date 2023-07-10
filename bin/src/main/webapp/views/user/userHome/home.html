@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>Cookie Maru</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<h1>메인페이지</h1>
+[[${msg}]]
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

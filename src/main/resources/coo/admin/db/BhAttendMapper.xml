@@ -4,22 +4,33 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="coo.admin.db.BhAttendMapper">
-	<sql id="dateChk">
-		<!-- 그냥 '<='를 사용하면 에러이기에 '&lt;='로 표기한다. -->
-		#{startD} &lt;= #{today} AND #{endD} &gt;= #{today}
-	</sql>
+<!-- select * from reser where dogsize = "대형견" and #{today} BETWEEN startD AND endD and weeks like concat('%',#{dayStr},'%') -->
 
-	<!-- resultType 별칭 사용 안됨 (bhAtDTO) -->
-	<select id="listBig" resultType="coo.admin.db.BhAttendReserDTO"> 
-		select * from reser where dogsize = "대형견"
-		And
-		<include refid="dateChk" />
+<!-- 리스트 -->
+	<select id="todayListBig" resultType="bhAtDTO">
+		select * from daybyday where dogsize = "대형견" and oneday = #{today};
 	</select>
+	<select id="todayListSmall" resultType="bhAtDTO">
+		select * from daybyday where dogsize = "중/소형견" and oneday = #{today};
+	</select>
+	<select id="getRequeNote" parameterType="bhAtDTO" resultType="java.lang.String">
+		select reque from reser where reserNo = #{reserNo};
+	</select>
+	
+<!-- 등하원 -->
+	<update id="checkAttendTime" parameterType="bhAtDTO">
+		update daybyday set attendTime = sysdate() where todayNo = #{todayNo}
+	</update>
+	<update id="checkGoHomeTime" parameterType="bhAtDTO">
+		update daybyday set goHome = sysdate() where todayNo = #{todayNo}
+	</update>
 
-	<select id="listSmall" resultType="coo.admin.db.BhAttendReserDTO">
-		select * from reser where dogsize IN ('중형견', '소형견')
-		And
-		<include refid="dateChk" />
+	<select id="bhChkTime" parameterType="bhAtDTO" resultType="bhAtDTO">
+		select * from daybyday where todayNo = #{todayNo};
 	</select>
+	
+	<update id="bhAddPanelty" parameterType="bhAtDTO">
+		update daybyday set penalty = #{timeGap}*10000 where todayNo = #{todayNo}
+	</update>
 
 </mapper>

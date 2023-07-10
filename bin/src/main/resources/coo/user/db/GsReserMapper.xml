@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org/DTD Mapper3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="coo.user.db.GsReserMapper">
+	<select id="dogArr" parameterType="String" resultType="gsdDTO">
+		select * from dogs 
+		<where>
+			pid = #{pid} and grade != '블랙'
+		</where>
+	</select>
+	
+	<select id="pack" parameterType="gsdDTO" resultType="gsdDTO">
+		select * from dogs 
+		<where>
+			pid = #{pid} and dname = #{dname}
+		</where>
+	</select>
+	
+	<insert id="buy" parameterType="gsrDTO">
+		insert into reser (pid, dname,pay,edu,reque,kind,dogsize,weeks,bank,account,startD,endD,payD)
+		values
+		(#{pid}, #{dname},#{pay},#{edu},#{reque},#{kind},#{dogsize},#{weeks},#{bank},#{account},#{startD}, date_sub(#{startD}, interval #{gap} day) ,sysdate())
+	</insert>
+</mapper>
+
+

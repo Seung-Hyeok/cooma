@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_매출</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+
+
+	
+	<div class="shresermenu">
+		<a href="/admin/sales">매출내역</a>
+		<a href="/admin/statistics">매출통계</a>
+	</div>
+	
+	<h3>매출통계</h3>
+	
+	<canvas id="statisticsChart"></canvas>
+	
+	<script th:inline="javascript">
+        var DataList = [[${DataList}]];
+
+        var labels = DataList.map(function(item) {
+            return item.month; // 월 정보를 x축 레이블로 사용
+        });
+
+        var data = DataList.map(function(item) {
+            return item.amount; // 매출 금액 정보를 y축 데이터로 사용
+        });
+
+        var ctx = document.getElementById('statisticsChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '매출액',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+	
+	
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+</html>

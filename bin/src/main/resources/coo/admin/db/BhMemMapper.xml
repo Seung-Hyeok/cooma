@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coo.admin.db.BhMemMapper">
+<!-- 리스트 -->
+	<select id="bhMemList" parameterType="bhmDTO" resultType="coo.admin.db.BhMemDTO">
+		select * from member 
+		<where>
+			<if test="sch != null">
+				pname like concat('%',#{sch},'%')  
+			</if>
+			<if test="grade != null and grade != '전체'">
+				and grade = #{grade} 
+			</if>
+		</where>
+	</select>
+
+		<!-- 추가 : prefix 접두사 suffix 접미사 + 
+		  	 삭제 : prefixOverrides, suffixOverrides -->
+<!-- 
+			<trim prefix=" " suffixOverrides="and | or"> 
+				<if test="sch != null">
+					pname like concat('%',#{sch},'%') and 
+				</if>
+				<if test="grade != null">
+					grade like #{grade} and
+				</if>
+				<if test="grade != ''">
+					grade like #{grade}
+				</if>
+			</trim>
+ -->
+
+<!-- 디테일 -->
+	<sql id="wid">
+		 where pid = #{pid}
+	</sql>
+	
+	<select id="bhMemDetail" parameterType="bhmDTO" resultType="bhmDTO">
+		select * from member <include refid="wid" />
+	</select>
+
+	<select id="bhMemsDog" parameterType="bhmDTO" resultType="bhdDTO">
+		select * from dogs <include refid="wid" />
+	</select>
+<!-- 수정 -->
+	<update id="bhMemModify" parameterType="bhmDTO">
+		update member set grade = #{grade} 
+		where pid = #{pid}
+	</update>
+<!-- 삭제 -->
+	<delete id="bhMemDelete" parameterType="bhmDTO">
+		delete from member where pid = #{pid}
+	</delete>
+
+	<delete id="bhMemsDogDelete" parameterType="bhmDTO">
+		delete from dogs where pid = #{pid}
+	</delete>
+
+</mapper>
