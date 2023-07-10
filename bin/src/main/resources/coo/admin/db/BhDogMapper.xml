@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coo.admin.db.BhDogMapper">
+<!-- 리스트 -->
+	<select id="bhDogList" parameterType="bhdDTO" resultType="bhdDTO">
+		select * from dogs
+		<where>
+			<trim prefix=" " suffixOverrides="and | or"> 
+				<if test="kind == 'dname'" >
+					dname like concat('%',#{sch},'%') and 
+				</if>
+				<if test="kind == 'breed'" >
+					breed like concat('%',#{sch},'%') and 
+				</if>
+				<if test="kind == 'dogsize'" >
+					dogsize like concat('%',#{sch},'%') and 
+				</if>
+				<if test="kind == 'pid'" >
+					pid like concat('%',#{sch},'%') and 
+				</if>
+				<if test="grade != null and grade != '전체'">
+					grade = #{grade} 
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<select id="bhFindMemName" parameterType="bhdDTO" resultType="java.lang.String">
+		select pname from member where pid = #{pid}
+	</select>
+	
+	
+	
+<!-- 디테일 -->
+	<select id="bhDogDetail" parameterType="bhdDTO" resultType="bhdDTO">
+		select * from dogs where dname = #{dname} and pid = #{pid}
+	</select>
+
+	<select id="bhDogsMem" parameterType="bhdDTO" resultType="bhmDTO">
+		select * from member where pid = #{pid}
+	</select>	
+	
+<!-- 수정 -->
+	<update id="bhDogModify" parameterType="bhdDTO">
+		update dogs set weight = #{weight}, dogsize = #{dogsize}, grade = #{grade}, adminMemo = #{adminMemo}  
+		where dname = #{dname} and pid = #{pid}
+	</update>
+
+<!-- 삭제 -->
+	<delete id="bhDogDelete" parameterType="bhdDTO">
+		delete from dogs  
+		where dname = #{dname} and pid = #{pid}
+	</delete>
+
+	<select id="bhGetMemInform" parameterType="bhdDTO" resultType="bhmDTO">
+		select * from member where pid = #{pid}
+	</select>
+
+	<update id="bhDogsNameDelete" parameterType="bhmDTO">
+		update member set 
+		<if test="dog1 == dname">
+		dog1 = null 
+		</if>
+		<if test="dog2 == dname">
+		dog2 = null 
+		</if>
+		<if test="dog3 == dname">
+		dog3 = null 
+		</if>
+		where pid = #{pid}
+	</update>
+
+</mapper>

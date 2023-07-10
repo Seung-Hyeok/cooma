@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coo.admin.db.ShReservationMapper">
+	
+
+	<select id="list" resultType="rDTO" parameterType="pD">
+		select * from reser
+		<where>
+			refund = 0
+			<trim prefix=" ">
+				<if test="sch != null">
+					and pid like concat('%',#{sch},'%') limit 0, #{limit}
+				</if>
+			</trim>
+		</where>
+	</select>
+
+	<select id="refundList" resultType="rDTO" parameterType="rDTO">
+		select * from reser where refund > 0
+	</select>
+	
+	<sql id="wid">
+		where reserNo = #{reserNo}
+	</sql>
+	
+	<select id="detail" parameterType="rDTO" resultType="rDTO" > 
+		select * from reser
+		<include refid="wid"/>
+	</select>
+	
+	<update id="modify" parameterType="rDTO">
+		update reser set dname = #{dname}, reque = #{reque}
+		<include refid="wid"/>
+	</update>
+	
+	<delete id="delete" parameterType="rDTO">
+		delete from reser where reserNo = #{reserNo}
+		<!-- delete from board where id = #{id} and pw = '1111' -->
+	</delete>
+
+
+
+</mapper>

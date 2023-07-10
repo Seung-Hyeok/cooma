@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>myPage</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<h1>마이페이지</h1>
+<table border="">
+	<tr>
+		<td>아이디</td><td th:text="${myData.pid}"/>
+	</tr>
+	<tr>
+		<td>이름</td><td th:text="${myData.pname}"/>
+	</tr>
+	<tr>
+		<td>전화번호</td><td th:text="${myData.tel}"/>
+	</tr>
+	<tr>
+		<td>생년월일</td><td th:text="${myData.birth}"/>
+	</tr>
+	<tr>
+		<td>주소</td><td th:text="${myData.addr1}"/>
+	</tr>
+	<tr>
+		<td>주소</td><td th:text="${myData.addr2}"/>
+	</tr>
+	<tr>
+		<td>이메일</td><td th:text="${myData.email}"/>
+	</tr>
+	<tr>
+		<td>강아지</td><td th:text="${myData.dog1}"/>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+			<a th:href="|/user|" th:text="뒤로" />
+			<a th:href="|/user/myPage/modifyForm|" th:text="정보수정"/>
+			<a th:href="|/user/myPage/pwChange|" th:text="비번수정"/>
+			<a th:href="|/user/myPage/delete|" th:text="회원탈퇴"/>
+		</td>
+	</tr>
+</table>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

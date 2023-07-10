@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>pwChange</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<h1>비밀번호 변경</h1>
+<form method="post" th:object="${hmMemberDTO}">
+	<table border="">
+		<tr>
+			<td>현재 비밀번호</td>
+			<td><input type="text" name="pw1"/></td>
+		</tr>
+		<tr>
+			<td>새 비밀번호</td>
+			<td><input type="text" th:field="*{pw}"/></td>
+		</tr>
+		<tr>
+			<td>비밀번호 확인</td>
+			<td><input type="text" name="pw2"/></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> 
+				<input type="submit" value="수정" />
+				<a th:href="|/user/myPage/memPage|" th:text="뒤로"/>
+			</td>
+		</tr>
+	</table>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

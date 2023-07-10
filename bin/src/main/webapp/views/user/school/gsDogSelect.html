@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+
+
+<th:block layout:fragment="title">
+	<title>강아지 선택</title>
+</th:block>
+
+<th:block layout:fragment="content">
+	<div class="dogMenu">
+		
+		<div  th:each="dto , dtoStat: ${dogData}">
+			<a th:href="@{|/user/school/packSelect/${dto.dname}|}" >
+			  <img src="/dimg/book.jpg" alt="" width="50px">
+			  </a>
+		</div>
+	</div>
+</th:block>
+
+<th:block layout:fragment="add-content">
+	<h3>나는 추가내용</h3>
+</th:block>
+
+</html>

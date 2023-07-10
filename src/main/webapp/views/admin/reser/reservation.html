@@ -12,21 +12,23 @@ layout:decorate="total/adTemp">
 <th:block layout:fragment="adContent">
 	
 	<div class="shresermenu">
-		<a href="/admin/reservation/1">예약내역</a>
+		<a href="/admin/reservation/1">이용권내역</a>
+		<a href="/admin/endreservation/1">만료이용권내역</a>
 		<a href="/admin/refund">환불내역</a>
 	</div>
-	<h3>예약리스트</h3>
+	<h3>이용권리스트</h3>
 	
 	<table border="" align="center" style="">
 		<form action="" th:object="${PData}" method="post">
 			<tr>
-				<td colspan="9" align="right">
-					아이디 검색
+				<td colspan="10" align="right">
+					<select th:field="*{cate}">
+						<option value="dname" selected>강아지 이름</option>
+						<option value="pid" >아이디</option>
+						<option value="kind">이용권종류</option>
+					</select>
 					<input type="text" th:field="*{sch}" /> 
-					<!-- 갯수
-					<select th:field="*{cnt}">
-						<option th:each="no : ${#numbers.sequence(0,10,2)}" th:value="${no}" th:text="${no}"></option>
-					</select> -->
+					
 					<input type="submit" value="검색" />
 				</td>
 			</tr>
@@ -42,22 +44,30 @@ layout:decorate="total/adTemp">
 			<td>시작일</td>
 			<td>종료일</td>
 			<td>신청요일</td>
+			<td>상태</td>
 			
 		</tr>
 		<tr th:each="dto, dtostat : ${mainData}">
 			<td align="center"><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.reserNo}"></a></td>
 			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.pid}"></td>
-			<td th:text="${dto.dname}"/>
+			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.dname}"></td>
 			<td th:text="${dto.dogsize}"/>
 			<td th:text="|${dto.kind} (${dto.gap()})|"/>
 			<td th:text="${dto.edu}" align="center"/>
 			<td th:text="${dto.sDate()}"/>
 			<td th:text="${dto.eDate()}"/>
 			<td th:text="${dto.weeks}"/>
+			<th:block th:if="${dto.state()}">
+				<td style="color:tomato">진행예정</td>
+			</th:block>
+			<th:block th:unless="${dto.state()}">
+				<td style="color:dodgerblue">진행중</td>
+			</th:block>
+			
 			
 		</tr>
 		<tr>
-			<td colspan="9" align="center">
+			<td colspan="10" align="center">
 				
 			</td>
 		</tr>

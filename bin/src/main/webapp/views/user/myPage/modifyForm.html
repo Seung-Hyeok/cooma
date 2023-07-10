@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>modifyForm</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<h1>회원정보 수정</h1>
+<form method="post" th:object="${myData}">
+	<table border="">
+		<tr>
+			<td>아이디</td>
+			<td th:text="${myData.pid}"/>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" th:field="*{pname}"/></td>
+		</tr>
+		<tr>
+			<td>전화번호</td>
+			<td><input type="text" th:field="*{tel}"/></td>
+		</tr>
+		<tr>
+			<td>생년월일</td>
+			<td th:text="${myData.birth}"/>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td><input type="text" th:field="*{addr1}"/></td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td><input type="text" th:field="*{addr2}"/></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="text" th:field="*{email}"/></td>
+		</tr>
+		<tr>
+			<td>강아지</td>
+			<td><input type="text" th:field="*{dog1}"/></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="text" name="pw"/></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> 
+				<input type="submit" value="수정" />
+				<a th:href="|/user/myPage/memPage|" th:text="뒤로"/>
+			</td>
+		</tr>
+	</table>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

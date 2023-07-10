@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_매출</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+
+<script>
+
+var startDateInput = document.getElementById("start");
+var endDateInput = document.getElementById("end");
+
+startDateInput.addEventListener("change", function() {
+  endDateInput.min = startDateInput.value;
+});
+	
+</script>
+	
+	<div class="shresermenu">
+		<a href="/admin/sales">매출내역</a>
+		<a href="admin/">.</a>
+	</div>
+	
+	<h3>매출내역</h3>
+	
+	<table border="" align="center">
+		<form action="" th:object="${PData}" method="">
+			<tr>
+				<td colspan="9" align="right">
+					기간 <input type="date" id="start"/>~
+                	<input type="date" id="end" />
+                	<input type="submit" value="검색">
+					
+				</td>
+			</tr>
+		</form>
+		<tr>
+			<td>번호</td>
+			<td>아이디</td>
+			<td>강아지이름</td>
+			<td>이용권종류</td>
+			<td>신청교육</td>
+			<td>이용권금액</td>
+			<td>교육비</td>
+			<td>결제금액</td>
+			<td>환불금액</td>
+		</tr>
+		<tr th:each="dto, dtostat : ${mainData}">
+			<td th:text="${dto.reserNo}"></td>
+			<td th:text="${dto.pid}"></td>
+			<td th:text="${dto.dname}"></td>
+			<td th:text="|${dto.kind} (${dto.gap()})|"></td>
+			<td th:text="${dto.edu}" align="center"></td>
+			<td th:text="${dto.pay()}"></td>
+			<td th:text="${dto.epay()}"></td>
+			<td th:text="${dto.tpay()}" style="color:blue;"></td>
+			<td th:text="${dto.refund()}" style="color:red;"></td>
+			ss
+		</tr>
+	</table>
+	
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+</html>
