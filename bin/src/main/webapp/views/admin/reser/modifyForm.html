@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_예약</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<div class="shresermenu">
+		<a href="/admin/reservation">예약내역</a>
+		<a href="/admin/refund">환불내역</a>
+	</div>
+	
+	<h3>예약수정</h3>
+	<form method="post" th:object="${mainData}">
+		<table border="">
+			<tr>
+				<td>예약번호</td><td th:text="${mainData.reserNo}"/>
+			</tr><tr>
+				<td>아이디</td><td th:text="${mainData.pid}"/>
+			</tr><tr>
+				<td>강아지이름</td><td th:text="${mainData.dname}"/>
+			</tr><tr>
+				<td>예약종류</td><td th:text="${mainData.kind}"/>
+			</tr><tr>
+				<td>요일</td><td th:text="${mainData.weeks}"/>
+			</tr><tr>
+				<td>결제일</td><td th:text="${mainData.pDate()}"/>
+			</tr><tr>
+				<td>결제카드</td><td th:text="${mainData.bank}"/>
+			</tr><tr>
+				<td>카드번호</td><td th:text="${mainData.account}"/>
+			</tr><tr>
+				<td>결제금액</td><td th:text="|${mainData.pay()}원|"/>
+			</tr><tr>
+				<td>요청사항</td><td><textarea cols="30" rows="10" th:field="*{reque}"></textarea>
+			</tr><tr>
+				<td colspan="2" align="right">
+					<a th:href="|/admin/reservation/detail/${mainData.reserNo}|" th:text="뒤로"/>
+					<input type="submit" th:href="|/admin/modify/${mainData.reserNo}|" th:value="수정하기" />
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	
+</th:block>
+
+
+
+</html>

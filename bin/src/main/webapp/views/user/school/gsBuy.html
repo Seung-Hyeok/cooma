@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+
+
+<th:block layout:fragment="title">
+	<title>결제 정보</title>
+</th:block>
+
+<th:block layout:fragment="content">
+gsbuy~~~~~~~~~~~~~~~~~~~~~
+<h1>이용권 정보</h1>
+	<form action="/user/school/gsFin" th:object="${gsReserDTO}" method="post">
+		<h2>결제자 아이디</h2>
+		<input type="text" th:field="*{pid}"/>
+		<h2>강아지이름</h2>
+		<input type="text" th:field="*{dname}"/>
+		<h2>요일</h2>
+		<input type="text" th:field="*{weeks}"/>
+		<h2>이용권 종류</h2>
+		<input type="text" th:field="*{kind}"/>
+		<h2>이용권 기간</h2>
+		
+		<input type="hidden" th:field="*{gap}"/>
+		<input type="text" th:value="${gapStr}"/>
+		<h2>이용권금액</h2>
+		<input type="text" th:field="*{pay}"/>
+		<h2>강아지 크기</h2>
+		<input type="text" th:field="*{dogsize}"/>
+		<h2>추가교육</h2>
+		<input type="text" th:field="*{edu}"/>
+		<h2>은행</h2>
+		<input type="text" th:field="*{bank}"/>
+		<h2>계좌</h2>
+		<input type="text" th:field="*{account}"/>
+		<h2>등원 일짜</h2>
+		<input type="text" th:field="*{startD}"/>
+		<h2>요청사항</h2>
+		<input type="text" th:field="*{reque}"/>
+		
+		
+		<input type="submit" value="결제"/>
+	</form> 
+</th:block>
+
+<th:block layout:fragment="add-content">
+	<h3>나는 추가내용</h3>
+</th:block>
+
+</html>

@@ -12,12 +12,23 @@ layout:decorate="total/adTemp">
 <th:block layout:fragment="adContent">
 	
 	<div class="shresermenu">
-		<a href="/admin/reservation/1">예약내역</a>
+		<a href="/admin/reservation/1">이용권내역</a>
+		<a href="/admin/endreservation/1">만료이용권내역</a>
 		<a href="/admin/refund">환불내역</a>
 	</div>
 	
 	<h3>환불리스트</h3>
 	<table border="" align="center" style="">
+		<form action="" th:object="${PData}" >
+			<tr>
+				<td colspan="11" align="right">
+					환불 조회 기간 <input type="date" th:field="*{startD}"/>~
+                	<input type="date" th:field="*{endD}" />
+                	<input type="submit" value="검색">
+					
+				</td>
+			</tr>
+		</form>
 		<tr style=""align="center">
 			<td>예약번호</td>
 			<td>아이디</td>
@@ -28,6 +39,7 @@ layout:decorate="total/adTemp">
 			<td>결제금액</td>
 			<td>환불은행</td>
 			<td>환불계좌</td>
+			<td>환불일자</td>
 			<td>환불금액</td>
 		</tr>
 		<tr th:each="dto, dtostat : ${mainData}">
@@ -40,6 +52,7 @@ layout:decorate="total/adTemp">
 			<td th:text="${dto.tpay()}"/>
 			<td th:text="${dto.bank}"/>
 			<td th:text="${dto.account}"/>
+			<td th:text="${dto.rDate()}"/>
 			<td th:text="${dto.refund()}" style="color:red;"/>
 		</tr>
 	

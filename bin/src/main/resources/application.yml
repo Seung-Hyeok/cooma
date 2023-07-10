@@ -1,0 +1,20 @@
+server :
+    port : 80
+spring :
+    thymeleaf:
+        prefix : views/
+        suffix : .html
+        cache : false
+            
+            
+    datasource :
+        driver-class-name : org.mariadb.jdbc.Driver
+#        allowMultiQueries=true  다중쿼리 실행 가능
+        url : jdbc:mariadb://localhost:3306/cooma_db?allowMultiQueries=true
+        username : cooma
+        password : 1234
+
+
+
+mybatis :
+    type-aliases-package : coo.admin.db, coo.admin.model, coo.user.db

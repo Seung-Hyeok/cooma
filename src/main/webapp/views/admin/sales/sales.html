@@ -22,44 +22,50 @@ startDateInput.addEventListener("change", function() {
 	
 	<div class="shresermenu">
 		<a href="/admin/sales">매출내역</a>
-		<a href="admin/">.</a>
+		<a href="/admin/statistics">매출통계</a>
 	</div>
 	
 	<h3>매출내역</h3>
 	
 	<table border="" align="center">
-		<form action="" th:object="${PData}" method="">
+		<form action="" th:object="${PData}" >
 			<tr>
-				<td colspan="9" align="right">
-					기간 <input type="date" id="start"/>~
-                	<input type="date" id="end" />
+				<td colspan="10" align="right">
+					매출 조회 기간 <input type="date" id="start" th:field="*{startD}"/>~
+                	<input type="date" id="end" th:field="*{endD}" />
                 	<input type="submit" value="검색">
 					
 				</td>
 			</tr>
-		</form>
-		<tr>
+		</form> 
+		
+		<tr align="center">
 			<td>번호</td>
 			<td>아이디</td>
 			<td>강아지이름</td>
 			<td>이용권종류</td>
 			<td>신청교육</td>
+			<td>결제일자</td>
 			<td>이용권금액</td>
 			<td>교육비</td>
 			<td>결제금액</td>
 			<td>환불금액</td>
 		</tr>
-		<tr th:each="dto, dtostat : ${mainData}">
+		<tr th:each="dto, dtostat : ${mainData}" align="center">
 			<td th:text="${dto.reserNo}"></td>
 			<td th:text="${dto.pid}"></td>
 			<td th:text="${dto.dname}"></td>
 			<td th:text="|${dto.kind} (${dto.gap()})|"></td>
-			<td th:text="${dto.edu}" align="center"></td>
+			<td th:text="${dto.edu}" ></td>
+			<td th:text="${dto.pDate()}"></td>
 			<td th:text="${dto.pay()}"></td>
 			<td th:text="${dto.epay()}"></td>
 			<td th:text="${dto.tpay()}" style="color:blue;"></td>
 			<td th:text="${dto.refund()}" style="color:red;"></td>
-			ss
+		</tr>
+		<tr>
+			<td colspan="5" th:text="|총 매출액|"></td>
+			<td colspan="9" th:text="|${tf} - ${rf} = ${tot}|"></td>
 		</tr>
 	</table>
 	

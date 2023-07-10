@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_회원수정</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<h2 th:text="${bhMemData.pname}+' 고객님의 정보 수정'"> </h2>
+	
+	<form method="post" th:object="${bhMemData}">
+		<table border="" align="center">
+			<tr>
+				<td>아이디</td><td colspan="3"><span th:text="${bhMemData.pid}"></span></td>
+			</tr><tr>
+				<td>이름</td><td colspan="3" th:text="${bhMemData.pname}" />
+			</tr><tr>
+				<td>전화번호</td><td colspan="3" th:text="${bhMemData.tel}" />
+			</tr><tr>
+				<td>이메일</td><td colspan="3" th:text="${bhMemData.email}" />
+			</tr><tr>
+				<td>생년월일</td><td colspan="3" th:text="${bhMemData.birth}" />
+			</tr><tr>
+				<td>주소</td><td colspan="3" th:text="${bhMemData.addr1}+' '+${bhMemData.addr2}"/>
+			</tr><tr>
+				<td>등급</td>
+				<td colspan="3">
+					<select th:field="*{grade}">
+						<option value="일반">일반</option>
+						<option value="블랙">블랙</option>
+						<option value="관리자">관리자</option>
+					</select>
+				</td>
+			</tr><tr>
+				<td>가입일</td><td colspan="3" th:text="${bhMemData.reg_date}" />
+			</tr>
+			<tr>
+				<td>강아지</td>
+				<td th:each="dto, dtoStat: ${bhDogData}">
+					<div>
+						<div th:text="${dto.dname}"><a href=""></a></div>
+						<img th:src="@{'/dimg/'+${dto.photo}}" width="200px" alt="Image">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" align="center">
+					<input type="submit" value="수정" />
+					<a th:href="|/admin/memPid/${bhMemData.pid}|" th:text="뒤로" ></a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+
+</html>

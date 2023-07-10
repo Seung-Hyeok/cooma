@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자 페이지</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<div class="bhAttend"><h2>오늘의 등원</h2></div>
+	
+	<div class="bhAttendBig">
+		<div class="bhAttendS">
+			<div><h3>대형견반</h3></div>
+			<div>
+				<table border="" width="100%">
+					<tr>
+						<td>번호</td>
+						<td>이름</td>
+						<td>사진</td>
+						<td>훈련</td>
+						<td>요청사항</td>
+						<td>일일/정기</td>
+						<td>등하원</td>
+					</tr>
+					<tr th:each="dto, dtoStat: ${bigDog}">
+						<td th:text="${dtoStat.index}" />
+<!--	나중에 a태그로 만들기 <td><a th:href="@{|detail2/${dto.id}|}" th:text="${dto.title}" ></a></td>-->
+						<td th:text="${dto.dname}"/>
+						<td/>
+						<td th:text="${dto.edu}"/>
+						<td th:text="${dto.reque}"/>
+						<td th:text="${dto.kind}"/>
+						<td>등하원체크버튼</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="bhAttendS">
+			<div><h3>중소형견반</h3></div>
+			<div>
+				
+			</div>
+		</div>
+	</div>
+	
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+
+
+
+</html>

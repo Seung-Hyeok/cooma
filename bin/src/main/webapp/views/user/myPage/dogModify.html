@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>dogModify</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<h1>애견 정보 수정</h1>
+<form method="post" th:object="${dogData}">
+	<table border="">
+		<tr>
+			<td>이름</td>
+			<td><input type="text" th:field="*{dname}"/></td>
+		</tr>
+		<tr>
+			<td>견종</td>
+			<td><input type="text" th:field="*{breed}"/></td>
+		</tr>
+		<tr>
+			<td>무게</td>
+			<td><input type="text" th:field="*{weight}"/></td>
+		</tr>
+		<tr>
+			<td>크기</td>
+			<td><input type="text" th:field="*{dogsize}"/></td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td><input type="text" th:field="*{gender}"/></td>
+		</tr>
+		<tr>
+			<td>태어난년도</td>
+			<td><input type="text" th:field="*{dyear}"/></td>
+		</tr>
+		<tr>
+			<td>태어난달</td>
+			<td><input type="text" th:field="*{dmonth}"/></td>
+		<tr>
+			<td>사진</td>
+			<td><input type="file" th:field="*{photo}"/></td>
+		</tr>
+		<tr>
+			<td>특이사항</td>
+			<td><textarea th:field="*{notes}"/></td>
+		</tr>
+		<tr>
+				<td colspan="2" align="center"> 
+				<input type="submit" value="수정" />
+				<a th:href="|/user/myPage/dogDetail/${dogData.dname}|" th:text="뒤로"/>
+			</td>
+		</tr>
+	</table>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

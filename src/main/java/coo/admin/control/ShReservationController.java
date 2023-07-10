@@ -1,5 +1,6 @@
 package coo.admin.control;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -32,6 +33,21 @@ public class ShReservationController {
 		mm.addAttribute("mainData", mainData);
 		
 		return "admin/reser/reservation";
+	}
+	
+	@RequestMapping("/admin/endreservation/{nowPage}")
+	String endreser(Model mm, PData pd) {
+		List<ShReservationDTO> mainData = rm.endlist(pd);
+		
+		System.out.println(mainData);
+		System.out.println("endreservation 진입");
+		
+		System.out.println("list:"+pd.getSch());
+		//System.out.println("cnt:"+dto.getCnt());
+		
+		mm.addAttribute("mainData", mainData);
+		
+		return "admin/reser/endreservation";
 	}
 	
 	@RequestMapping("/admin/reservation/detail/{reserNo}")
@@ -85,9 +101,9 @@ public class ShReservationController {
 	
 	
 	@RequestMapping("/admin/refund")
-	String refund(Model mm, ShReservationDTO dto) {
+	String refund(Model mm, PData pd) {
 		
-		List<ShReservationDTO> mainData = rm.refundList(dto);
+		List<ShReservationDTO> mainData = rm.refundList(pd);
 		
 		System.out.println(mainData);
 		System.out.println("refund 진입");

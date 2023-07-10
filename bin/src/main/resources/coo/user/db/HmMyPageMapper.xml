@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org/DTD Mapper3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coo.user.db.HmMyPageMapper">
+	<insert id="insert" parameterType="hmMemberDTO">
+		insert into member (pid, pw, pname, tel, birth, reg_date, addr1, addr2, email, grade, dog1, dog2, dog3) 
+		values
+		(#{pid}, #{pw}, #{pname}, #{tel}, #{birth}, sysdate(), #{addr1}, #{addr2}, #{email}, #{grade}, #{dog1}, #{dog2}, #{dog3})
+	</insert>
+	
+	<insert id="insertDog" parameterType="hmDogsDTO">
+		insert into dogs (dname, weight, dogsize, gender, breed, dyear, dmonth, photo, notes, pid, grade) 
+		values
+		(#{dname}, #{weight}, #{dogsize}, #{gender}, #{breed}, #{dyear}, #{dmonth}, #{photo}, #{notes}, #{pid}, '일반')
+	</insert>
+	
+	<select id="logchk"  parameterType="hmMemberDTO" resultType="hmMemberDTO">
+		select * from member where pid = #{pid} and pw = #{pw}
+	</select>
+	
+	<select id="my"  parameterType="String" resultType="hmMemberDTO">
+		select * from member where pid = #{pid}
+	</select>
+	
+	<update id="modify" parameterType="hmMemberDTO">
+		update member set pname =  #{pname}, pw =  #{pw}, tel = #{tel},
+		addr1 =  #{addr1}, addr2 =  #{addr2}, email =  #{email}, dog1 =  #{dog1}, dog2 =  #{dog2}, dog3 =  #{dog3}
+		where pid = #{pid} and pw = #{pw}
+	</update>
+	
+	<update id="dnameset" parameterType="hmMemberDTO">
+		update member set dog1 = #{dog1}, dog2 =  #{dog2}, dog3 =  #{dog3}
+		where pid = #{pid}
+	</update>
+	
+	<delete id="delete" parameterType="hmMemberDTO">
+		delete from member where pid = #{pid} and pw = #{pw}
+	</delete>
+	
+	<!-- 
+	<select id="pwchk"  parameterType="hmMemberDTO" resultType="hmMemberDTO">
+		select * from member where pid = #{pid} and pw = #{pw}
+	</select>
+	 -->
+	
+	<update id="pwChange" parameterType="hmMemberDTO">
+		update member set pw = #{pw}
+		where pid = #{pid} and pw = #{pw1}
+	</update>
+	
+	<select id="dogList" parameterType="hmDogsDTO" resultType="hmDogsDTO">
+		select * from dogs where pid = #{pid}
+	</select>
+	
+	<select id="dogDetail" parameterType="hmDogsDTO" resultType="hmDogsDTO">
+		select * from dogs where dname = #{dname} and pid = #{pid}
+	</select>
+	
+	<update id="dogModify" parameterType="hmDogsDTO">
+		update dogs set dname = #{dname}, weight =  #{weight}, dogsize = #{dogsize}, gender = #{gender},
+		breed = #{breed}, photo = #{photo}, notes = #{notes}, dyear = #{dyear}, dmonth = #{dmonth}
+		where pid = #{pid} and dname = #{dname1}
+	</update>
+	
+	<delete id="dogDelete"  parameterType="hmDogsDTO">
+		delete from dogs where pid = #{pid} and dname = #{dname}
+	</delete>
+	
+</mapper>

@@ -10,7 +10,7 @@ public class PData {
 
 	Integer limit = 16, pageLimit=5, start, nowPage;
 	Integer startPage, endPage, totalPage;
-	String sch;
+	String sch, startD, endD, cate;
 	
 
 	public void setTotal(int total) {
@@ -26,6 +26,14 @@ public class PData {
 			endPage = totalPage;
 		}
 	}
+	
+	public void setStartD(String startD) {
+		this.startD = startD;
+	}
+	
+	public void setEndD(String endD) {
+		this.endD = endD;
+	}
 
 
 	public void setNowPage(int nowPage) {
@@ -35,6 +43,10 @@ public class PData {
 
 	public void setSch(String sch) {
 		this.sch = sch;
+	}
+	
+	public void setCate(String cate) {
+		this.cate = cate;
 	}
 	
 	

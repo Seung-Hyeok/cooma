@@ -11,7 +11,8 @@ import coo.admin.model.PData;
 public interface ShReservationMapper {
 	
 	List<ShReservationDTO> list(PData qweqwe);
-	List<ShReservationDTO> refundList(ShReservationDTO davsdv);
+	List<ShReservationDTO> endlist(PData asdasdx);
+	List<ShReservationDTO> refundList(PData davsdv);
 	ShReservationDTO detail(ShReservationDTO jklkj);
 	int modify(ShReservationDTO refv);
 	int delete(ShReservationDTO efev45rtrg);

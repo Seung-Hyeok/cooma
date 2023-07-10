@@ -13,10 +13,16 @@ import lombok.Data;
 @Data
 public class ShReservationDTO {
 	
-	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account, sch;
-	Integer reserNo, pay, refund, cnt, eduFee, totFee, gap;
+	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account, sch, month;
+	Integer reserNo, pay, refund, cnt, eduFee, totFee, gap, amount;
 	Date payD, startD, endD, refundD;
 	
+	
+	public ShReservationDTO(String month, Integer amount) {
+		super();
+		this.month = month;
+		this.amount = amount;
+	}
 	
 	public ShReservationDTO() {
 		
@@ -95,6 +101,17 @@ public class ShReservationDTO {
 		
 	}
 	
+	public boolean state() {
+		
+		Date today = new Date();
+		
+		if(today.compareTo(startD) <= 0) {
+			return true;
+		}else {
+			return false;
+		}
+	
+	}
 	
 	
 
