@@ -1,0 +1,85 @@
+package coo.admin.control;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import coo.admin.db.ShNoticeDTO;
+import coo.admin.db.ShNoticeMapper;
+import coo.admin.db.ShReservationDTO;
+import coo.admin.db.ShReservationMapper;
+import coo.admin.model.PData;
+import jakarta.annotation.Resource;
+
+@Controller
+public class ShAdminNoticeController {
+	
+	@Resource
+	ShNoticeMapper nm;
+	
+	@RequestMapping("/admin/notice/{nowPage}")
+	String notice(Model mm, PData pd) {
+		
+		System.out.println("관리자 공지사항 진입");
+		List<ShNoticeDTO> mainData = nm.list(pd);
+		
+		mm.addAttribute("mainData", mainData);
+		
+		
+		return "admin/notice/adnotice";
+	}
+	
+	
+	@RequestMapping("/admin/notice/detail/{num}")
+	String detail(Model mm, ShNoticeDTO dto) {
+		
+		mm.addAttribute("mainData", nm.detail(dto));
+		return "admin/notice/noticedetail";
+	}
+	
+	@GetMapping("/admin/notice/modify/{num}")
+	String modifyForm(Model mm, ShNoticeDTO dto) {
+		System.out.println("modifyForm 진입");
+		mm.addAttribute("mainData", nm.detail(dto));
+		return "admin/notice/modifyForm";
+	}
+	
+	@PostMapping("/admin/notice/modify/{num}")
+	String modifyComplete(Model mm, ShNoticeDTO dto) {
+		System.out.println("modipost 진입");
+		int cnt = nm.modify(dto);
+		String msg = "에러";
+		String goUrl = "/admin/notice/modify/"+dto.getNum();
+		if(cnt>0) {
+			msg = "수정되었습니다.";
+			goUrl = "/admin/notice/detail/"+dto.getNum();
+		}
+		System.out.println("수정갯수:"+cnt);
+		mm.addAttribute("msg", msg);
+		mm.addAttribute("goUrl", goUrl);
+		return "admin/reser/alert";
+	}
+	
+	@RequestMapping("/admin/notice/delete/{num}")
+	String delete(Model mm, ShNoticeDTO dto) {
+		
+		System.out.println("delete 진입");
+		
+		return "admin/reser/alert";
+	}
+	
+	
+	
+	@RequestMapping("/admin/notice/insert")
+	String insert(Model mm, PData pd) {
+		
+		return "admin/notice/insertForm";
+	}
+	
+	
+	
+}

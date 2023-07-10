@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_공지사항</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<h3>공지사항관리</h3>
+	
+	<table border="" align="center" style="">
+		<form action="" th:object="${PData}" method="post">
+			<tr>
+				<td colspan="5" align="right">
+					제목
+					<input type="text" th:field="*{sch}" /> 
+					
+					<input type="submit" value="검색" />
+				</td>
+			</tr>
+		</form>
+		
+		<tr style=""align="center">
+			<td>번호</td>
+			<td>제목</td>
+			<td>작성자</td>
+			<td>등록일</td>
+			<td>조회수</td>
+			
+		</tr>
+		<tr th:each="dto, dtostat : ${mainData}" align="center">
+			<td th:text="${dtostat.index}"/>
+			<td><a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"/></td>
+			<td th:text="${dto.id}"/>
+			<td th:text="${dto.date()}"/>
+			<td th:text="${dto.cnt}"/>
+		</tr>
+		<tr>
+			<td colspan="5" align="right">
+				<a th:href="@{insert}" th:text="공지등록"/>
+			</td>
+		</tr>
+	
+	</table>
+	
+	
+</th:block>
+
+</html>

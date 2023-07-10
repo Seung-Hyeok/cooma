@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coo.admin.db.ShNoticeMapper">
+
+	<select id="list" resultType="nDTO" parameterType="pD">
+	  select * from notice
+	  <where>
+			<trim prefix=" " suffixOverrides ="and | or">
+				<if test="sch != null">
+					title like concat('%',#{sch},'%')
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<sql id="wid">
+		where num = #{num}
+	</sql>
+	
+	<select id="detail" parameterType="nDTO" resultType="nDTO" > 
+		select * from notice
+		<include refid="wid"/>
+	</select>
+	
+	<update id="modify" parameterType="nDTO">
+		update notice set title = #{title}, photoFile = #{photoFile}, content = #{content}
+		<include refid="wid"/>
+	</update>
+
+</mapper>

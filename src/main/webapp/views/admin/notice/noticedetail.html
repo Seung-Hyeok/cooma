@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_공지사항</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<script>
+		function showConfirmation() {
+		  var result = confirm("정말 삭제하시겠습니까?");
+
+		  if (result) {
+		    // 확인을 선택한 경우 처리할 작업
+		    
+		    location.href="/admin/notice/delete"+[[${mainData.num}]];
+		   
+		    
+		  } else {
+		    // 취소를 선택한 경우 처리할 작업
+		    alert("취소하였습니다");
+		  }
+		}
+	</script>
+	
+	
+	<h3>공지상세</h3>
+	<table border="">
+		<tr>
+			<td>제목</td><td th:text="${mainData.title}"/>
+		</tr><tr>
+			<td>작성자</td><td th:text="${mainData.id}"/>
+		</tr><tr>
+			<td>등록일</td><td th:text="${mainData.date()}"/>
+		</tr><tr>
+			<td>조회수</td><td th:text="${mainData.cnt}"/>
+		</tr><tr>
+			<td>이미지</td><td><img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="" width="500px" height="500px"></td>
+		</tr><tr>
+			<td>내용</td><td th:text="${mainData.content}"/>
+		</tr><tr>
+			<td colspan="2" align="right">
+				<a th:href="|/admin/notice/1|" th:text="뒤로"/>
+				<a th:href="|/admin/notice/modify/${mainData.num}|" th:text="수정"/>
+				<button onclick="showConfirmation()">삭제</button>
+			</td>
+		</tr>
+	</table>
+	
+	
+	
+</th:block>
+
+
+
+</html>
