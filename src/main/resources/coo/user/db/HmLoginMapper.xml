@@ -68,4 +68,30 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		delete from dogs where pid = #{pid} and dname = #{dname}
 	</delete>
 	
+	<!-- 아이디중복검사 -->
+	<!-- <insert id="joinMember" parameterType="memberVo">
+        insert into member(member_id, member_pw, member_name, member_phone) 
+         values(#{member_id}, #{member_pw}, #{member_name}, #{member_phone})
+    </insert>
+    
+    <select id="loginMember" parameterType="memberVo" resultType="map">
+        select count(*) as member_auth,member_grade from member where member_id=#{member_id} and member_pw=#{member_pw}
+    </select> 
+    
+    
+        <select id="loginMember" parameterType="map" resultType="map">
+        select count(*) as member_auth,member_grade from member where member_id=#{member_id} and member_pw=#{member_pw}
+    </select>
+    
+ 
+	<select id="getMemberInfo" parameterType="String" resultType="memberVo">
+	        select member_id,member_pw,member_name,member_phone from member where member_id=#{member_id}
+	    </select>-->
+	 
+	 
+	<select id="checkId" parameterType="String" resultType="int">
+	        select count(*) from member where pid=#{pid}
+    </select>
+	
+	
 </mapper>

@@ -7,14 +7,44 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-        }
-    }).open();
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+$(function(){
+ 
+    
+    
+    $("#checkId").click(function(){
+    
+        let pid = $("#pid").val();
+         
+        $.ajax({
+            type:'post', //post 형식으로 controller 에 보내기위함!!
+            url:"/user/checkId.do", // 컨트롤러로 가는 mapping 입력
+            data: {"pid":pid}, // 원하는 값을 중복확인하기위해서  JSON 형태로 DATA 전송
+            success: function(data){ 
+            	console.log(data);
+             if(data == "N"){ // 만약 성공할시
+                    result = "사용 가능한 아이디입니다.";
+                    $("#result_checkId").html(result).css("color", "green");
+                 
+             }else{ // 만약 실패할시
+                 result="이미 사용중인 아이디입니다.";
+                     $("#result_checkId").html(result).css("color","red");
+                     $("#pid").val("").trigger("focus");
+             }
+                 
+         },
+            error : function(error){
+            	alert(error);
+            	console.log(data);            	
+            }
+        });
+        
+    });
+    
+});
+ 
+ 
 </script>
 <h1>회원가입</h1>
 <form method="post" th:object="${hmMemberDTO}" enctype="multipart/form-data">
@@ -24,7 +54,11 @@ layout:decorate="total/userTemp">
 		</tr>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" th:field="*{pid}" /></td>
+			<td>
+				<input type="text"  id="pid" th:field="*{pid}" /><br/>
+			    <input type="button" id="checkId" value="중복검사"><br/>
+			    <div><span id="result_checkId" style="font-size:12px;"></span></div>
+			</td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
@@ -78,7 +112,7 @@ layout:decorate="total/userTemp">
 			<td><input type="text" name="weight" />kg</td>
 		</tr>
 		<tr>
-			<td>크기</td>
+			<td>사이즈</td>
 			<td>
 				<label><input type="radio" name="dogsize" value="소형견" />소형견</label>
 				<label><input type="radio" name="dogsize" value="중형견" />중형견</label>

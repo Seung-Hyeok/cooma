@@ -31,6 +31,7 @@ public class HmMyPageController {
 		String myPage(HttpSession session, Model mm) {
 			
 			String pid = (String)session.getAttribute("pid");
+			mm.addAttribute("pid", pid);
 			HmMemberDTO myData =  mp.my(pid);
 			mm.addAttribute("myData", myData);
 			
@@ -45,6 +46,7 @@ public class HmMyPageController {
 	String modifyForm(HttpSession session, Model mm, HmMemberDTO dto) {
 		
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		HmMemberDTO myData =  mp.my(pid);
 		mm.addAttribute("myData", myData);
 		
@@ -81,6 +83,8 @@ public class HmMyPageController {
 	//회원탈퇴///////////////////////////////////////
 	@GetMapping("/user/myPage/delete")
 	String delete(HttpSession session, Model mm, HmMemberDTO dto) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		
 		return "user/myPage/delete";
 	}
@@ -119,6 +123,8 @@ public class HmMyPageController {
 	//비번수정///////////////////////////////////////
 	@GetMapping("/user/myPage/pwChange")
 	String pwChange(HttpSession session, Model mm, HmMemberDTO dto) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		
 		return "user/myPage/pwChange";
 	}
@@ -147,7 +153,9 @@ public class HmMyPageController {
 	
 	//애견등록///////////////////////////////////////
 		@GetMapping("/user/myPage/dogJoinForm")
-		String dogJoinForm(HmDogsDTO dto) {
+		String dogJoinForm(HttpSession session, Model mm,HmDogsDTO dto) {
+			String pid = (String)session.getAttribute("pid");
+			mm.addAttribute("pid", pid);
 			return "user/myPage/dogJoinForm";
 		}
 		
@@ -183,6 +191,7 @@ public class HmMyPageController {
 	@RequestMapping("/user/myPage/dogList")
 	String dogList(HttpSession session, Model mm, HmDogsDTO dto) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		dto.setPid(pid);
 		List<HmDogsDTO> dogData = mp.dogList(dto);
 		//System.out.println("mainData:"+mainData);
@@ -195,6 +204,7 @@ public class HmMyPageController {
 	@RequestMapping("/user/myPage/dogDetail/{dname}")
 	String dogDetail(HttpSession session, Model mm, HmDogsDTO dto) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		dto.setPid(pid);
 		HmDogsDTO dogData = mp.dogDetail(dto);
 		mm.addAttribute("dogData",dogData);
@@ -215,6 +225,7 @@ public class HmMyPageController {
 	@GetMapping("/user/myPage/dogModify/{dname}")
 	String dogModify(HttpSession session, Model mm, HmDogsDTO dto) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		dto.setPid(pid);
 		System.out.println("dto.getPhoto()1"+dto.getPhoto());
 		mm.addAttribute("dogData", mp.dogDetail(dto));
@@ -288,7 +299,7 @@ public class HmMyPageController {
 		HmMemberDTO myData =  mp.my(pid);
 		
 		String msg = "애견등록은 최대 3마리까지 가능합니다.";
-		String goUrl = "/user/myPage/memPage";
+		String goUrl = "/user/myPage/dogList";
 		
 		if(myData.getDog1()==null || myData.getDog1().equals("")
 				|| myData.getDog2()==null || myData.getDog2().equals("")

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import coo.user.db.HmFileData;
@@ -30,7 +32,9 @@ public class HmLoginController {
 	
 	//회원가입///////////////////////////////////////
 	@GetMapping("/user/log/joinForm")
-	String joinForm(HmMemberDTO dto, HmDogsDTO dog) {
+	String joinForm(HttpSession session, Model mm,HmMemberDTO dto, HmDogsDTO dog) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		return "user/log/joinForm";
 	}
 	
@@ -58,7 +62,9 @@ public class HmLoginController {
 	
 	//로그인///////////////////////////////////////
 	@GetMapping("/user/log/login")
-	String login(HmMemberDTO dto) {
+	String login(HttpSession session, Model mm,HmMemberDTO dto) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		return "user/log/login";
 	}
 	
@@ -71,6 +77,9 @@ public class HmLoginController {
 		if(lm.logchk(dto)!=null && !memData.getGrade().equals("블랙")) {
 			mm.addAttribute("msg",memData.getPname()+"님 로그인 되었습니다.");
 			mm.addAttribute("goUrl","/user");
+			if(memData.getGrade().equals("관리자")) {
+				mm.addAttribute("goUrl","/admin");
+			}
 			session.setAttribute("pid", memData.getPid());
 			session.setAttribute("pname", memData.getPname());
 		}
@@ -106,7 +115,17 @@ public class HmLoginController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
+	
+	@RequestMapping("/user/checkId.do")
+	@ResponseBody
+    public String checkId(@RequestParam("pid") String pid) {
+        String result="N";
+        
+        int flag = lm.checkId(pid);
+        
+        if(flag == 1) result ="Y"; 
+        //아이디가 있을시 Y 없을시 N 으로jsp view 로 보냄
+        return result;
+    }
 }

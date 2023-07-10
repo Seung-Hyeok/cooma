@@ -42,4 +42,7 @@ public interface HmLoginMapper {
 	
 	//강아지삭제
 	void dogDelete(HmDogsDTO dsf);
+	
+	int checkId(String sfds);
+	
 }
