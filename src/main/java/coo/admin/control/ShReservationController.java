@@ -50,6 +50,18 @@ public class ShReservationController {
 		return "admin/reser/endreservation";
 	}
 	
+	@RequestMapping("/admin/endreservation/detail/{reserNo}")
+	String endreserdetail(Model mm, ShReservationDTO dto) {
+		System.out.println(rm.detail(dto));
+		mm.addAttribute("mainData", rm.detail(dto));
+		
+		System.out.println(dto.getEdu());
+		
+		System.out.println("endreserdetail 진입");
+		
+		return "admin/reser/endreserdetail";
+	}
+	
 	@RequestMapping("/admin/reservation/detail/{reserNo}")
 	String detail(Model mm, ShReservationDTO dto) {
 		
