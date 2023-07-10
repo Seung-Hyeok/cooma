@@ -80,11 +80,11 @@ public class AdminHomeController {
 		Date deadline = chkTime.getGoHome();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(deadline);
-		calendar.set(Calendar.HOUR_OF_DAY, 11); // 시간
+		calendar.set(Calendar.HOUR_OF_DAY, 16); // 시간
 		calendar.set(Calendar.MINUTE, 0); // 분
 		calendar.set(Calendar.SECOND, 0); // 초
 		if(!chkTime.getEdu().equals("-")) { //교육있으면 하원 시간 연장
-			calendar.set(Calendar.HOUR_OF_DAY, 12);
+			calendar.set(Calendar.HOUR_OF_DAY, 17);
 		}
 		deadline = calendar.getTime();
 		
@@ -95,7 +95,7 @@ public class AdminHomeController {
 		if (goHome.getTime() > deadline.getTime()) {
 			System.out.println("추가금 지불");
 			timeGap = (double) (goHome.getTime() - deadline.getTime());
-			timeGap = timeGap/1000-600; //정각이 아닌 10분 여유 줌
+			timeGap = timeGap/1000-300; //정각이 아닌 10분 여유 줌
 			System.out.println("timeGap:"+timeGap);
 			System.out.println("시:"+(int)timeGap/(3600));
 			System.out.println("분:"+(int)(timeGap%3600)/60);

@@ -68,7 +68,7 @@ public class HmMyPageController {
 		
 		if(cnt>0) {
 			msg = "회원정보가 수정되었습니다.";
-			goUrl = "/user/myPage/myPage";
+			goUrl = "/user/myPage/memPage";
 			
 			HmMemberDTO memData = mp.logchk(dto);
 			session.setAttribute("pname", memData.getPname());
@@ -223,45 +223,54 @@ public class HmMyPageController {
 	
 	//애견수정///////////////////////////////////////
 	@GetMapping("/user/myPage/dogModify/{dname}")
-	String dogModify(HttpSession session, Model mm, HmDogsDTO dto) {
-		String pid = (String)session.getAttribute("pid");
-		mm.addAttribute("pid", pid);
-		dto.setPid(pid);
-		System.out.println("dto.getPhoto()1"+dto.getPhoto());
-		mm.addAttribute("dogData", mp.dogDetail(dto));
-		return "user/myPage/dogModify";
-	}
-	
-	@PostMapping("/user/myPage/dogModify/{dname}")
-	String dogModifyComplete(/*@PathVariable String dname*/HttpSession session, Model mm, HmDogsDTO dto) {
-		String pid = (String)session.getAttribute("pid");
-		System.out.println("dto.getPhoto()2"+dto.getPhoto());
-		dto.setPid(pid);
-		String photo = (String)session.getAttribute("photo");
-		if(dto.getPhoto()==null || dto.getPhoto().equals("")) {
-			dto.setPhoto(photo);
-		}
-		mp.dogModify(dto);
-		//HmMemberDTO memData = mp.my(pid);
-		/*
-		if(memData.getDog1().equals(dname)) {
-			memData.setDog1(dto.getDname());
-			mp.dnameset(memData);
-		}
-		else if(memData.getDog2().equals(dname)) {
-			memData.setDog2(dto.getDname());
-			mp.dnameset(memData);
-		}
-		else if(memData.getDog3().equals(dname)) {
-			memData.setDog3(dto.getDname());
-			mp.dnameset(memData);
-		}*/
-		
-		mm.addAttribute("msg", "애견정보 수정이 완료되었습니다.");
-		mm.addAttribute("goUrl", "/user/myPage/dogDetail/"+dto.getDname());
-		
-		return "user/myPage/alert";
-	}
+    String dogModify(HttpSession session, Model mm, HmDogsDTO dto) {
+        String pid = (String)session.getAttribute("pid");
+        mm.addAttribute("pid", pid);
+        dto.setPid(pid);
+        System.out.println("photo1"+session.getAttribute("photo"));
+        mm.addAttribute("dogData", mp.dogDetail(dto));
+        return "user/myPage/dogModify";
+    }
+
+    @PostMapping("/user/myPage/dogModify/{dname}")
+    String dogModifyComplete(HttpServletRequest request, HttpSession session, Model mm, HmDogsDTO dto, HmFileData fd) {
+        String pid = (String)session.getAttribute("pid");
+        String photo = (String)session.getAttribute("photo");
+        System.out.println("photo2"+photo);
+
+        //System.out.println("dto.getPhoto()2"+dto.getPhoto());
+        dto.setPid(pid);
+        if(fd.getDogimg().isEmpty()) {
+            dto.setPhoto(photo);
+        }
+        else {
+            dto.setPhoto(fd.getDogimg().getOriginalFilename());
+            fileSave(fd.getDogimg(), request);
+        }
+
+        mp.dogModify(dto);
+        //HmMemberDTO memData = mp.my(pid);
+        /*
+        if(memData.getDog1().equals(dname)) {
+            memData.setDog1(dto.getDname());
+            mp.dnameset(memData);
+        }
+        else if(memData.getDog2().equals(dname)) {
+            memData.setDog2(dto.getDname());
+            mp.dnameset(memData);
+        }
+        else if(memData.getDog3().equals(dname)) {
+            memData.setDog3(dto.getDname());
+            mp.dnameset(memData);
+        }*/
+
+        mm.addAttribute("msg", "애견정보 수정이 완료되었습니다.");
+        mm.addAttribute("goUrl", "/user/myPage/dogDetail/"+dto.getDname());
+
+        return "user/myPage/alert";
+    }
+    
+    
 	//애견삭제///////////////////////////////////////
 	@RequestMapping("/user/myPage/dogDelete/{dname}")
 	String dogDelete(HttpSession session, Model mm, HmDogsDTO dto) {
@@ -316,10 +325,12 @@ public class HmMyPageController {
 	
 	//사진저장///////////////////////////////////////
 	void fileSave(MultipartFile ff,	HttpServletRequest request) {
+		System.out.println("fileSavewl진입");
 		String path = request.getServletContext().getRealPath("dimg");
-		//System.out.println(path);
+		System.out.println("path"+path);
 		try {
-			FileOutputStream fos = new FileOutputStream(path+"\\"+ff.getOriginalFilename());
+			
+			FileOutputStream fos = new FileOutputStream(path+"/"+ff.getOriginalFilename());
 			fos.write(ff.getBytes());
 			fos.close();
 		} catch (Exception e) {

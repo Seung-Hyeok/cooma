@@ -22,10 +22,12 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	
 	
 	<insert id="buy" parameterType="gsrDTO">
-		
+		<selectKey keyProperty="reserNo" resultType="Integer" order="BEFORE">
+			select max(reserNo)+1 from reser
+		</selectKey>
 		insert into reser  (reserNo, pid, dname,pay,edu,reque,kind,dogsize,weeks,bank,account,startD,endD,payD,eduFee,totFee)
 		values
-		(#{reserNo},  #{pid}, #{dname},#{pay},#{edu},#{reque},#{kind},#{dogsize},#{weeks},#{bank},#{account},#{startD}, date_sub(#{startD}, interval -#{gap} day) ,sysdate(),#{eduFee},#{pay}+#{eduFee})
+		(#{reserNo}, #{pid}, #{dname},#{pay},#{edu},#{reque},#{kind},#{dogsize},#{weeks},#{bank},#{account},#{startD}, date_sub(#{startD}, interval -#{gap} day) ,sysdate(),#{eduFee},#{pay}+#{eduFee})
 	</insert>
 	
 	<insert id="dayBuy" parameterType="gsrDTO">

@@ -102,10 +102,11 @@ public class HmLoginController {
 	
 	//사진저장///////////////////////////////////////
 	void fileSave(MultipartFile ff,	HttpServletRequest request) {
+		System.out.println("fileSave진입");
 		String path = request.getServletContext().getRealPath("dimg");
-		//System.out.println(path);
+		System.out.println("path"+path);
 		try {
-			FileOutputStream fos = new FileOutputStream(path+"\\"+ff.getOriginalFilename());
+			FileOutputStream fos = new FileOutputStream(path+"/"+ff.getOriginalFilename());
 			fos.write(ff.getBytes());
 			fos.close();
 		} catch (Exception e) {

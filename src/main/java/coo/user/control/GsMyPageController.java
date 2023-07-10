@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import coo.user.db.GsDogDTO;
 import coo.user.db.GsMyPageMapper;
 import coo.user.db.GsReserDTO;
-import coo.user.db.GsReserMapper;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 
@@ -27,6 +25,7 @@ public class GsMyPageController {
 	@RequestMapping("/user/myPage/gsMyList")
 	String myList(HttpSession session,Model mm) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		List<GsReserDTO> arr = gmm.reserArr(pid);
 		mm.addAttribute("buyList", arr);
 		System.out.println("myList 진입"+arr);
@@ -36,6 +35,7 @@ public class GsMyPageController {
 	@RequestMapping("/user/myPage/gsMyOld")
 	String myOld(HttpSession session,Model mm) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		List<GsReserDTO> arr = gmm.oldArr(pid);
 		mm.addAttribute("oldList", arr);
 		System.out.println("myOld 진입"+arr);
@@ -44,6 +44,8 @@ public class GsMyPageController {
 	
 	@RequestMapping("/user/myPage/buyDetail/{reserNo}")
 	String myDetail(HttpSession session,Model mm,GsReserDTO gdto) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		GsReserDTO bd = gmm.buyDetail(gdto);
 		mm.addAttribute("myDetail", bd);
 		System.out.println("myDetail 진입"+bd);
@@ -52,8 +54,9 @@ public class GsMyPageController {
 	
 	@RequestMapping("/user/myPage/myRefund/{reserNo}")
 	String myRefund(HttpSession session,Model mm,GsReserDTO gdto) {
-		int prc = 0;
-		  
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		gdto = gmm.buyDetail(gdto);
 		Date today = new Date();
 		Date start = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -64,7 +67,6 @@ public class GsMyPageController {
 		
         long diff = start.getTime() - today.getTime();
         int chk = (int)(diff / (24 * 60 * 60 * 1000));
-        boolean cancerChk = false;
         
         if(chk>0) {
 	        if(chk<=1) {
@@ -92,8 +94,9 @@ public class GsMyPageController {
 		
 		int refun = gmm.myRefun(gdto);
 		System.out.println("myRefund 진입"+refun);
+		
 		mm.addAttribute("msg", "환불되었습니다");
-		mm.addAttribute("goUrl", "/user/myPage/gsBuyDetail/"+gdto.getReserNo());
+		mm.addAttribute("goUrl", "/user/myPage/buyDetail/"+gdto.getReserNo());
 		
 		return "user/myPage/alert";
 	}

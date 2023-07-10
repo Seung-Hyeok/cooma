@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	</select>
 	
 	<update id="myRefun" parameterType="gsrDTO">
-		update reser set refund = #{refund}
+		update reser set refund = #{refund}, refundD = sysdate()
 		<where>
 			reserNo = #{reserNo}
 		</where>

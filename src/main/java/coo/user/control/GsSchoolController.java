@@ -27,6 +27,7 @@ public class GsSchoolController {
 	@RequestMapping("/user/school")
 	String dogSelect(HttpSession session,Model mm) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		List<GsDogDTO> dogData = grm.dogArr(pid);
 		System.out.println("dogSelect 진입");
 		System.out.println("dogData"+dogData);
@@ -36,6 +37,7 @@ public class GsSchoolController {
 	@GetMapping("/user/school/packSelect/{dname}")
 	String packSelect(HttpSession session,Model mm, GsDogDTO gdto) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		gdto.setPid(pid);
 		System.out.println("packSelect 진입");
 		System.out.println("drto"+gdto);
@@ -52,7 +54,8 @@ public class GsSchoolController {
 	
 	@PostMapping("/user/school/gsBuy")
 	String pay(HttpSession session,Model mm, GsReserDTO drto, GsDogDTO gdto) {
-		
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		
 		int cnt = drto.getGap()/7*drto.getWeeks().length();
 		if(drto.getEdu().equals("-")) {
@@ -71,7 +74,6 @@ public class GsSchoolController {
 			drto.setEduFee(5900*cnt);
 			drto.setTotFee(drto.getEduFee()+drto.getPay());
 		}
-		String pid = (String)session.getAttribute("pid");
 		drto.setPid(pid);
 		System.out.println("gsBuy 진입");
 		System.out.println("drto : "+drto.gap());
@@ -85,6 +87,7 @@ public class GsSchoolController {
 	@PostMapping("/user/school/gsFin")
 	String gsFin(HttpSession session,Model mm, GsReserDTO drto) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		drto.setPid(pid);
 		System.out.println("gsFin 진입");
 		System.out.println("drto"+drto);

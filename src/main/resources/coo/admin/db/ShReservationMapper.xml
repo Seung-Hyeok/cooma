@@ -63,10 +63,11 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		<include refid="wid"/>
 	</update>
 	
-	<delete id="delete" parameterType="rDTO">
-		delete from reser where reserNo = #{reserNo}
-		<!-- delete from board where id = #{id} and pw = '1111' -->
-	</delete>
+	<update id="delete" parameterType="rDTO">
+		update reser set refund = #{refund}, refundD = sysdate()
+		<include refid="wid"/>
+	</update>
+	
 
 
 
