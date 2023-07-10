@@ -1,0 +1,51 @@
+ㄴ<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_일일애견메모수정</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<h2 th:text="${bhDogData.todayStr()}+' '+${bhDogData.dname}+' 메모 수정'"> </h2>
+	
+	<form method="post" th:object="${bhDogData}">
+		<table border="" align="center">
+			<tr>
+				<td>강아지이름</td><td th:text="${bhDogData.dname}"/>
+			</tr>
+<!--			<tr>
+				<td>사진</td>
+				<td>
+					<img th:src="@{'/dimg/'+${bhDogData.photo}}" width="200px" alt="Image">
+				</td>
+			</tr>	-->
+			<tr>
+				<td>회원아이디</td><td th:text="${bhDogData.pid}" />
+			</tr><tr>
+				<td>회원이름</td><td th:text="${bhMemData.pname}" />
+			</tr><tr>
+				<td>특이사항</td><td th:text="${bhDogData.notes}" />
+			</tr><tr>
+				<td>관리자메모</td>
+				<td><textarea th:field="*{memo}" /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="입력" />
+					<input type="reset" value="초기화" />
+					<a th:href="|/admin/attendMemo/*{todayNo}|" th:text="뒤로" ></a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+
+</html>

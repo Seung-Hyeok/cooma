@@ -25,6 +25,10 @@ public interface BhAttendMapper {
 	//하원 지각 패널티
 	void bhAddPanelty(BhAttendReserDTO addPanelty);
 
+	//일일메모
+	BhAttendReserDTO bhAttMemo(BhAttendReserDTO reser);
+	String bhDogImg(BhAttendReserDTO reser);
 	
-	
+	//일일메모수정
+	int bhAttMemoModi(BhAttendReserDTO reser);
 }

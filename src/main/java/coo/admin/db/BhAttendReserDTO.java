@@ -44,9 +44,11 @@ public class BhAttendReserDTO {
 	pid VARCHAR(255),
 	attendTime datetime,
 	goHome datetime,
-	penalty int default 0 -- 19시 이후 1시간마다 만원
+	penalty int default 0, -- 19시 이후 1시간마다 만원
+	memo text
 	 */
 //daybyday 테이블 칼럼(reser와 겹치는 칼럼명 제외)
+	String memo;
 	Integer todayNo, penalty, timeGap;
 	Date oneDay, attendTime, goHome; 
 	

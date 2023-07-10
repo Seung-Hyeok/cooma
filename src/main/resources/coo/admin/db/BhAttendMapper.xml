@@ -105,6 +105,17 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 		</where>
 	</select>
 	
+<!-- 메모 -->
+	<select id="bhAttMemo" parameterType="bhAtDTO" resultType="bhAtDTO">
+		select * from daybyday where todayNo = #{todayNo}; 
+	</select>	
+	<select id="bhDogImg" parameterType="bhAtDTO" resultType="String">
+		select photo from dogs where dname = #{dname} and pid = #{pid}; 
+	</select>
+	<update id="bhAttMemoModi" parameterType="bhAtDTO">
+		update daybyday set memo = #{memo} where todayNo = #{todayNo}
+	</update>
+	
 <!-- 등하원 -->
 	<update id="checkAttendTime" parameterType="bhAtDTO">
 		update daybyday set attendTime = sysdate() where todayNo = #{todayNo}

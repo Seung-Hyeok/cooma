@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import coo.admin.db.BhAttendMapper;
 import coo.admin.db.BhAttendReserDTO;
-import coo.admin.db.BhDogsDTO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 
@@ -28,14 +28,14 @@ public class AdminHomeController {
 	//관리자 메인 화면 및 오늘 등원 강아지 리스트
 	@RequestMapping("/admin")
 	String bhTodayList(Model mm, BhAttendReserDTO reser, HttpSession session) {
-
 		System.out.println("bhTodayList() 진입");
+		
 		session.setAttribute("beforePage", "admin");
 
 		List<BhAttendReserDTO> bigDog = am.dayListBig(reser);
 		for (BhAttendReserDTO dto : bigDog) {
 			String requeNote = am.getRequeNote(dto);
-			dto.setReque(requeNote);
+			dto.setReque(requeNote); //요청사항추가('daybyday' 테이블에는 요청사항이 등록되지 않음)
 		}
 		List<BhAttendReserDTO> smallDog = am.dayListSmall(reser);
 		for (BhAttendReserDTO dto : smallDog) {
@@ -43,14 +43,10 @@ public class AdminHomeController {
 			dto.setReque(requeNote);
 		}
 		
-		int totAttBig = am.bhCountAttBig(reser);
-		mm.addAttribute("totAttBig",totAttBig);
-		int realAttBig = am.bhCountRealBig(reser);
-		mm.addAttribute("realAttBig",realAttBig);
-		int totAttSmall = am.bhCountAttSmall(reser);
-		mm.addAttribute("totAttSmall",totAttSmall);
-		int realAttSmall = am.bhCountRealSmall(reser);
-		mm.addAttribute("realAttSmall",realAttSmall);
+		mm.addAttribute("totAttBig", am.bhCountAttBig(reser)); //출석예정 수
+		mm.addAttribute("realAttBig", am.bhCountRealBig(reser)); //실제출석 수
+		mm.addAttribute("totAttSmall", am.bhCountAttSmall(reser));
+		mm.addAttribute("realAttSmall", am.bhCountRealSmall(reser));
 		
 		mm.addAttribute("bigDog", bigDog);
 		//System.out.println("bigDog: "+bigDog);
@@ -61,16 +57,50 @@ public class AdminHomeController {
 		return "admin/adminHome";
 	}
 	
+	//메모출력
+	@RequestMapping("/admin/attendMemo/{todayNo}")
+	String attendMemo(Model mm, BhAttendReserDTO reser, HttpSession session) {
+		System.out.println("attendMemo() 진입");
+		reser = am.bhAttMemo(reser);
+		mm.addAttribute("bhDogData", reser);
+		mm.addAttribute("bhDogImg", am.bhDogImg(reser));
+		return "admin/attendToday/bhAttMemo";
+	}
+	
+	//메모수정
+	@GetMapping("/admin/attMemoModi/{todayNo}")
+	String attendMemoModi(Model mm, BhAttendReserDTO reser, HttpSession session) {
+		System.out.println("attendMemoModi() 진입");
+		mm.addAttribute("bhDogData", am.bhAttMemo(reser));
+		return "admin/attendToday/bhAttMemoModify";
+	}
+
+	//메모수정완료
+	@PostMapping("/admin/attMemoModi/{todayNo}")
+	String attendMemoModiDone(Model mm, BhAttendReserDTO reser, HttpSession session) {
+		int chk = am.bhAttMemoModi(reser);
+		System.out.println("attendMemoModiDone() 진입");
+		String msg = "수정이 되지 않았습니다.";
+		String goUrl = "/admin/attMemoModi/"+reser.getTodayNo();
+		if(chk==1) {
+			msg = "수정되었습니다.";
+			goUrl = "/admin/attendMemo/"+reser.getTodayNo();
+		}
+		mm.addAttribute("msg", msg);
+		mm.addAttribute("goUrl", goUrl);
+		
+		return "admin/attendToday/bhalert";
+	}
+	
 	//등원
 	@PostMapping("/admin/attendTime")
 	@ResponseBody
 	String attendTime(@RequestParam("todayNo") int todayNo, Model mo) {
-		System.out.println("attendTime() 진입");
-		System.out.println("todayNo:"+todayNo);
+		System.out.println("attendTime() 진입, todayNo: "+todayNo);
+				
 		am.checkAttendTime(todayNo);
 		
-		String msg = "등원완료";
-		return msg;
+		return "등원완료";
 	}
 	
 	//하원
@@ -82,7 +112,7 @@ public class AdminHomeController {
 		am.checkGoHomeTime(todayNo);
 		
 		BhAttendReserDTO chkTime = am.bhChkTime(todayNo);
-		System.out.println("하원시간:"+chkTime.getGoHome()); //Sun Jul 09 01:51:40 KST 2023
+		//System.out.println("하원시간:"+chkTime.getGoHome()); //Sun Jul 09 01:51:40 KST 2023
 		Date goHome = chkTime.getGoHome();
 	
 		//마감시간 설정
