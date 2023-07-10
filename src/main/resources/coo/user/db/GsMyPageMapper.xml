@@ -25,6 +25,15 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 			reserNo = #{reserNo}
 		</where>
 	</select>
+	
+	<update id="myRefun" parameterType="gsrDTO">
+		update reser set refund = #{refund}
+		<where>
+			reserNo = #{reserNo}
+		</where>
+	</update>
+	
+	
 </mapper>
 
 

@@ -19,10 +19,19 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		</where>
 	</select>
 	
+	
+	
 	<insert id="buy" parameterType="gsrDTO">
-		insert into reser (pid, dname,pay,edu,reque,kind,dogsize,weeks,bank,account,startD,endD,payD)
+		
+		insert into reser  (reserNo, pid, dname,pay,edu,reque,kind,dogsize,weeks,bank,account,startD,endD,payD,eduFee,totFee)
 		values
-		(#{pid}, #{dname},#{pay},#{edu},#{reque},#{kind},#{dogsize},#{weeks},#{bank},#{account},#{startD}, date_sub(#{startD}, interval #{gap} day) ,sysdate())
+		(#{reserNo},  #{pid}, #{dname},#{pay},#{edu},#{reque},#{kind},#{dogsize},#{weeks},#{bank},#{account},#{startD}, date_sub(#{startD}, interval -#{gap} day) ,sysdate(),#{eduFee},#{pay}+#{eduFee})
+	</insert>
+	
+	<insert id="dayBuy" parameterType="gsrDTO">
+		insert into daybyday (reserNo,pid, dname,edu,kind,dogsize,oneDay)
+		values
+		(#{reserNo},#{pid}, #{dname},#{edu},#{kind},#{dogsize},#{oneDay})
 	</insert>
 </mapper>
 

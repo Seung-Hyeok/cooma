@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface GsReserMapper {
 	void buy(GsReserDTO dasdaa);
+	void dayBuy(GsReserDTO dasdaa);
+	
 	
 	List<GsDogDTO> dogArr(String dashkjdh);
 	

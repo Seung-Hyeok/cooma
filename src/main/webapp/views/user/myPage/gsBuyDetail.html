@@ -27,9 +27,9 @@ layout:decorate="total/userTemp">
 			등원 날짜 : <span th:text="${myDetail.startD}"></span> &nbsp;&nbsp;&nbsp;
 			종료 날짜 : <span th:text="${myDetail.endD}"></span> &nbsp;&nbsp;&nbsp;
 			요일 : <span th:text="${myDetail.weeks}"></span> &nbsp;&nbsp;&nbsp;
+			요청사항 : <span th:text="${myDetail.reque}"></span> &nbsp;&nbsp;&nbsp;
 		</div>	
-		<a href="">수정</a>
-		<a href="">환불</a>
+		<a th:href="@{|/user/myPage/myRefund/${myDetail.reserNo}|}" >환불</a>
 </th:block>
 
 <th:block layout:fragment="add-content">

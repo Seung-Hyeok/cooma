@@ -13,4 +13,6 @@ public interface GsMyPageMapper {
 	
 	GsReserDTO buyDetail(GsReserDTO dashkjdh);
 	
+	int myRefun(GsReserDTO dashkjdh);
+	
 }
