@@ -16,9 +16,9 @@ layout:decorate="total/adTemp">
 			$.ajax({
 				url: "/admin/attendTime", //실행코드가 있는 컨트롤러의 메소드
 				type: "POST",
-				data: { todayNo: todayNo },
+				data: {todayNo: todayNo},
 				success: function (res) {
-					alert("등원");
+					alert(res);
 					location.reload(); //화면새로고침
 				},
 				error: function (ee) {
@@ -37,7 +37,7 @@ layout:decorate="total/adTemp">
 				type: "POST",
 				data: { todayNo: todayNo },
 				success: function (res) {
-					alert("하원");
+					alert(res);
 					location.reload(); //화면새로고침
 				},
 				error: function (ee) {

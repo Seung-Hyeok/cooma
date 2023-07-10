@@ -54,18 +54,19 @@ public class AdminHomeController {
 	
 	//등원
 	@PostMapping("/admin/attendTime")
+	@ResponseBody
 	String attendTime(@RequestParam("todayNo") int todayNo, Model mo) {
 		System.out.println("attendTime() 진입");
 		System.out.println("todayNo:"+todayNo);
 		am.checkAttendTime(todayNo);
 		
-		String goUrl = "/admin/adminHome";
-		mo.addAttribute("goUrl", goUrl);
-		return "admin/attendToday/bhalert";
+		String msg = "등원완료";
+		return msg;
 	}
 	
 	//하원
 	@PostMapping("/admin/afterHome")
+	@ResponseBody
 	String afterHome(@RequestParam("todayNo") int todayNo, Model mo) {
 		System.out.println("afterHome() 진입");
 		System.out.println("todayNo:"+todayNo);
@@ -74,7 +75,8 @@ public class AdminHomeController {
 		BhAttendReserDTO chkTime = am.bhChkTime(todayNo);
 		System.out.println("하원시간:"+chkTime.getGoHome()); //Sun Jul 09 01:51:40 KST 2023
 		Date goHome = chkTime.getGoHome();
-	//마감시간 설정
+	
+		//마감시간 설정
 		Date deadline = chkTime.getGoHome();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(deadline);
@@ -88,55 +90,34 @@ public class AdminHomeController {
 		
 		System.out.println("goHome:"+goHome+", goHome.getTime():"+goHome.getTime());
 		System.out.println("deadline:"+deadline+", deadline.getTime():"+deadline.getTime());
+		double timeGap = 0;
+		int addPanelty = 0;
 		if (goHome.getTime() > deadline.getTime()) {
 			System.out.println("추가금 지불");
-			double timeGap = (double) (goHome.getTime() - deadline.getTime());
+			timeGap = (double) (goHome.getTime() - deadline.getTime());
 			timeGap = timeGap/1000;
 			System.out.println("timeGap:"+timeGap);
 			System.out.println("시:"+(int)timeGap/(3600));
 			System.out.println("분:"+(int)(timeGap%3600)/60);
 			System.out.println("초:"+(int)((timeGap%3600)%60));
 			
-			int addPanelty = (int) Math.ceil(timeGap/3600);
+			addPanelty = (int) Math.ceil(timeGap/3600);
 			System.out.println(timeGap/3600+","+addPanelty);
 			chkTime.setTimeGap(addPanelty);
 			
 			am.bhAddPanelty(chkTime);
 			
 		}
-		
 		/*
-		String lastTime = "19:00:00";
-		if(!chkTime.getEdu().equals("-")) {
-			lastTime = "20:00:00";
-		}
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        try {
-			Date strToDate = sdf.parse(lastTime);
-			
-			Calendar goHomeCalendar = Calendar.getInstance();
-		    goHomeCalendar.setTime(goHome);
-		    goHomeCalendar.set(Calendar.YEAR, 1970);
-		    goHomeCalendar.set(Calendar.MONTH, 0);
-		    goHomeCalendar.set(Calendar.DAY_OF_MONTH, 1);
-		    Date goHomeTimeOnly = goHomeCalendar.getTime();
-			
-		    System.out.println("strToDate:"+strToDate);
-			System.out.println("goHomeTimeOnly:"+goHomeTimeOnly);
-		    
-			System.out.println(goHomeTimeOnly+","+goHomeTimeOnly.getTime()+","+goHome.getTime()+","+strToDate.getTime());
-
-			if (goHomeTimeOnly.getTime() > strToDate.getTime()){
-				long timeGap = goHome.getTime() - strToDate.getTime();
-				System.out.println(timeGap/1000);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		
 		String goUrl = "/admin/adminHome";
 		mo.addAttribute("goUrl", goUrl);
 		return "admin/attendToday/bhalert";
+		*/
+		String msg = "하원완료";
+		if(addPanelty>0) {
+			msg = ""+(addPanelty*10000);
+		}
+		return msg;
 	}
 	
 	
