@@ -86,10 +86,11 @@ layout:decorate="total/adTemp">
 						<td th:text="${dto.reque}"/>
 						<td th:text="${dto.kind}"/>
 						<td>
-							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}"/>
-							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" th:text="하원" th:value="${dto.todayNo}"/>
+							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}" class="bhAtBtn"/>
+							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" 
+									th:text="하원" th:value="${dto.todayNo}" class="bhGoBtn"/>
 							<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
-							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}"/>
+							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}" class="bhPanelty"/>
 						</td>
 					</tr>
 				</table>
@@ -115,10 +116,11 @@ layout:decorate="total/adTemp">
 						<td th:text="${dto.reque}"/>
 						<td th:text="${dto.kind}"/>
 						<td>
-							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}"/>
-							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" th:text="하원" th:value="${dto.todayNo}"/>
+							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}" class="bhAtBtn"/>
+							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" 
+									th:text="하원" th:value="${dto.todayNo}" class="bhGoBtn"/>
 							<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
-							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}"/>
+							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}" class="bhPanelty"/>
 						</td>
 					</tr>
 				</table>
