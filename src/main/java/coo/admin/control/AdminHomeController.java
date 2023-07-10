@@ -17,7 +17,6 @@ import coo.admin.db.BhAttendMapper;
 import coo.admin.db.BhAttendReserDTO;
 import coo.admin.db.BhDogsDTO;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -29,19 +28,29 @@ public class AdminHomeController {
 	//관리자 메인 화면 및 오늘 등원 강아지 리스트
 	@RequestMapping("/admin")
 	String bhTodayList(Model mm, BhAttendReserDTO reser, HttpSession session) {
+
 		System.out.println("bhTodayList() 진입");
-		
-		List<BhAttendReserDTO> bigDog = am.todayListBig(reser);
+		session.setAttribute("beforePage", "admin");
+
+		List<BhAttendReserDTO> bigDog = am.dayListBig(reser);
 		for (BhAttendReserDTO dto : bigDog) {
 			String requeNote = am.getRequeNote(dto);
 			dto.setReque(requeNote);
 		}
-		List<BhAttendReserDTO> smallDog = am.todayListSmall(reser);
+		List<BhAttendReserDTO> smallDog = am.dayListSmall(reser);
 		for (BhAttendReserDTO dto : smallDog) {
 			String requeNote = am.getRequeNote(dto);
 			dto.setReque(requeNote);
 		}
-		session.setAttribute("beforePage", "admin");
+		
+		int totAttBig = am.bhCountAttBig(reser);
+		mm.addAttribute("totAttBig",totAttBig);
+		int realAttBig = am.bhCountRealBig(reser);
+		mm.addAttribute("realAttBig",realAttBig);
+		int totAttSmall = am.bhCountAttSmall(reser);
+		mm.addAttribute("totAttSmall",totAttSmall);
+		int realAttSmall = am.bhCountRealSmall(reser);
+		mm.addAttribute("realAttSmall",realAttSmall);
 		
 		mm.addAttribute("bigDog", bigDog);
 		//System.out.println("bigDog: "+bigDog);
@@ -80,12 +89,12 @@ public class AdminHomeController {
 		Date deadline = chkTime.getGoHome();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(deadline);
-		calendar.set(Calendar.HOUR_OF_DAY, 16); // 시간
+		calendar.set(Calendar.HOUR_OF_DAY, 19); // 7시까지 하원
 		calendar.set(Calendar.MINUTE, 0); // 분
 		calendar.set(Calendar.SECOND, 0); // 초
-		if(!chkTime.getEdu().equals("-")) { //교육있으면 하원 시간 연장
+		/*if(!chkTime.getEdu().equals("-")) { //교육있으면 하원 시간 연장 => 안함
 			calendar.set(Calendar.HOUR_OF_DAY, 17);
-		}
+		}*/
 		deadline = calendar.getTime();
 		
 		System.out.println("goHome:"+goHome+", goHome.getTime():"+goHome.getTime());
@@ -95,7 +104,7 @@ public class AdminHomeController {
 		if (goHome.getTime() > deadline.getTime()) {
 			System.out.println("추가금 지불");
 			timeGap = (double) (goHome.getTime() - deadline.getTime());
-			timeGap = timeGap/1000-300; //정각이 아닌 10분 여유 줌
+			timeGap = timeGap/1000;
 			System.out.println("timeGap:"+timeGap);
 			System.out.println("시:"+(int)timeGap/(3600));
 			System.out.println("분:"+(int)(timeGap%3600)/60);
@@ -107,11 +116,7 @@ public class AdminHomeController {
 			
 			am.bhAddPanelty(chkTime);
 		}
-		/*
-		String goUrl = "/admin/adminHome";
-		mo.addAttribute("goUrl", goUrl);
-		return "admin/attendToday/bhalert";
-		*/
+
 		String msg = "하원완료";
 		if(addPanelty>0) {
 			msg = "패널티fee: "+(addPanelty*10000);
@@ -119,12 +124,34 @@ public class AdminHomeController {
 		return msg;
 	}
 	
-	
-	
-	
-	String bhAttendList() {
-		return "";
+	@RequestMapping("/admin/attList")
+	String bhAttendList(Model mm, BhAttendReserDTO reser, HttpSession session) {
+		System.out.println("bhAttendList() 진입");
+		
+		List<BhAttendReserDTO> bigDog = am.dayListBig(reser);
+		List<BhAttendReserDTO> smallDog = am.dayListSmall(reser);
+
+		session.setAttribute("beforePage", "attList");
+		
+		int totAttBig = am.bhCountAttBig(reser);
+		mm.addAttribute("totAttBig",totAttBig);
+		int realAttBig = am.bhCountRealBig(reser);
+		mm.addAttribute("realAttBig",realAttBig);
+		int totAttSmall = am.bhCountAttSmall(reser);
+		mm.addAttribute("totAttSmall",totAttSmall);
+		int realAttSmall = am.bhCountRealSmall(reser);
+		mm.addAttribute("realAttSmall",realAttSmall);
+		
+		
+		mm.addAttribute("bigDog", bigDog);
+		//System.out.println("bigDog: "+bigDog);
+		mm.addAttribute("smallDog", smallDog);
+		//System.out.println("smallDog: "+smallDog);
+		mm.addAttribute("reser", reser);
+		
+		return "admin/attendToday/bhAttList";
 	}
 	
+
 	
 }

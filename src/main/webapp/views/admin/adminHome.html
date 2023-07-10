@@ -51,17 +51,19 @@ layout:decorate="total/adTemp">
 
 	<div>
 		<a href="/admin">오늘의 등원</a>
-		<a href="/admin/bhAttList">출석부</a>
+		<a href="/admin/attList">출석부</a>
 	</div>
 	
 	<div class="bhAttend">
-		<h2 th:text="${reser.todayStr()}"/>
+		<h3 th:text="${reser.todayStr()}"/>
 		<h2 th:text="'오늘의 등원'"/>
 	</div>
 	
 	<div class="bhAttendBig">
 		<div class="bhAttendS">
-			<div><h3>대형견반</h3></div>
+			<div><h3>대형견반 
+				<span th:text="${totAttBig}"/>/<span th:text="${realAttBig}">
+			</h3></div>
 			<div>
 				<!--
 				<div th:if="${bigDog}">
@@ -70,6 +72,7 @@ layout:decorate="total/adTemp">
 				    </ul>
 				</div>	
 				-->
+				
 				<table border="" width="100%">
 					<tr>
 						<td>번호</td>
@@ -98,7 +101,7 @@ layout:decorate="total/adTemp">
 		</div>
 		
 		<div class="bhAttendS">
-			<div><h3>중소형견반</h3></div>
+			<div><h3>중소형견반 <span th:text="${totAttSmall}"/>/<span th:text="${realAttSmall}"></h3></div>
 			<div>
 				<table border="" width="100%">
 					<tr>

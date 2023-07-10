@@ -11,9 +11,86 @@ layout:decorate="total/adTemp">
 	
 	<div>
 		<a href="/admin">오늘의 등원</a>
-		<a href="/admin/bhAttList">등원리스트</a>
+		<a href="/admin/attList">출석부</a>
 	</div>
 
+	<div class="bhAttend">
+		<h3 th:text="${reser.todayStr()}" th:if="${reser.schDate==null}"/>
+		<h3 th:text="${reser.schDate()}" th:if="${reser.schDate!=null}"/>
+		<h2 th:text="출석부"/>
+		
+		<form method="post" th:object="${bhAttendReserDTO}">
+			<label for="schDate">날짜:</label>
+	        <input type="date" th:field="*{schDate}"/>
+	        <input type="submit" value="검색"/>
+		</form>
+	</div>
+	
+	<div class="bhAttendBig">
+		<div class="bhAttendS">
+			<div><h3>대형견반
+				<span th:text="${totAttBig}"/>/<span th:text="${realAttBig}">
+			</h3></div>
+			
+			<div>
+				<!--
+				<div th:if="${bigDog}">
+				    <ul>
+				        <li th:each="dog : ${bigDog}" th:text="${dog.dname}"></li>
+				    </ul>
+				</div>	
+				-->
+				<table border="" width="100%">
+					<tr>
+						<td>번호</td>
+						<td>이름</td>
+						<td>교육</td>
+						<td>구분</td>
+						<td>등원</td>
+						<td>하원</td>
+						<td>패널티</td>
+					</tr>
+					<tr th:each="dto, dtoStat: ${bigDog}">
+						<td th:text="${dtoStat.index+1}" />
+						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
+						<td th:text="${dto.edu}"/>
+						<td th:text="${dto.kind}"/>
+						<td th:text="${dto.attendTime()}"/>
+						<td th:text="${dto.goHome()}"/>
+						<td th:text="${dto.penalty}"/>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="bhAttendS">
+			<div><h3>중소형견반
+				<span th:text="${totAttSmall}"/>/<span th:text="${realAttSmall}">
+			</h3></div>
+			<div>
+				<table border="" width="100%">
+					<tr>
+						<td>번호</td>
+						<td>이름</td>
+						<td>교육</td>
+						<td>구분</td>
+						<td>등원</td>
+						<td>하원</td>
+						<td>패널티</td>
+					</tr>
+					<tr th:each="dto, dtoStat: ${smallDog}">
+						<td th:text="${dtoStat.index+1}" />
+						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
+						<td th:text="${dto.edu}"/>
+						<td th:text="${dto.kind}"/>
+						<td th:text="${dto.attendTime()}"/>
+						<td th:text="${dto.goHome()}"/>
+						<td th:text="${dto.penalty}"/>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 </th:block>
 
 <th:block layout:fragment="adAdd-content">

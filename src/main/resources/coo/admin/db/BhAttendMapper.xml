@@ -6,15 +6,103 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 <mapper namespace="coo.admin.db.BhAttendMapper">
 <!-- select * from reser where dogsize = "대형견" and #{today} BETWEEN startD AND endD and weeks like concat('%',#{dayStr},'%') -->
 
-<!-- 리스트 -->
-	<select id="todayListBig" resultType="bhAtDTO">
-		select * from daybyday where dogsize = "대형견" and oneday = #{today};
+<!-- 오늘등원리스트 / 출석부 날짜 검색 리스트 -->
+	<select id="dayListBig" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			<trim suffixOverrides="and | or">
+				dogsize = "대형견" and 
+				<if test="schDate == null">
+					oneday = #{today}; 
+				</if>
+				<if test="schDate != null">
+					oneday = #{schDate};
+				</if>
+			</trim>
+		</where>
 	</select>
-	<select id="todayListSmall" resultType="bhAtDTO">
-		select * from daybyday where dogsize = "중/소형견" and oneday = #{today};
+	
+	<select id="dayListSmall" resultType="bhAtDTO">
+		select * from daybyday 
+		<trim suffixOverrides="and | or">
+			<where>
+				dogsize = "중/소형견" and 
+				<if test="schDate == null">
+					oneday = #{today}; 
+				</if>
+				<if test="schDate != null">
+					oneday = #{schDate};
+				</if>
+			</where>
+		</trim>
 	</select>
+	
 	<select id="getRequeNote" parameterType="bhAtDTO" resultType="java.lang.String">
 		select reque from reser where reserNo = #{reserNo};
+	</select>
+	
+	<!-- 대형견 총 등원 예정 강아지 수 -->
+	<select id="bhCountAttBig" parameterType="bhAtDTO" resultType="int">
+		select count(*) from daybyday
+		<where>
+			<trim suffixOverrides="and | or"> 
+				dogsize = "대형견" and 
+				<if test="schDate == null">
+					oneday = #{today}; 
+				</if>
+				<if test="schDate != null">
+					oneday = #{schDate};
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!-- 대형견 총 실제 등원 강아지 수 -->
+	<select id="bhCountRealBig" parameterType="bhAtDTO" resultType="int">
+		select count(*) from daybyday 
+				<where>
+			<trim suffixOverrides="and | or"> 
+				dogsize = "대형견" and attendTime is not null and
+				<if test="schDate == null">
+					oneday = #{today}; 
+				</if>
+				<if test="schDate != null">
+					oneday = #{schDate};
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!-- 중/소형견 총 등원 예정 강아지 수 -->
+	<select id="bhCountAttSmall" parameterType="bhAtDTO" resultType="int">
+		select count(*) from daybyday 
+		<where>
+			<trim suffixOverrides="and | or"> 
+				dogsize = "중/소형견" and 
+				<if test="schDate == null">
+					oneday = #{today}; 
+				</if>
+				<if test="schDate != null">
+					oneday = #{schDate};
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!-- 중/소형견 총 실제 등원 강아지 수 -->
+	<select id="bhCountRealSmall" parameterType="bhAtDTO" resultType="int">
+		select count(*) from daybyday 
+		<where>
+			<trim suffixOverrides="and | or"> 
+				dogsize = "중/소형견" and attendTime is not null and 
+				<if test="schDate == null">
+					oneday = #{today}; 
+				</if>
+				<if test="schDate != null">
+					oneday = #{schDate};
+				</if>
+			</trim>
+		</where>
 	</select>
 	
 <!-- 등하원 -->
@@ -32,5 +120,8 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	<update id="bhAddPanelty" parameterType="bhAtDTO">
 		update daybyday set penalty = #{timeGap}*10000 where todayNo = #{todayNo}
 	</update>
+
+
+
 
 </mapper>

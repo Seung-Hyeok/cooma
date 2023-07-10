@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_일일애견상세</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<h2 th:text="${bhDogData.dname}+' 강아지 정보'"> </h2>
+
+	<table border="" align="center">
+		<tr>
+			<td>강아지이름</td><td th:text="${bhDogData.dname}"/>
+		</tr><tr>
+			<td>사진</td>
+			<td>
+				<img th:src="@{'/dimg/'+${bhDogData.photo}}" width="200px" alt="Image">
+			</td>
+		</tr><tr>
+			<td>견종</td><td th:text="${bhDogData.breed}" />
+		</tr><tr>
+			<td>회원아이디</td><td th:text="${bhDogData.pid}" />
+		</tr><tr>
+			<td>회원이름</td><td th:text="${bhMemData.pname}" />
+		</tr><tr>
+			<td>무게</td><td th:text="${bhDogData.weight}"/>
+		</tr><tr>
+			<td>사이즈</td><td th:text="${bhDogData.dogsize}"/>
+		</tr><tr>
+			<td>성별</td><td th:text="${bhDogData.gender}" />
+		</tr><tr>
+			<td>개월수</td><td th:text="${bhDogData.dyear}" />
+		</tr><tr>
+			<td>특이사항</td><td th:text="${bhDogData.notes}" />
+		</tr><tr>
+			<td>관리자메모</td><td th:text="${bhDogData.memo}" />
+		</tr>
+
+			<tr>
+				<td colspan="2">예약 내역</td>
+			</tr>
+			<tr th:each="dto, dtoStat: ${bhDogsReser}">
+				<td th:text="${dtoStat.index+1}"/>
+				<td th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+')'"/>
+			</tr>
+
+		<tr>
+			<td colspan="2" align="center">
+				<a th:href="|/admin/dogs|"  th:if="${beforePage.equals('dogs')}">애견목록</a>
+				<a th:href="|/admin|"  th:if="${beforePage.equals('admin')}">오늘등원리스트</a>
+				<a th:href="|/admin/dogModi/${bhDogData.dname}/${bhDogData.pid}|" th:text="수정" ></a>
+				<a th:href="|/admin/dogDelete/${bhDogData.dname}/${bhDogData.pid}|" th:text="삭제" ></a>	
+			</td>
+		</tr>
+	</table>
+	
+	
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+
+</html>
