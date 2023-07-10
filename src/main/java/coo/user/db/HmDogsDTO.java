@@ -8,8 +8,6 @@ public class HmDogsDTO {
 	
 	String dname;
 	
-	String dname1;
-	
 	double weight;
 	
 	String gender;

@@ -8,32 +8,90 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
+	<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+	<script th:inline="javascript">
+		function attend(button) {
+			var todayNo = button.value; // 버튼의 값 가져오기
+			
+			$.ajax({
+				url: "/admin/attendTime", //실행코드가 있는 컨트롤러의 메소드
+				type: "POST",
+				data: {todayNo: todayNo},
+				success: function (res) {
+					alert(res);
+					location.reload(); //화면새로고침
+				},
+				error: function (ee) {
+					// 실패하면 에러메시지
+					console.log(ee);
+					console.log(todayNo);
+				},
+			});
+		}
+		
+		function afterSchool(button) {
+			var todayNo = button.value; // 버튼의 값 가져오기
+			
+			$.ajax({
+				url: "/admin/afterHome", //실행코드가 있는 컨트롤러의 메소드
+				type: "POST",
+				data: { todayNo: todayNo },
+				success: function (res) {
+					alert(res);
+					location.reload(); //화면새로고침
+				},
+				error: function (ee) {
+					// 실패하면 에러메시지
+					console.log(ee);
+					console.log(todayNo);
+				},
+			});
+		}
+	</script>
+
+	<div>
+		<a href="/admin">오늘의 등원</a>
+<!--		<a href="/admin/bhAttList">등원리스트</a>-->
+	</div>
 	
-	<div class="bhAttend"><h2>오늘의 등원</h2></div>
+	<div class="bhAttend">
+		<h2 th:text="${reser.todayStr()}"/>
+		<h2 th:text="'오늘의 등원'"/>
+	</div>
 	
 	<div class="bhAttendBig">
 		<div class="bhAttendS">
 			<div><h3>대형견반</h3></div>
 			<div>
+				<!--
+				<div th:if="${bigDog}">
+				    <ul>
+				        <li th:each="dog : ${bigDog}" th:text="${dog.dname}"></li>
+				    </ul>
+				</div>	
+				-->
 				<table border="" width="100%">
 					<tr>
 						<td>번호</td>
 						<td>이름</td>
-						<td>사진</td>
-						<td>훈련</td>
+						<td>교육</td>
 						<td>요청사항</td>
-						<td>일일/정기</td>
+						<td>구분</td>
 						<td>등하원</td>
 					</tr>
 					<tr th:each="dto, dtoStat: ${bigDog}">
-						<td th:text="${dtoStat.index}" />
-<!--	나중에 a태그로 만들기 <td><a th:href="@{|detail2/${dto.id}|}" th:text="${dto.title}" ></a></td>-->
-						<td th:text="${dto.dname}"/>
-						<td/>
+						<td th:text="${dtoStat.index+1}" />
+						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
 						<td th:text="${dto.edu}"/>
 						<td th:text="${dto.reque}"/>
 						<td th:text="${dto.kind}"/>
-						<td>등하원체크버튼</td>
+						<td>
+							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}" class="bhAtBtn"/>
+							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" 
+									th:text="하원" th:value="${dto.todayNo}" class="bhGoBtn"/>
+							<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
+							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}" class="bhPanelty"/>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -42,7 +100,30 @@ layout:decorate="total/adTemp">
 		<div class="bhAttendS">
 			<div><h3>중소형견반</h3></div>
 			<div>
-				
+				<table border="" width="100%">
+					<tr>
+						<td>번호</td>
+						<td>이름</td>
+						<td>교육</td>
+						<td>요청사항</td>
+						<td>구분</td>
+						<td>등하원</td>
+					</tr>
+					<tr th:each="dto, dtoStat: ${smallDog}">
+						<td th:text="${dtoStat.index+1}" />
+						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
+						<td th:text="${dto.edu}"/>
+						<td th:text="${dto.reque}"/>
+						<td th:text="${dto.kind}"/>
+						<td>
+							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}" class="bhAtBtn"/>
+							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" 
+									th:text="하원" th:value="${dto.todayNo}" class="bhGoBtn"/>
+							<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
+							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}" class="bhPanelty"/>
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>

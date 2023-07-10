@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import coo.admin.db.BhAttendReserDTO;
 import coo.admin.db.BhDogMapper;
 import coo.admin.db.BhDogsDTO;
 import coo.admin.db.BhMemDTO;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/admin")
@@ -23,13 +26,14 @@ public class BhDogController {
 	
 //애견리스트
 	@RequestMapping("/dogs")
-	String bhDogList(Model mo, BhDogsDTO dog) {
+	String bhDogList(Model mo, BhDogsDTO dog, HttpSession session) {
 		List<BhDogsDTO> bhDogData = dm.bhDogList(dog);
 		for (BhDogsDTO dto : bhDogData) {
 			String name = dm.bhFindMemName(dto);
 			dto.setPname(name);
 			System.out.println("dto.getPname(): "+dto.getPname());
 		}
+		session.setAttribute("beforePage", "dogs");
 		System.out.println("bhDogList() 진입");
 		mo.addAttribute("bhDogData",bhDogData);
 		return "admin/dogs/bhDogList";
@@ -37,11 +41,15 @@ public class BhDogController {
 		
 //애견상세
 	@RequestMapping("/dogInform/{dname}/{pid}")
-	String bhDogDetail(Model mo, BhMemDTO mem, BhDogsDTO dog) {
+	String bhDogDetail(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
 		System.out.println("bhDogDetail() 진입");
 		mo.addAttribute("bhDogData", dm.bhDogDetail(dog));
 		BhMemDTO bhMemData = dm.bhDogsMem(dog);
 		mo.addAttribute("bhMemData", bhMemData);
+		mo.addAttribute("beforePage", session.getAttribute("beforePage"));
+		List<BhAttendReserDTO> bhDogsReser = dm.bhDogsReser(dog);
+		mo.addAttribute("bhDogsReser",bhDogsReser);
+		
 		return "admin/dogs/bhDogDetail";
 	}
 	

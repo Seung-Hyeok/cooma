@@ -42,4 +42,8 @@ public interface HmLoginMapper {
 	
 	//강아지삭제
 	void dogDelete(HmDogsDTO dsf);
+	
+	//아이디중복확인
+	int checkId(String sfds);
+	
 }

@@ -40,9 +40,19 @@ layout:decorate="total/adTemp">
 		</tr><tr>
 			<td>관리자메모</td><td th:text="${bhDogData.adminMemo}" />
 		</tr>
+
+			<tr>
+				<td colspan="2">예약 내역</td>
+			</tr>
+			<tr th:each="dto, dtoStat: ${bhDogsReser}">
+				<td th:text="${dtoStat.index+1}"/>
+				<td th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+')'"/>
+			</tr>
+
 		<tr>
 			<td colspan="2" align="center">
-				<a th:href="|/admin/dogs|" th:text="목록으로" ></a>
+				<a th:href="|/admin/dogs|"  th:if="${beforePage.equals('dogs')}">애견목록</a>
+				<a th:href="|/admin|"  th:if="${beforePage.equals('admin')}">오늘등원리스트</a>
 				<a th:href="|/admin/dogModi/${bhDogData.dname}/${bhDogData.pid}|" th:text="수정" ></a>
 				<a th:href="|/admin/dogDelete/${bhDogData.dname}/${bhDogData.pid}|" th:text="삭제" ></a>	
 			</td>

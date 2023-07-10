@@ -23,7 +23,11 @@ layout:decorate="total/userTemp">
           }
         }
 </script>
-
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinChk">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
 <h1>나의 애견 정보</h1>
 <table border="">
 	<tr>
@@ -36,16 +40,13 @@ layout:decorate="total/userTemp">
 		<td>무게</td><td th:text="${dogData.weight}" /> 
 	</tr>
 	<tr>
-		<td>크기</td><td th:text="${dogData.dogsize}" />
+		<td>사이즈</td><td th:text="${dogData.dogsize}" />
 	</tr>
 	<tr>
 		<td>성별</td><td th:text="${dogData.gender}" />
 	</tr>
 	<tr>
-		<td>태어난년도</td><td th:text="${dogData.dyear}" />
-	</tr>
-	<tr>
-		<td>태어난달</td><td th:text="${dogData.dmonth}" />
+		<td>나이</td><td>[[${dYear}]]년 [[${dMonth}]]개월 생</td>
 	</tr>
 	<tr>
 		<td>사진</td><td><img th:src="|/dimg/${dogData.photo}|" alt="" width="500px"/></td>

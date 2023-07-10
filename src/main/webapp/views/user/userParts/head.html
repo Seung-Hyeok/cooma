@@ -27,6 +27,13 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		height: 100px;
 		background: #aff;
 	}
+	.myPageMenu{
+        padding:20px;
+        float: left;
+        width: 1200px;
+        height: 100px;
+        background: #faf;
+    }
 	.dogMenu>div{
 		float: left;
 		margin:20px;
@@ -46,9 +53,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <a href="/user/build">시설안내</a>
 <a href="/user/school">유치원</a>
 <a href="/user/special">전문가들</a>
-<a href="/user/myPage/memPage">마이페이지</a>
-<a href="/user/log/logout">로그아웃</a>
-<a href="/user/log/login">로그인</a>
+<a href="/user/myPage/memPage" th:if="${pid != null}">마이페이지</a>
+<a href="/user/log/logout" th:if="${pid != null}">로그아웃</a>
+<a href="/user/log/login" th:if="${pid == null}">로그인</a>
 </div>
 </head>
 </html>
