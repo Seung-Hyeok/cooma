@@ -217,7 +217,7 @@ public class HmMyPageController {
 	    mm.addAttribute("dYear", dYear);
 	    mm.addAttribute("dMonth", dMonth);
 		
-		session.setAttribute("photo", mp.dogDetail(dto).getPhoto());
+		session.setAttribute("photo", dogData.getPhoto());
 		return "user/myPage/dogDetail";
 	}
 	
@@ -227,20 +227,27 @@ public class HmMyPageController {
 		String pid = (String)session.getAttribute("pid");
 		mm.addAttribute("pid", pid);
 		dto.setPid(pid);
-		System.out.println("dto.getPhoto()1"+dto.getPhoto());
+		System.out.println("photo1"+session.getAttribute("photo"));
 		mm.addAttribute("dogData", mp.dogDetail(dto));
 		return "user/myPage/dogModify";
 	}
 	
 	@PostMapping("/user/myPage/dogModify/{dname}")
-	String dogModifyComplete(/*@PathVariable String dname*/HttpSession session, Model mm, HmDogsDTO dto) {
+	String dogModifyComplete(HttpServletRequest request, HttpSession session, Model mm, HmDogsDTO dto, HmFileData fd) {
 		String pid = (String)session.getAttribute("pid");
-		System.out.println("dto.getPhoto()2"+dto.getPhoto());
-		dto.setPid(pid);
 		String photo = (String)session.getAttribute("photo");
-		if(dto.getPhoto()==null || dto.getPhoto().equals("")) {
+		System.out.println("photo2"+photo);
+		
+		//System.out.println("dto.getPhoto()2"+dto.getPhoto());
+		dto.setPid(pid);
+		if(fd.getDogimg().isEmpty()) {
 			dto.setPhoto(photo);
 		}
+		else {
+			dto.setPhoto(fd.getDogimg().getOriginalFilename());
+			fileSave(fd.getDogimg(), request);
+		}
+		
 		mp.dogModify(dto);
 		//HmMemberDTO memData = mp.my(pid);
 		/*
