@@ -31,4 +31,8 @@ public interface BhAttendMapper {
 	
 	//일일메모수정
 	int bhAttMemoModi(BhAttendReserDTO reser);
+	
+	//강아지의 이용권 별 출석 등 정보
+	BhAttendReserDTO bhReserData(BhAttendReserDTO reser);
+	
 }

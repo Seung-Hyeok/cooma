@@ -132,7 +132,9 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 		update daybyday set penalty = #{timeGap}*10000 where todayNo = #{todayNo}
 	</update>
 
-
-
+<!-- 출석 달력 -->
+	<select id="bhReserData" parameterType="bhAtDTO" resultType="bhAtDTO">
+		select * from reser where reserNo = #{reserNo}; 
+	</select>
 
 </mapper>

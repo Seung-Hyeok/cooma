@@ -22,10 +22,13 @@ layout:decorate="total/adTemp">
 		</tr><tr>
 			<td>회원아이디</td><td th:text="${bhDogData.pid}" />
 		</tr><tr>
+				<td>일일메모</td><td th:text="${bhDogData.memo}"/>
+		</tr><tr>
 			<td colspan="2" align="center">
 				<a th:href="|/admin/attMemoModi/${bhDogData.todayNo}|" 
-				th:if="${beforePage != null && beforePage.equals('admin')}">수정</a>
-				<a th:href="|/admin|" th:if="${beforePage != null && beforePage.equals('admin')}">뒤로</a>	
+				th:if="${beforePage != null && beforePage.equals('admin')}">입력</a>
+				<a th:href="|/admin|" th:if="${beforePage != null && beforePage.equals('admin')}">뒤로</a>
+				<a th:href="|/admin/attList|" th:if="${beforePage != null && beforePage.equals('attList')}">뒤로</a>	
 			</td>
 		</tr>
 	</table>

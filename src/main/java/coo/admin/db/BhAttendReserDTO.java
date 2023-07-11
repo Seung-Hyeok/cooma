@@ -1,7 +1,10 @@
 package coo.admin.db;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -110,6 +113,40 @@ public class BhAttendReserDTO {
 			goHome = sdf2.format(this.goHome);
 		}
 		return goHome;
+	}
+	
+//달력만들기
+	//startD endD
+	Calendar calendar = Calendar.getInstance();
+	//setDate(1)
+	public int stMonth() {
+		calendar.setTime(startD);
+		int stMonth = calendar.get(Calendar.MONTH)+1;
+		return stMonth;
+	}
+	public int stDay() {
+		calendar.setTime(startD);
+		int stDay = calendar.get(Calendar.DAY_OF_MONTH);
+		return stDay;
+	}
+	
+	public int enMonth() {
+		calendar.setTime(endD);
+		int enMonth = calendar.get(Calendar.MONTH)+1;
+		return enMonth;
+	}
+	public int enDay() {
+		calendar.setTime(endD);
+		int enDay = calendar.get(Calendar.DAY_OF_MONTH);
+		return enDay;
+	}
+	
+	public List<Integer> gapMonth() {
+		List<Integer> months = new ArrayList<>();
+	    for (int i = stMonth(); i <= enMonth(); i++) {
+	        months.add(i);
+	    }
+		return months;
 	}
 	
 }

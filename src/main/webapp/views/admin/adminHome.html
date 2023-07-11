@@ -109,6 +109,7 @@ layout:decorate="total/adTemp">
 					<tr>
 						<td>번호</td>
 						<td>이름</td>
+						<td>메모</td>
 						<td>교육</td>
 						<td>요청사항</td>
 						<td>구분</td>
@@ -117,6 +118,7 @@ layout:decorate="total/adTemp">
 					<tr th:each="dto, dtoStat: ${smallDog}">
 						<td th:text="${dtoStat.index+1}" />
 						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
+						<td><a th:href="@{|/admin/attendMemo/${dto.todayNo}|}" th:text="입력" /></td>
 						<td th:text="${dto.edu}"/>
 						<td th:text="${dto.reque}"/>
 						<td th:text="${dto.kind}"/>

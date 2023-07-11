@@ -2,6 +2,7 @@ package coo.admin.control;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,7 @@ public class AdminHomeController {
 	
 	//관리자 메인 화면 및 오늘 등원 강아지 리스트
 	@RequestMapping("/admin")
-	String bhTodayList(Model mm, BhAttendReserDTO reser, HttpSession session) {
+	String bhTodayList(Model mo, BhAttendReserDTO reser, HttpSession session) {
 		System.out.println("bhTodayList() 진입");
 		
 		session.setAttribute("beforePage", "admin");
@@ -43,41 +44,42 @@ public class AdminHomeController {
 			dto.setReque(requeNote);
 		}
 		
-		mm.addAttribute("totAttBig", am.bhCountAttBig(reser)); //출석예정 수
-		mm.addAttribute("realAttBig", am.bhCountRealBig(reser)); //실제출석 수
-		mm.addAttribute("totAttSmall", am.bhCountAttSmall(reser));
-		mm.addAttribute("realAttSmall", am.bhCountRealSmall(reser));
+		mo.addAttribute("totAttBig", am.bhCountAttBig(reser)); //출석예정 수
+		mo.addAttribute("realAttBig", am.bhCountRealBig(reser)); //실제출석 수
+		mo.addAttribute("totAttSmall", am.bhCountAttSmall(reser));
+		mo.addAttribute("realAttSmall", am.bhCountRealSmall(reser));
 		
-		mm.addAttribute("bigDog", bigDog);
+		mo.addAttribute("bigDog", bigDog);
 		//System.out.println("bigDog: "+bigDog);
-		mm.addAttribute("smallDog", smallDog);
+		mo.addAttribute("smallDog", smallDog);
 		//System.out.println("smallDog: "+smallDog);
-		mm.addAttribute("reser", reser);
+		mo.addAttribute("reser", reser);
 		
 		return "admin/adminHome";
 	}
 	
 	//메모출력
 	@RequestMapping("/admin/attendMemo/{todayNo}")
-	String attendMemo(Model mm, BhAttendReserDTO reser, HttpSession session) {
+	String attendMemo(Model mo, BhAttendReserDTO reser, HttpSession session) {
 		System.out.println("attendMemo() 진입");
 		reser = am.bhAttMemo(reser);
-		mm.addAttribute("bhDogData", reser);
-		mm.addAttribute("bhDogImg", am.bhDogImg(reser));
+		mo.addAttribute("bhDogData", reser);
+		mo.addAttribute("bhDogImg", am.bhDogImg(reser));
+		mo.addAttribute("beforePage", session.getAttribute("beforePage"));
 		return "admin/attendToday/bhAttMemo";
 	}
 	
 	//메모수정
 	@GetMapping("/admin/attMemoModi/{todayNo}")
-	String attendMemoModi(Model mm, BhAttendReserDTO reser, HttpSession session) {
+	String attendMemoModi(Model mo, BhAttendReserDTO reser, HttpSession session) {
 		System.out.println("attendMemoModi() 진입");
-		mm.addAttribute("bhDogData", am.bhAttMemo(reser));
+		mo.addAttribute("bhDogData", am.bhAttMemo(reser));
 		return "admin/attendToday/bhAttMemoModify";
 	}
 
 	//메모수정완료
 	@PostMapping("/admin/attMemoModi/{todayNo}")
-	String attendMemoModiDone(Model mm, BhAttendReserDTO reser, HttpSession session) {
+	String attendMemoModiDone(Model mo, BhAttendReserDTO reser, HttpSession session) {
 		int chk = am.bhAttMemoModi(reser);
 		System.out.println("attendMemoModiDone() 진입");
 		String msg = "수정이 되지 않았습니다.";
@@ -86,8 +88,8 @@ public class AdminHomeController {
 			msg = "수정되었습니다.";
 			goUrl = "/admin/attendMemo/"+reser.getTodayNo();
 		}
-		mm.addAttribute("msg", msg);
-		mm.addAttribute("goUrl", goUrl);
+		mo.addAttribute("msg", msg);
+		mo.addAttribute("goUrl", goUrl);
 		
 		return "admin/attendToday/bhalert";
 	}
@@ -155,7 +157,7 @@ public class AdminHomeController {
 	}
 	
 	@RequestMapping("/admin/attList")
-	String bhAttendList(Model mm, BhAttendReserDTO reser, HttpSession session) {
+	String bhAttendList(Model mo, BhAttendReserDTO reser, HttpSession session) {
 		System.out.println("bhAttendList() 진입");
 		
 		List<BhAttendReserDTO> bigDog = am.dayListBig(reser);
@@ -164,24 +166,56 @@ public class AdminHomeController {
 		session.setAttribute("beforePage", "attList");
 		
 		int totAttBig = am.bhCountAttBig(reser);
-		mm.addAttribute("totAttBig",totAttBig);
+		mo.addAttribute("totAttBig",totAttBig);
 		int realAttBig = am.bhCountRealBig(reser);
-		mm.addAttribute("realAttBig",realAttBig);
+		mo.addAttribute("realAttBig",realAttBig);
 		int totAttSmall = am.bhCountAttSmall(reser);
-		mm.addAttribute("totAttSmall",totAttSmall);
+		mo.addAttribute("totAttSmall",totAttSmall);
 		int realAttSmall = am.bhCountRealSmall(reser);
-		mm.addAttribute("realAttSmall",realAttSmall);
+		mo.addAttribute("realAttSmall",realAttSmall);
 		
-		
-		mm.addAttribute("bigDog", bigDog);
+		mo.addAttribute("bigDog", bigDog);
 		//System.out.println("bigDog: "+bigDog);
-		mm.addAttribute("smallDog", smallDog);
+		mo.addAttribute("smallDog", smallDog);
 		//System.out.println("smallDog: "+smallDog);
-		mm.addAttribute("reser", reser);
+		mo.addAttribute("reser", reser);
 		
 		return "admin/attendToday/bhAttList";
 	}
 	
-
+	@RequestMapping("/admin/dogsReser/{reserNo}")
+	String bhDogsReserAtt(Model mo, BhAttendReserDTO reser) {
+		System.out.println("bhDogsReserAtt() 진입");
+		
+		String dayName = "일월화수목금토";
+		mo.addAttribute("dayName", dayName); //문자열이 바로 들어가면 안된다. 변수명으로 입력
+		
+		reser = am.bhReserData(reser);
+		mo.addAttribute("reserData",reser);
+		
+		List<ArrayList<Integer>> days = new ArrayList<ArrayList<Integer>>();
+		ArrayList<Integer> startNend; 
+		
+		// ex) 3 ~ 6 => [3 4 5 6]
+		Calendar day = Calendar.getInstance();
+		for (int i = reser.stMonth(); i <= reser.enMonth(); i++) {
+			startNend = new ArrayList<Integer>();
+			day.set(Calendar.MONTH, i-1);
+			day.set(Calendar.DATE, 1); //일을 1로 변경
+			int end = day.getActualMaximum(Calendar.DATE); //월의 말일
+			int start = day.get(Calendar.DAY_OF_WEEK); //1일의 요일 숫자
+			//	일	월	화	수	목	금	토
+			//	1	2	3	4	5	6	7
+			reser.getStartD();
+			startNend.add(i); //월
+			startNend.add(start-1); //빈 일자
+			startNend.add(end); //full date
+			days.add(startNend);
+	    }
+		
+		mo.addAttribute("days",days);
+		
+		return "admin/dogs/bhDogsReserAtt";
+	}
 	
 }

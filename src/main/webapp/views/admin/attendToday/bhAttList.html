@@ -44,6 +44,7 @@ layout:decorate="total/adTemp">
 					<tr>
 						<td>번호</td>
 						<td>이름</td>
+						<td>메모</td>
 						<td>교육</td>
 						<td>구분</td>
 						<td>등원</td>
@@ -53,6 +54,7 @@ layout:decorate="total/adTemp">
 					<tr th:each="dto, dtoStat: ${bigDog}">
 						<td th:text="${dtoStat.index+1}" />
 						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
+						<td><a th:href="@{|/admin/attendMemo/${dto.todayNo}|}" th:text="확인" /></td>
 						<td th:text="${dto.edu}"/>
 						<td th:text="${dto.kind}"/>
 						<td th:text="${dto.attendTime()}"/>
@@ -72,6 +74,7 @@ layout:decorate="total/adTemp">
 					<tr>
 						<td>번호</td>
 						<td>이름</td>
+						<td>메모</td>
 						<td>교육</td>
 						<td>구분</td>
 						<td>등원</td>
@@ -81,6 +84,7 @@ layout:decorate="total/adTemp">
 					<tr th:each="dto, dtoStat: ${smallDog}">
 						<td th:text="${dtoStat.index+1}" />
 						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
+						<td><a th:href="@{|/admin/attendMemo/${dto.todayNo}|}" th:text="확인" /></td>
 						<td th:text="${dto.edu}"/>
 						<td th:text="${dto.kind}"/>
 						<td th:text="${dto.attendTime()}"/>
