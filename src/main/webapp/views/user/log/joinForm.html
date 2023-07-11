@@ -45,6 +45,23 @@ $(function(){
     
 });
 </script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script th:inline="javascript">
+window.onload = function() {
+	document.getElementById("addressSch").addEventListener("click", function() {
+			new daum.Postcode({
+				oncomplete: function(data) {
+					document.getElementById("address").value = data.address;
+					document.getElementById("roadAddress").value = data.roadAddress;
+// 					window.close();
+				}
+			}).open();
+		
+	});
+
+}
+</script>
+
 <h1>회원가입</h1>
 <form method="post" th:object="${hmMemberDTO}" enctype="multipart/form-data">
 	<table border="">
@@ -71,13 +88,26 @@ $(function(){
 			<td>이름</td>
 			<td><input type="text" th:field="*{pname}" /></td>
 		</tr>
+		
 		<tr>
 			<td>전화번호</td>
 			<td><input type="text" th:field="*{tel}" /></td>
 		</tr>
+		
 		<tr>
 			<td>주소</td>
-			<td><input type="text" th:field="*{addr1}" /></td>
+			<td>
+				<div class="form-container">
+		        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=12a21b08156b2f3c3a0967fbcc61ed3b"></script>
+		        <div class="form-control" id="schbox">
+		        <label for="address_kakao">
+		            <input type="text"  th:field="*{addr1}" id="address" placeholder="주소 입력" readonly>
+		            <input type="text" name="roadAddress" id="roadAddress" hidden>
+		            <input type="button" id="addressSch" value="검색">
+            	</label>
+        		</div>
+        		</div>
+			</td>
 		</tr>
 		<tr>
 			<td>상세주소</td>
@@ -85,7 +115,8 @@ $(function(){
 		</tr>
 		<tr>
 			<td>이메일</td>
-			<td><input type="text" th:field="*{email}" />@
+			<td>
+			<input type="text" th:field="*{email}" />@
 				<select name="email2" >
 					<option value="naver.com" th:text="naver.com"></option>
 					<option value="gmail.com" th:text="gmail.com"></option>

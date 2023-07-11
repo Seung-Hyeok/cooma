@@ -14,7 +14,7 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
 <h1>애견 정보 수정</h1>
-<form method="post" th:object="${dogData}" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" th:object="${dogData}">
 	<table border="">
 		<tr>
 			<td>이름</td>

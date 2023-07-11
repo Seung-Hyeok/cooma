@@ -71,6 +71,10 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	<select id="checkId" parameterType="String" resultType="int">
 	        select count(*) from member where pid=#{pid}
     </select>
+    
+    <select id="checkDay" parameterType="hmDaybydayDTO" resultType="hmDaybydayDTO">
+	        select * from daybyday where pid = #{pid}
+    </select>
 	
 	
 </mapper>

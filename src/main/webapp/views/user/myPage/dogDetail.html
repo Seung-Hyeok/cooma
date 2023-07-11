@@ -47,7 +47,12 @@ layout:decorate="total/userTemp">
 		<td>성별</td><td th:text="${dogData.gender}" />
 	</tr>
 	<tr>
-		<td>나이</td><td>[[${dYear}]]년 [[${dMonth}]]개월 생</td>
+		<td>나이</td>
+		<td>
+			<span th:if="${dYear != 0}">[[${dYear}]]년</span>
+		  	<span th:if="${dMonth != 0}">[[${dMonth}]]개월</span>
+		  	<span th:if="${dYear != 0 || dMonth != 0}">생</span>
+  		</td>
 	</tr>
 	<tr>
 		<td>사진</td><td><img th:src="|/dimg/${dogData.photo}|" alt="" width="500px"/></td>

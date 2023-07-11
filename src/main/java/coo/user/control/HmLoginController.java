@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,6 @@ import jakarta.servlet.http.HttpSession;
 public class HmLoginController {
 	@Resource
 	HmLoginMapper lm;
-	
 	//회원가입///////////////////////////////////////
 	@GetMapping("/user/log/joinForm")
 	String joinForm(HttpSession session, Model mm,HmMemberDTO dto, HmDogsDTO dog) {
