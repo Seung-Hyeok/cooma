@@ -64,13 +64,25 @@ layout:decorate="total/adTemp">
 				<td style="color:dodgerblue">진행중</td>
 			</th:block>
 			
-			
 		</tr>
 		<tr>
-			<td colspan="10" align="center">
-				
+			<!-- <td colspan="10" align="center" >
+				<th:block th:if="${pd.startPage > 1}">
+					<a th:href="@{|reservation/${pd.startPage-1}|}">이전</a>
+					<span th:each="pp : ${pd}">
+						<th:block th:if="${pd.nowPage == pp.startPage}">
+							<button th:text="${pp.startPage}"></button>
+						</th:block>
+							<a th:href="@{|reservation/${pp.nowPage}|}">[[${pp.nowPage}]]</a>
+					</span>
+					<th:block th:if="${pd.endPage < pd.totalPage}">
+						<a th:href="@{|reservation/${pd.endPage+1}|}">다음</a>
+					</th:block>
+				</th:block>
 			</td>
-		</tr>
+			 -->
+		</tr> 
+		
 	
 	</table>
 	

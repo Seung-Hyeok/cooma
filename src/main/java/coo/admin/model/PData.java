@@ -2,10 +2,11 @@ package coo.admin.model;
 
 import org.apache.ibatis.type.Alias;
 
+import lombok.Data;
 import lombok.Getter;
 
 @Alias("pD")
-@Getter
+@Data
 public class PData {
 
 	Integer limit = 16, pageLimit=5, start, nowPage;
@@ -27,27 +28,7 @@ public class PData {
 		}
 	}
 	
-	public void setStartD(String startD) {
-		this.startD = startD;
-	}
 	
-	public void setEndD(String endD) {
-		this.endD = endD;
-	}
-
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-
-	public void setSch(String sch) {
-		this.sch = sch;
-	}
-	
-	public void setCate(String cate) {
-		this.cate = cate;
-	}
 	
 	
 	

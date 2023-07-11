@@ -68,6 +68,20 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		<include refid="wid"/>
 	</update>
 	
+	<select id="total" parameterType="pD"> 
+		select count(*) from reser
+		<where>
+			refund = 0 and endD >= date_sub(sysdate(), interval 1 day)
+			<trim prefix=" ">
+				<if test="sch != null and sch != ''  ">
+					<if test="cate != null and cate != ''  ">
+						and ${cate} like concat('%',#{sch},'%') 
+					</if>
+				</if>
+			</trim>
+		</where>
+	</select>
+	
 
 
 
