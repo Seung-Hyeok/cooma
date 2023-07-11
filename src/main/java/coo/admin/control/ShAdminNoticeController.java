@@ -14,6 +14,7 @@ import coo.admin.db.ShReservationDTO;
 import coo.admin.db.ShReservationMapper;
 import coo.admin.model.PData;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ShAdminNoticeController {
@@ -37,21 +38,50 @@ public class ShAdminNoticeController {
 	@RequestMapping("/admin/notice/detail/{num}")
 	String detail(Model mm, ShNoticeDTO dto) {
 		
+		System.out.println("detail 진입");
+		
+		nm.up(dto);
 		mm.addAttribute("mainData", nm.detail(dto));
+		
+		System.out.println(nm.detail(dto).getPhotoFile());
+		
+		
+		if(nm.detail(dto).getPhotoFile().isEmpty()) {
+			mm.addAttribute("dd",false);
+		}else {
+			mm.addAttribute("dd", true);
+		}
+		
+		
+		
+		System.out.println("돼?");
 		return "admin/notice/noticedetail";
 	}
 	
 	@GetMapping("/admin/notice/modify/{num}")
 	String modifyForm(Model mm, ShNoticeDTO dto) {
 		System.out.println("modifyForm 진입");
+		System.out.println(dto.getPhotoFile());
 		mm.addAttribute("mainData", nm.detail(dto));
+		System.out.println(nm.detail(dto).getPhotoFile());
 		return "admin/notice/modifyForm";
 	}
 	
 	@PostMapping("/admin/notice/modify/{num}")
-	String modifyComplete(Model mm, ShNoticeDTO dto) {
+	String modifyComplete(Model mm, ShNoticeDTO dto, HttpSession session) {
 		System.out.println("modipost 진입");
+		System.out.println(dto.getPhotoFile());
+		
+		System.out.println(session.getAttribute("photo"));
+		System.out.println(nm.detail(dto).getPhotoFile());
+		
+		if(dto.getPhotoFile().isEmpty()) { 
+			dto.setPhotoFile(nm.detail(dto).getPhotoFile());
+		}
+		
 		int cnt = nm.modify(dto);
+			
+		
 		String msg = "에러";
 		String goUrl = "/admin/notice/modify/"+dto.getNum();
 		if(cnt>0) {
@@ -69,15 +99,38 @@ public class ShAdminNoticeController {
 		
 		System.out.println("delete 진입");
 		
+		int cnt = nm.delete(dto);
+		System.out.println("삭제갯수:"+cnt);
+		mm.addAttribute("msg","삭제되었습니다.");
+		mm.addAttribute("goUrl", "/admin/notice/1");
+		
 		return "admin/reser/alert";
 	}
 	
 	
 	
-	@RequestMapping("/admin/notice/insert")
-	String insert(Model mm, PData pd) {
+	@GetMapping("/admin/notice/insert")
+	String insert(ShNoticeDTO dto) {
+		
+		System.out.println("inserform 진입");
 		
 		return "admin/notice/insertForm";
+	}
+	
+	@PostMapping("/admin/notice/insert")
+	String insertComplete(Model mm, ShNoticeDTO dto) {
+		
+		System.out.println("insertComplete 진입");
+		
+		System.out.println(dto);
+		System.out.println(dto.getNum());
+		System.out.println(dto.getPhotoFile());
+		
+		nm.insert(dto);
+		mm.addAttribute("msg", "입력되었습니다.");
+		mm.addAttribute("goUrl", "/admin/notice/detail/"+dto.getNum());
+		
+		return "admin/reser/alert";
 	}
 	
 	

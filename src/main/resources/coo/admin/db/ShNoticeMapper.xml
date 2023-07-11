@@ -25,9 +25,31 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		<include refid="wid"/>
 	</select>
 	
+	<update id="up" parameterType="nDTO">
+		update notice set cnt = cnt+1
+		<include refid="wid"/>
+	</update>
+	
 	<update id="modify" parameterType="nDTO">
 		update notice set title = #{title}, photoFile = #{photoFile}, content = #{content}
 		<include refid="wid"/>
 	</update>
+	
+	<insert id="insert" parameterType="nDTO" > 
+		<selectKey keyProperty="num" resultType="Integer" order="BEFORE">
+			select max(num)+1 from notice
+		</selectKey>
+		
+		insert into notice(num, title, photoFile, content, reg_date)
+		values
+		(#{num}, #{title}, #{photoFile}, #{content}, sysdate())
+		
+	</insert>
+	
+	<delete id="delete" parameterType="nDTO">
+		delete from notice
+		<include refid="wid"/>
+		<!-- delete from board where id = #{id} and pw = '1111' -->
+	</delete>
 
 </mapper>

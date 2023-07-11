@@ -28,10 +28,20 @@ public class ShReservationController {
 		System.out.println(mainData);
 		System.out.println("reservation 진입");
 		
+		pd.setTotal(rm.total(pd));
+		
+		System.out.println(pd.getTotalPage());
+		System.out.println(pd.getStart());
+		System.out.println(pd.getStartPage());
+		System.out.println(pd.getEndPage());
+		
+		System.out.println(pd);
+		
 		System.out.println("list:"+pd.getSch());
 		//System.out.println("cnt:"+dto.getCnt());
 		
 		mm.addAttribute("mainData", mainData);
+		mm.addAttribute("pd", pd);
 		
 		return "admin/reser/reservation";
 	}
