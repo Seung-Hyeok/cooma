@@ -24,7 +24,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	.dogMenu{
 		float: left;
 		width: 1200px;
-		height: 100px;
+		height: 300px;
 		background: #aff;
 	}
 	.myPageMenu{
@@ -44,12 +44,66 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
         border: 1px solid #000;
         margin: 0 auto;
     }
+    .buyList{
+    	float: left;
+		width: 1200px;
+		height: 300px;
+		background: #aff;
+    }
+    .buyList>div{
+    	border: 1px solid #000;
+    	margin:10px;
+    }
+
+        .gsAttends{
+      		
+        	margin-left:100px;
+        	width:1000px;
+        	height: 600px;
+        	border:3px solid #000;
+        }
+         .gsAttends>div{
+         float: left;
+         	margin:30px;
+         	width:270px;
+         	height: 500px;
+         	overflow:auto;
+         }
+         .show{
+         	border:1px solid #00f;
+         }
+         .noShow{
+         	border:1px solid #f00;
+         }
+         .future{
+         	border:1px solid #0f0;
+         }
+         .gsAttends>div>div{
+         	border:1px solid #000;
+         	width:230px;
+         	height: 80px;
+         }
+         .myGsDiary{
+         
+         	height: 800px;
+         	width:1100px;
+         	border:3px solid #0ff;
+         }
+         .myGsDiary>div{
+         height: 100px;
+           float: left;
+         	width:150px;
+         	border:1px solid #000;
+         	text-align: center;
+         	
+         }
 
 
 </style>
 <div class="menu">
 <th:block layout:fragment="title"></th:block>
 <a href="/user">쿠키마루</a>
+<a href="/user/diary">출석 달력</a>
 <a href="/user/build">시설안내</a>
 <a href="/user/school">유치원</a>
 <a href="/user/special">전문가들</a>

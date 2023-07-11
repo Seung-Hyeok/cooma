@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>회원 이용권</title>
+</th:block>
+
+<th:block layout:fragment="content">
+
+
+<h1><span th:text="${todd}"></span></h1>
+	<form action="" method="post">	
+		<input type="month" id="monthInput" name="month" min="2000-01" max="2030-12" required="required">
+		
+		<select name="dname" id="dname">
+			<option value="전체">전체</option>
+			 <option th:each="dnames : ${dnamess}" th:value="${dnames}" th:text="${dnames}"></option>
+		</select>
+		
+		<input type="submit" value="검색"/>
+	</form>
+    <div class="myGsDiary">
+    <div>일</div>
+    <div>월</div>
+    <div>화</div>
+    <div>수</div>
+    <div>목</div>
+    <div>금</div>
+    <div>토</div>
+    <div th:each="no : ${#numbers.sequence(1,old-1,1)}"></div>
+    <div th:each="no : ${#numbers.sequence(1,datt,1)}">
+	    <span th:text="${no}" ></span></br>
+	    <th:block th:each="sh : ${show}">
+	    	 <th:block th:if="${sh.oneD == no+''}">
+	    		<span th:text="${sh.dname}" ></span>
+	    		-등원 :<span th:text="${sh.attendTimeStr()}" ></span>
+	    		-하원 :<span th:text="${sh.goHomeStr()}" ></span></br>
+	   		 </th:block>
+	    </th:block> 
+	    <th:block th:each="ns : ${noShow}">
+	    	 <th:block th:if="${ns.oneD == no+''}">
+	    		<span th:text="${ns.dname+' -결석'}" ></span>
+	    		</br>
+	   		 </th:block>
+	    </th:block> 
+	    <th:block th:each="fu : ${future}">
+	    	 <th:block th:if="${fu.oneD == no+''}">
+	    		<span th:text="${fu.dname}" ></span>
+	    		 등교일!</br>
+	   		 </th:block>
+	    </th:block> 
+    </div>
+    </div>
+     
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

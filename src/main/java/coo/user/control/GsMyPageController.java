@@ -1,14 +1,22 @@
 package coo.user.control;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.TextStyle;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import coo.user.db.GsMyPageMapper;
 import coo.user.db.GsReserDTO;
@@ -46,10 +54,28 @@ public class GsMyPageController {
 	String myDetail(HttpSession session,Model mm,GsReserDTO gdto) {
 		String pid = (String)session.getAttribute("pid");
 		mm.addAttribute("pid", pid);
-		GsReserDTO bd = gmm.buyDetail(gdto);
-		mm.addAttribute("myDetail", bd);
-		System.out.println("myDetail 진입"+bd);
+		gdto = gmm.buyDetail(gdto);
+		int all = gdto.getGap()/7*gdto.getWeeks().length();
+		int dng = gmm.attend(gdto);
+		System.out.println(dng+"/"+all);
+		mm.addAttribute("myDetail", gdto);
+		System.out.println("myDetail 진입"+gdto);
+		mm.addAttribute("att",	dng+"/"+all);
 		return "user/myPage/gsBuyDetail";
+	}
+	
+	@RequestMapping("/user/myPage/myAttend/{reserNo}")
+	String myAttend(HttpSession session,Model mm,GsReserDTO gdto) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		System.out.println("show");
+		mm.addAttribute("show", gmm.show(gdto));
+		System.out.println("noShow");
+		mm.addAttribute("noShow", gmm.noShow(gdto));
+		System.out.println("future");
+		mm.addAttribute("future", gmm.future(gdto));
+		System.out.println("myAttend끝");
+		return "user/myPage/gsMyAttend";
 	}
 	
 	@RequestMapping("/user/myPage/myRefund/{reserNo}")
@@ -100,6 +126,10 @@ public class GsMyPageController {
 		
 		return "user/myPage/alert";
 	}
+	
+
+	
+	 
 
 
 }

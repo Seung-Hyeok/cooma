@@ -11,6 +11,7 @@ layout:decorate="total/userTemp">
 <th:block layout:fragment="content">
 gsbuy~~~~~~~~~~~~~~~~~~~~~
 <h1>이용권 정보</h1>
+
 	<form action="/user/school/gsFin" th:object="${gsReserDTO}" method="post">
 		<h2>결제자 아이디</h2>
 		<input type="text" th:field="*{pid}"/>
@@ -42,7 +43,20 @@ gsbuy~~~~~~~~~~~~~~~~~~~~~
 		<input type="text" th:field="*{startD}"/>
 		<h2>요청사항</h2>
 		<input type="text" th:field="*{reque}"/>
-		
+		<h1>
+			------------------환불 약정------------------
+		</h1>
+		<h2>
+			[시작 전]</br>
+			10일 전 환불 100%</br>
+			5일 전 환불 90%</br>
+			1일 전 환불 80%</br>
+			[시작 후]</br>
+			총 기간의 </br>
+			30% 이하 이용 시 환불  40%</br>
+			50% 이하 이용 시 환불   20%</br>
+			50% 이상 이용 시 환불불가 </br>
+		</h2>
 		
 		<input type="submit" value="결제"/>
 	</form> 

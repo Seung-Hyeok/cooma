@@ -12,8 +12,9 @@ layout:decorate="total/userTemp">
 	<div class="dogMenu">
 		
 		<div  th:each="dto , dtoStat: ${dogData}">
+			<span th:text="${dto.dname}"></span></br>
 			<a th:href="@{|/user/school/packSelect/${dto.dname}|}" >
-			  <img src="/dimg/book.jpg" alt="" width="50px">
+			  <img  th:src="@{|/dimg/${dto.photo}|}" alt="" width="100px">
 			  </a>
 		</div>
 	</div>
