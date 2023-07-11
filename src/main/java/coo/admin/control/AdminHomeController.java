@@ -156,6 +156,7 @@ public class AdminHomeController {
 		return msg;
 	}
 	
+	//출석부
 	@RequestMapping("/admin/attList")
 	String bhAttendList(Model mo, BhAttendReserDTO reser, HttpSession session) {
 		System.out.println("bhAttendList() 진입");
@@ -183,13 +184,14 @@ public class AdminHomeController {
 		return "admin/attendToday/bhAttList";
 	}
 	
+	//강아지 이용권별 출석 내역 확인
 	@RequestMapping("/admin/dogsReser/{reserNo}")
 	String bhDogsReserAtt(Model mo, BhAttendReserDTO reser) {
 		System.out.println("bhDogsReserAtt() 진입");
 		
 		String dayName = "일월화수목금토";
 		mo.addAttribute("dayName", dayName); //문자열이 바로 들어가면 안된다. 변수명으로 입력
-		
+		//예약 테이블에서 정보 가져오기
 		reser = am.bhReserData(reser);
 		mo.addAttribute("reserData",reser);
 		
@@ -206,14 +208,28 @@ public class AdminHomeController {
 			int start = day.get(Calendar.DAY_OF_WEEK); //1일의 요일 숫자
 			//	일	월	화	수	목	금	토
 			//	1	2	3	4	5	6	7
-			reser.getStartD();
 			startNend.add(i); //월
 			startNend.add(start-1); //빈 일자
 			startNend.add(end); //full date
 			days.add(startNend);
 	    }
+		mo.addAttribute("days", days);
 		
-		mo.addAttribute("days",days);
+		List<BhAttendReserDTO> yes = am.bhAttYes(reser); //등교
+		System.out.println("yes:"+yes);
+		List<BhAttendReserDTO> none = am.bhAttNo(reser); //결석
+		System.out.println("none:"+none);
+		List<BhAttendReserDTO> notyet = am.bhAttNotyet(reser); //아직
+		System.out.println("notyet:"+notyet);
+		mo.addAttribute("yes",yes);
+		for(BhAttendReserDTO dd: yes) {
+			System.out.println("dd.onedayM:"+dd.onedayM());
+			System.out.println("dd.onedayD:"+dd.onedayD());
+			System.out.println();
+		}
+		mo.addAttribute("yes",yes);
+		mo.addAttribute("none",none);
+		mo.addAttribute("notyet",notyet);
 		
 		return "admin/dogs/bhDogsReserAtt";
 	}

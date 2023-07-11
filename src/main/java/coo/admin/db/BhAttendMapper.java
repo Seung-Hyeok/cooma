@@ -34,5 +34,8 @@ public interface BhAttendMapper {
 	
 	//강아지의 이용권 별 출석 등 정보
 	BhAttendReserDTO bhReserData(BhAttendReserDTO reser);
+	List<BhAttendReserDTO> bhAttYes(BhAttendReserDTO getDaybydayData);
+	List<BhAttendReserDTO> bhAttNo(BhAttendReserDTO getDaybydayData);
+	List<BhAttendReserDTO> bhAttNotyet(BhAttendReserDTO getDaybydayData);
 	
 }

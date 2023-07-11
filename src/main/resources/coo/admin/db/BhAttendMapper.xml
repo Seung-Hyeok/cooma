@@ -133,8 +133,22 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	</update>
 
 <!-- 출석 달력 -->
+	<!-- 예약정보 --> <!-- &lt; : <= -->
 	<select id="bhReserData" parameterType="bhAtDTO" resultType="bhAtDTO">
 		select * from reser where reserNo = #{reserNo}; 
+	</select>
+<!-- 등교정보 -->
+	<!-- 출석 -->
+	<select id="bhAttYes" parameterType="bhAtDTO" resultType="bhAtDTO">
+		select * from daybyday where reserNo = #{reserNo} and attendTime is not NULL and oneday &lt;= sysdate();
+	</select>
+	<!-- 결석 -->
+	<select id="bhAttNo" parameterType="bhAtDTO" resultType="bhAtDTO">
+		select * from daybyday where reserNo = #{reserNo} and attendTime is NULL and oneday &lt;= sysdate();
+	</select>
+	<!-- 등교예정 -->
+	<select id="bhAttNotyet" parameterType="bhAtDTO" resultType="bhAtDTO">
+		select * from daybyday where reserNo = #{reserNo} and oneday >= sysdate();
 	</select>
 
 </mapper>
