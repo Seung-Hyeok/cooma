@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_일일애견메모</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<h2 th:text="${bhDogData.todayStr()}+' '+${bhDogData.dname}+' 메모'"> </h2>
+
+	<table border="" align="center">
+		<tr>
+			<td>강아지이름</td><td th:text="${bhDogData.dname}"/>
+		</tr><tr>
+			<td>사진</td>
+			<td>
+				<img th:src="@{'/dimg/'+${bhDogImg}}" width="200px" alt="Image">
+			</td>
+		</tr><tr>
+			<td>회원아이디</td><td th:text="${bhDogData.pid}" />
+		</tr><tr>
+				<td>일일메모</td><td th:text="${bhDogData.memo}"/>
+		</tr><tr>
+			<td colspan="2" align="center">
+				<a th:href="|/admin/attMemoModi/${bhDogData.todayNo}|" 
+				th:if="${beforePage != null && beforePage.equals('admin')}">입력</a>
+				<a th:href="|/admin|" th:if="${beforePage != null && beforePage.equals('admin')}">뒤로</a>
+				<a th:href="|/admin/attList|" th:if="${beforePage != null && beforePage.equals('attList')}">뒤로</a>	
+			</td>
+		</tr>
+	</table>
+	
+	
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+
+</html>

@@ -1,15 +1,21 @@
 package coo.admin.db;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Alias("bhAtDTO") //별칭
 @Data
 public class BhAttendReserDTO {
 	/*
+	 예약 테이블
 	  pid VARCHAR(255),
 	  dname VARCHAR(255),
 	  reserNo INT auto_increment primary key,
@@ -41,11 +47,16 @@ public class BhAttendReserDTO {
 	pid VARCHAR(255),
 	attendTime datetime,
 	goHome datetime,
-	penalty int default 0 -- 19시 이후 1시간마다 만원(교육시 하원 20시까지 연장)
+	penalty int default 0, -- 19시 이후 1시간마다 만원
+	memo text
 	 */
 //daybyday 테이블 칼럼(reser와 겹치는 칼럼명 제외)
+	String memo;
 	Integer todayNo, penalty, timeGap;
-	Date oneDay, attendTime, goHome;
+	Date oneDay, attendTime, goHome; 
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	Date schDate; //schDate:출석부 검색 날짜값 저장 변수
 	
 //reser 테이블 칼럼
 	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account;
@@ -54,6 +65,7 @@ public class BhAttendReserDTO {
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 EEE");
 	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy년 MM월 dd일");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm:ss");
 	
 //오늘 등원 리스트 상단 날짜 표시
 	//Calendar calendar = Calendar.getInstance(); //오늘 요일 번호 알아내는 코드
@@ -64,6 +76,11 @@ public class BhAttendReserDTO {
 	public String todayStr() {
 		String todayStr = sdf.format(today); // today => 포맷팅할 날짜 객체
 		return todayStr;
+	}
+	
+	public String schDate() {
+		String schDate = sdf.format(this.schDate); 
+		return schDate;
 	}
 //애견디테일 예약날짜 표시
 	public String startDStr() {
@@ -82,5 +99,67 @@ public class BhAttendReserDTO {
 		return term;
 	}
 	
+	public String attendTime() {
+		String attendTime = "";
+		if(this.attendTime!=null) {
+			attendTime = sdf2.format(this.attendTime);
+		}
+		return attendTime;
+	}
 	
+	public String goHome() {
+		String goHome = "";
+		if(this.goHome!=null) {
+			goHome = sdf2.format(this.goHome);
+		}
+		return goHome;
+	}
+	
+//달력만들기
+	//startD endD
+	Calendar calendar = Calendar.getInstance();
+	//setDate(1)
+	public int stMonth() {
+		calendar.setTime(startD);
+		int stMonth = calendar.get(Calendar.MONTH)+1;
+		return stMonth;
+	}
+	public int stDay() {
+		calendar.setTime(startD);
+		int stDay = calendar.get(Calendar.DAY_OF_MONTH);
+		return stDay;
+	}
+	
+	public int enMonth() {
+		calendar.setTime(endD);
+		int enMonth = calendar.get(Calendar.MONTH)+1;
+		return enMonth;
+	}
+	public int enDay() {
+		calendar.setTime(endD);
+		int enDay = calendar.get(Calendar.DAY_OF_MONTH);
+		return enDay;
+	}
+	
+	public List<Integer> gapMonth() {
+		List<Integer> months = new ArrayList<>();
+	    for (int i = stMonth(); i <= enMonth(); i++) {
+	        months.add(i);
+	    }
+		return months;
+	}
+	
+	public int onedayM() {
+		calendar.setTime(oneDay);
+		int onedayM = calendar.get(Calendar.MONTH)+1;
+		System.out.println("onedayM:"+onedayM);
+		return onedayM;
+	}
+	
+	public int onedayD() {
+		calendar.setTime(oneDay);
+		int onedayD = calendar.get(Calendar.DAY_OF_MONTH);
+		System.out.println("onedayD:"+onedayD);
+		return onedayD;
+	}
 }

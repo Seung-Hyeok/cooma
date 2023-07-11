@@ -13,6 +13,7 @@ import coo.admin.db.BhDogsDTO;
 import coo.admin.db.BhMemDTO;
 import coo.admin.db.BhMemMapper;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -33,8 +34,9 @@ public class BhMemController {
 	
 //회원상세
 	@RequestMapping("/memPid/{pid}")
-	String bhMemDetail(Model mo, BhMemDTO mem, BhDogsDTO dog) {
+	String bhMemDetail(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
 		System.out.println("bhMemDetail() 진입");
+		session.setAttribute("beforePage", "mem");
 		mo.addAttribute("bhMemData", mm.bhMemDetail(mem));
 		List<BhDogsDTO> bhDogData = mm.bhMemsDog(mem);
 		mo.addAttribute("bhDogData", bhDogData);

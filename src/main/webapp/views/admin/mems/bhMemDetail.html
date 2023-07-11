@@ -16,24 +16,24 @@ layout:decorate="total/adTemp">
 			<td>아이디</td><td colspan="3"><span th:text="${bhMemData.pid}"></span></td>
 		</tr><tr>
 			<td>이름</td><td colspan="3" th:text="${bhMemData.pname}" />
-		</tr><tr>
+		</tr><tr th:if="${!bhMemData.grade.equals('관리자')}">
 			<td>전화번호</td><td colspan="3" th:text="${bhMemData.tel}" />
 		</tr><tr>
 			<td>이메일</td><td colspan="3" th:text="${bhMemData.email}" />
 		</tr><tr>
 			<td>생년월일</td><td colspan="3" th:text="${bhMemData.birth}" />
-		</tr><tr>
+		</tr><tr th:if="${!bhMemData.grade.equals('관리자')}">
 			<td>주소</td><td colspan="3" th:text="${bhMemData.addr1}+' '+${bhMemData.addr2}"/>
 		</tr><tr>
 			<td>등급</td><td colspan="3" th:text="${bhMemData.grade}"/>
-		</tr><tr>
+		</tr><tr th:if="${!bhMemData.grade.equals('관리자')}">
 			<td>가입일</td><td colspan="3" th:text="${bhMemData.reg_date}" />
 		</tr>
-		<tr>
+		<tr th:if="${!bhMemData.grade.equals('관리자')}">
 			<td>강아지</td>
 			<td th:each="dto, dtoStat: ${bhDogData}">
 				<div>
-					<div th:text="${dto.dname}"><a href=""></a></div>
+					<div><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}"/></div>
 					<img th:src="@{'/dimg/'+${dto.photo}}" width="200px" alt="Image">
 				</div>
 			</td>
