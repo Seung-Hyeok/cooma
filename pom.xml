@@ -71,17 +71,26 @@
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
 		<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-validation</artifactId>
-		<version>3.1.1</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>3.1.1</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->
 		<dependency>
-		<groupId>nz.net.ultraq.thymeleaf</groupId>
-		<artifactId>thymeleaf-layout-dialect</artifactId>
-		<version>3.2.1</version>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>3.2.1</version>
 		</dependency>
+		
+		<!-- 이메일api를 위한 스프링 부트의 메일 스타터 종속성을 Maven 프로젝트에 포함 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+		    <version>3.1.1</version>
+		</dependency>
+
 		
 	</dependencies>
 
