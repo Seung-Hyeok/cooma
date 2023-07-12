@@ -326,7 +326,7 @@ public class HmMyPageController {
 		String path = request.getServletContext().getRealPath("dimg");
 		//System.out.println(path);
 		try {
-			FileOutputStream fos = new FileOutputStream(path+"\\"+ff.getOriginalFilename());
+			FileOutputStream fos = new FileOutputStream(path+"/"+ff.getOriginalFilename());
 			fos.write(ff.getBytes());
 			fos.close();
 		} catch (Exception e) {
