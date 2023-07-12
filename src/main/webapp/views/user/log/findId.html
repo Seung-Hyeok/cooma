@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>idChange</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
+<h1>아이디찾기</h1>
+<form method="post" th:object="${hmMemberDTO}">
+	<table border="">
+		<tr>
+			<td>이름</td>
+			<td><input type="text" th:field="*{pname}"/></td>
+		</tr>
+		<tr>
+			<td>전화번호</td>
+			<td><input type="text" th:field="*{tel}"/></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> 
+				<input type="submit" value="입력" />
+				<a th:href="|/user/log/login|" th:text="뒤로"/>
+			</td>
+		</tr>
+	</table>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

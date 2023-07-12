@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>rePw</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
+<h1>비밀번호 재설정</h1>
+<form method="post" action="/user/log/rePw" th:object="${hmMemberDTO}">
+	<table border="">
+	<input type="hidden" th:field="*{pid}"/>
+		<tr>
+			<td>새 비밀번호</td>
+			<td><input type="text" name="pw"/></td>
+		</tr>
+		<tr>
+			<td>비밀번호 확인</td>
+			<td><input type="text" name="pw2"/></td>
+		</tr>
+		<tr>
+			<td colspan="3" align="center"> 
+				<input type="submit" value="입력" />
+				<a th:href="|/user/log/findPw|" th:text="뒤로"/>
+			</td>
+		</tr>
+	</table>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>
