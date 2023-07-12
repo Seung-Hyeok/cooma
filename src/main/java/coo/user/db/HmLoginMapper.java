@@ -47,4 +47,10 @@ public interface HmLoginMapper {
 	int checkId(String sfds);
 	
 	List<HmDaybydayDTO> checkDay(String sfds);
+	
+	HmMemberDTO findId(HmMemberDTO sdf);
+	
+	int findPw(HmMemberDTO sdf);
+	
+	void rePw(HmMemberDTO sdf);
 }
