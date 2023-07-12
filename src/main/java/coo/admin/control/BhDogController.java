@@ -14,7 +14,6 @@ import coo.admin.db.BhDogMapper;
 import coo.admin.db.BhDogsDTO;
 import coo.admin.db.BhMemDTO;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
