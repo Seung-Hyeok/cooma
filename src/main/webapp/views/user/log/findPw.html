@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>findPw</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
+<h1>비밀번호찾기</h1>
+<form method="post" th:object="${hmMemberDTO}">
+	<table border="">
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" th:field="*{pid}"/></td>
+		</tr>
+		<tr>
+			<td>비밀번호 찾기 질문</td>
+			<td>
+				<select name="pwquestion">
+					<option value="기억에 남는 추억의 장소는?" >기억에 남는 추억의 장소는?</option>
+					<option value="가장 좋아하는 동물은?" >가장 좋아하는 동물은?</option>
+					<option value="초등학교떄 다녔던 학교는?" >초등학교떄 다녔던 학교는?</option>
+					<option value="가장 아끼는 물건은?" >가장 아끼는 물건은?</option>
+					<option value="나의 보물 제 1호는?" >나의 보물 제 1호는?</option>
+				</select><br/>
+				<input type="text" th:field="*{pwanswer}" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"> 
+				<input type="submit" value="입력" />
+				<a th:href="|/user/log/login|" th:text="뒤로"/>
+			</td>
+		</tr>
+	</table>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>
