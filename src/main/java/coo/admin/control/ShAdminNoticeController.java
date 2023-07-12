@@ -1,5 +1,7 @@
 package coo.admin.control;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import coo.admin.db.ShNoticeDTO;
 import coo.admin.db.ShNoticeMapper;
@@ -14,6 +17,7 @@ import coo.admin.db.ShReservationDTO;
 import coo.admin.db.ShReservationMapper;
 import coo.admin.model.PData;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -118,20 +122,51 @@ public class ShAdminNoticeController {
 	}
 	
 	@PostMapping("/admin/notice/insert")
-	String insertComplete(Model mm, ShNoticeDTO dto) {
+	String insertComplete(Model mm, ShNoticeDTO dto, HttpServletRequest request) {
 		
 		System.out.println("insertComplete 진입");
 		
 		System.out.println(dto);
 		System.out.println(dto.getNum());
+		System.out.println(dto.getNoticeImg());
 		System.out.println(dto.getPhotoFile());
 		
+		String res = fileSave(dto.getNoticeImg(), request);
+        dto.setPhotoFile(res);
 		nm.insert(dto);
 		mm.addAttribute("msg", "입력되었습니다.");
 		mm.addAttribute("goUrl", "/admin/notice/detail/"+dto.getNum());
 		
 		return "admin/reser/alert";
 	}
+	
+	
+	
+	 String fileSave(MultipartFile mf, HttpServletRequest request) {
+	        String path = request.getServletContext().getRealPath("dimg")+"/";
+	        //System.out.println(path);
+	        String res = mf.getOriginalFilename();
+	        File ff = new File(path+res);
+	        int pos = res.lastIndexOf(".");
+	        String fName = res.substring(0,pos);
+	        String ext = res.substring(pos);
+	        int  no = 0;
+	        while(ff.exists()) {
+	            no++;
+	            res = fName+no+ext;
+	            ff = new File(path+res);
+	        }
+	        try {
+	            FileOutputStream fos = new FileOutputStream(ff);
+	            fos.write(mf.getBytes());
+	            fos.close();
+	        } catch (Exception e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+
+	        return res;
+	    }
 	
 	
 	
