@@ -60,7 +60,7 @@ public class BhAttendReserDTO {
 	
 //reser 테이블 칼럼
 	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account;
-	Date payD, startD, endD, refundD, today = new Date(123, 6, 7); //today = new Date();
+	Date payD, startD, endD, refundD, today = new Date(); // today = new Date(123, 6, 7); //
 	Integer reserNo, pay, eduFee, totFee, gap, refund;
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 EEE");
@@ -72,6 +72,20 @@ public class BhAttendReserDTO {
 	//int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1(일요일)부터 7(토요일)까지의 값
 	int dayOfWeek = 6;
 	String dayStr = "일월화수목금토".substring(dayOfWeek-1, dayOfWeek);
+	
+	public Date getToday() {
+        // Calendar 객체를 사용하여 날짜를 0시 0분 0초로 설정
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        // 설정된 날짜 가져오기
+        Date updatedDate = calendar.getTime();
+		return updatedDate;
+	}
 	
 	public String todayStr() {
 		String todayStr = sdf.format(today); // today => 포맷팅할 날짜 객체
