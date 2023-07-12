@@ -33,4 +33,8 @@ public class HmMemberDTO {
 	String dog2;
 	
 	String dog3;
+	
+	String pwquestion;
+	
+	String pwanswer;
 }

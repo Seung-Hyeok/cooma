@@ -5,9 +5,9 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 
 <mapper namespace="coo.user.db.HmLoginMapper">
 	<insert id="insert" parameterType="hmMemberDTO">
-		insert into member (pid, pw, pname, tel, birth, reg_date, addr1, addr2, email, grade, dog1, dog2, dog3) 
+		insert into member (pid, pw, pname, tel, birth, reg_date, addr1, addr2, email, grade, dog1, dog2, dog3, pwanswer, pwquestion) 
 		values
-		(#{pid}, #{pw}, #{pname}, #{tel}, #{birth}, sysdate(), #{addr1}, #{addr2}, #{email}, '일반', #{dog1}, '', '')
+		(#{pid}, #{pw}, #{pname}, #{tel}, #{birth}, sysdate(), #{addr1}, #{addr2}, #{email}, '일반', #{dog1}, '', '', #{pwanswer}, #{pwquestion})
 	</insert>
 	
 	<insert id="insertDog" parameterType="hmDogsDTO">
@@ -76,5 +76,16 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	        select * from daybyday where pid = #{pid}
     </select>
 	
-	
+	<select id="findId" parameterType="hmMemberDTO" resultType="hmMemberDTO">
+	        select * from member where pname=#{pname} and tel =#{tel}
+    </select>
+    
+    <select id="findPw" parameterType="hmMemberDTO" resultType="int">
+	        select count(*) from member where pid=#{pid} and pwquestion =#{pwquestion} and pwanswer =#{pwanswer}
+    </select>
+    
+    <update id="rePw" parameterType="hmMemberDTO" >
+		update member set pw = #{pw}
+		where pid = #{pid}
+	</update>
 </mapper>

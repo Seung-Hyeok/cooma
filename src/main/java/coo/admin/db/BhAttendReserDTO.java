@@ -60,19 +60,8 @@ public class BhAttendReserDTO {
 	
 //reser 테이블 칼럼
 	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account;
-	Date payD, startD, endD, refundD, today = new Date(); // today = new Date(123, 6, 7); //
+	Date payD, startD, endD, refundD, today = new Date();
 	Integer reserNo, pay, eduFee, totFee, gap, refund;
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 EEE");
-	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy년 MM월 dd일");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm:ss");
-	
-//오늘 등원 리스트 상단 날짜 표시
-	//Calendar calendar = Calendar.getInstance(); //오늘 요일 번호 알아내는 코드
-	//int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1(일요일)부터 7(토요일)까지의 값
-	int dayOfWeek = 6;
-	String dayStr = "일월화수목금토".substring(dayOfWeek-1, dayOfWeek);
-	
 	public Date getToday() {
         // Calendar 객체를 사용하여 날짜를 0시 0분 0초로 설정
         Calendar calendar = Calendar.getInstance();
@@ -86,6 +75,15 @@ public class BhAttendReserDTO {
         Date updatedDate = calendar.getTime();
 		return updatedDate;
 	}
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 EEE");
+	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy년 MM월 dd일");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm:ss");
+	
+//오늘 등원 리스트 상단 날짜 표시
+	//Calendar calendar = Calendar.getInstance(); //오늘 요일 번호 알아내는 코드
+	//int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1(일요일)부터 7(토요일)까지의 값
+	int dayOfWeek = 6;
+	String dayStr = "일월화수목금토".substring(dayOfWeek-1, dayOfWeek);
 	
 	public String todayStr() {
 		String todayStr = sdf.format(today); // today => 포맷팅할 날짜 객체

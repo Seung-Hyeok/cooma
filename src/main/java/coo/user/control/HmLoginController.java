@@ -3,6 +3,8 @@ package coo.user.control;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Random;
 
@@ -135,4 +137,63 @@ public class HmLoginController {
         //아이디가 있을시 Y 없을시 N 으로jsp view 로 보냄
         return result;
     }
+	
+	//아이디찾기///////////////////////////////////////
+		@GetMapping("/user/log/findId")
+		String findId(Model mm, HmMemberDTO dto) {
+			
+			return "user/log/findId";
+		}
+		
+		@PostMapping("/user/log/findId")
+		String findIdComplete(Model mm, HmMemberDTO dto) {
+			
+			HmMemberDTO myData = lm.findId(dto);
+			
+			String msg = "일치하는 회원정보가 없습니다.";
+			String goUrl = "/user/log/findId";
+			
+			if(myData!=null) {
+				msg = "아이디:"+myData.getPid();
+				goUrl = "/user/log/login";
+			}
+			
+			mm.addAttribute("msg", msg);
+			mm.addAttribute("goUrl", goUrl);
+			
+			return "user/log/alert";
+		}
+		
+		//비번찾기///////////////////////////////////////
+		@GetMapping("/user/log/findPw")
+		String findPw(Model mm, HmMemberDTO dto) {
+			
+			return "user/log/findPw";
+		}
+		
+		@PostMapping("/user/log/findPw")
+		String findPwComplete(Model mm, HmMemberDTO dto) {
+			
+			int cnt = lm.findPw(dto);
+			
+			if(cnt==0) {
+				mm.addAttribute("msg", "일치하는 회원정보가 없습니다.");
+				mm.addAttribute("goUrl", "/user/log/findPw");
+				return "user/log/alert";
+			}
+			
+			return  "/user/log/rePw";
+		}
+		
+		@PostMapping("/user/log/rePw")
+		String rePwComplete(Model mm, HmMemberDTO dto) {
+			System.out.println("rePw진입 ㅡ pid="+dto.getPid());
+			
+			lm.rePw(dto);
+			
+			mm.addAttribute("msg", "비밀번호가 변경되었습니다.");
+			mm.addAttribute("goUrl", "/user");
+			
+			return  "/user/log/alert";
+		}
 }

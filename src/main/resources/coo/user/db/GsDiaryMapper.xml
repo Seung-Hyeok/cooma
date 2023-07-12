@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 				<if test = "dname != '전체'">
 					dname = #{dname} and 
 				</if>
-			pid = #{pid} and attendTime IS NOT NULL and oneDay &lt;= sysdate()
+			pid = #{pid} and attendTime IS NOT NULL and oneDay &lt;= date_sub(sysdate(), interval 1 day)
 		</where>
 	</select>
 	
@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 				<if test = "dname != '전체'">
 					dname = #{dname} and 
 				</if>
-			pid = #{pid} and attendTime IS NULL and oneDay &lt;= sysdate()
+			pid = #{pid} and attendTime IS NULL and oneDay &lt;= date_sub(sysdate(), interval 1 day)
 		</where>
 	</select>
 	
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 				<if test = "dname != '전체'">
 					dname = #{dname} and 
 				</if>
-			pid = #{pid} and oneDay > sysdate()
+			pid = #{pid} and oneDay > date_sub(sysdate(), interval 1 day)
 		</where>
 	</select>
 	
