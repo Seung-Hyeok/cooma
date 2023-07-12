@@ -23,12 +23,12 @@ public class ShReservationController {
 	
 	@RequestMapping("/admin/reservation/{nowPage}")
 	String reser(Model mm, PData pd) {
+		pd.setTotal(rm.total(pd));
 		List<ShReservationDTO> mainData = rm.list(pd);
 		
 		System.out.println(mainData);
 		System.out.println("reservation 진입");
 		
-		pd.setTotal(rm.total(pd));
 		
 		System.out.println(pd.getTotalPage());
 		System.out.println(pd.getStart());
@@ -48,6 +48,7 @@ public class ShReservationController {
 	
 	@RequestMapping("/admin/endreservation/{nowPage}")
 	String endreser(Model mm, PData pd) {
+		pd.setTotal(rm.endtotal(pd));
 		List<ShReservationDTO> mainData = rm.endlist(pd);
 		
 		System.out.println(mainData);
@@ -57,6 +58,8 @@ public class ShReservationController {
 		//System.out.println("cnt:"+dto.getCnt());
 		
 		mm.addAttribute("mainData", mainData);
+		mm.addAttribute("pd", pd);
+		System.out.println(pd);
 		
 		return "admin/reser/endreservation";
 	}
@@ -148,15 +151,18 @@ public class ShReservationController {
 	
 	
 	
-	@RequestMapping("/admin/refund")
+	@RequestMapping("/admin/refund/{nowPage}")
 	String refund(Model mm, PData pd) {
-		
+		pd.setTotal(rm.refundtotal(pd));
 		List<ShReservationDTO> mainData = rm.refundList(pd);
 		
 		System.out.println(mainData);
 		System.out.println("refund 진입");
 		
 		mm.addAttribute("mainData", mainData);
+		mm.addAttribute("pd", pd);
+		
+		System.out.println(pd);
 		System.out.println("환불내역 페이지 가기직전!!!");
 		return "admin/reser/refund";
 	}

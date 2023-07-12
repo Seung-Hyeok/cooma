@@ -24,12 +24,12 @@ public class ShAdminNoticeController {
 	
 	@RequestMapping("/admin/notice/{nowPage}")
 	String notice(Model mm, PData pd) {
-		
+		pd.setTotal(nm.ntotal(pd));
 		System.out.println("관리자 공지사항 진입");
 		List<ShNoticeDTO> mainData = nm.list(pd);
 		
 		mm.addAttribute("mainData", mainData);
-		
+		mm.addAttribute("pd", pd);
 		
 		return "admin/notice/adnotice";
 	}

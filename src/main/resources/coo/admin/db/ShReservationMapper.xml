@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 				</if>
 			</trim>
 		</where>
-		order by startD limit 0, #{limit} 
+		order by startD limit #{start}, #{limit} 
 		
 	</select>
 	
@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 				</if>
 			</trim>
 		</where>
-		order by startD desc limit 0, #{limit}
+		order by startD desc limit #{start}, #{limit}
 		
 	</select>
 
@@ -80,6 +80,31 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 				</if>
 			</trim>
 		</where>
+	</select>
+	
+	<select id="endtotal" parameterType="pD"> 
+		select count(*) from reser
+		<where>
+			refund = 0 and endD &lt;= date_sub(sysdate(), interval 1 day)
+			<trim prefix=" ">
+				<if test="sch != null and sch != ''  ">
+					<if test="cate != null and cate != ''  ">
+						and ${cate} like concat('%',#{sch},'%') 
+					</if>
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<select id="refundtotal" parameterType="pD">
+		select count(*) from reser
+		<where>
+			refund > 0
+			<if test="startD != null and endD != null and startD != '' and endD != ''">
+	     		and refundD between #{startD} and #{endD}
+	    	</if>
+		</where>
+		order by refundD desc
 	</select>
 	
 

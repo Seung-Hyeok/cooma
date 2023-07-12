@@ -14,5 +14,16 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	  </where>
 	  order by payD
 	</select>
+	
+	<!-- limit만 주고 총 매출액은 변동없게하고싶다  -->
+	<select id="salestotal" parameterType="pD">
+		select count(*) from reser
+		<where>
+		    <if test="startD != null and endD != null and startD != '' and endD != ''">
+		      and payD between #{startD} and #{endD}
+		    </if>
+	  	</where>
+	  	order by payD 
+	</select>
 
 </mapper>
