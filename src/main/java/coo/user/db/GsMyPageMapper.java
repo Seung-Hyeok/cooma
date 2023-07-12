@@ -11,8 +11,14 @@ public interface GsMyPageMapper {
 	
 	List<GsReserDTO> oldArr(String dashkjdh);
 	
+	List<GsReserDTO> show(GsReserDTO daaw);
+	List<GsReserDTO> noShow(GsReserDTO daaw);
+	List<GsReserDTO> future(GsReserDTO daaw);
+	
+	
 	GsReserDTO buyDetail(GsReserDTO dashkjdh);
 	
 	int myRefun(GsReserDTO dashkjdh);
 	
+	int attend(GsReserDTO kk);
 }

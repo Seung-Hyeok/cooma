@@ -68,7 +68,7 @@ public class HmMyPageController {
 		
 		if(cnt>0) {
 			msg = "회원정보가 수정되었습니다.";
-			goUrl = "/user/myPage/myPage";
+			goUrl = "/user/myPage/memPage";
 			
 			HmMemberDTO memData = mp.logchk(dto);
 			session.setAttribute("pname", memData.getPname());

@@ -1,20 +1,37 @@
 server :
-    port : 80
+  port : 80
+  
 spring :
-    thymeleaf:
-        prefix : views/
-        suffix : .html
-        cache : false
-            
-            
-    datasource :
-        driver-class-name : org.mariadb.jdbc.Driver
-#        allowMultiQueries=true  다중쿼리 실행 가능
-        url : jdbc:mariadb://localhost:3306/cooma_db?allowMultiQueries=true
-        username : cooma
-        password : 1234
+  thymeleaf :
+    prefix : views/
+    suffix : .html
+    cache : false
+                        
+  datasource :
+    driver-class-name : org.mariadb.jdbc.Driver
+#   allowMultiQueries=true  다중쿼리 실행 가능
+    url : jdbc:mariadb://localhost:3306/cooma_db?allowMultiQueries=true
+    username : cooma
+    password : 1234
 
-
+# Mail Setting
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: send_email1@naver.com
+    password: testemail123!
+    properties: # 이메일 구성에 대한 추가 속성
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000 # 클라이언트가 SMTP 서버와의 연결을 설정하는 데 대기해야 하는 시간(Millisecond) 
+          timeout: 5000 # 클라이언트가 SMTP 서버로부터 응답을 대기해야 하는 시간(Millisecond)
+          writetimeout: 5000 # 클라이언트가 작업을 완료하는데 대기해야 하는 시간(Millisecond)
+    auth-code-expiration-millis: 1800000 # 이메일 인증 코드의 만료 시간(Millisecond) 
+    # 30 * 60 * 1000 == 30분
 
 mybatis :
     type-aliases-package : coo.admin.db, coo.admin.model, coo.user.db

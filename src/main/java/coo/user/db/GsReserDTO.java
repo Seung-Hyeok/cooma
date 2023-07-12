@@ -1,5 +1,6 @@
 package coo.user.db;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
@@ -11,8 +12,8 @@ import lombok.Data;
 public class GsReserDTO {
 	String pid,dname,edu,reque,kind,dogsize,weeks,bank,account;
 	Integer reserNo,pay,refund,gap,totFee,eduFee;
-	String payD,startD;
-	Date oneDay,endD;
+	String payD,startD,endD,attendTime,goHome;
+	Date oneDay;
 	
 	public String gap() {
 
@@ -29,4 +30,26 @@ public class GsReserDTO {
         }
 
     }
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat sdfYM = new SimpleDateFormat("yyyy-MM");
+	SimpleDateFormat sdfD = new SimpleDateFormat("d");
+	public String oneDayStr() {
+		String oneStr = sdf.format(oneDay);
+		return oneStr;
+	}
+	public String oneYM() {
+		String oneStr = sdfYM.format(oneDay);
+		return oneStr;
+	}
+	public String getOneD() {
+		String oneStr = sdfD.format(oneDay);
+		return oneStr;
+	}
+	
+	public String attendTimeStr() {
+		return attendTime.split(" ")[1].substring(0, 5);
+	}
+	public String goHomeStr() {
+		return goHome.split(" ")[1].substring(0, 5);
+	}
 }

@@ -14,7 +14,7 @@ layout:decorate="total/adTemp">
 	<div class="shresermenu">
 		<a href="/admin/reservation/1">이용권내역</a>
 		<a href="/admin/endreservation/1">만료이용권내역</a>
-		<a href="/admin/refund">환불내역</a>
+		<a href="/admin/refund/1">환불내역</a>
 	</div>
 	<h3>이용권리스트</h3>
 	
@@ -64,15 +64,21 @@ layout:decorate="total/adTemp">
 				<td style="color:dodgerblue">진행중</td>
 			</th:block>
 			
-			
 		</tr>
-		<tr>
-			<td colspan="10" align="center">
-				
+		<tr> 
+			<td colspan="10" align="center" >
+				<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
+					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
+						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
+						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
+					</span>
+					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
 			</td>
 		</tr>
 	
 	</table>
+	
+	
 	
 	
 </th:block>

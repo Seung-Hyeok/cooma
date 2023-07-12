@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	<select id="reserArr" parameterType="String" resultType="gsrDTO">
 		select * from reser 
 		<where>
-			pid = #{pid} and refund = 0
+			pid = #{pid} and refund = 0 and endD > date_sub(sysdate(), interval 1 day)
 		</where>
 	</select>
 	
@@ -33,6 +33,36 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		</where>
 	</update>
 	
+	
+	<select id="attend" parameterType="gsrDTO" resultType="int">
+		select count(*) from daybyday 
+		<where>
+			reserNo = #{reserNo}  and attendTime IS NOT NULL
+		</where>
+	</select>
+	
+	<select id="show" parameterType="gsrDTO" resultType="gsrDTO">
+		select * from daybyday 
+		<where>
+			reserNo = #{reserNo} and attendTime IS NOT NULL and oneDay &lt;= date_sub(sysdate(), interval 1 day)
+		</where>
+	</select>
+	
+	<select id="noShow" parameterType="gsrDTO" resultType="gsrDTO">
+		select * from daybyday 
+		<where>
+			reserNo = #{reserNo} and attendTime IS NULL and oneDay &lt;= date_sub(sysdate(), interval 1 day)
+		</where>
+	</select>
+	<select id="future" parameterType="gsrDTO" resultType="gsrDTO">
+		select * from daybyday 
+		<where>
+			reserNo = #{reserNo} and oneDay > date_sub(sysdate(), interval 1 day)
+		</where>
+	</select>
+	
+	
+
 	
 </mapper>
 

@@ -46,13 +46,15 @@ layout:decorate="total/adTemp">
 			</tr>
 			<tr th:each="dto, dtoStat: ${bhDogsReser}">
 				<td th:text="${dtoStat.index+1}"/>
-				<td th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+')'"/>
+				<td><a th:href="|/admin/dogsReser/${dto.reserNo}|" 
+				th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+')'"/></td>
 			</tr>
 
 		<tr>
 			<td colspan="2" align="center">
-				<a th:href="|/admin/dogs|"  th:if="${beforePage.equals('dogs')}">애견목록</a>
-				<a th:href="|/admin|"  th:if="${beforePage.equals('admin')}">오늘등원리스트</a>
+				<a th:href="|/admin/memPid/${bhDogData.pid}|" th:if="${beforePage.equals('mem')}">뒤로</a>
+				<a th:href="|/admin/dogs|" th:if="${beforePage.equals('dogs')}">애견목록</a>
+				<a th:href="|/admin|" th:if="${beforePage.equals('admin')}">오늘등원리스트</a>
 				<a th:href="|/admin/dogModi/${bhDogData.dname}/${bhDogData.pid}|" th:text="수정" ></a>
 				<a th:href="|/admin/dogDelete/${bhDogData.dname}/${bhDogData.pid}|" th:text="삭제" ></a>	
 			</td>

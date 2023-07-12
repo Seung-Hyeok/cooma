@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_공지</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	
+	<h3>공지등록</h3>
+	<form method="post" th:object="${shNoticeDTO}">
+		<table border="">
+			<tr>
+				<td>제목</td>
+				<td><input type="text" th:field="*{title}" style="width:715px"/></td>
+			</tr>
+			<tr>
+				<td>작성자</td>
+				<td>쿠키마루</td>
+			</tr>
+			<tr>
+				<td>이미지</td>
+				<td><input type="file" th:field="*{photoFile}"/></td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea th:field="*{content}" cols="100" rows="20"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"> 
+					<a th:href="|/admin/notice/1|" th:text="뒤로"/>
+					<input type="submit" value="작성" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

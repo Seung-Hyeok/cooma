@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>회원 이용권</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/memPage">내정보</a>
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
+<div class="myBuyMenu">
+<a href="/user/myPage/gsMyList">현재 이용권</a>
+<a href="/user/myPage/gsMyOld">지난(환불) 이용권</a>
+</div>
+<h1>출석표</h1>
+	<div class="gsAttends">
+		<div class="show"  >
+			<h2>출석 일자</h2>
+			<div th:each="sh : ${show}">
+			일자 : 
+			<span th:text="${sh.oneDayStr()}"></span></br>
+			등원시간 : 
+			<span th:text="${sh.attendTime}"></span></br>
+			퇴원시간 : 
+			<span th:text="${sh.goHome}"></span> 
+			</div>
+
+		</div>
+		<div class="noShow" >
+			<h2>결석 일자</h2>
+			<div th:each="ns : ${noShow}">
+			일자 : 
+			<span th:text="${ns.oneDayStr()}"></span> 
+			</div>
+
+		</div>
+		<div class="future" >
+			<h2>남은 출석일</h2>  
+			<div th:each="fu : ${future}">
+			일자 : 
+			<span th:text="${fu.oneDayStr()}"></span>
+			</div>             
+			
+		</div>
+	</div>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

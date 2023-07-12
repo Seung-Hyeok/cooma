@@ -8,6 +8,7 @@ layout:decorate="total/userTemp">
 
 <th:block layout:fragment="content">
 <div class="myPageMenu">
+<a href="/user/myPage/memPage">내정보</a>
 <a href="/user/myPage/dogJoinForm">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
@@ -21,7 +22,6 @@ layout:decorate="total/userTemp">
 		<div  th:each="dto , dtoStat: ${buyList}">
 			번호 : <a th:href="@{|/user/myPage/buyDetail/${dto.reserNo}|}" ><span th:text="${dto.reserNo}"></span></a>&nbsp;&nbsp;&nbsp;
 			강아지 이름 : <span th:text="${dto.dname}"></span> &nbsp;&nbsp;&nbsp;
-			강아지 크기 : <span th:text="${dto.dogsize}"></span> &nbsp;&nbsp;&nbsp;
 			이용권 종류 : <span th:text="${dto.kind}"></span> &nbsp;&nbsp;&nbsp;
 			추가 교육 : <span th:text="${dto.edu}"></span> &nbsp;&nbsp;&nbsp;
 			등원 날짜 : <span th:text="${dto.startD}"></span> &nbsp;&nbsp;&nbsp;

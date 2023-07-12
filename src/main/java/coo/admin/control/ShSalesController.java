@@ -24,11 +24,11 @@ public class ShSalesController {
 	@Autowired
 	private ShStatisticsRepository sr;
 	
-	@RequestMapping("/admin/sales")
+	@RequestMapping("/admin/sales/{nowPage}")
 	String sales(Model mm, PData pd) {
 		
 		System.out.println("sales 진입");
-		
+		pd.setTotal(sm.salestotal(pd));
 		List<ShReservationDTO> mainData = sm.salesList(pd);
 		
 		int cnt = 0; // 결제 건수
@@ -52,7 +52,9 @@ public class ShSalesController {
 		mm.addAttribute("tf", tf);
 		mm.addAttribute("rf", rf);
 		mm.addAttribute("tot", tot);
+		mm.addAttribute("pd", pd);
 		
+		System.out.println(pd);
 		
 		return "admin/sales/sales";
 	}
