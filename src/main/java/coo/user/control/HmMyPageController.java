@@ -68,7 +68,7 @@ public class HmMyPageController {
 		
 		if(cnt>0) {
 			msg = "회원정보가 수정되었습니다.";
-			goUrl = "/user/myPage/myPage";
+			goUrl = "/user/myPage/memPage";
 			
 			HmMemberDTO memData = mp.logchk(dto);
 			session.setAttribute("pname", memData.getPname());
@@ -326,7 +326,7 @@ public class HmMyPageController {
 		String path = request.getServletContext().getRealPath("dimg");
 		//System.out.println(path);
 		try {
-			FileOutputStream fos = new FileOutputStream(path+"\\"+ff.getOriginalFilename());
+			FileOutputStream fos = new FileOutputStream(path+"/"+ff.getOriginalFilename());
 			fos.write(ff.getBytes());
 			fos.close();
 		} catch (Exception e) {
