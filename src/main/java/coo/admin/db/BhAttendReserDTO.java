@@ -60,9 +60,21 @@ public class BhAttendReserDTO {
 	
 //reser 테이블 칼럼
 	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account;
-	Date payD, startD, endD, refundD, today = new Date(123, 6, 7); //today = new Date();
+	Date payD, startD, endD, refundD, today = new Date();
 	Integer reserNo, pay, eduFee, totFee, gap, refund;
-	
+	public Date getToday() {
+        // Calendar 객체를 사용하여 날짜를 0시 0분 0초로 설정
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+
+        // 설정된 날짜 가져오기
+        Date updatedDate = calendar.getTime();
+		return updatedDate;
+	}
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 EEE");
 	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy년 MM월 dd일");
 	SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm:ss");
