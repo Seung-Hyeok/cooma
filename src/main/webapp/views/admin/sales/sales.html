@@ -21,7 +21,7 @@ startDateInput.addEventListener("change", function() {
 </script>
 	
 	<div class="shresermenu">
-		<a href="/admin/sales">매출내역</a>
+		<a href="/admin/sales/1">매출내역</a>
 		<a href="/admin/statistics">매출통계</a>
 	</div>
 	
@@ -69,6 +69,18 @@ startDateInput.addEventListener("change", function() {
 		</tr>
 	</table>
 	
+	<!-- <div class="shsales" style="border:1px solid#000; overflow:auto" th:each="dto, dtostat : ${mainData}" >
+		<div th:text="${dto.reserNo}"></div>
+		<div th:text="${dto.pid}"></div>
+		<div th:text="${dto.dname}"></div>
+		<div th:text="|${dto.kind} (${dto.gap()})|"></div>
+		<div th:text="${dto.edu}"></div>
+		<div th:text="${dto.pDate()}"></div>
+		<div th:text="${dto.pay()}"></div>
+		<div th:text="${dto.epay()}"></div>
+		<div th:text="${dto.tpay()}" style="color:blue;"></div>
+		<div th:text="${dto.refund()}" style="color:red;"></div>
+	</div> -->
 </th:block>
 
 <th:block layout:fragment="adAdd-content">

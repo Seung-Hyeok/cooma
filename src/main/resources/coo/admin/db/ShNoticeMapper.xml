@@ -51,5 +51,16 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		<include refid="wid"/>
 		<!-- delete from board where id = #{id} and pw = '1111' -->
 	</delete>
+	
+	<select id="ntotal" parameterType="pD"> 
+		select count(*) from notice
+		  	<where>
+				<trim prefix=" " suffixOverrides ="and | or">
+					<if test="sch != null">
+						title like concat('%',#{sch},'%')
+					</if>
+				</trim>
+			</where>
+	</select>
 
 </mapper>

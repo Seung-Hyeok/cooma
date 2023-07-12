@@ -15,6 +15,8 @@ public interface ShReservationMapper {
 	List<ShReservationDTO> refundList(PData davsdv);
 	ShReservationDTO detail(ShReservationDTO jklkj);
 	int total(PData jvbjskb);
+	int endtotal(PData vcxv);
+	int refundtotal(PData vvcxsftd);
 	int modify(ShReservationDTO refv);
 	int delete(ShReservationDTO efev45rtrg);
 

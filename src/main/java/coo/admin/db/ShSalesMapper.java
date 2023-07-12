@@ -11,5 +11,6 @@ import coo.admin.model.PData;
 public interface ShSalesMapper {
 	
 	List<ShReservationDTO> salesList(PData qweqwe);
+	int salestotal(PData uoiuyui);
 
 }

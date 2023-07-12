@@ -40,6 +40,16 @@ layout:decorate="total/adTemp">
 			<td th:text="${dto.date()}"/>
 			<td th:text="${dto.cnt}"/>
 		</tr>
+		<tr> 
+			<td colspan="5" align="center" >
+				<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
+					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
+						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
+						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
+					</span>
+					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="5" align="right">
 				<a th:href="@{insert}" th:text="공지등록"/>

@@ -15,5 +15,6 @@ public interface ShNoticeMapper {
 	int delete(ShNoticeDTO efev45rtrg);
 	void insert(ShNoticeDTO efev45rtrg);
 	void up(ShNoticeDTO sdsds);
+	int ntotal(PData nnng);
 	
 }
