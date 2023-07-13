@@ -1,7 +1,5 @@
 package coo.admin.control;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -32,28 +30,50 @@ public class AdminHomeController {
 		System.out.println("bhTodayList() 진입");
 		
 		session.setAttribute("beforePage", "admin");
+		List<ArrayList<BhAttendReserDTO>> totBig = new ArrayList<ArrayList<BhAttendReserDTO>>();
+		List<ArrayList<BhAttendReserDTO>> totSmall = new ArrayList<ArrayList<BhAttendReserDTO>>();
+		ArrayList<BhAttendReserDTO> bigDog;
+		ArrayList<BhAttendReserDTO> smallDog;
+		bigDog = am.dayEduNotListBig(reser);
+		if(bigDog != null) {totBig.add(bigDog);}
+		bigDog = am.dayEduRageListBig(reser);
+		if(bigDog != null) {totBig.add(bigDog);}
+		bigDog = am.dayEduPoopListBig(reser);
+		if(bigDog != null) {totBig.add(bigDog);}
+		bigDog = am.dayEduAnxietyListBig(reser);
+		if(bigDog != null) {totBig.add(bigDog);}
+		
+		smallDog = am.dayEduNotListSmall(reser);
+		totSmall.add(smallDog);
+		smallDog = am.dayEduRageListSmall(reser);
+		totSmall.add(smallDog);
+		smallDog = am.dayEduPoopListSmall(reser);
+		totSmall.add(smallDog);
+		smallDog = am.dayEduAnxietyListSmall(reser);
+		totSmall.add(smallDog);
 
-		List<BhAttendReserDTO> bigDog = am.dayListBig(reser);
-		for (BhAttendReserDTO dto : bigDog) {
-			String requeNote = am.getRequeNote(dto);
-			dto.setReque(requeNote); //요청사항추가('daybyday' 테이블에는 요청사항이 등록되지 않음)
+		//요청사항추가('daybyday' 테이블에는 요청사항이 등록되지 않음)
+		for (ArrayList<BhAttendReserDTO> bigDogs : totBig) {
+			for (BhAttendReserDTO dto : bigDogs) {
+				String requeNote = am.getRequeNote(dto);
+				dto.setReque(requeNote); 
+			}
 		}
-		List<BhAttendReserDTO> smallDog = am.dayListSmall(reser);
-		for (BhAttendReserDTO dto : smallDog) {
-			String requeNote = am.getRequeNote(dto);
-			dto.setReque(requeNote);
+		for (ArrayList<BhAttendReserDTO> smallDogs : totSmall) {
+			for (BhAttendReserDTO dto : smallDogs) {
+				String requeNote = am.getRequeNote(dto);
+				dto.setReque(requeNote);
+			}
 		}
+		
+		mo.addAttribute("totBig", totBig);
+		mo.addAttribute("totSmall", totSmall);
+		mo.addAttribute("reser", reser);
 		
 		mo.addAttribute("totAttBig", am.bhCountAttBig(reser)); //출석예정 수
 		mo.addAttribute("realAttBig", am.bhCountRealBig(reser)); //실제출석 수
 		mo.addAttribute("totAttSmall", am.bhCountAttSmall(reser));
 		mo.addAttribute("realAttSmall", am.bhCountRealSmall(reser));
-		
-		mo.addAttribute("bigDog", bigDog);
-		//System.out.println("bigDog: "+bigDog);
-		mo.addAttribute("smallDog", smallDog);
-		//System.out.println("smallDog: "+smallDog);
-		mo.addAttribute("reser", reser);
 		
 		return "admin/adminHome";
 	}
@@ -216,17 +236,17 @@ public class AdminHomeController {
 		mo.addAttribute("days", days);
 		
 		List<BhAttendReserDTO> yes = am.bhAttYes(reser); //등교
-		System.out.println("yes:"+yes);
+		//System.out.println("yes:"+yes);
 		List<BhAttendReserDTO> none = am.bhAttNo(reser); //결석
-		System.out.println("none:"+none);
+		//System.out.println("none:"+none);
 		List<BhAttendReserDTO> notyet = am.bhAttNotyet(reser); //아직
-		System.out.println("notyet:"+notyet);
+		//System.out.println("notyet:"+notyet);
 		mo.addAttribute("yes",yes);
-		for(BhAttendReserDTO dd: yes) {
-			System.out.println("dd.onedayM:"+dd.onedayM());
-			System.out.println("dd.onedayD:"+dd.onedayD());
-			System.out.println();
-		}
+//		for(BhAttendReserDTO dd: yes) {
+//			System.out.println("dd.onedayM:"+dd.onedayM());
+//			System.out.println("dd.onedayD:"+dd.onedayD());
+//			System.out.println();
+//		}
 		mo.addAttribute("yes",yes);
 		mo.addAttribute("none",none);
 		mo.addAttribute("notyet",notyet);

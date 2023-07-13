@@ -6,17 +6,69 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 <mapper namespace="coo.admin.db.BhAttendMapper">
 <!-- select * from reser where dogsize = "대형견" and #{today} BETWEEN startD AND endD and weeks like concat('%',#{dayStr},'%') -->
 
-<!-- 오늘등원리스트 / 출석부 날짜 검색 리스트 -->
+<!-- 오늘등원리스트 -->
+<!-- 대형견/중소형견 교육별 -->
+	<select id="dayEduNotListBig" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			dogsize = "대형견" and oneday = #{today} and edu = "-";
+		</where>
+	</select>
+	<select id="dayEduRageListBig" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			dogsize = "대형견" and oneday = #{today} and edu = "공격성";
+		</where>
+	</select>
+	<select id="dayEduPoopListBig" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			dogsize = "대형견" and oneday = #{today} and edu = "배변";
+		</where>
+	</select>
+	<select id="dayEduAnxietyListBig" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			dogsize = "대형견" and oneday = #{today} and edu = "분리불안";
+		</where>
+	</select>
+	
+	<select id="dayEduNotListSmall" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			dogsize = "중/소형견" and oneday = #{today} and edu = "-";
+		</where>
+	</select>
+	<select id="dayEduRageListSmall" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			dogsize = "중/소형견" and oneday = #{today} and edu = "공격성";
+		</where>
+	</select>
+		<select id="dayEduPoopListSmall" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			dogsize = "중/소형견" and oneday = #{today} and edu = "배변";
+		</where>
+	</select>
+		<select id="dayEduAnxietyListSmall" resultType="bhAtDTO">
+		select * from daybyday 
+		<where>
+			dogsize = "중/소형견" and oneday = #{today} and edu = "분리불안";
+		</where>
+	</select>
+	
+<!-- 출석부 날짜 검색 리스트 -->
 	<select id="dayListBig" resultType="bhAtDTO">
 		select * from daybyday 
 		<where>
 			<trim suffixOverrides="and | or">
 				dogsize = "대형견" and 
 				<if test="schDate == null">
-					oneday = #{today}; 
+					oneday = #{today}
 				</if>
 				<if test="schDate != null">
-					oneday = #{schDate};
+					oneday = #{schDate}
 				</if>
 			</trim>
 		</where>

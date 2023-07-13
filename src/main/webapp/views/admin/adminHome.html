@@ -83,21 +83,31 @@ layout:decorate="total/adTemp">
 						<td>구분</td>
 						<td>등하원</td>
 					</tr>
-					<tr th:each="dto, dtoStat: ${bigDog}">
-						<td th:text="${dtoStat.index+1}" />
-						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
-						<td><a th:href="@{|/admin/attendMemo/${dto.todayNo}|}" th:text="입력" /></td>
-						<td th:text="${dto.edu}"/>
-						<td th:text="${dto.reque}"/>
-						<td th:text="${dto.kind}"/>
-						<td>
-							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}" class="bhAtBtn"/>
-							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" 
-									th:text="하원" th:value="${dto.todayNo}" class="bhGoBtn"/>
-							<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
-							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}" class="bhPanelty"/>
-						</td>
-					</tr>
+					
+					<th:block th:each="big : ${totBig}">
+						<tr th:if="${big.size()!=0}"><td colspan="7">
+							<span th:if="${big[0].edu.equals('-')}" th:text="'교육 없음'"></span>
+							<span th:unless="${big[0].edu.equals('-')}" th:text="${big[0].edu}+' 교육'"></span>
+						</td></tr>
+					<th:block th:each="dto, dtoStat: ${big}">
+						<tr>
+							<td th:text="${dtoStat.index+1}" />
+							<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
+							<td><a th:href="@{|/admin/attendMemo/${dto.todayNo}|}" th:text="입력" /></td>
+							<td th:text="${dto.edu}"/>
+							<td th:text="${dto.reque}"/>
+							<td th:text="${dto.kind}"/>
+							<td>
+								<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}" class="bhAtBtn"/>
+								<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" 
+										th:text="하원" th:value="${dto.todayNo}" class="bhGoBtn"/>
+								<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
+								<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}" class="bhPanelty"/>
+							</td>
+						</tr>
+					</th:block>
+					</th:block>
+					
 				</table>
 			</div>
 		</div>
@@ -115,21 +125,31 @@ layout:decorate="total/adTemp">
 						<td>구분</td>
 						<td>등하원</td>
 					</tr>
-					<tr th:each="dto, dtoStat: ${smallDog}">
-						<td th:text="${dtoStat.index+1}" />
-						<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
-						<td><a th:href="@{|/admin/attendMemo/${dto.todayNo}|}" th:text="입력" /></td>
-						<td th:text="${dto.edu}"/>
-						<td th:text="${dto.reque}"/>
-						<td th:text="${dto.kind}"/>
-						<td>
-							<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}" class="bhAtBtn"/>
-							<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" 
-									th:text="하원" th:value="${dto.todayNo}" class="bhGoBtn"/>
-							<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
-							<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}" class="bhPanelty"/>
-						</td>
-					</tr>
+					
+					<th:block th:each="small : ${totSmall}">
+						<tr th:if="${small.size()!=0}"><td colspan="7">
+							<span th:if="${small[0].edu.equals('-')}" th:text="'교육 없음'"></span>
+							<span th:unless="${small[0].edu.equals('-')}" th:text="${small[0].edu}+' 교육'"></span>
+						</td></tr>
+					<th:block th:each="dto, dtoStat: ${small}">
+						<tr>
+							<td th:text="${dtoStat.index+1}" />
+							<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" /></td>
+							<td><a th:href="@{|/admin/attendMemo/${dto.todayNo}|}" th:text="입력" /></td>
+							<td th:text="${dto.edu}"/>
+							<td th:text="${dto.reque}"/>
+							<td th:text="${dto.kind}"/>
+							<td>
+								<button onclick="attend(this)" th:if="${dto.attendTime==null}" th:text="등원" th:value="${dto.todayNo}" class="bhAtBtn"/>
+								<button onclick="afterSchool(this)" th:if="${dto.attendTime!=null and dto.goHome==null}" 
+										th:text="하원" th:value="${dto.todayNo}" class="bhGoBtn"/>
+								<span th:text="하원완료" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty == 0}"/>
+								<span th:text="${dto.penalty}" th:if="${dto.goHome!=null and dto.goHome!=null and dto.penalty > 0}" class="bhPanelty"/>
+							</td>
+						</tr>
+					</th:block>
+					</th:block>
+					
 				</table>
 			</div>
 		</div>

@@ -14,7 +14,6 @@ import coo.admin.db.BhDogMapper;
 import coo.admin.db.BhDogsDTO;
 import coo.admin.db.BhMemDTO;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -90,6 +89,7 @@ public class BhDogController {
 		System.out.println("bhDogDeleteForm() 진입");
 		return "admin/dogs/bhDogDeleteForm";
 	}
+	
 //애견 삭제완료
 	@PostMapping("/dogDelete/{dname}/{pid}")
 	String bhDogDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog) {
