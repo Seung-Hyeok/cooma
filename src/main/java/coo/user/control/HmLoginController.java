@@ -1,5 +1,6 @@
 package coo.user.control;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,8 +49,8 @@ public class HmLoginController {
 	        // 날짜 변환 실패 시
 	        e.printStackTrace();
 	    }
-	    dog.setPhoto(fd.getDogimg().getOriginalFilename());
-		fileSave(fd.getDogimg(), request);
+	    String res = fileSave(fd.getDogimg(), request);
+        dog.setPhoto(res);
 		lm.insertDog(dog);
 	    dto.setDog1(dog.getDname());
 	    lm.insert(dto);
@@ -103,19 +104,31 @@ public class HmLoginController {
 	}
 	
 	//사진저장///////////////////////////////////////
-	void fileSave(MultipartFile ff,	HttpServletRequest request) {
-		System.out.println("fileSave진입");
-		String path = request.getServletContext().getRealPath("dimg");
-		System.out.println("path"+path);
-		try {
-			FileOutputStream fos = new FileOutputStream(path+"/"+ff.getOriginalFilename());
-			fos.write(ff.getBytes());
-			fos.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    String fileSave(MultipartFile mf,    HttpServletRequest request) {
+        String path = request.getServletContext().getRealPath("dimg")+"/";
+        //System.out.println(path);
+        String res = mf.getOriginalFilename();
+        File ff = new File(path+res);
+        int pos = res.lastIndexOf(".");
+        String fName = res.substring(0,pos);
+        String ext = res.substring(pos);
+        int  no = 0;
+        while(ff.exists()) {
+            no++;
+            res = fName+no+ext;
+            ff = new File(path+res);
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(ff);
+            fos.write(mf.getBytes());
+            fos.close();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return res;
+    }
 	
 	@RequestMapping("/user/checkId.do")
 	@ResponseBody

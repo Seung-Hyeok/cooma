@@ -56,6 +56,9 @@ public class GsMyPageController {
 		mm.addAttribute("pid", pid);
 		gdto = gmm.buyDetail(gdto);
 		int all = gdto.getGap()/7*gdto.getWeeks().length();
+		if(all ==0) {
+			all=1;
+		}
 		int dng = gmm.attend(gdto);
 		System.out.println(dng+"/"+all);
 		mm.addAttribute("myDetail", gdto);
@@ -117,7 +120,7 @@ public class GsMyPageController {
 	    	}
         }
 
-		
+        gmm.dayRefun(gdto);
 		int refun = gmm.myRefun(gdto);
 		System.out.println("myRefund 진입"+refun);
 		
