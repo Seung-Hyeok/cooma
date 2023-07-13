@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import coo.user.model.HmPData;
 import coo.user.db.HmQnaDTO;
 import coo.user.db.HmQuestionMapper;
 import jakarta.annotation.Resource;
@@ -40,28 +41,34 @@ public class HmQuestionController {
 	}
 	
 	//내질문리스트///////////////////////////////////////
-	@RequestMapping("/user/question/queList")
-	String queList(HttpSession session, Model mm, HmQnaDTO qna) {
-		
+	@RequestMapping("/user/question/queList/{nowPage}")
+	String queList(HttpSession session, Model mm, HmQnaDTO qna, HmPData hp) {
+		System.out.println("질문리스트 진입");
 		String pid = (String)session.getAttribute("pid");
-		mm.addAttribute("pid", pid);
-		
+		qna.setHp(new HmPData(5,5, hp.getNowPage()));
 		qna.setPid(pid);
+		qna.hp.setTotal(qm.qtotal(qna));
+		mm.addAttribute("pid", pid);
 		List<HmQnaDTO> myqnalist = qm.queList(qna);
-		
 		mm.addAttribute("myqnalist", myqnalist);
+		mm.addAttribute("hp", qna.hp);
+		
+		System.out.println(hp);
 		
 		return "user/question/queList";
 	}
 	
-	@RequestMapping("/user/question/a/{ano}")
-	String dbListPname(HttpSession session, Model mm, HmQnaDTO qna) {
+	@RequestMapping("/user/question/a/{ano}/{nowPage}")
+	String dbListPname(HttpSession session, Model mm, HmQnaDTO qna, HmPData hp) {
 		String pid = (String)session.getAttribute("pid");
 		mm.addAttribute("pid", pid);
+		qna.setHp(new HmPData(5,5, hp.getNowPage()));
 		qna.setPid(pid);
+		qna.hp.setTotal(qm.qtotal(qna));
 		List<HmQnaDTO> myqnalist = qm.ab(qna);
 		//System.out.println("mainData:"+mainData);
 		mm.addAttribute("myqnalist", myqnalist);
+		mm.addAttribute("hp", qna.hp);
 		return "user/question/queList";
 	}
 	
@@ -117,7 +124,7 @@ public class HmQuestionController {
 			qm.queDelete(qna);
 			
 			mm.addAttribute("msg","질문이 삭제되었습니다.");
-			mm.addAttribute("goUrl","/user/question/queList");
+			mm.addAttribute("goUrl","/user/question/queList/1");
 			
 			return "user/question/alert";
 		}

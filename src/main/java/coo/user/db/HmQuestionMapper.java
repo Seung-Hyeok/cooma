@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+
 @Mapper
 public interface HmQuestionMapper {
 	//질문등록
@@ -24,4 +25,6 @@ public interface HmQuestionMapper {
 	
 	//질문삭제
 	void queDelete(HmQnaDTO dsf);
+	
+	int qtotal(HmQnaDTO nnng);
 }

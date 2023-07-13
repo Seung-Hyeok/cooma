@@ -28,8 +28,8 @@ layout:decorate="total/userTemp">
 	
 	<tr>
 		<td colspan="5">
-			<a href="/user/question/a/1">답변완료</a>
-			<a href="/user/question/a/2">미답변</a>
+			<a href="/user/question/a/1/1">답변완료</a>
+			<a href="/user/question/a/2/1">미답변</a>
 		</td>
 	</tr>
 	
@@ -48,6 +48,18 @@ layout:decorate="total/userTemp">
 		<td th:if="${dto.getAnswer != null}" th:text="답변완료"/>
 		<td th:if="${dto.getAnswer == null}" th:text="답변확인중"/>
 	</tr>
+	
+	<tr> 
+		<td colspan="5" align="center" >
+			<th:block th:if="${hp.startPage > 1}"><a th:href="${hp.nowPage-1}" th:text="이전"></a></th:block>
+				<span th:each="p : ${#numbers.sequence(hp.startPage, hp.endPage, 1)}" th:href="${p}">
+					<th:block th:if="${hp.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
+					<th:block th:unless="${hp.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
+				</span>
+			<th:block th:if="${hp.endPage < hp.totalPage}"><a th:href="${hp.endPage+1}" th:text="다음"></a></th:block>
+		</td>
+	</tr>
+	
 	<tr>
 		<td colspan="5" align="right">
 			<a th:href="|/user/myPage/memPage|" th:text="뒤로" />
