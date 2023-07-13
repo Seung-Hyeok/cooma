@@ -26,6 +26,8 @@ public class ShUserNoticeController {
 		mm.addAttribute("mainData", mainData);
 		mm.addAttribute("pd", pd);
 		
+		System.out.println(pd);
+		
 		return "user/notice/usernotice";
 	}
 	

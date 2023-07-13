@@ -34,6 +34,7 @@ public class ShAdminNoticeController {
 		
 		mm.addAttribute("mainData", mainData);
 		mm.addAttribute("pd", pd);
+		System.out.println(pd);
 		
 		return "admin/notice/adnotice";
 	}
@@ -129,10 +130,16 @@ public class ShAdminNoticeController {
 		System.out.println(dto);
 		System.out.println(dto.getNum());
 		System.out.println(dto.getNoticeImg());
-		System.out.println(dto.getPhotoFile());
+		System.out.println(dto.getNoticeImg().getOriginalFilename());
 		
-		String res = fileSave(dto.getNoticeImg(), request);
-        dto.setPhotoFile(res);
+		if(dto.getNoticeImg().getOriginalFilename().isEmpty()) {
+			dto.setPhotoFile("");
+		}else {
+			String res = fileSave(dto.getNoticeImg(), request);
+	        dto.setPhotoFile(res);
+		}
+		
+		
 		nm.insert(dto);
 		mm.addAttribute("msg", "입력되었습니다.");
 		mm.addAttribute("goUrl", "/admin/notice/detail/"+dto.getNum());
