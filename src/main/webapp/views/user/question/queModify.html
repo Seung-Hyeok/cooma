@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>queModify</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/memPage">내정보</a>
+<a href="/user/myPage/dogJoinChk">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
+<h1>문의 수정</h1>
+<form method="post" th:object="${myqna}">
+	<table border="">
+	<input type="hidden" th:field="*{no}"/>
+		<tr>
+			<td>제목</td>
+			<td><input type="text" th:field="*{title}"/></td>
+		</tr>
+		<tr>
+			<td>아이디</td>
+			<td th:text="${myqna.pid}" />
+		</tr>
+		<tr>
+			<td>내용</td>
+			<td><textarea th:field="*{content}"/></td>
+		</tr>
+		<!-- <tr>
+			<td>작성일</td>
+			<td th:text="${myqna.reg_date}" />
+		</tr> -->
+		<tr>
+			<td colspan="2" align="center"> 
+				<input type="submit" value="수정" />
+				<a th:href="|/user/question/queList|" th:text="뒤로"/>
+			</td>
+		</tr>
+	</table>
+</form>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>
