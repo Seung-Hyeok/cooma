@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org/DTD Mapper3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="coo.user.db.HmQuestionMapper">
+	<insert id="queInsert" parameterType="hmQnaDTO">
+		insert into qna (title, content, cnt, reg_date, pid) 
+		values
+		(#{title}, #{content}, 0, sysdate(), #{pid})
+	</insert>
+	
+	<select id="maxNo" resultType="Integer">
+			select max(no) from qna
+	</select>
+	
+	<select id="queList" parameterType="hmQnaDTO" resultType="hmQnaDTO">
+	  SELECT * FROM qna
+	  <where>
+	    <if test="sch != null and !sch.isEmpty()">
+	      AND title LIKE CONCAT('%', #{sch}, '%')
+	    </if>
+	    <if test="pid != null">
+	      AND pid = #{pid}
+	    </if>
+	  </where>
+	  ORDER BY reg_date DESC limit #{hp.start}, #{hp.limit}
+	</select>
+	
+	<select id="ab" parameterType="hmQnaDTO" resultType="hmQnaDTO">
+	  SELECT * FROM qna 
+	  <where>
+	    <choose>
+	      <when test="ano == 1">
+	        AND getAnswer IS NOT NULL
+	      </when>
+	      <otherwise>
+	        AND getAnswer IS NULL
+	      </otherwise>
+	    </choose>
+	    <if test="sch != null and !sch.isEmpty()">
+	      AND title LIKE CONCAT('%', #{sch}, '%')
+	    </if>
+	    <if test="pid != null">
+	      AND pid = #{pid}
+	    </if>
+	  </where>
+	  ORDER BY reg_date DESC limit #{hp.start}, #{hp.limit}
+</select>
+	
+	<select id="queDetail" parameterType="hmQnaDTO" resultType="hmQnaDTO">
+		select * from qna where pid = #{pid} and no = #{no}
+	</select>
+	
+	<update id="queModify" parameterType="hmQnaDTO">
+		update qna set title =  #{title}, content = #{content}
+		where pid = #{pid} and no = #{no}
+	</update>
+	
+	<update id="cntPlus" parameterType="hmQnaDTO">
+		update qna set cnt =  cnt+1
+		where pid = #{pid} and no = #{no}
+	</update>
+	
+	<delete id="queDelete"  parameterType="hmQnaDTO">
+		delete from qna where pid = #{pid} and no = #{no}
+	</delete>
+	
+	<select id="qtotal" parameterType="hmQnaDTO"> 
+		select count(*) from qna
+		<where>
+				<trim prefix=" " suffixOverrides ="and | or">
+					<if test="sch != null">
+						title like concat('%',#{sch},'%')
+					</if>
+				</trim>
+				<if test="pid != null">
+			      AND pid = #{pid}
+			    </if>
+			    <if test="ano == 1">
+			      AND getAnswer IS NOT NULL
+			    </if>
+			    <if test="ano == 2">
+			      AND getAnswer IS NULL
+			    </if>
+			</where>
+	</select>
+</mapper>

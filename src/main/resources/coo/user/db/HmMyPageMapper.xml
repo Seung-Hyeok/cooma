@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	
 	<select id="dogList" parameterType="hmDogsDTO" resultType="hmDogsDTO">
 		select * from dogs where pid = #{pid}
-	</select>
+	</select> 
 	
 	<select id="dogDetail" parameterType="hmDogsDTO" resultType="hmDogsDTO">
 		select * from dogs where dname = #{dname} and pid = #{pid}

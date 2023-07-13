@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>questionInsert</title>
+</th:block>
+
+<th:block layout:fragment="content">
+<div class="myPageMenu">
+<a href="/user/myPage/memPage">내정보</a>
+<a href="/user/myPage/dogJoinForm">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+<a href="/user/question/questionInsert">1:1 문의</a>
+</div>
+<h1>질문작성</h1>
+<form method="post" th:object="${hmQnaDTO}">
+	<table border="">
+		<tr>
+			<td>제목</td>
+			<td><input type="text" th:field="*{title}" /></td>
+		</tr>
+		<tr>
+			<td>아이디</td>
+			<td>[[${pid}]]</td>
+		</tr>
+		<tr>
+			<td>문의 내용</td>
+			<td>
+				<textarea th:field="*{content}"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align=center>
+				<a th:href="|/user/question/queList/1|" th:text="뒤로" />
+				<input type="submit" value="등록하기" />
+			</td>
+		</tr>
+	</table>
+</form>
+</th:block>
+<th:block layout:fragment="add-content">
+</th:block>
+</html>
