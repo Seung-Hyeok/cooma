@@ -46,8 +46,14 @@ layout:decorate="total/adTemp">
 			</tr>
 			<tr th:each="dto, dtoStat: ${bhDogsReser}">
 				<td th:text="${dtoStat.index+1}"/>
-				<td><a th:href="|/admin/dogsReser/${dto.reserNo}|" 
-				th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+')'"/></td>
+				<th:block th:if="${dto.edu.equals('-')}">
+					<td><a th:href="|/admin/dogsReser/${dto.reserNo}|" 
+					th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - 교육없음'"/></td>
+				</th:block>
+				<th:block th:unless="${dto.edu.equals('-')}">
+					<td><a th:href="|/admin/dogsReser/${dto.reserNo}|" 
+					th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - '+${dto.edu}"/></td>
+				</th:block>
 			</tr>
 
 		<tr>

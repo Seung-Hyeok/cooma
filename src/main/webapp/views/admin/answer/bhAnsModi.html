@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_문의답변</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	<h2>1:1 문의 답변</h2>
+
+	<form method="post" th:object="${bhAnsData}">
+		<table border="" align="center">
+			<tr>
+				<td>작성자</td><td th:text="${bhAnsData.pid}"/>
+			</tr><tr>
+				<td>질문등록일</td><td th:text="${bhAnsData.reg_dateStr()}" />
+			</tr><tr>
+				<td>제목</td><td th:text="${bhAnsData.title}" />
+			</tr><tr>
+				<td>조회수</td><td th:text="${bhAnsData.cnt}" />
+			</tr><tr>
+				<td>내용</td><td th:text="${bhAnsData.content}"/>
+			</tr>
+			
+			<tr><td colspan="2"> --- 답변 --- </td></tr>
+			
+			<tr>
+				<td>답변</td>
+				<td><input type="text" th:field="*{getAnswer}"  /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="수정" />
+					<input type="reset" value="초기화" />
+					<a th:href="|/admin/answer/${bhAnsData.no}|" th:text="뒤로" ></a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+</html>

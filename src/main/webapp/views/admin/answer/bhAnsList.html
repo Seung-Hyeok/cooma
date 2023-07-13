@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="total/adTemp">
+
+<th:block layout:fragment="adTitle">
+	<title>관리자_질문리스트</title>
+</th:block>
+
+<th:block layout:fragment="adContent">
+	<h2>1:1 질문</h2>
+	<div>
+		<table border="" align="center">
+<!--검색폼-->
+			<form action="" th:object="${bhQnADTO}">
+				<tr>
+					<td colspan="7" align="center">
+						<select th:field="*{kind}">
+							<option value="title">제목</option>
+							<option value="content">내용</option>
+							<option value="pid">회원아이디</option>
+						</select>
+						<input type="text" th:field="*{sch}"/>
+						<input type="submit" value="검색" />
+					</td>
+				</tr>
+			</form>
+			
+			<tr>
+				<td>번호</td>
+				<td>제목</td>
+				<td>질문작성자</td>
+				<td>질문등록일</td>
+				<td>상태</td>
+			</tr>
+			<tr th:each="dto, dtoStat: ${bhAnsData}">
+				<td th:text="${dtoStat.index+1}"/>
+				<td><a th:href="@{|/admin/answer/${dto.no}|}" th:text="${dto.title}"/></td>
+				<td th:text="${dto.pid}"/>
+				<td th:text="${dto.reg_dateStr()}"/>
+				<td th:text="${dto.AnsOrNot()}"/>
+			</tr>
+		</table>
+		
+	</div>
+
+</th:block>
+
+<th:block layout:fragment="adAdd-content">
+</th:block>
+
+</html>

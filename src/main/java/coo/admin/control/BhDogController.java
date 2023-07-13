@@ -89,6 +89,7 @@ public class BhDogController {
 		System.out.println("bhDogDeleteForm() 진입");
 		return "admin/dogs/bhDogDeleteForm";
 	}
+	
 //애견 삭제완료
 	@PostMapping("/dogDelete/{dname}/{pid}")
 	String bhDogDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog) {
