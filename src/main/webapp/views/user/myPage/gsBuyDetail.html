@@ -30,9 +30,16 @@ layout:decorate="total/userTemp">
 			종료 날짜 : <span th:text="${myDetail.endD}"></span></br>
 			요일 : <span th:text="${myDetail.weeks}"></span> </br>
 			요청사항 : <span th:text="${myDetail.reque}"></span> </br>
-			출석현황 : <span th:text="${att}"></span> </br>
+			이용권 가격 : <span th:text="${myDetail.pay}"></span>원</br>
+			정규 교육 가격 : <span th:text="${myDetail.eduFee}"></span>원</br>
+			총 가격 : <span th:text="${myDetail.totFee}"></span>원</br>
+			<th:block th:if="${myDetail.refund != 0}">
+			환불 가격 : <span th:text="${myDetail.refund}"></span>원</br>
+			</th:block>
+			출석 현황 : <span th:text="${att}"></span> </br>
 			<a th:href="@{|/user/myPage/myAttend/${myDetail.reserNo}|}" >출석표 보기</a></br>
 		</div>	
+		<th:block th:if="${myDetail.refund == 0}">
 		<h2>
 			------------------환불 약정------------------
 		</h2>
@@ -47,7 +54,10 @@ layout:decorate="total/userTemp">
 			50% 이하 이용 시 환불   20%</br>
 			50% 이상 이용 시 환불불가 </br>
 		</h3>
-		<a th:href="@{|/user/myPage/myRefund/${myDetail.reserNo}|}" >환불</a></br></br>
+		
+		<th:block th:if="${myDetail.refund == 0}">
+			<a th:href="@{|/user/myPage/myRefund/${myDetail.reserNo}|}" >환불</a></br></br>
+		</th:block>
 </th:block>
 
 <th:block layout:fragment="add-content">

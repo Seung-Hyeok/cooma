@@ -91,7 +91,7 @@ public class GsSchoolController {
 		drto.setPid(pid);
 		System.out.println("gsFin 진입");
 		System.out.println("drto"+drto);
-		grm.buy(drto);
+		
 		Date start = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -100,9 +100,21 @@ public class GsSchoolController {
         // Calendar 객체 생성 및 기준 날짜 설정
         Calendar calendar = Calendar.getInstance();
         int ggap = drto.getGap();
+        
+        if(drto.getWeeks().equals("0")) {
+        	System.out.println("일일권 진입~~~~~~~~");
+        	int kk = start.getDay();
+        	System.out.println("kk"+kk);
+        	String weeks = "일월화수목금토";
+        	System.out.println("weeks.split(\"\")[kk]:"+weeks.split("")[kk]);
+        	drto.setWeeks(weeks.split("")[kk]);
+		}
+        grm.buy(drto);
+        if(ggap ==0) {
+        	drto.setOneDay(start);
+        	grm.dayBuy(drto);
+        }
 		while(ggap!=0) {
-			
-			
 			calendar.setTime(start);
 			int wkChk = calendar.get(Calendar.DAY_OF_WEEK);
 			String weeks = "토일월화수목금토";

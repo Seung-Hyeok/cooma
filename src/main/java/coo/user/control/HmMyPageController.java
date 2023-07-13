@@ -164,11 +164,11 @@ public class HmMyPageController {
 		String dogJoinComplete(HttpServletRequest request, HttpSession session, Model mm, HmDogsDTO dto, HmMemberDTO member, HmFileData fd) {
 			String pid = (String)session.getAttribute("pid");
 			dto.setPid(pid);
-			//dto.setPhoto(fd.getDogimg().getOriginalFilename());
+			
 			
 			HmMemberDTO memData = mp.my(pid);
 			String res = fileSave(fd.getDogimg(), request);
-			dto.setPhoto(res);
+            dto.setPhoto(res);
 			mp.insertDog(dto);
 			
 			if(memData.getDog1()==null || memData.getDog1().equals("")) {
@@ -185,7 +185,7 @@ public class HmMyPageController {
 			}
 			
 			mm.addAttribute("msg","강아지 등록이 완료되었습니다.");
-			mm.addAttribute("goUrl","/user/myPage/dogDetail/"+dto.getDname());
+			mm.addAttribute("goUrl","/user/myPage/dogList");
 			return "user/myPage/alert";
 		}
 	
@@ -247,7 +247,7 @@ public class HmMyPageController {
 		}
 		else {
 			String res = fileSave(fd.getDogimg(), request);
-			dto.setPhoto(res);
+            dto.setPhoto(res);
 		}
 		
 		mp.dogModify(dto);
@@ -324,29 +324,29 @@ public class HmMyPageController {
 	}
 	
 	//사진저장///////////////////////////////////////
-	String fileSave(MultipartFile mf,	HttpServletRequest request) {
-		String path = request.getServletContext().getRealPath("dimg")+"/";
-		//System.out.println(path);
-		String res = mf.getOriginalFilename();
-		File ff = new File(path+res);
-		int pos = res.lastIndexOf(".");
-		String fName = res.substring(0,pos);
-		String ext = res.substring(pos);
-		int  no = 0;
-		while(ff.exists()) {
-			no++;
-			res = fName+no+ext;
-			ff = new File(path+res);
-		}
-		try {
-			FileOutputStream fos = new FileOutputStream(ff);
-			fos.write(mf.getBytes());
-			fos.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return res;
-	}
+    String fileSave(MultipartFile mf,    HttpServletRequest request) {
+        String path = request.getServletContext().getRealPath("dimg")+"/";
+        //System.out.println(path);
+        String res = mf.getOriginalFilename();
+        File ff = new File(path+res);
+        int pos = res.lastIndexOf(".");
+        String fName = res.substring(0,pos);
+        String ext = res.substring(pos);
+        int  no = 0;
+        while(ff.exists()) {
+            no++;
+            res = fName+no+ext;
+            ff = new File(path+res);
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(ff);
+            fos.write(mf.getBytes());
+            fos.close();
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return res;
+    }
 }
