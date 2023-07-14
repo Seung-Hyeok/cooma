@@ -33,6 +33,13 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		</where>
 	</update>
 	
+	<delete id="dayRefun" parameterType="gsrDTO">
+		delete from daybyday 
+		<where>
+			reserNo = #{reserNo} and oneDay > sysdate()
+		</where>
+	</delete>
+	
 	
 	<select id="attend" parameterType="gsrDTO" resultType="int">
 		select count(*) from daybyday 

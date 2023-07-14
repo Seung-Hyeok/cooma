@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultroq.net.nz/thymeleaf/layout"
+layout:decorate="total/userTemp">
+<th:block layout:fragment="title">
+<title>queDetail</title>
+</th:block>
+<th:block layout:fragment="content">
+<script th:inline="javascript">
+        function deleteConfirm() {
+          var result = confirm("질문을 삭제하시겠습니까?");
+
+          if (result) {
+            // 확인을 선택한 경우 처리할 작업
+
+            location.href="/user/question/queDelete/"+[[${myqna.no}]];
+
+
+          } else {
+            // 취소를 선택한 경우 처리할 작업
+            alert("취소하였습니다");
+          }
+        }
+</script>
+<div class="myPageMenu">
+<a href="/user/myPage/memPage">내정보</a>
+<a href="/user/myPage/dogJoinChk">애견등록</a>
+<a href="/user/myPage/dogList">내애견리스트</a>
+<a href="/user/myPage/gsMyList">내 이용권</a>
+</div>
+<h1>질문</h1>
+<table border="">
+	<tr>
+		<td>제목</td><td th:text="${myqna.title}" />
+	</tr>
+	<tr>
+		<td>아이디</td><td th:text="${myqna.pid}" />
+	</tr>
+	<tr>
+		<td>내용</td><td th:text="${myqna.content}" /> 
+	</tr>
+	<tr>
+		<td>작성일</td><td th:text="${myqna.rDate()}" />
+	</tr>
+	<tr>
+		<td>조회수</td><td th:text="${myqna.cnt}" />
+	</tr>
+	<tr th:if="${myqna.getAnswer != null}">
+		<td>담당자</td><td th:text="${myqna.adminId}" />
+	</tr>
+	<tr th:if="${myqna.getAnswer != null}">
+		<td>답변</td><td th:text="${myqna.getAnswer}" />
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+			<a th:href="|/user/question/queList/1|" th:text="목록으로" />
+			<a th:if="${myqna.getAnswer == null}" th:href="|/user/question/queModify/${myqna.no}|" th:text="수정"/>
+			<button onclick="deleteConfirm()">삭제</button>
+		</td>
+	</tr>
+</table>
+</th:block>
+
+<th:block layout:fragment="add-content">
+</th:block>
+</html>

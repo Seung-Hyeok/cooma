@@ -10,11 +10,11 @@ layout:decorate="total/adTemp">
 <th:block layout:fragment="adContent">
 	
 	<h3>공지등록</h3>
-	<form method="post" th:object="${shNoticeDTO}">
+	<form method="post" th:object="${shNoticeDTO}" enctype="multipart/form-data">
 		<table border="">
 			<tr>
 				<td>제목</td>
-				<td><input type="text" th:field="*{title}" style="width:715px"/></td>
+				<td><input type="text" th:field="*{title}" style="width:715px" required/></td>
 			</tr>
 			<tr>
 				<td>작성자</td>
@@ -22,7 +22,7 @@ layout:decorate="total/adTemp">
 			</tr>
 			<tr>
 				<td>이미지</td>
-				<td><input type="file" th:field="*{photoFile}"/></td>
+				<td><input type="file" th:field="*{noticeImg}"/></td>
 			</tr>
 			<tr>
 				<td>내용</td>

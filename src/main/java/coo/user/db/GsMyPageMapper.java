@@ -20,5 +20,7 @@ public interface GsMyPageMapper {
 	
 	int myRefun(GsReserDTO dashkjdh);
 	
+	void dayRefun(GsReserDTO dashkjdh);
+	
 	int attend(GsReserDTO kk);
 }

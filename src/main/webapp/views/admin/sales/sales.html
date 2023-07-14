@@ -68,19 +68,27 @@ startDateInput.addEventListener("change", function() {
 			<td colspan="9" th:text="|${tf} - ${rf} = ${tot}|"></td>
 		</tr>
 	</table>
+	<div  class="shsales">
+		<div class="shsales2" th:each="dto, dtostat : ${mainData}" >
+			<div th:text="${dto.reserNo}" style="width:36px;"></div>
+			<div th:text="${dto.pid}"style="width:70px;"></div>
+			<div th:text="${dto.dname}"style="width:70px;"></div>
+			<div th:text="|${dto.kind} (${dto.gap()})|" style="width:120px;"></div>
+			<div th:text="${dto.edu}" style="width:70px;"></div>
+			<div th:text="${dto.pDate()}"></div>
+			<div th:text="${dto.pay()}" style="width:70px;"></div>
+			<div th:text="${dto.epay()}" style="width:60px;"></div>
+			<div th:text="${dto.tpay()}" style="color:blue; width:70px;"></div>
+			<th:block th:if="${dto.refund().isEmpty()}">
+				<div th:text="0" style="color:#eee; width:70px; "></div>
+			</th:block>
+			<th:block th:unless="${dto.refund().isEmpty()}">
+				<div th:text="${dto.refund()}" style="color:red; width:70px; "></div>
+			</th:block>
+			
+		</div>
+	</div>
 	
-	<!-- <div class="shsales" style="border:1px solid#000; overflow:auto" th:each="dto, dtostat : ${mainData}" >
-		<div th:text="${dto.reserNo}"></div>
-		<div th:text="${dto.pid}"></div>
-		<div th:text="${dto.dname}"></div>
-		<div th:text="|${dto.kind} (${dto.gap()})|"></div>
-		<div th:text="${dto.edu}"></div>
-		<div th:text="${dto.pDate()}"></div>
-		<div th:text="${dto.pay()}"></div>
-		<div th:text="${dto.epay()}"></div>
-		<div th:text="${dto.tpay()}" style="color:blue;"></div>
-		<div th:text="${dto.refund()}" style="color:red;"></div>
-	</div> -->
 </th:block>
 
 <th:block layout:fragment="adAdd-content">

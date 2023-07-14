@@ -55,7 +55,7 @@ public class ShSalesController {
 		mm.addAttribute("pd", pd);
 		
 		System.out.println(pd);
-		
+	
 		return "admin/sales/sales";
 	}
 	
