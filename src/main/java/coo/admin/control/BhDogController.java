@@ -44,8 +44,9 @@ public class BhDogController {
 		System.out.println("bhDogDetail() 진입");
 		mo.addAttribute("bhDogData", dm.bhDogDetail(dog));
 		BhMemDTO bhMemData = dm.bhDogsMem(dog);
-		mo.addAttribute("bhMemData", bhMemData);
+		mo.addAttribute("bhMemData", bhMemData); //회원 이름 정보 가져오기
 		mo.addAttribute("beforePage", session.getAttribute("beforePage"));
+		//애견 예약 정보
 		List<BhAttendReserDTO> bhDogsReser = dm.bhDogsReser(dog);
 		mo.addAttribute("bhDogsReser",bhDogsReser);
 		

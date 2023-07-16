@@ -1,5 +1,7 @@
 package coo.admin.db;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import org.apache.ibatis.type.Alias;
 import lombok.Data;
@@ -29,6 +31,7 @@ public class BhMemDTO {
 	String pid, pw, pname, tel, addr1, addr2, email, grade, dog1, dog2, dog3, sch, dname;
 	Date birth, reg_date;
 	Integer dogCnt;
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	public int dogTotalCnt() {
 		int i = 0;
@@ -40,6 +43,16 @@ public class BhMemDTO {
 
 	public BhMemDTO() {
 		super();
+	}
+	
+	public String birthStr() {
+		String dayStr = sdf.format(birth);
+		return dayStr;
+	}
+	
+	public String reg_dateStr() {
+		String dayStr = sdf.format(reg_date);
+		return dayStr;
 	}
 	
 }

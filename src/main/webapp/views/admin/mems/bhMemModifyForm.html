@@ -9,7 +9,7 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
-	<h2 th:text="${bhMemData.pname}+' 고객님의 정보 수정'"> </h2>
+	<h2 class="bhH2" th:text="${bhMemData.pname}+' 고객님의 정보 수정'"> </h2>
 	
 	<form method="post" th:object="${bhMemData}">
 		<table border="" align="center">

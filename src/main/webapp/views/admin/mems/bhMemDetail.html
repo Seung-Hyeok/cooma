@@ -9,7 +9,7 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
-	<h2 th:text="${bhMemData.pname}+' 고객님의 정보'"> </h2>
+	<h2 class="bhH2" th:text="${bhMemData.pname}+' 고객님의 정보'"> </h2>
 
 	<table border="" align="center">
 		<tr>
@@ -21,13 +21,13 @@ layout:decorate="total/adTemp">
 		</tr><tr>
 			<td>이메일</td><td colspan="3" th:text="${bhMemData.email}" />
 		</tr><tr>
-			<td>생년월일</td><td colspan="3" th:text="${bhMemData.birth}" />
+			<td>생년월일</td><td colspan="3" th:text="${bhMemData.birthStr()}" />
 		</tr><tr th:if="${!bhMemData.grade.equals('관리자')}">
 			<td>주소</td><td colspan="3" th:text="${bhMemData.addr1}+' '+${bhMemData.addr2}"/>
 		</tr><tr>
 			<td>등급</td><td colspan="3" th:text="${bhMemData.grade}"/>
 		</tr><tr th:if="${!bhMemData.grade.equals('관리자')}">
-			<td>가입일</td><td colspan="3" th:text="${bhMemData.reg_date}" />
+			<td>가입일</td><td colspan="3" th:text="${bhMemData.reg_dateStr()}" />
 		</tr>
 		<tr th:if="${!bhMemData.grade.equals('관리자')}">
 			<td>강아지</td>

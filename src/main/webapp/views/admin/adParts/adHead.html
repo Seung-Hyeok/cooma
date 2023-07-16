@@ -12,36 +12,47 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		margin: auto;
 		width: 1200px;
 		
-		border: 3px solid#000;
+		border: 1px solid#000;
 	}
 	.menu{
 		width: 1200px;
 		height: 100px;
-		border: 1px solid#0aa;
-		background: #aaa;
+		/*border: 1px solid#0aa;*/
+		
 	}
 	.main{
 		width: 1200px;
 		min-height: 1000px;
-		border: 1px solid#faa;
-		background: #eee;
+		/*border: 5px solid#216A35;*/
+		box-sizing: border-box;
+		
 		justify-content: space-evenly;
 	}
 
+	a{
+		text-decoration:none;
+	}
 
 	
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<div class="bhUserLog">
+<a href="/user" class="bhada">쿠키마루</a>
+<a href="/user/log/logout" th:if="${pid != null}" class="bhada">로그아웃</a>
+<a href="/user/log/login" th:if="${pid == null}" class="bhada">로그인</a>
+</div>
+
 <div class="menu">
 <th:block layout:fragment="adTitle"></th:block>
-<a href="/admin">관리자</a>
-<a href="/admin/member">회원관리</a>
-<a href="/admin/dogs">애견관리</a>
-<a href="/admin/reservation/1">이용권관리</a>
-<a href="/admin/sales/1">매출관리</a>
-<a href="/admin/notice/1">공지사항관리</a>
-<a href="/admin/answer">1:1 답변</a>
+<div><a href="/admin">관리자</a></div>
+<div><a href="/admin/member">회원</a></div>
+<div><a href="/admin/dogs">애견</a></div>
+<div><a href="/admin/reservation/1">이용권</a></div>
+<div><a href="/admin/sales/1">매출</a></div>
+<div><a href="/admin/notice/1">공지사항</a></div>
+<div><a href="/admin/answer">1:1 답변</a></div>
 </div>
+
 </head>

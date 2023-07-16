@@ -9,35 +9,35 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 
-	<div>
-		<div th:each="rd : ${days}">
-			<div><span th:text="${rd[0]+'월'}"/></div>
-			<div class="bhmonth">
-				<div th:each="dn : ${dayName.split('')}" th:text="${dn}"></div>
-				<div th:each="no : ${#numbers.sequence(1,rd[1],1)}"></div>
-    			<div th:each="no : ${#numbers.sequence(1,rd[2],1)}">
-					<span th:text="${no}"></span>
-					<th:block th:each="y : ${yes}">
-						<th:block th:if="${y.onedayM()==rd[0] and y.onedayD()==no}">
-							<span th:text="${'-등원: '+y.attendTime()}"></span>
-							<span th:text="${'-하원: '+y.goHome()}"></span>
-							<span th:text="${'-지각: '+y.penalty+'원'}" th:if="${y.penalty > 0}"></span>
-						</th:block>
+	
+	<div th:each="rd : ${days}" class="bhCalendar">
+		<div class="bhMonthHead"><span th:text="${rd[0]+'월'}"/></div>
+		<div class="bhmonth">
+			<div th:each="dn : ${dayName.split('')}" th:text="${dn}"></div>
+			<div th:each="no : ${#numbers.sequence(1,rd[1],1)}"></div>
+			<div th:each="no : ${#numbers.sequence(1,rd[2],1)}">
+				<span th:text="${no}" class="bhMonthNo"></span>
+				<th:block th:each="y : ${yes}">
+					<th:block th:if="${y.onedayM()==rd[0] and y.onedayD()==no}">
+						<span th:text="${'등원 '+y.attendTime()}" class="bhAtSpan"></span>
+						<span th:text="${'하원 '+y.goHome()}" class="bhAtSpan"></span>
+						<span th:text="${'지각 '+y.penalty+'원'}" th:if="${y.penalty > 0}" class="bhMMSpan"></span>
 					</th:block>
-					<th:block th:each="n : ${none}">
-						<th:block th:if="${n.onedayM()==rd[0] and n.onedayD()==no}">
-							<span>결석</span>
-						</th:block>
+				</th:block>
+				<th:block th:each="n : ${none}">
+					<th:block th:if="${n.onedayM()==rd[0] and n.onedayD()==no}">
+						<span class="bhEmSpan">결석</span>
 					</th:block>
-					<th:block th:each="ny : ${notyet}">
-						<th:block th:if="${ny.onedayM()==rd[0] and ny.onedayD()==no}">
-							<span th:text="'출석예정'"></span>
-						</th:block>
+				</th:block>
+				<th:block th:each="ny : ${notyet}">
+					<th:block th:if="${ny.onedayM()==rd[0] and ny.onedayD()==no}">
+						<span class="bhNySpan" th:text="'출석예정'"></span>
 					</th:block>
-				</div>
+				</th:block>
 			</div>
 		</div>
 	</div>
+	
 	
 </th:block>
 
