@@ -32,45 +32,40 @@ layout:decorate="total/adTemp">
 		<a href="/admin/refund/1">환불내역</a>
 	</div>
 	
-	<h3>이용권상세</h3>
-	<table border="" align="center" class="shdetail">
+	<h2 class="bhH2">이용권상세</h2>
+	<table align="center" class="shdetail">
 		<tr>
-			<td class="shtd">예약번호</td><td th:text="${mainData.reserNo}" class="shtd2"/>
+			<td class="shtd">예약번호</td><td th:text="|${mainData.reserNo}번|"  colspan="3" class="shtd2"/>
 		</tr><tr>
-			<td class="shtd">아이디</td><td th:text="${mainData.pid}" class="shtd2"/>
-		</tr><tr>
-			<td class="shtd">강아지이름</td><td th:text="${mainData.dname}" class="shtd2"/>
+			<td class="shtd">아이디</td><td th:text="${mainData.pid}" class="shtd2" />
+			<td class="shtd">강아지이름</td><td th:text="${mainData.dname}" class="shtd2" />
 		</tr><tr>
 			<td class="shtd">이용권종류</td><td th:text="|${mainData.kind} (${mainData.gap()})|" class="shtd2"/>
+			<td class="shtd">신청교육</td><td th:text="${mainData.edu}" class="shtd2"/>
 		</tr><tr>
-			<td class="shtd">교육</td><td th:text="${mainData.edu}" class="shtd2"/>
-		</tr><tr>
-			<td class="shtd">신청요일</td><td th:text="${mainData.weeks}" class="shtd2"/>
+			<td class="shtd">신청요일</td><td th:text="${mainData.weeks}" class="shtd2" colspan="3"/>
 		</tr><tr>
 			<td class="shtd">시작일</td><td th:text="${mainData.sDate()}" class="shtd2"/>
-		</tr><tr>
 			<td class="shtd">종료일</td><td th:text="${mainData.eDate()}" class="shtd2"/>
 		</tr><tr>
-			<td class="shtd">결제일</td><td th:text="${mainData.pDate()}" class="shtd2"/>
+			<td class="shtd">결제일</td><td th:text="${mainData.pDate()}" class="shtd2" colspan="3"/>
 		</tr><tr>
 			<!-- <td>결제카드</td><td th:text="${mainData.bank}"/>
 		</tr><tr>
 			<td>카드번호</td><td th:text="${mainData.account}"/>
 		</tr><tr> -->
 			<td class="shtd">이용권금액</td><td th:text="|${mainData.pay()}원|" class="shtd2"/>
-		</tr><tr>
 			<td class="shtd">교육비</td><td th:text="|${mainData.epay()}원|" class="shtd2"/>
 		</tr><tr>
-			<td class="shtd">총 결제금액</td><td th:text="|${mainData.tpay()}원|" style="color:red;" class="shtd2"/>
+			<td class="shtd">총 결제금액</td><td th:text="|${mainData.tpay()}원|" style="color:red;" class="shtd2" colspan="3"/>
 		</tr><tr>
-			<td class="shtdr">요청사항</td><td th:text="${mainData.reque}" class="shtd2"/>
+			<td class="shtdr">요청사항</td><td th:text="${mainData.reque}" class="shtd2" colspan="3"/>
 		</tr><tr>
-			<td colspan="2" align="center" class="shtt">
+			<td colspan="4" align="center" class="shtt" >
 				<button onclick="location.href='/admin/reservation/1'" >뒤로</button>
 				<button th:onclick="|window.location.href='/admin/modify/${mainData.reserNo}'|">수정</button>
 				<!-- <a th:href="|/admin/delete/${mainData.reserNo}|" th:text="예약취소"/> -->
 				<button onclick="showConfirmation()" id="shbb">이용권취소</button>
-				
 				
 			</td>
 		</tr>

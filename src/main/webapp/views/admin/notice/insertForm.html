@@ -9,24 +9,24 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
-	<h3>공지등록</h3>
+	<h2 class="bhH2">공지등록</h2>
 	<form method="post" th:object="${shNoticeDTO}" enctype="multipart/form-data">
-		<table border="" align="center" class="shdetail" style="width: 1000px;">
+		<table align="center" class="shdetail" style="width: 1000px;">
 			<tr>
 				<td class="shtd" align="center">제목</td>
-				<td><input type="text" th:field="*{title}" style="width:850px; height:40px;" required/></td>
+				<td class="shtd2"><input type="text" th:field="*{title}" style="width:850px; height:40px;" required/></td>
 			</tr>
 			<tr>
 				<td class="shtd" align="center">작성자</td>
-				<td>쿠키마루</td>
+				<td class="shtd2">쿠키마루</td>
 			</tr>
 			<tr>
 				<td class="shtd" align="center">이미지</td>
-				<td><input type="file" th:field="*{noticeImg}"/></td>
+				<td class="shtd2"><input type="file" th:field="*{noticeImg}"/></td>
 			</tr>
 			<tr>
 				<td class="shtdr">내용</td>
-				<td><textarea th:field="*{content}" cols="120" rows="20"/></td>
+				<td class="shtd2"><textarea th:field="*{content}" cols="120" rows="20"/></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="shtt"> 

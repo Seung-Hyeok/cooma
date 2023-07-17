@@ -1,6 +1,16 @@
 	.shresermenu{
-		border: 1px solid#000;
+		width: 100%;
+		height: 30px;
 	}
+	
+	.shresermenu > a{
+		margin-left:50px;
+		font-size: 1.2em;
+		text-align: center;
+		color: #216A35;
+		font-weight: bold;
+	}
+	
 	.shsales{
 		margin: auto;
 		overflow: auto;
@@ -38,7 +48,8 @@
 	}
 	.shtable select{
 	    width: 120px;
-	   /*  padding: 5px 5px 5px 5px; */
+	    height: 30px;
+	    padding: 5px 5px 5px 5px;
 	    border-radius: 4px;
 	    font-size: 1em;
 	}
@@ -50,6 +61,10 @@
 		font-weight: bold;
 		color: #fff;
 		background-color: #438c57;
+	}
+	.shtitle > td{
+		border: 1px solid#fff;
+
 	}
 	.shp{
 		color: #fff;
@@ -65,33 +80,35 @@
 		font-weight: bold;
 	}
 	.shdetail{
-		border: 2px solid#438c57; 
-		border-radius: 10px;
-		width: 600px;
-	}
-	.shtd{
-		border: solid#438c57; 
-		color: #fff;
-		background-color: #438c57;
-		border-radius: 5px;
-		width: 120px;
-	}
-	.shtd2{
-		border: 1px solid#438c57; 
-		border-radius: 5px;
-		font-weight: bold;
+		width: 60%;
+		border-top: 1px solid #444444;
+		border-left:none;
+		border-right:none;
+		border-collapse: collapse;
 		text-align: center;
 	}
-	.shtdr{
-		border:solid#438c57; 
+	.shtd{
+		border-bottom: 1px solid #444444;
+		height: 50px;
 		color: #fff;
-		border-radius: 5px;
+		background-color: #438c57;
+		font-weight: bold;
+	}
+	.shtd2{
+		border-bottom: 1px solid #444444;
+		font-weight: bold;
+		text-align: center;
+		width: 200px;
+	}
+	.shtdr{
+		border-bottom: 1px solid #444444;
+		color: #fff;
 		background-color: #438c57;
 		height: 200px;
 		text-align: center;
 	}
 	.shtt{
-		border:none;
+		border-bottom: 1px solid #444444;
 		height: 50px;
 	}
 	
@@ -111,6 +128,13 @@
 	.shaa{
 		text-decoration: none;
 		color: #216A35;
+		padding: 0.1rem 0.6rem;
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-size :  1rem;
+		font-weight: bold;
 	}
 	.shzz{
 		width: 80px;

@@ -25,14 +25,14 @@ startDateInput.addEventListener("change", function() {
 		<a href="/admin/statistics">매출통계</a>
 	</div>
 	
-	<h3>매출내역</h3>
+	<h2 class="bhH2">매출내역</h2>
 
-	<table border="" align="center" style="width:1020px;" class="shtable">
+	<table align="center" style="width:1020px;" class="shtable">
 		<form action="" th:object="${PData}" >
 			<tr>
 				<td colspan="10" align="right" style="height:35px;">
-					매출 조회 기간 <input type="date" id="start" th:field="*{startD}"/>~
-                	<input type="date" id="end" th:field="*{endD}" />
+					매출 조회 기간 <input type="date" id="start" th:field="*{startD}" data-placeholder="연-월-일" class="bhDate" required style="width:120px"/>~
+                	<input type="date" id="end" th:field="*{endD}" data-placeholder="연-월-일" class="bhDate" required  style="width:120px"/>
                 	<input type="submit" value="검색" class="shb">
 					
 				</td>
@@ -52,7 +52,7 @@ startDateInput.addEventListener("change", function() {
 		</tr>
 	</table>
 	<div  class="shsales">
-			<div class="shsales2" th:each="dto, dtostat : ${mainData}">
+			<div class="shsales2" th:each="dto, dtostat : ${mainData}" style="height:32px;">
 				<div th:text="${dto.reserNo}" style="width:58px;"></div>
 				<div th:text="${dto.pid}"style="width:84px;"></div>
 				<div th:text="${dto.dname}"style="width:108px;"></div>
@@ -63,7 +63,7 @@ startDateInput.addEventListener("change", function() {
 				<div th:text="${dto.epay()}" style="width:45px;"></div>
 				<div th:text="${dto.tpay()}" style="color:blue; width:123px; font-weight: bold;"></div>
 				<th:block th:if="${dto.refund().isEmpty()}">
-					<div th:text="0" style="color:#eee; width:70px; "></div>
+					<div th:text="0" style="color:#fff; width:70px; "></div>
 				</th:block>
 				<th:block th:unless="${dto.refund().isEmpty()}">
 					<div th:text="${dto.refund()}" style="color:red; width:70px; font-weight: bold; "></div>
@@ -71,18 +71,18 @@ startDateInput.addEventListener("change", function() {
 				
 			</div>
 		</div>
-	<table border="" align="center" style="width:1020px;" class="shtable">
+	<table align="center" style="width:1020px;" class="shtable">
 		<tr>
-			<td colspan="5" th:text="결제금액" style="border-right:1px solid#438c57; height:30px; font-weight: bold;"></td>
-			<td colspan="9" th:text="|+${tf}|" style="color:blue; font-weight: bold;" ></td>
+			<td colspan="5" th:text="결제금액" style="border-right:1px solid#438c57; height:30px; font-weight: bold; border-bottom: 1px solid#438c57;"></td>
+			<td colspan="9" th:text="|+${tf}|" style="color:blue; font-weight: bold; border-bottom: 1px solid#438c57;" align="right"></td>
 		</tr>
 		<tr>
-			<td colspan="5" th:text="환불금액" style="border-right:1px solid#438c57; height:30px; font-weight: bold;"></td>
-			<td colspan="9" th:text="|-${rf}|" style="color:red; font-weight: bold;"></td>
+			<td colspan="5" th:text="환불금액" style="border-right:1px solid#438c57; height:30px; font-weight: bold; border-bottom: 1px solid#438c57;"></td>
+			<td colspan="9" th:text="|-${rf}|" style="color:red; font-weight: bold; border-bottom: 1px solid#438c57;" align="right"></td>
 		</tr>
 		<tr>
-			<td colspan="5" style="border-right:1px solid#438c57; height:50px;  font-weight: bold;">총 매출액</td>
-			<td colspan="9" th:text="|${tot}원|" style="color:blue; font-weight: bold; font-size:1.2rem;"></td>
+			<td colspan="5" style="border-right:1px solid#438c57; height:50px;  font-weight: bold; border-bottom: 1px solid#438c57;">총 매출액</td>
+			<td colspan="9" th:text="|${tot}원|" style="color:blue; font-weight: bold; font-size:1.2rem; border-bottom: 1px solid#438c57;" align="right"></td>
 		</tr>
 	</table>
 	

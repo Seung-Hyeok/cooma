@@ -16,9 +16,9 @@ layout:decorate="total/adTemp">
 		<a href="/admin/endreservation/1">만료이용권내역</a>
 		<a href="/admin/refund/1">환불내역</a>
 	</div>
-	<h3>이용권리스트</h3>
+	<h2 class="bhH2">이용권리스트</h2>
 	
-	<table align="center" border="" class="shtable">
+	<table align="center" class="shtable">
 		<form action="" th:object="${PData}" method="post">
 			<tr >
 				<td colspan="10" align="right" style="height:35px;">
@@ -27,7 +27,7 @@ layout:decorate="total/adTemp">
 						<option value="pid" >아이디</option>
 						<option value="kind">이용권종류</option>
 					</select>
-					<input type="text" th:field="*{sch}" /> 
+					<input type="text" th:field="*{sch}" class="bhInput"/> 
 					
 					<input type="submit" value="검색" class="shb" />
 				</td>
@@ -47,7 +47,7 @@ layout:decorate="total/adTemp">
 			<td>상태</td>
 			
 		</tr>
-		<tr th:each="dto, dtostat : ${mainData}" style="height:30px;">
+		<tr th:each="dto, dtostat : ${mainData}" style="height:30px; border-bottom: 1px solid#438c57;">
 			<td align="center"><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.reserNo}"></a></td>
 			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.pid}" style="font-weight: bold; "></td>
 			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.dname}" style="font-weight: bold; "></td>
