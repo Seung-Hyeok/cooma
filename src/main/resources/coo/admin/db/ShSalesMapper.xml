@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	      and payD between #{startD} and #{endD}
 	    </if>
 	  </where>
-	  order by payD
+	  order by payD desc
 	</select>
 	
 	<!-- limit만 주고 총 매출액은 변동없게하고싶다  -->
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		      and payD between #{startD} and #{endD}
 		    </if>
 	  	</where>
-	  	order by payD 
+	  	order by payD
 	</select>
 
 </mapper>

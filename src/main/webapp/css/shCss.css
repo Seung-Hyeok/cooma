@@ -3,17 +3,131 @@
 	}
 	.shsales{
 		margin: auto;
-		border: 1px solid #000;
 		overflow: auto;
-		width: 845px;
+		width: 1020px;
 		height: 500px;
 	}
 	.shsales2{
 		height: 25px;
+		border-bottom: 1px solid#438c57;
+
 	}
 	.shsales2 > div{
-		/* border: 1px solid#000; */
+		/*border: 1px solid#216A35;*/
 		float:left;
 		text-align: center;
 		margin: 1px;
+	}
+	.shtable{
+		width: 1000px;
+		border-collapse: collapse;
+		border: 2px solid#438c57; 
+		border-left:none;
+		border-right:none;
+		text-align: center;
+	}
+	.shtable a{
+		text-decoration: none;
+		color: #216A35;
+	}
+	.shtable input{
+	    padding: 0 5px 0 5px;
+	    border-radius: 4px;
+	    box-sizing: border-box;
+	    font-size: 1em;
+	}
+	.shtable select{
+	    width: 120px;
+	   /*  padding: 5px 5px 5px 5px; */
+	    border-radius: 4px;
+	    font-size: 1em;
+	}
+	.shtitle{
+		border: 2px solid#438c57;
+		height: 35px;
+		border-left:none;
+		border-right:none;
+		font-weight: bold;
+		color: #fff;
+		background-color: #438c57;
+	}
+	.shp{
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 20px;
+	}
+	.shb{
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-weight: bold;
+	}
+	.shdetail{
+		border: 2px solid#438c57; 
+		border-radius: 10px;
+		width: 600px;
+	}
+	.shtd{
+		border: solid#438c57; 
+		color: #fff;
+		background-color: #438c57;
+		border-radius: 5px;
+		width: 120px;
+	}
+	.shtd2{
+		border: 1px solid#438c57; 
+		border-radius: 5px;
+		font-weight: bold;
+		text-align: center;
+	}
+	.shtdr{
+		border:solid#438c57; 
+		color: #fff;
+		border-radius: 5px;
+		background-color: #438c57;
+		height: 200px;
+		text-align: center;
+	}
+	.shtt{
+		border:none;
+		height: 50px;
+	}
+	
+	#shbb{
+		width: 100px;
+	}
+	
+	.shtt > button{
+		width: 80px;
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-size :  1rem;
+		font-weight: bold;
+	}
+	.shaa{
+		text-decoration: none;
+		color: #216A35;
+	}
+	.shzz{
+		width: 80px;
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-size :  1rem;
+		font-weight: bold;
+	}
+	.shnoticeb{
+		width: 80px;
+		height: 35px;
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-size :  1rem;
+		font-weight: bold;
 	}

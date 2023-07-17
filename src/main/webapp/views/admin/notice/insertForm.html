@@ -11,27 +11,27 @@ layout:decorate="total/adTemp">
 	
 	<h3>공지등록</h3>
 	<form method="post" th:object="${shNoticeDTO}" enctype="multipart/form-data">
-		<table border="">
+		<table border="" align="center" class="shdetail" style="width: 1000px;">
 			<tr>
-				<td>제목</td>
-				<td><input type="text" th:field="*{title}" style="width:715px" required/></td>
+				<td class="shtd" align="center">제목</td>
+				<td><input type="text" th:field="*{title}" style="width:850px; height:40px;" required/></td>
 			</tr>
 			<tr>
-				<td>작성자</td>
+				<td class="shtd" align="center">작성자</td>
 				<td>쿠키마루</td>
 			</tr>
 			<tr>
-				<td>이미지</td>
+				<td class="shtd" align="center">이미지</td>
 				<td><input type="file" th:field="*{noticeImg}"/></td>
 			</tr>
 			<tr>
-				<td>내용</td>
-				<td><textarea th:field="*{content}" cols="100" rows="20"/></td>
+				<td class="shtdr">내용</td>
+				<td><textarea th:field="*{content}" cols="120" rows="20"/></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"> 
-					<a th:href="|/admin/notice/1|" th:text="뒤로"/>
-					<input type="submit" value="작성" />
+				<td colspan="2" align="center" class="shtt"> 
+					<a th:href="|/admin/notice/1|" th:text="뒤로" class="shaa"/>
+					<button type="submit">작성</button>
 				</td>
 			</tr>
 		</table>

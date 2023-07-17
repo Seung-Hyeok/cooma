@@ -1,5 +1,6 @@
 package coo.admin.control;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,13 +48,23 @@ public class ShSalesController {
 		
 		System.out.println(pd.getStartD());
 		System.out.println(pd.getEndD());
+		
+		DecimalFormat df = new DecimalFormat("#,###");
+		
+		
+		String p1 = df.format(tf);
+		String p2 = df.format(rf);
+		String p3 = df.format(tot);
+		
+		
 		mm.addAttribute("cnt", cnt);
 		mm.addAttribute("mainData", mainData);
-		mm.addAttribute("tf", tf);
-		mm.addAttribute("rf", rf);
-		mm.addAttribute("tot", tot);
+		mm.addAttribute("tf", p1);
+		mm.addAttribute("rf", p2);
+		mm.addAttribute("tot", p3);
 		mm.addAttribute("pd", pd);
 		
+		System.out.println(tot);
 		System.out.println(pd);
 	
 		return "admin/sales/sales";

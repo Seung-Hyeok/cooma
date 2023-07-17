@@ -13,19 +13,19 @@ layout:decorate="total/adTemp">
 	
 	<h3>공지사항관리</h3>
 	
-	<table border="" align="center" style="">
+	<table border="" align="center" class="shtable" style="width: 700px;">
 		<form action="" th:object="${PData}" method="post">
 			<tr>
-				<td colspan="5" align="right">
+				<td colspan="5" align="right" style="height:35px;">
 					제목
 					<input type="text" th:field="*{sch}" /> 
 					
-					<input type="submit" value="검색" />
+					<input type="submit" value="검색" class="shb"/>
 				</td>
 			</tr>
 		</form>
 		
-		<tr style=""align="center">
+		<tr style=""align="center" class="shtitle">
 			<td>번호</td>
 			<td>제목</td>
 			<td>작성자</td>
@@ -35,24 +35,24 @@ layout:decorate="total/adTemp">
 		</tr>
 		<tr th:each="dto, dtostat : ${mainData}" align="center">
 			<td th:text="${dtostat.index}"/>
-			<td><a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"/></td>
+			<td><a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"style="font-weight: bold; " /></td>
 			<td th:text="${dto.id}"/>
 			<td th:text="${dto.date()}"/>
 			<td th:text="${dto.cnt}"/>
 		</tr>
 		<tr> 
-			<td colspan="5" align="center" >
+			<td colspan="5" align="center" style="height:30px;">
 				<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
 					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
-						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
+						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}" class="shp">[[${p}]]</button></th:block>
 						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
 					</span>
 					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="5" align="right">
-				<a th:href="@{insert}" th:text="공지등록"/>
+			<td colspan="5" align="right" style="height:45px;">
+				<button onclick="location.href='/admin/notice/insert'" class="shnoticeb">공지등록</button>
 			</td>
 		</tr>
 	

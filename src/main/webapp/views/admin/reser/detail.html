@@ -11,7 +11,7 @@ layout:decorate="total/adTemp">
 	
 	<script>
 		function showConfirmation() {
-		  var result = confirm("정말로 삭제하시겠습니까?");
+		  var result = confirm("정말로 취소하시겠습니까?");
 
 		  if (result) {
 		    // 확인을 선택한 경우 처리할 작업
@@ -28,48 +28,50 @@ layout:decorate="total/adTemp">
 	
 	<div class="shresermenu">
 		<a href="/admin/reservation/1">이용권내역</a>
-		<a href="/admin">만료이용권내역</a>
-		<a href="/admin/refund">환불내역</a>
+		<a href="/admin/endreservation/1">만료이용권내역</a>
+		<a href="/admin/refund/1">환불내역</a>
 	</div>
 	
-	<h3>상세페이지</h3>
-	<table border="">
+	<h3>이용권상세</h3>
+	<table border="" align="center" class="shdetail">
 		<tr>
-			<td>예약번호</td><td th:text="${mainData.reserNo}"/>
+			<td class="shtd">예약번호</td><td th:text="${mainData.reserNo}" class="shtd2"/>
 		</tr><tr>
-			<td>아이디</td><td th:text="${mainData.pid}"/>
+			<td class="shtd">아이디</td><td th:text="${mainData.pid}" class="shtd2"/>
 		</tr><tr>
-			<td>강아지이름</td><td th:text="${mainData.dname}"/>
+			<td class="shtd">강아지이름</td><td th:text="${mainData.dname}" class="shtd2"/>
 		</tr><tr>
-			<td>이용권종류</td><td th:text="|${mainData.kind} (${mainData.gap()})|"/>
+			<td class="shtd">이용권종류</td><td th:text="|${mainData.kind} (${mainData.gap()})|" class="shtd2"/>
 		</tr><tr>
-			<td>교육</td><td th:text="${mainData.edu}"/>
+			<td class="shtd">교육</td><td th:text="${mainData.edu}" class="shtd2"/>
 		</tr><tr>
-			<td>신청요일</td><td th:text="${mainData.weeks}"/>
+			<td class="shtd">신청요일</td><td th:text="${mainData.weeks}" class="shtd2"/>
 		</tr><tr>
-			<td>시작일</td><td th:text="${mainData.sDate()}"/>
+			<td class="shtd">시작일</td><td th:text="${mainData.sDate()}" class="shtd2"/>
 		</tr><tr>
-			<td>종료일</td><td th:text="${mainData.eDate()}"/>
+			<td class="shtd">종료일</td><td th:text="${mainData.eDate()}" class="shtd2"/>
 		</tr><tr>
-			<td>결제일</td><td th:text="${mainData.pDate()}"/>
+			<td class="shtd">결제일</td><td th:text="${mainData.pDate()}" class="shtd2"/>
 		</tr><tr>
 			<!-- <td>결제카드</td><td th:text="${mainData.bank}"/>
 		</tr><tr>
 			<td>카드번호</td><td th:text="${mainData.account}"/>
 		</tr><tr> -->
-			<td>이용권금액</td><td th:text="|${mainData.pay()}원|"/>
+			<td class="shtd">이용권금액</td><td th:text="|${mainData.pay()}원|" class="shtd2"/>
 		</tr><tr>
-			<td>교육비</td><td th:text="|${mainData.epay()}원|"/>
+			<td class="shtd">교육비</td><td th:text="|${mainData.epay()}원|" class="shtd2"/>
 		</tr><tr>
-			<td>총 결제금액</td><td th:text="|${mainData.tpay()}원|" style="color:blue;"/>
+			<td class="shtd">총 결제금액</td><td th:text="|${mainData.tpay()}원|" style="color:red;" class="shtd2"/>
 		</tr><tr>
-			<td>요청사항</td><td th:text="${mainData.reque}"/>
+			<td class="shtdr">요청사항</td><td th:text="${mainData.reque}" class="shtd2"/>
 		</tr><tr>
-			<td colspan="2" align="right">
-				<a th:href="|/admin/reservation/1|" th:text="뒤로"/>
-				<a th:href="|/admin/modify/${mainData.reserNo}|" th:text="수정"/>
+			<td colspan="2" align="center" class="shtt">
+				<button onclick="location.href='/admin/reservation/1'" >뒤로</button>
+				<button th:onclick="|window.location.href='/admin/modify/${mainData.reserNo}'|">수정</button>
 				<!-- <a th:href="|/admin/delete/${mainData.reserNo}|" th:text="예약취소"/> -->
-				<button onclick="showConfirmation()">이용권취소</button>
+				<button onclick="showConfirmation()" id="shbb">이용권취소</button>
+				
+				
 			</td>
 		</tr>
 	</table>

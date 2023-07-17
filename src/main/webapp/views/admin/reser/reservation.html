@@ -18,10 +18,10 @@ layout:decorate="total/adTemp">
 	</div>
 	<h3>이용권리스트</h3>
 	
-	<table border="" align="center" style="">
+	<table align="center" border="" class="shtable">
 		<form action="" th:object="${PData}" method="post">
-			<tr>
-				<td colspan="10" align="right">
+			<tr >
+				<td colspan="10" align="right" style="height:35px;">
 					<select th:field="*{cate}">
 						<option value="dname" selected>강아지 이름</option>
 						<option value="pid" >아이디</option>
@@ -29,12 +29,12 @@ layout:decorate="total/adTemp">
 					</select>
 					<input type="text" th:field="*{sch}" /> 
 					
-					<input type="submit" value="검색" />
+					<input type="submit" value="검색" class="shb" />
 				</td>
 			</tr>
 		</form>
 		
-		<tr style=""align="center">
+		<tr align="center" class="shtitle">
 			<td>예약번호</td>
 			<td>아이디</td>
 			<td>강아지이름</td>
@@ -47,29 +47,29 @@ layout:decorate="total/adTemp">
 			<td>상태</td>
 			
 		</tr>
-		<tr th:each="dto, dtostat : ${mainData}">
+		<tr th:each="dto, dtostat : ${mainData}" style="height:30px;">
 			<td align="center"><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.reserNo}"></a></td>
-			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.pid}"></td>
-			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.dname}"></td>
+			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.pid}" style="font-weight: bold; "></td>
+			<td><a th:href="@{|detail/${dto.reserNo}|}" th:text="${dto.dname}" style="font-weight: bold; "></td>
 			<td th:text="${dto.dogsize}"/>
-			<td th:text="|${dto.kind} (${dto.gap()})|"/>
+			<td th:text="|${dto.kind} (${dto.gap()})|" style="font-weight: bold; "/>
 			<td th:text="${dto.edu}" align="center"/>
 			<td th:text="${dto.sDate()}"/>
 			<td th:text="${dto.eDate()}"/>
 			<td th:text="${dto.weeks}"/>
 			<th:block th:if="${dto.state()}">
-				<td style="color:tomato">진행예정</td>
+				<td style="color:tomato; font-weight: bold; ">진행예정</td>
 			</th:block>
 			<th:block th:unless="${dto.state()}">
-				<td style="color:dodgerblue">진행중</td>
+				<td style="color:dodgerblue; font-weight: bold;">진행중</td>
 			</th:block>
 			
 		</tr>
 		<tr> 
-			<td colspan="10" align="center" >
+			<td colspan="10" align="center" style="height:30px;">
 				<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
 					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
-						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
+						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}" class="shp">[[${p}]]</button></th:block>
 						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
 					</span>
 					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
