@@ -10,7 +10,7 @@ public class BhPData {
 
 	Integer limit = 15, pageLimit=5, start, nowPage;
 	Integer startPage, endPage, totalPage;
-	String sch, startD, endD, cate;
+	String sch, startD, endD, cate, kind;
 	
 
 	public void setTotal(int total) {

@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import coo.admin.model.BhPData;
+
 @Mapper
 public interface BhQnAMapper {
 	//리스트
-	List<BhQnADTO> bhAnsList(BhQnADTO qna);
+	int bhQnaTotal(BhPData pd);
+	List<BhQnADTO> bhAnsList(BhPData pd);
 	
 	//디테일
 	BhQnADTO bhAnsDetail(BhQnADTO qna);

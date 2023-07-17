@@ -5,7 +5,25 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 
 <mapper namespace="coo.admin.db.BhQnAMapper">
 <!-- 리스트 -->
-	<select id="bhAnsList" parameterType="bhqDTO" resultType="bhqDTO">
+	<!-- 검색어에 맞는 총 문의 수를 얻는다. -->
+	<select id="bhQnaTotal" parameterType="bhPD" resultType="Integer"> 
+		select count(*) from qna
+		<where>
+			<trim prefix=" " suffixOverrides="and | or"> 
+				<if test="kind == 'title'" >
+					title like concat('%',#{sch},'%') 
+				</if>
+				<if test="kind == 'content'" >
+					content like concat('%',#{sch},'%')
+				</if>
+				<if test="kind == 'pid'" >
+					pid like concat('%',#{sch},'%')
+				</if>
+			</trim>
+		</where>
+	</select>
+
+	<select id="bhAnsList" parameterType="bhPD" resultType="bhqDTO">
 		select * from qna
 		<where>
 			<trim prefix=" " suffixOverrides="and | or"> 
@@ -20,7 +38,8 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 				</if>
 			</trim>
 		</where>
-		order by answerDate, reg_date;
+		order by answerDate, reg_date 
+		limit #{start}, #{limit}
 	</select>
 	
 <!-- 디테일 -->

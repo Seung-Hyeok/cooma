@@ -23,11 +23,11 @@ public class BhQnADTO {
     adminId varchar(100) -- 답변 작성한 관리자 id
 	);
 	*/
-	Integer no, cnt;
+	Integer no, cnt, nowPage;
 	String title, content, pid, getAnswer, adminId, kind, sch;
 	Date reg_date, answerDate;
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // 질문, 답변 등록일 포맷
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 질문, 답변 등록일 포맷
 	
 	public String reg_dateStr() { //질문등록일
 		String rd = sdf.format(reg_date);

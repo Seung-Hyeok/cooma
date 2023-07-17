@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import coo.admin.db.BhQnADTO;
 import coo.admin.db.BhQnAMapper;
+import coo.admin.model.BhPData;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 
@@ -20,22 +21,30 @@ public class BhAnswerController {
 	BhQnAMapper qm;
 	
 //질문리스트
-	@RequestMapping("/admin/answer")
-	String bhAnsList(Model mo, BhQnADTO qna, HttpSession session) {
+	@RequestMapping("/admin/answer/{nowPage}")
+	String bhAnsList(Model mo, BhPData pd, BhQnADTO qna, HttpSession session) {
 		String pid = (String)session.getAttribute("pid");
 		mo.addAttribute("pid", pid);
-		List<BhQnADTO> bhAnsData = qm.bhAnsList(qna);
+		
+		pd.setTotal(qm.bhQnaTotal(pd));
+		List<BhQnADTO> bhAnsData = qm.bhAnsList(pd);
 		System.out.println("bhAnsList() 진입");
+		
 		mo.addAttribute("bhAnsData",bhAnsData);
+		mo.addAttribute("pd", pd);
+		
 		return "admin/answer/bhAnsList";
 	}
 	
 //질문상세
-	@RequestMapping("/admin/answer/{no}")
-	String bhAnsDetail(Model mo, BhQnADTO qna, HttpSession session) {
+	@RequestMapping("/admin/answer/{no}/{nowPage}")
+	String bhAnsDetail(Model mo, BhPData pd, BhQnADTO qna, HttpSession session) {
 		System.out.println("bhAnsDetail() 진입");
 		String pid = (String)session.getAttribute("pid");
 		mo.addAttribute("pid", pid);
+		
+		pd.setTotal(qm.bhQnaTotal(pd));
+		mo.addAttribute("pd", pd);
 		mo.addAttribute("bhAnsData", qm.bhAnsDetail(qna));
 		return "admin/answer/bhAnsDetail";
 	}
