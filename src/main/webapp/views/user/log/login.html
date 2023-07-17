@@ -30,6 +30,7 @@ function frmChk() {
 <form method="post" th:object="${hmMemberDTO}" onsubmit="return frmChk()">
 	<div class="hm_loginWrapper">
 		<img src="/decoimg/dog1.png" alt="" />
+		<img id="hmloginlogo" src="/decoimg/logo1.png" alt="" />
 		<div class="hmLogo">
 			Cookie Maru
 		</div>
@@ -40,8 +41,8 @@ function frmChk() {
 			<img src="/decoimg/icon1.png" alt="" /><input type="password" id="pw" th:field="*{pw}" placeholder="비밀번호" />
 		</div>
 		<div align="center">
-			<input type="submit" value="로그인" /><br/>
-			<div align="right" class="hmLoginLink">
+			<input type="submit" value="login" /><br/>
+			<div align="right" class="hmLoginLink linknocolor">
 			<a href="/user/log/joinForm">회원가입</a>
 			<a href="/user/log/findId">아이디찾기</a>
 			<a href="/user/log/findPw">비밀번호찾기</a>

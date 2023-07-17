@@ -53,7 +53,7 @@ layout:decorate="total/userTemp">
 		<td class="hmAnswer" colspan="4"  ><div th:text="${myqna.getAnswer}"></div></td>
 	</tr>
 	<tr>
-		<td colspan="4" align="right">
+		<td colspan="4" align="right" >
 			<a th:href="|/user/question/queList/1|" th:text="목록으로" />
 			<a th:if="${myqna.getAnswer == null}" th:href="|/user/question/queModify/${myqna.no}|" th:text="수정"/>
 			<button onclick="deleteConfirm()">삭제</button>

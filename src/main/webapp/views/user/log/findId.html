@@ -31,15 +31,19 @@ function frmChk() {
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmfindid">
 <h1>아이디찾기</h1>
 <form method="post" th:object="${hmMemberDTO}" onsubmit="return frmChk()">
-	<table border="">
+	<table>
 		<tr>
-			<td>이름</td>
+			<td colspan="2" align=center class="hmtitlekind">아이디 찾기</td>
+		</tr>
+		<tr>
+			<td class="tt">이름</td>
 			<td><input type="text" id="pname" th:field="*{pname}"/></td>
 		</tr>
 		<tr>
-			<td>전화번호</td>
+			<td class="tt">전화번호</td>
 			<td><input type="text" id="tel" th:field="*{tel}"/></td>
 		</tr>
 		<tr>
@@ -50,6 +54,7 @@ function frmChk() {
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

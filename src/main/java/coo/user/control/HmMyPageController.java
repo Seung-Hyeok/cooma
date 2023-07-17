@@ -36,7 +36,7 @@ public class HmMyPageController {
 			HmMemberDTO myData =  mp.my(pid);
 			mm.addAttribute("myData", myData);
 			
-			SimpleDateFormat format = new SimpleDateFormat("yyyy년MM월dd일");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
 			mm.addAttribute("birth",format.format(myData.getBirth()));
 			
 			return "user/myPage/memPage";
@@ -51,7 +51,7 @@ public class HmMyPageController {
 			HmMemberDTO myData =  mp.my(pid);
 			mm.addAttribute("myData", myData);
 			
-			SimpleDateFormat format = new SimpleDateFormat("yyyy년MM월dd일");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
 			mm.addAttribute("birth",format.format(myData.getBirth()));
 			
 			return "user/myPage/modifyForm";

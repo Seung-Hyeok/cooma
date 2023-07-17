@@ -183,7 +183,7 @@
 .gsDetail>form>h2:nth-of-type(2n){
 	color: #FFC107;
 }
-input[type="text"],textarea,select,input[type="date"] {
+/*input[type="text"],textarea,select,input[type="date"] {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -198,7 +198,7 @@ select:focus {
   border-color: #FFC107;
   outline: none;
   box-shadow: 0 0 5px #b3d4fc;
-}
+}*/
 input[type="text"][readonly] {
   background-color: transparent;
   border: none;

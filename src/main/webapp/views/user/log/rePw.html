@@ -57,16 +57,20 @@ function frmChk() {
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmrepw">
 <h1>비밀번호 재설정</h1>
 <form method="post" action="/user/log/rePw" th:object="${hmMemberDTO}" onsubmit="return frmChk()">
-	<table border="">
+	<table>
 	<input type="hidden" th:field="*{pid}"/>
 		<tr>
-			<td>새 비밀번호</td>
+			<td colspan="2" align=center class="hmtitlekind">비밀번호 재설정</td>
+		</tr>
+		<tr>
+			<td class="tt">새 비밀번호</td>
 			<td><input type="password" id="pw" name="pw" oninput="validPw(this.value)"/></td>
 		</tr>
 		<tr>
-			<td>비밀번호 확인</td>
+			<td class="tt">비밀번호 확인</td>
 			<td><input type="password" id="pw2" name="pw2" oninput="checkPw(this.value)"/></td>
 		</tr>
 		<tr>
@@ -77,6 +81,7 @@ function frmChk() {
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">
