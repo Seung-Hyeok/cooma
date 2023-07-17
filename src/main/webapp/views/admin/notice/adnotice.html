@@ -13,19 +13,19 @@ layout:decorate="total/adTemp">
 	
 	<h3>공지사항관리</h3>
 	
-	<table border="" align="center" class="shtable" style="width: 700px;">
+	<table align="center" class="shtable" style="width: 700px;">
 		<form action="" th:object="${PData}" method="post">
 			<tr>
-				<td colspan="5" align="right" style="height:35px;">
+				<td colspan="5" align="right" style="height:40px;">
 					제목
-					<input type="text" th:field="*{sch}" /> 
+					<input type="text" th:field="*{sch}" class="bhInput"/> 
 					
 					<input type="submit" value="검색" class="shb"/>
 				</td>
 			</tr>
 		</form>
 		
-		<tr style=""align="center" class="shtitle">
+		<tr align="center" class="shtitle" >
 			<td>번호</td>
 			<td>제목</td>
 			<td>작성자</td>
@@ -33,7 +33,7 @@ layout:decorate="total/adTemp">
 			<td>조회수</td>
 			
 		</tr>
-		<tr th:each="dto, dtostat : ${mainData}" align="center">
+		<tr th:each="dto, dtostat : ${mainData}" align="center" style="border-bottom: 1px solid#438c57; height:35px;">
 			<td th:text="${dtostat.index}"/>
 			<td><a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"style="font-weight: bold; " /></td>
 			<td th:text="${dto.id}"/>
@@ -50,7 +50,7 @@ layout:decorate="total/adTemp">
 					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
 			</td>
 		</tr>
-		<tr>
+		<tr style="border-top: 1px solid#438c57;">
 			<td colspan="5" align="right" style="height:45px;">
 				<button onclick="location.href='/admin/notice/insert'" class="shnoticeb">공지등록</button>
 			</td>

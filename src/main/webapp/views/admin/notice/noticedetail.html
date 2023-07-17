@@ -27,8 +27,8 @@ layout:decorate="total/adTemp">
 	</script>
 	
 	
-	<h3>공지상세</h3>
-	<table border="" align="center" class="shdetail" style="width: 1000px;">
+	<h2 class="bhH2">공지상세</h2>
+	<table align="center" class="shdetail" style="width: 1000px;">
 		<tr>
 			<td class="shtd" align="center">제목</td><td th:text="${mainData.title}" class="shtd2"/>
 		</tr><tr>
@@ -39,7 +39,7 @@ layout:decorate="total/adTemp">
 			<td class="shtd" align="center">조회수</td><td th:text="${mainData.cnt}" class="shtd2"/>
 		</tr><tr>
 		<th:block th:if="${dd}">
-				<td class="shtdr">이미지</td><td class="shtd2"><img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="" width="500px" height="500px" class="shtd2"><!-- <br/>[[${mainData.content}]] --></td>
+				<td class="shtdr">이미지</td><td class="shtd2"><img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="" width="500px" height="500px" border="1px solid#216A35"><!-- <br/>[[${mainData.content}]] --></td>
 			</th:block>
 			<th:block th:unless="${dd}">
 				<td class="shtdr">이미지</td><td class="shtd2"><!-- <br/>[[${mainData.content}]] --></td>

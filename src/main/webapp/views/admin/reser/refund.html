@@ -17,13 +17,13 @@ layout:decorate="total/adTemp">
 		<a href="/admin/refund/1">환불내역</a>
 	</div>
 	
-	<h3>환불리스트</h3>
-	<table border="" align="center" class="shtable">
+	<h2 class="bhH2">환불리스트</h2>
+	<table align="center" class="shtable">
 		<form action="" th:object="${PData}" >
 			<tr>
 				<td colspan="11" align="right" style="height:35px;">
-					환불 조회 기간 <input type="date" th:field="*{startD}"/>~
-                	<input type="date" th:field="*{endD}" />
+					환불 조회 기간 <input type="date" th:field="*{startD}" data-placeholder="연-월-일" class="bhDate" required style="width:120px"/>~
+                	<input type="date" th:field="*{endD}" data-placeholder="연-월-일" class="bhDate" required style="width:120px"/>
                 	<input type="submit" value="검색" class="shb">
 					
 				</td>
@@ -42,7 +42,7 @@ layout:decorate="total/adTemp">
 			<td>환불일자</td>
 			<td>환불금액</td>
 		</tr>
-		<tr th:each="dto, dtostat : ${mainData}" style="height:30px;">
+		<tr th:each="dto, dtostat : ${mainData}" style="height:30px; border-bottom: 1px solid#438c57;">
 			<td th:text="${dto.reserNo}" align="center"/>
 			<td th:text="${dto.pid}" style="font-weight: bold; "/>
 			<td th:text="${dto.dname}" style="font-weight: bold; "/>
