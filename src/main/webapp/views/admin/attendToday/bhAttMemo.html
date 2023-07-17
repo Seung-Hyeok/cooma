@@ -9,26 +9,26 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
-	<h2  class="bhH2" th:text="${bhDogData.todayStr()}+' '+${bhDogData.dname}+' 메모'"> </h2>
+	<h2  class="bhH2" th:text="${bhDogData.todayStr()}+' '+${bhDogData.dname}+' 일일기록'"> </h2>
 
-	<table border="" align="center">
+	<table align="center" class="bhTableD">
 		<tr>
-			<td>강아지이름</td><td th:text="${bhDogData.dname}"/>
+			<td class="bhTableDColor">강아지이름</td><td th:text="${bhDogData.dname}"/>
 		</tr><tr>
-			<td>사진</td>
+			<td class="bhTableDColor">사진</td>
 			<td>
 				<img th:src="@{'/dimg/'+${bhDogImg}}" width="200px" alt="Image">
 			</td>
 		</tr><tr>
-			<td>회원아이디</td><td th:text="${bhDogData.pid}" />
+			<td class="bhTableDColor">회원아이디</td><td th:text="${bhDogData.pid}" />
 		</tr><tr>
-				<td>일일메모</td><td th:text="${bhDogData.memo}"/>
+				<td class="bhTableDColor">일일기록</td><td th:text="${bhDogData.memo}"/>
 		</tr><tr>
 			<td colspan="2" align="center">
 				<a th:href="|/admin/attMemoModi/${bhDogData.todayNo}|" 
-				th:if="${beforePage != null && beforePage.equals('admin')}">입력</a>
-				<a th:href="|/admin|" th:if="${beforePage != null && beforePage.equals('admin')}">뒤로</a>
-				<a th:href="|/admin/attList|" th:if="${beforePage != null && beforePage.equals('attList')}">뒤로</a>	
+				th:if="${beforePage != null && beforePage.equals('admin')}" class="bhBigButton">입력</a>
+				<a th:href="|/admin|" th:if="${beforePage != null && beforePage.equals('admin')}" class="bhBigButton">뒤로</a>
+				<a th:href="|/admin/attList|" th:if="${beforePage != null && beforePage.equals('attList')}" class="bhBigButton">뒤로</a>	
 			</td>
 		</tr>
 	</table>

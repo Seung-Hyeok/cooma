@@ -11,30 +11,28 @@ layout:decorate="total/adTemp">
 	<h2 class="bhH2">1:1 문의 답변</h2>
 
 	<form method="post" th:object="${bhAnsData}">
-		<table border="" align="center">
+		<table align="center" class="bhTableD">
 			<tr>
-				<td>작성자</td><td th:text="${bhAnsData.pid}"/>
+				<td class="bhTableDColor">제목</td><td th:text="${bhAnsData.title}" />
+				<td class="bhTableDColor">작성자</td><td th:text="${bhAnsData.pid}"/>
 			</tr><tr>
-				<td>질문등록일</td><td th:text="${bhAnsData.reg_dateStr()}" />
+				<td class="bhTableDColor">질문등록일</td><td th:text="${bhAnsData.reg_dateStr()}" />
+				<td class="bhTableDColor">조회수</td><td th:text="${bhAnsData.cnt}" />
 			</tr><tr>
-				<td>제목</td><td th:text="${bhAnsData.title}" />
-			</tr><tr>
-				<td>조회수</td><td th:text="${bhAnsData.cnt}" />
-			</tr><tr>
-				<td>내용</td><td th:text="${bhAnsData.content}"/>
+				<td class="bhTableDColor">내용</td><td colspan="3" th:text="${bhAnsData.content}"/>
 			</tr>
 			
-			<tr><td colspan="2"> --- 답변 --- </td></tr>
+			<tr><td colspan="4"> --- 답변 --- </td></tr>
 			
 			<tr>
-				<td>답변</td>
-				<td><input type="text" th:field="*{getAnswer}"  /></td>
+				<td class="bhTableDColor">답변</td>
+				<td colspan="3"><textarea th:field="*{getAnswer}" class="bhTextA" /></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="수정" />
-					<input type="reset" value="초기화" />
-					<a th:href="|/admin/answer/${bhAnsData.no}|" th:text="뒤로" ></a>
+				<td colspan="4" align="center">
+					<input type="submit" value="수정" class="bhBigButton"/>
+					<input type="reset" value="초기화" class="bhBigButton"/>
+					<a th:href="|/admin/answer/${bhAnsData.no}|" th:text="뒤로" class="bhBigButton"></a>
 				</td>
 			</tr>
 		</table>

@@ -12,14 +12,15 @@ layout:decorate="total/adTemp">
 <th:block layout:fragment="adContent">
 	<h2 class="bhH2">회원삭제</h2>
 	
-	<div>
+	<div class="bhH2">
 		정말로 <span th:text="${pid}"/>님의 정보를 삭제하시겠습니까?
+		<br/>
+		<br/>
 		<form method="post">
-			<table align="center">
+			<table align="center" class="bhDeletT">
 				<tr>
-					<td><input type="submit" value="삭제" /></td>
-					<td><a th:href="@{/admin/memPid/{pid}(pid=${pid})}" th:text="뒤로"></a></td>
-<!--					|/admin/memPid/${pid}|-->
+					<td><a th:href="@{/admin/memPid/{pid}(pid=${pid})}" th:text="뒤로" class="bhBigButton"></a></td>
+					<td><input type="submit" value="삭제" class="bhRedButton" /></td>
 				</tr>
 			</table>
 		</form>
