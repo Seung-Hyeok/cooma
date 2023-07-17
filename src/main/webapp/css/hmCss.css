@@ -1,1108 +1,1433 @@
-	 
+html{
+		font-family: 'Noto Sans KR', sans-serif;
+}	 
     .hme_msg{
 	color: #f00;
 }
 
 /*회원가입폼*/
-.hmJoinForm table{
- 		width: 70%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	.hmJoinForm td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 		padding-left: 100px;
- 	}
- 	
- 	.hmJoinForm .tt{
- 		width: 150px;
- 		text-align: center;
- 		font-weight: bold;
- 		padding: 0px;
- 	}
- 	
- 	.hmJoinForm .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	
- 	.hmJoinForm .hmtitletr {
-	  margin-top: 50px;
-	}
-	
- 	.hmJoinForm label{
- 		margin-right: 20px;
- 		font-size: 0.8rem;
- 		font-weight: bold;
- 	}
- 	.hmJoinForm label:hover{
- 		color: #FF6666;
- 	}
- 	.hmJoinForm input{
- 		margin-right: 5px;
- 	}
- 	.hmJoinForm input[type="text"], .hmJoinForm input[type="password"]{
- 		margin-right: 5px;
- 		width: 200px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmJoinForm textarea{
- 		resize: none;
- 		margin-right: 5px;
- 		width: 400px;
-		height: 100px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmJoinForm textarea:focus, .hmJoinForm .hm_inputcolor:focus{
-		border: 2px solid #F4D160;
-		background: #FFF5B8;
-		outline:none;
-	}
- 	
- 	.hmJoinForm input[name="tel1"], .hmJoinForm input[name="tel2"],.hmJoinForm input[name="tel3"]{
- 		width: 100px;
- 	}
- 	
- 	.hmJoinForm select[name="pwquestion"]{
- 		margin-bottom: 10px;
- 	}
- 	
- 	.hmJoinForm .hm_selectBox {
-	  position: relative;
-	  width: 210px;
-	  height: 35px;
-	}
-	
-	.hmJoinForm .hm_selectBox2 {
-	  position: relative;
-	  width: 100px;
-	  height: 30px;
-	}
-	
-	.hmJoinForm .hm_selectBox3 {
-	  position: relative;
-	  width: 80px;
-	  height: 30px;
-	}
-	.hmJoinForm .hm_select {
-	  width: inherit;
-	  height: inherit;
-	  background: transparent;
-	  border: 2px solid lightcoral;
-	  border-radius: 4px;
-	  outline: 0 none;
-	  padding: 0 5px;
-	  position: relative;
-	}
-	.hmJoinForm .hm_select option {
-	  background: lightcoral;
-	  color: #fff;
-	  padding: 10px 0;
-	}
- 	
- 	.hmJoinForm .kind {
- 		border-radius: 5px;
- 		width: 80px;
- 		text-align: center;
- 		color: #865DFF;
- 		border: 1px solid #ccc;
- 	}
- 	.hmJoinForm input[type="submit"], .hmJoinForm a{
- 		border-radius: 5px;
- 		width: 70px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	.hmJoinForm input[type="submit"]:hover, .hmJoinForm a:hover {
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmJoinForm a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
- 	
- 	.hmJoinForm input[type="button"]{
- 		border-radius: 5px;
- 		width: 70px;
- 		text-align: center;
- 		background: lightcoral;
- 		color: #fff;
- 		border: 1px solid lightcoral;
- 		padding: 5px;
- 	}
- 	
- 	.hmJoinForm input[type="button"]:hover {
- 		background: #FCAEAE;
-	    color: #fff;
-		border: 1px solid lightcoral;
- 	}
- 	
- /*회원정보수정*/
- .hmmodify table{
- 		width: 70%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	
- 	.hmmodify td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 		padding-left: 100px;
- 	}
- 	
- 	.hmmodify .tt{
- 		width: 150px;
- 		text-align: center;
- 		font-weight: bold;
- 		padding: 0px;
- 	}
- 	
- 	.hmmodify .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmmodify input[type="submit"], .hmmodify a, .hmmodify input[type="reset"]{
- 		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	.hmmodify input[type="submit"]:hover, .hmmodify a:hover, .hmmodify input[type="reset"]:hover {
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmmodify a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
- 	
- 	.hmmodify input[type="button"]{
- 		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: lightcoral;
- 		color: #fff;
- 		border: 1px solid lightcoral;
- 		padding: 5px;
- 	}
- 	
- 	.hmmodify input[type="button"]:hover {
- 		background: #FCAEAE;
-	    color: #fff;
-		border: 1px solid lightcoral;
- 	}
- 	.hmJoinhmmodifyForm input{
- 		margin-right: 5px;
- 	}
- 	.hmmodify input[type="text"], .hmmodify input[type="password"]{
- 		margin-right: 5px;
- 		width: 200px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
+.hmJoinForm table {
+	width: 70%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmJoinForm td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+	padding-left: 100px;
+}
+
+.hmJoinForm .tt {
+	width: 150px;
+	text-align: center;
+	font-weight: bold;
+	padding: 0px;
+}
+
+.hmJoinForm .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmJoinForm .hmtitletr {
+	margin-top: 50px;
+}
+
+.hmJoinForm label {
+	margin-right: 20px;
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
+.hmJoinForm label:hover {
+	color: #ffc107;
+}
+
+.hmJoinForm input {
+	margin-right: 5px;
+}
+
+.hmJoinForm input[type="text"],
+.hmJoinForm input[type="password"] {
+	margin-right: 5px;
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
+.hmJoinForm textarea {
+	resize: none;
+	margin-right: 5px;
+	width: 400px;
+	height: 100px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
+.hmJoinForm textarea:focus,
+.hmJoinForm .hm_inputcolor:focus {
+	border: 2px solid #ffc107;
+	background: #FFF5B8;
+	outline: none;
+}
+
+.hmJoinForm input[name="tel1"],
+.hmJoinForm input[name="tel2"],
+.hmJoinForm input[name="tel3"] {
+	width: 100px;
+}
+
+.hmJoinForm select[name="pwquestion"] {
+	margin-bottom: 10px;
+}
+
+.hmJoinForm .hm_selectBox {
+	position: relative;
+	width: 210px;
+	height: 35px;
+}
+
+.hmJoinForm .hm_selectBox2 {
+	position: relative;
+	width: 100px;
+	height: 30px;
+}
+
+.hmJoinForm .hm_selectBox3 {
+	position: relative;
+	width: 80px;
+	height: 30px;
+}
+
+.hmJoinForm .hm_select {
+	width: inherit;
+	height: inherit;
+	background: transparent;
+	border: 2px solid #324182;
+	border-radius: 4px;
+	outline: none;
+	padding: 0 5px;
+	position: relative;
+}
+
+.hmJoinForm .hm_select option {
+	background: #324182;
+	color: #fff;
+	padding: 10px 0;
+}
+
+.hmJoinForm .kind {
+	border-radius: 5px;
+	width: 80px;
+	text-align: center;
+	color: #865DFF;
+	border: 1px solid #ccc;
+}
+
+.hmJoinForm input[type="submit"],
+.hmJoinForm a {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmJoinForm input[type="submit"]:hover,
+.hmJoinForm a:hover {
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmJoinForm tt > a {
+	text-decoration: none;
+	font-size: 0.8rem;
+}
+
+.hmJoinForm input[type="button"] {
+	padding: 8px 12px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmJoinForm input[type="button"]:hover {
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmJoinForm .hm_selectBox,  .hmJoinForm .hmno{
+	 border-bottom: none;
+}
+
+/*회원정보수정*/
+.hmmodify table {
+	width: 70%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmmodify td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+	padding-left: 100px;
+}
+
+.hmmodify .tt {
+	width: 150px;
+	text-align: center;
+	font-weight: bold;
+	padding: 0px;
+}
+
+.hmmodify .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmmodify input[type="submit"],
+.hmmodify a,
+.hmmodify input[type="reset"] {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmmodify input[type="submit"]:hover,
+.hmmodify a:hover,
+.hmmodify input[type="reset"]:hover {
+	  color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmmodify input[type="button"] {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmmodify input[type="button"]:hover {
+	  color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmJoinhmmodifyForm input {
+	margin-right: 5px;
+}
+
+.hmmodify input[type="text"],
+.hmmodify input[type="password"] {
+	margin-right: 5px;
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
  
  /*강아지정보수정*/
- .hmdogModi table{
- 		width: 70%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	.hmdogModi td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 		padding-left: 100px;
- 	}
- 	
- 	.hmdogModi .tt{
- 		width: 150px;
- 		text-align: center;
- 		font-weight: bold;
- 		padding: 0px;
- 	}
- 	
- 	.hmdogModi .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmdogModi input{
- 		margin-right: 5px;
- 	}
- 	.hmdogModi input[type="text"], .hmJoinForm input[type="password"]{
- 		margin-right: 5px;
- 		width: 200px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmdogModi textarea{
- 		resize: none;
- 		margin-right: 5px;
- 		width: 400px;
-		height: 100px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmdogModi textarea:focus, .hmdogModi .hm_inputcolor:focus{
-		border: 2px solid #F4D160;
-		background: #FFF5B8;
-		outline:none;
-	}
-	.hmdogModi input[type="submit"], .hmdogModi a, .hmdogModi input[type="reset"]{
- 		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	.hmdogModi input[type="submit"]:hover, .hmdogModi a:hover, .hmdogModi input[type="reset"]:hover {
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmdogModi a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
+ .hmdogModi table {
+	width: 70%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmdogModi td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+	padding-left: 100px;
+}
+
+.hmdogModi .tt {
+	width: 150px;
+	text-align: center;
+	font-weight: bold;
+	padding: 0px;
+}
+
+.hmdogModi .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmdogModi input {
+	margin-right: 5px;
+}
+
+.hmdogModi input[type="text"],
+.hmdogModi input[type="password"] {
+	margin-right: 5px;
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
+.hmdogModi textarea {
+	resize: none;
+	margin-right: 5px;
+	width: 400px;
+	height: 100px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
+.hmdogModi textarea:focus,
+.hmdogModi .hm_inputcolor:focus {
+	border: 2px solid #ffc107;
+	background: #FFF5B8;
+	outline: none;
+}
+
+.hmdogModi input[type="submit"],
+.hmdogModi a,
+.hmdogModi input[type="reset"] {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmdogModi input[type="submit"]:hover,
+.hmdogModi a:hover,
+.hmdogModi input[type="reset"]:hover {
+	  color: #FFC107;
+  transition: color 0.3s ease;
+}
+
 	
 /*강아지등록*/
-.hmdogJoin table{
- 		width: 70%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	.hmdogJoin td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 		padding-left: 100px;
- 	}
- 	
- 	.hmdogJoin .tt{
- 		width: 150px;
- 		text-align: center;
- 		font-weight: bold;
- 		padding: 0px;
- 	}
- 	
- 	.hmdogJoin .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmdogJoin label{
- 		margin-right: 20px;
- 		font-size: 0.8rem;
- 		font-weight: bold;
- 	}
- 	.hmdogJoin label:hover{
- 		color: #FF6666;
- 	}
- 	.hmdogJoin input{
- 		margin-right: 5px;
- 	}
- 	.hmdogJoin input[type="text"]{
- 		margin-right: 5px;
- 		width: 200px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmdogJoin textarea{
- 		resize: none;
- 		margin-right: 5px;
- 		width: 400px;
-		height: 100px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmdogJoin textarea:focus, .hmdogJoin .hm_inputcolor:focus{
-		border: 2px solid #F4D160;
-		background: #FFF5B8;
-		outline:none;
+.hmdogJoin table {
+	width: 70%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmdogJoin td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+	padding-left: 100px;
+}
+
+.hmdogJoin .tt {
+	width: 150px;
+	text-align: center;
+	font-weight: bold;
+	padding: 0px;
+}
+
+.hmdogJoin .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmdogJoin label {
+	margin-right: 20px;
+	font-size: 0.8rem;
+	font-weight: bold;
+}
+
+.hmdogJoin label:hover {
+	color: #FFC107;
+}
+
+.hmdogJoin input {
+	margin-right: 5px;
+}
+
+.hmdogJoin input[type="text"] {
+	margin-right: 5px;
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
+.hmdogJoin textarea {
+	resize: none;
+	margin-right: 5px;
+	width: 400px;
+	height: 100px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
+.hmdogJoin textarea:focus,
+.hmdogJoin .hm_inputcolor:focus {
+	border: 2px solid #ffc107;
+	background: #FFF5B8;
+	outline: none;
+}
+
+.hmdogJoin .hm_selectBox3 {
+	position: relative;
+	width: 80px;
+	height: 30px;
+}
+
+.hmdogJoin .hm_select {
+	width: inherit;
+	height: inherit;
+	background: transparent;
+	border: 2px solid #324182;
+	border-radius: 4px;
+	outline: none;
+	padding: 0 5px;
+	position: relative;
+}
+
+.hmdogJoin .hm_select option {
+	background: #324182;
+	color: #fff;
+	padding: 10px 0;
+}
+
+.hmdogJoin input[type="submit"],
+.hmdogJoin a {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmdogJoin input[type="submit"]:hover,
+.hmdogJoin a:hover {
+	  color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmdogJoin tt> a {
+	text-decoration: none;
+	font-size: 0.8rem;
+}
+
+/*마이페이지*/
+.hmmemPage table {
+	width: 70%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmmemPage td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+	padding-left: 100px;
+}
+
+.hmmemPage .tt {
+	width: 150px;
+	text-align: center;
+	font-weight: bold;
+	padding: 0px;
+}
+
+.hmmemPage .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmmemPage input[type="submit"],
+.hmmemPage a {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmmemPage input[type="submit"]:hover,
+.hmmemPage a:hover {
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+/*강아지리스트*/
+.hmdogList table {
+	width: 50%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmdogList td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+	text-align: center;
+}
+
+.hmdogList tr:last-of-type td:last-of-type {
+	text-align: right;
+}
+
+.hmdogList .tt {
+	width: 150px;
+	text-align: center;
+	font-weight: bold;
+	padding: 0px;
+	height: 30px;
+	border: none;
+	border-bottom: 2px solid #324182;
+}
+
+.hmdogList .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmdogList .hmtagCss a {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmdogList .hmtagCss a:hover {
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmdogList a {
+	text-decoration: none;
+}
+
+/*강아지디테일*/
+.hmdogDetail table {
+	width: 70%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmdogDetail td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+	padding-left: 100px;
+}
+
+.hmdogDetail .tt {
+	width: 150px;
+	text-align: center;
+	font-weight: bold;
+	padding: 0px;
+}
+
+.hmdogDetail .t1 {
+	border: none;
+}
+
+.hmdogDetail .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmdogDetail .hmimg {
+	border: 1px solid #324182;
+	border-radius: 5px;
+	padding: 10px 0;
+	padding-top: 15px;
+}
+
+.hmdogDetail a,
+.hmdogDetail button {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmdogDetail a:hover,
+.hmdogDetail button:hover {
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+/*질문리스트*/
+.hmqueList table {
+  width: 80%;
+  margin: auto;
+  border-radius: 5px;
+  position: relative;
+}
+
+.hmqueList td {
+  border-bottom: 1px solid #324182;
+  padding: 10px;
+}
+
+.hmqueList .quetitle td {
+  text-align: center;
+  font-weight: bold;
+}
+
+.hmqueList .quetitle td:first-of-type {
+  width: 70px;
+}
+
+.hmqueList .quetitle td:nth-of-type(2) {
+  width: 250px;
+}
+
+.hmqueList .quetitle td:nth-of-type(3) {
+  width: 150px;
+}
+
+.hmqueList .quetitle td:last-of-type {
+  width: 150px;
+}
+
+.hmqueList .quelist td {
+  text-align: center;
+}
+
+.hmqueList .hman {
+  color: #216A35;
+}
+
+.hmqueList .hmnoan {
+  color: #f00;
+}
+
+.hmqueList a {
+  text-decoration: none;
+}
+
+.hmqueList .schselect a {
+  padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmqueList .hmlink a,
+.hmqueList input[type="submit"] {
+  padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmqueList .hmpagelink a,
+.hmqueList .hmpage {
+  padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmqueList .hmnowpage {
+  padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 40px;
+  color: #FFC107;
+}
+
+.hmqueList .schselect a:hover {
+   color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmqueList .hmlink a:hover,
+.hmqueList input[type="submit"]:hover {
+    color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmqueList .hmtitlekind {
+  padding: 5px;
+  background: #FFC107;
+  border: 1px solid #324182;
+  font-weight: bold;
+  padding: 10px;
+}
+
+
+.hmqueList input[type="text"] {
+  margin-right: 5px;
+  width: 200px;
+  height: 20px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+  border: 2px solid #324182;
+}
+
+.linknocolor > a{
+	color:#000;
+}
+
+.hmqueList input[type="text"]:focus {
+  border: 2px solid #FFC107;
+}
+
+ /*질문디테일*/
+ .hmqueDetail table {
+  width: 70%;
+  margin: auto;
+  border-radius: 5px;
+  position: relative;
+}
+
+.hmqueDetail td {
+  border-bottom: 1px solid #324182;
+  padding: 10px;
+}
+
+.hmqueDetail .hmtitlekind {
+  padding: 5px;
+  background: #FFC107;
+  border: 1px solid #324182;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+.hmqueDetail .hmcontent{
+	border-bottom: none;
+}
+
+.hmqueDetail .hmcontent div {
+  border: 2px solid #FFC107;
+  border-radius: 10px;
+  padding: 10px;
+  width: 700px;
+  height: 300px;
+  overflow: auto;
+  margin: 5px auto;
+}
+
+.hmqueDetail .hmAnswer div {
+  border: 2px solid #324182;
+  border-radius: 10px;
+  padding: 10px;
+  width: 700px;
+  height: 200px;
+  overflow: auto;
+  margin: 5px auto;
+}
+
+.hmqueDetail a,
+.hmqueDetail button {
+  padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmqueDetail a:hover,
+.hmqueDetail button:hover {
+   color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmqueDetail .hmAnswertitle {
+  background: #FFC107;
+  border: 1px solid #FFC107;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  width: 500px;
+}
+
+.hmqueDetail .hmAnsweradmin {
+  background: #FFC107;
+  border: 1px solid #FFC107;
+  padding: 10px;
+  text-align: center;
+}
+
+ /*문의수정*/
+ 	.hmqueModify table {
+  width: 70%;
+  margin: auto;
+  border-radius: 5px;
+  position: relative;
+}
+
+.hmqueModify td {
+  border-bottom: 1px solid #324182 ;
+  padding: 10px;
+}
+
+.hmqueModify .hmtitlekind {
+  padding: 5px;
+  background: #FFC107;
+  border: 1px solid #324182 ;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+.hmqueModify a,
+.hmqueModify input[type="submit"] {
+  padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmqueModify a:hover,
+.hmqueModify input[type="submit"]:hover {
+    color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmqueModify input {
+  margin-right: 5px;
+}
+
+.hmqueModify input[type="text"] {
+  margin-right: 5px;
+  width: 250px;
+  height: 20px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+  border: 2px solid rgb(233, 233, 233);
+}
+
+.hmqueModify textarea {
+  resize: none;
+  margin-right: 5px;
+  width: 600px;
+  height: 300px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding: 10px;
+  background-color: rgb(233, 233, 233);
+  border: 2px solid rgb(233, 233, 233);
+}
+
+.hmqueModify textarea:focus,
+.hmqueModify input[type="text"]:focus {
+  border: 2px solid #FFC107;
+  background: #FFF5B8;
+  outline: none;
+}
+
+/*문의작성*/
+	.hmqueInsert table {
+  width: 70%;
+  margin: auto;
+  border-radius: 5px;
+  position: relative;
+}
+
+.hmqueInsert td {
+  border-bottom: 1px solid #324182;
+  padding: 10px;
+}
+
+.hmqueInsert .hmtitlekind {
+  padding: 5px;
+  background: #FFC107;
+  border: 1px solid #324182;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+.hmqueInsert a,
+.hmqueInsert input[type="submit"] {
+  padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmqueInsert a:hover,
+.hmqueInsert input[type="submit"]:hover {
+  color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmqueInsert input {
+  margin-right: 5px;
+}
+
+.hmqueInsert input[type="text"] {
+  margin-right: 5px;
+  width: 250px;
+  height: 20px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+  border: 2px solid rgb(233, 233, 233);
+}
+
+.hmqueInsert textarea {
+  resize: none;
+  margin-right: 5px;
+  width: 600px;
+  height: 300px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding: 10px;
+  background-color: rgb(233, 233, 233);
+  border: 2px solid rgb(233, 233, 233);
+}
+
+.hmqueInsert textarea:focus,
+.hmqueInsert input[type="text"]:focus {
+  border: 2px solid #FFC107;
+  background: #FFF5B8;
+  outline: none;
+}
+
+/*비밀번호 변경*/
+	.hmpwchange table {
+	width: 60%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmpwchange td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+	padding-left: 70px;
+}
+
+.hmpwchange .tt {
+	width: 150px;
+	font-weight: bold;
+}
+
+.hmpwchange .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmpwchange input[type="submit"],
+.hmpwchange a {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmpwchange input[type="submit"]:hover,
+.hmpwchange a:hover {
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmpwchange input[type="password"] {
+	margin-right: 5px;
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
+ /*탈퇴*/
+ 	.hmDelete table {
+	width: 50%;
+	background: #fff;
+	margin: auto;
+}
+
+.hmDelete td {
+	border-bottom: 1px solid #324182;
+	padding: 10px;
+}
+
+.hmDelete .tt {
+	width: 200px;
+	font-weight: bold;
+}
+
+.hmDelete .hmtitlekind {
+	padding: 5px;
+	background: #ffc107;
+	border: 1px solid #324182;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.hmDelete input[type="submit"],
+.hmDelete a {
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hmDelete input[type="submit"]:hover,
+.hmDelete a:hover {
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hmDelete input[type="password"] {
+	margin-right: 5px;
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid rgb(233, 233, 233);
+}
+
+ /*로그인*/
+ 	.hm_loginWrapper {
+	width: 450px;
+	height: 260px;
+	border: 2px solid #324182;
+	margin: 0 auto;
+	position: relative;
+}
+
+.hm_loginWrapper .hmLogo {
+	width: 450px;
+	height: 70px;
+	background: #ffc107;
+	text-align: center;
+	font-size: 3rem;
+}
+
+.hm_loginWrapper input[type="text"],
+.hm_loginWrapper input[type="password"] {
+	margin-right: 5px;
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+	border: 2px solid #324182 ;
+	padding: 5px;
+	border-radius: 4px;
+}
+
+.hm_loginWrapper input[type="text"]:focus,
+.hm_loginWrapper input[type="password"]:focus {
+	border: 2px solid #ffc107 ;
+}
+
+.hm_loginWrapper .hmloginid {
+	margin: 10px;
+	margin-top: 20px;
+}
+
+.hm_loginWrapper .hmloginpw {
+	margin: 10px;
+}
+
+.hm_loginWrapper .hmLoginLink {
+	margin-top: 20px;
+}
+
+.hm_loginWrapper .hmloginid img {
+	width: 20px;
+	position: absolute;
+	left: 85px;
+	top: 95px;
+}
+
+.hm_loginWrapper .hmloginpw img {
+	width: 30px;
+	position: absolute;
+	left: 80px;
+	top: 137px;
+}
+
+.hm_loginWrapper > img {
+	width: 100px;
+	position: absolute;
+	left: 350px;
+	top: -60px;
+}
+
+.hm_loginWrapper #hmloginlogo {
+	width: 50px;
+	position: absolute;
+	left: 35px;
+	top: 5px;
+}
+
+.hm_loginWrapper input[type="submit"]{
+	padding: 8px 10px;
+  font-size: 16px;
+  background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 215px;
+  margin-left: -5px;
+}
+
+.hm_loginWrapper input[type="submit"]:hover{
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+.hm_loginWrapper a{
+	padding: 8px 10px;
+  font-size: 16px;
+  color: 324182;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 215px;
+  margin-left: -5px;
+}
+
+.hm_loginWrapper a:hover{
+	 color: #FFC107;
+  transition: color 0.3s ease;
+}
+
+/*아이디찾기*/
+	.hmfindid table {
+	width: 50%;
+	background: #fff;
+	margin: auto;
 	}
 	
-	.hmdogJoin .hm_selectBox3 {
-	  position: relative;
-	  width: 80px;
-	  height: 30px;
-	}
-	.hmdogJoin .hm_select {
-	  width: inherit;
-	  height: inherit;
-	  background: transparent;
-	  border: 2px solid lightcoral;
-	  border-radius: 4px;
-	  outline: 0 none;
-	  padding: 0 5px;
-	  position: relative;
-	}
-	.hmdogJoin .hm_select option {
-	  background: lightcoral;
-	  color: #fff;
-	  padding: 10px 0;
-	}
-	.hmdogJoin input[type="submit"], .hmdogJoin a{
- 		border-radius: 5px;
- 		width: 70px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	.hmdogJoin input[type="submit"]:hover, .hmdogJoin a:hover {
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmdogJoin a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
-/*마이페이지*/
-.hmmemPage table{
- 		width: 70%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	.hmmemPage td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 		padding-left: 100px;
- 	}
- 	
- 	.hmmemPage .tt{
- 		width: 150px;
- 		text-align: center;
- 		font-weight: bold;
- 		padding: 0px;
- 	}
- 	
- 	.hmmemPage .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmmemPage input[type="submit"], .hmmemPage a{
- 		border-radius: 5px;
- 		width: 70px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	.hmmemPage input[type="submit"]:hover, .hmmemPage a:hover {
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmmemPage a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
-/*강아지리스트*/
-.hmdogList table{
- 		width: 50%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	.hmdogList td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 		text-align: center;
- 	}
- 	.hmdogList tr:last-of-type td:last-of-type{
- 		text-align: right;
- 	}
- 	
- 	.hmdogList .tt{
- 		width: 150px;
- 		text-align: center;
- 		font-weight: bold;
- 		padding: 0px;
- 		height: 30px;
- 		background: #FFF5B8;
- 		border: none;
- 	}
- 	
- 	.hmdogList .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmdogList .hmtagCss a{
- 		border-radius: 5px;
- 		width: 70px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	.hmdogList .hmtagCss a:hover {
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmdogList .hmtagCss a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
-	.hmdogList a{
-		text-decoration: none;
-	}
-/*강아지디테일*/
-.hmdogDetail table{
- 		width: 70%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	.hmdogDetail td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 		padding-left: 100px;
- 	}
- 	
- 	.hmdogDetail .tt{
- 		width: 150px;
- 		text-align: center;
- 		font-weight: bold;
- 		padding: 0px;
- 	}
- 	
- 	.hmdogDetail .t1{
- 		border:none;
- 	}
- 	
- 	.hmdogDetail .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmdogDetail .hmimg{
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		padding: 10px 0;
- 		padding-top: 15px;
- 	}
- 	 .hmdogDetail a, .hmdogDetail button{
- 		border-radius: 5px;
- 		width: 70px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	 .hmdogDetail a:hover ,.hmdogDetail button:hover{
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmdogDetail a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
-/*질문리스트*/
-.hmqueList table{
- 		width: 80%;
- 		margin: auto;
- 		border-radius: 5px;
- 		position: relative;
- 	}
- 	.hmqueList td{
- 		border-bottom: 1px solid #F999B7;
- 		padding: 10px;
- 	}
- 	.hmqueList .quetitle td{
- 		text-align:center;
- 		font-weight: bold;
- 	}
- 	
- 	.hmqueList .quetitle td:first-of-type{
- 		width: 70px;
- 	}
- 	.hmqueList .quetitle td:nth-of-type(2){
- 		width: 250px;
- 	}
- 	.hmqueList .quetitle td:nth-of-type(3){
- 		width: 150px;
- 	}
- 	.hmqueList .quetitle td:last-of-type{
- 		width: 150px;
- 	}
- 	
- 	.hmqueList .quelist td{
- 		text-align:center
- 	}
- 	.hmqueList .hman{
- 		color: #216A35;
- 	}
- 	.hmqueList .hmnoan{
- 		color: #f00;
- 	}
- 	
- 	.hmqueList a{
- 		text-decoration: none;
- 	}
- 	
- 	.hmqueList .schselect a{
- 		text-decoration: none;
-		font-size: 0.8rem;
-		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: #F999B7;
- 		color: #fff;
- 		border: 1px solid #F999B7;
- 		padding: 5px;
- 	}
- 	
- 	.hmqueList .hmlink a, .hmqueList input[type="submit"]{
-		font-size: 0.8rem;
-		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: #F999B7;
- 		color: #fff;
- 		border: 1px solid #F999B7;
- 		padding: 5px;
- 	}
- 	
- 	.hmqueList .hmpagelink a,.hmqueList .hmpage{
- 		text-decoration: none;
-		font-size: 0.8rem;
-		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: #F999B7;
- 		color: #fff;
- 		border: 1px solid #F999B7;
- 		padding: 5px;
- 	}
- 	
- 	.hmqueList .hmnowpage{
-		font-size: 0.8rem;
-		border-radius: 5px;
- 		width: 20px;
- 		text-align: center;
- 		background: #F2789F;
- 		color: #fff;
- 		border: 1px solid #F2789F;
- 		padding: 5px;
- 		height: 29px;
- 	}
- 	
- 	.hmqueList .schselect a:hover {
- 		background: #F9C5D5;
-	    color: #fff;
-		border: 1px solid #F999B7;
- 	}
- 	.hmqueList .hmlink a:hover, .hmqueList input[type="submit"]:hover {
- 		background: #F9C5D5;
-	    color: #fff;
-		border: 1px solid #F999B7;
- 	}
- 	
- 	.hmqueList .hmpagelink a:hover {
- 		background: #F9C5D5;
-	    color: #fff;
-		border: 1px solid #F999B7;
- 	}
- 	
- 	.hmqueList .hmtitlekind{
- 		padding: 5px;
- 		background: #F999B7;
- 		border:1px solid #F999B7;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmqueList input[type="text"]{
- 		margin-right: 5px;
- 		width: 200px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid #F9C5D5;
- 	}
- 	.hmqueList input[type="text"]:focus{
-		border: 2px solid #F999B7;
- 	}
- /*질문디테일*/
- .hmqueDetail table{
- 		width: 70%;
- 		margin: auto;
- 		border-radius: 5px;
- 		position: relative;
- 	}
- 	.hmqueDetail td{
- 		border-bottom: 1px solid #F999B7;
- 		padding: 10px;
- 	}
- 	.hmqueDetail .hmtitlekind{
- 		padding: 5px;
- 		background: #F999B7;
- 		border:1px solid #F999B7;
- 		font-weight: bold;
- 		padding: 10px;
- 		text-align:center;
- 	}
- 	.hmqueDetail .hmcontent div{
- 		border:2px solid #F999B7;
- 		border-radius: 10px;
- 		padding: 10px;
- 		width:700px;
- 		height: 300px;
- 		overflow:auto;
- 		margin: 5px auto;
- 		background: #FEE3EC;
- 	}
- 	.hmqueDetail .hmAnswer div{
- 		border:2px solid #F999B7;
- 		border-radius: 10px;
- 		padding: 10px;
- 		width:700px;
- 		height: 200px;
- 		overflow:auto;
- 		margin: 5px auto;
- 		background: #F5EFE7;
- 	}
- 	.hmqueDetail a, .hmqueDetail button{
- 		text-decoration: none;
-		font-size: 0.8rem;
-		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: #F999B7;
- 		color: #fff;
- 		border: 1px solid #F999B7;
- 		padding: 5px;
- 	}
- 	
- 	.hmqueDetail a:hover, .hmqueDetail button:hover{
- 		background: #F9C5D5;
-	    color: #fff;
-		border: 1px solid #F999B7;
- 	}
- 	.hmqueDetail .hmAnswertitle{
- 		background: #F999B7;
- 		border:1px solid #F999B7;
- 		font-weight: bold;
- 		padding: 10px;
- 		text-align:center;
- 		width: 500px;
- 	}
- 	.hmqueDetail .hmAnsweradmin{
- 		background: #F999B7;
- 		border:1px solid #F999B7;
- 		padding: 10px;
- 		text-align:center;
- 	}
- /*문의수정*/
- 	.hmqueModify table{
- 		width: 70%;
- 		margin: auto;
- 		border-radius: 5px;
- 		position: relative;
- 	}
- 	.hmqueModify td{
- 		border-bottom: 1px solid #F999B7;
- 		padding: 10px;
- 	}
- 	.hmqueModify .hmtitlekind{
- 		padding: 5px;
- 		background: #F999B7;
- 		border:1px solid #F999B7;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 		text-align:center;
- 	}
- 	.hmqueModify a, .hmqueModify input[type="submit"]{
- 		text-decoration: none;
-		font-size: 0.8rem;
-		border-radius: 5px;
- 		width: 50px;
- 		text-align: center;
- 		background: #F999B7;
- 		color: #fff;
- 		border: 1px solid #F999B7;
- 		padding: 5px;
- 	}
- 	
- 	.hmqueModify a:hover, .hmqueModify input[type="submit"]:hover{
- 		background: #F9C5D5;
-	    color: #fff;
-		border: 1px solid #F999B7;
- 	}
- 	.hmqueModify input{
- 		margin-right: 5px;
- 	}
- 	.hmqueModify input[type="text"]{
- 		margin-right: 5px;
- 		width: 250px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmqueModify textarea{
- 		resize: none;
- 		margin-right: 5px;
- 		width: 600px;
-		height: 300px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
+	.hmfindid td {
+		border-bottom: 1px solid #324182;
 		padding: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmqueModify textarea:focus, .hmqueModify input[type="text"]:focus{
-		border: 2px solid #F999B7;
-		background: #FEE3EC;
-		outline:none;
+		text-align:center;
 	}
-/*문의작성*/
-	.hmqueInsert table{
- 		width: 70%;
- 		margin: auto;
- 		border-radius: 5px;
- 		position: relative;
- 	}
- 	.hmqueInsert td{
- 		border-bottom: 1px solid #F999B7;
- 		padding: 10px;
- 	}
- 	.hmqueInsert .hmtitlekind{
- 		padding: 5px;
- 		background: #F999B7;
- 		border:1px solid #F999B7;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 		text-align:center;
- 	}
- 	.hmqueInsert a, .hmqueInsert input[type="submit"]{
- 		text-decoration: none;
-		font-size: 0.8rem;
-		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: #F999B7;
- 		color: #fff;
- 		border: 1px solid #F999B7;
- 		padding: 5px;
- 	}
- 	
- 	.hmqueInsert a:hover, .hmqueInsert input[type="submit"]:hover{
- 		background: #F9C5D5;
-	    color: #fff;
-		border: 1px solid #F999B7;
- 	}
- 	.hmqueInsert input{
- 		margin-right: 5px;
- 	}
- 	.hmqueInsert input[type="text"]{
- 		margin-right: 5px;
- 		width: 250px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmqueInsert textarea{
- 		resize: none;
- 		margin-right: 5px;
- 		width: 600px;
-		height: 300px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- 	
- 	.hmqueInsert textarea:focus, .hmqueInsert input[type="text"]:focus{
-		border: 2px solid #F999B7;
-		background: #FEE3EC;
-		outline:none;
+	
+	.hmfindid .tt {
+		width: 180px;
+		font-weight: bold;
 	}
-/*비밀번호 변경*/
-	.hmpwchange table{
- 		width: 60%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	.hmpwchange td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 		padding-left: 70px;
- 	}
- 	
- 	.hmpwchange .tt{
- 		width: 150px;
- 		font-weight: bold;
- 	}
- 	
- 	.hmpwchange .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmpwchange input[type="submit"], .hmpwchange a{
- 		border-radius: 5px;
- 		width: 60px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	.hmpwchange input[type="submit"]:hover, .hmpwchange a:hover {
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmpwchange a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
- 	.hmpwchange input[type="password"]{
- 		margin-right: 5px;
- 		width: 200px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- /*탈퇴*/
- 	.hmDelete table{
- 		width: 50%;
- 		background: #fff;
- 		margin: auto;
- 	}
- 	.hmDelete td{
- 		border-bottom: 1px solid #1D5D9B;
- 		padding: 10px;
- 	}
- 	
- 	.hmDelete .tt{
- 		width: 200px;
- 		font-weight: bold;
- 	}
- 	
- 	.hmDelete .hmtitlekind{
- 		padding: 5px;
- 		background: #F4D160;
- 		border:1px solid #1D5D9B;
- 		border-radius: 5px;
- 		font-weight: bold;
- 		padding: 10px;
- 	}
- 	.hmDelete input[type="submit"], .hmDelete a{
- 		border-radius: 5px;
- 		width: 70px;
- 		text-align: center;
- 		background: #1D5D9B;
- 		color: #fff;
- 		border: 1px solid #1D5D9B;
- 		padding: 5px;
- 	}
- 	
- 	.hmDelete input[type="submit"]:hover, .hmDelete a:hover {
- 		background: #30A2FF;
-	    color: #fff;
-		border: 1px solid #1D5D9B;
- 	}
- 	
- 	.hmDelete a{
-		text-decoration: none;
-		font-size: 0.8rem;
-	}
- 	.hmDelete input[type="password"]{
- 		margin-right: 5px;
- 		width: 200px;
-		height: 20px;
-		font-size: 15px;
-		border: 0;
-		border-radius: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid rgb(233, 233, 233);
- 	}
- /*로그인*/
- 	.hm_loginWrapper{
-        width: 450px;
-        height: 250px;
-        border: 1px solid #000;
-        margin: 0 auto;
-        position: relative;
-    }
-    .hm_loginWrapper .hmLogo{
-        width: 450px;
-        height: 70px;
-        background: #ff0;
-        text-align: center;
-        font-size:3rem;
-    }
- 	.hm_loginWrapper input[type="text"], .hm_loginWrapper input[type="password"]{
- 		margin-right: 5px;
- 		width: 200px;
-		height: 20px;
-		font-size: 15px;
-		outline: none;
-		padding-left: 10px;
-		background-color: rgb(233, 233, 233);
-		border: 2px solid #000;
+	
+	.hmfindid .hmtitlekind {
 		padding: 5px;
- 	}
- 	.hm_loginWrapper .hmloginid{
- 		margin: 10px;
- 		margin-top: 20px;
- 	}
- 	.hm_loginWrapper .hmloginpw{
- 		margin: 10px;
- 	}
- 	.hm_loginWrapper .hmLoginLink{
- 		margin-top: 20px;
- 	}
- 	.hm_loginWrapper .hmloginid img{
- 		width: 20px;
- 		position: absolute;
- 		left: 85px;
- 		top: 95px;
- 	}
- 	.hm_loginWrapper .hmloginpw img{
- 		width: 30px;
- 		position: absolute;
- 		left: 80px;
- 		top: 137px;
- 	}
- 	.hm_loginWrapper > img{
- 		width: 100px;
- 		position: absolute;
- 	}
+		background: #ffc107;
+		border: 1px solid #324182;
+		border-radius: 5px;
+		font-weight: bold;
+		padding: 10px;
+	}
+	.hmfindid a,
+	.hmfindid input[type="submit"] {
+	  padding: 8px 10px;
+	  font-size: 16px;
+	  background-color: #324182;
+	  color: white;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  transition: background-color 0.3s ease;
+	}
+	
+	.hmfindid a:hover,
+	.hmfindid input[type="submit"]:hover {
+	    color: #FFC107;
+	  transition: color 0.3s ease;
+	}
+	.hmfindid input[type="text"]{
+		margin-right: 5px;
+		width: 200px;
+		height: 20px;
+		font-size: 15px;
+		border: 0;
+		border-radius: 15px;
+		outline: none;
+		padding-left: 10px;
+		background-color: rgb(233, 233, 233);
+		border: 2px solid rgb(233, 233, 233);
+	}
+/*비번찾기*/
+	.hmfindpw table {
+	width: 50%;
+	background: #fff;
+	margin: auto;
+	}
+	
+	.hmfindpw td {
+		border-bottom: 1px solid #324182;
+		padding: 10px;
+		text-align:center;
+	}
+	
+	.hmfindpw .tt {
+		width: 180px;
+		font-weight: bold;
+	}
+	
+	.hmfindpw .hmtitlekind {
+		padding: 5px;
+		background: #ffc107;
+		border: 1px solid #324182;
+		border-radius: 5px;
+		font-weight: bold;
+		padding: 10px;
+	}
+	.hmfindpw a,
+	.hmfindpw input[type="submit"] {
+	  padding: 8px 10px;
+	  font-size: 16px;
+	  background-color: #324182;
+	  color: white;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  transition: background-color 0.3s ease;
+	}
+	
+	.hmfindpw a:hover,
+	.hmfindpw input[type="submit"]:hover {
+	    color: #FFC107;
+	  transition: color 0.3s ease;
+	}
+	.hmfindpw input[type="text"]{
+		margin-right: 5px;
+		width: 200px;
+		height: 20px;
+		font-size: 15px;
+		border: 0;
+		border-radius: 15px;
+		outline: none;
+		padding-left: 10px;
+		background-color: rgb(233, 233, 233);
+		border: 2px solid rgb(233, 233, 233);
+	}
+	.hmfindpw .hm_selectBox {
+	position: relative;
+	width: 210px;
+	height: 35px;
+	}
+	
+	.hmfindpw .hm_select {
+		width: inherit;
+		height: inherit;
+		background: transparent;
+		border: 2px solid #324182;
+		border-radius: 4px;
+		outline: none;
+		padding: 0 5px;
+		position: relative;
+		margin-bottom: 10px;
+	}
+	
+	.hmfindpw .hm_select option {
+		background: #324182;
+		color: #fff;
+		padding: 10px 0;
+	}
+/*비번재설정*/
+	.hmrepw table {
+	width: 50%;
+	background: #fff;
+	margin: auto;
+	}
+	
+	.hmrepw td {
+		border-bottom: 1px solid #324182;
+		padding: 10px;
+		text-align:center;
+	}
+	
+	.hmrepw .tt {
+		width: 180px;
+		font-weight: bold;
+	}
+	
+	.hmrepw .hmtitlekind {
+		padding: 5px;
+		background: #ffc107;
+		border: 1px solid #324182;
+		border-radius: 5px;
+		font-weight: bold;
+		padding: 10px;
+	}
+	.hmrepw a,
+	.hmrepw input[type="submit"] {
+	  padding: 8px 10px;
+	  font-size: 16px;
+	  background-color: #324182;
+	  color: white;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  transition: background-color 0.3s ease;
+	}
+	
+	.hmrepw a:hover,
+	.hmrepw input[type="submit"]:hover {
+	    color: #FFC107;
+	  transition: color 0.3s ease;
+	}
+	.hmrepw input[type="password"]{
+		margin-right: 5px;
+		width: 200px;
+		height: 20px;
+		font-size: 15px;
+		border: 0;
+		border-radius: 15px;
+		outline: none;
+		padding-left: 10px;
+		background-color: rgb(233, 233, 233);
+		border: 2px solid rgb(233, 233, 233);
+	}

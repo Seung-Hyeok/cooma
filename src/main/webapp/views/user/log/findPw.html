@@ -36,17 +36,21 @@ function frmChk() {
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmfindpw">
 <h1>비밀번호찾기</h1>
 <form method="post" th:object="${hmMemberDTO}" onsubmit="return frmChk()">
-	<table border="">
+	<table>
 		<tr>
-			<td>아이디</td>
+			<td colspan="2" align=center class="hmtitlekind">비밀번호 찾기</td>
+		</tr>
+		<tr>
+			<td class="tt">아이디</td>
 			<td><input type="text"  id="pid" th:field="*{pid}"/></td>
 		</tr>
 		<tr>
-			<td>비밀번호 찾기 질문</td>
-			<td>
-				<select id="pwquestion" name="pwquestion">
+			<td class="tt">비밀번호 찾기 질문</td>
+			<td class="hm_selectBox">
+				<select id="pwquestion" name="pwquestion" class="hm_select">
 					<option value="" selected>선택</option>
 					<option value="기억에 남는 추억의 장소는?" >기억에 남는 추억의 장소는?</option>
 					<option value="가장 좋아하는 동물은?" >가장 좋아하는 동물은?</option>
@@ -65,6 +69,7 @@ function frmChk() {
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

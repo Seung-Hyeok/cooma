@@ -29,7 +29,7 @@ layout:decorate="total/userTemp">
 			<td colspan="3" >
 				제목
 				<input type="text" th:field="*{sch}" />
-				<input type="submit" value="검색" />
+				<input class="gsButton" type="submit" value="검색" />
 			</td>
 		</tr>
 	</form>
@@ -43,7 +43,7 @@ layout:decorate="total/userTemp">
 	</tr>
 	<tr th:each="dto, dtoStat : ${myqnalist} "class="quelist">
 		<td th:text="${dtoStat.index}+1"/>
-		<td><a th:href="@{|/user/question/queDetail/${dto.no}|}" th:text="${dto.title}"/></td>
+		<td class="linknocolor"><a th:href="@{|/user/question/queDetail/${dto.no}|}" th:text="${dto.title}"/></td>
 		<td th:text="${dto.pid}"/>
 		<td th:text="${dto.rDate()}"/>
 		<td th:if="${dto.getAnswer != null}" th:text="답변완료" class="hman"/>

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,7 @@ public class HmMyPageController {
 			HmMemberDTO myData =  mp.my(pid);
 			mm.addAttribute("myData", myData);
 			
-			SimpleDateFormat format = new SimpleDateFormat("yyyy년MM월dd일");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
 			mm.addAttribute("birth",format.format(myData.getBirth()));
 			
 			return "user/myPage/memPage";
@@ -51,7 +52,7 @@ public class HmMyPageController {
 			HmMemberDTO myData =  mp.my(pid);
 			mm.addAttribute("myData", myData);
 			
-			SimpleDateFormat format = new SimpleDateFormat("yyyy년MM월dd일");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
 			mm.addAttribute("birth",format.format(myData.getBirth()));
 			
 			return "user/myPage/modifyForm";
@@ -165,23 +166,30 @@ public class HmMyPageController {
 			String pid = (String)session.getAttribute("pid");
 			dto.setPid(pid);
 			
+			if(fd.getDogimg().getContentType().startsWith("image/")) {
+				HmMemberDTO memData = mp.my(pid);
+				String res = fileSave(fd.getDogimg(), request);
+	            dto.setPhoto(res);
+				mp.insertDog(dto);
+				
+				if(memData.getDog1()==null || memData.getDog1().equals("")) {
+					memData.setDog1(dto.getDname());
+					mp.dnameset(memData);
+				}
+				else if(memData.getDog2()==null || memData.getDog2().equals("")) {
+					memData.setDog2(dto.getDname());
+					mp.dnameset(memData);
+				}
+				else if(memData.getDog3()==null || memData.getDog3().equals("")) {
+					memData.setDog3(dto.getDname());
+					mp.dnameset(memData);
+				}
+			} 
 			
-			HmMemberDTO memData = mp.my(pid);
-			String res = fileSave(fd.getDogimg(), request);
-            dto.setPhoto(res);
-			mp.insertDog(dto);
-			
-			if(memData.getDog1()==null || memData.getDog1().equals("")) {
-				memData.setDog1(dto.getDname());
-				mp.dnameset(memData);
-			}
-			else if(memData.getDog2()==null || memData.getDog2().equals("")) {
-				memData.setDog2(dto.getDname());
-				mp.dnameset(memData);
-			}
-			else if(memData.getDog3()==null || memData.getDog3().equals("")) {
-				memData.setDog3(dto.getDname());
-				mp.dnameset(memData);
+			else {
+				mm.addAttribute("msg","파일은 이미지 파일만 업로드할 수 있습니다.");
+				mm.addAttribute("goUrl","/user/myPage/dogJoinForm");
+				return "user/myPage/alert";
 			}
 			
 			mm.addAttribute("msg","강아지 등록이 완료되었습니다.");

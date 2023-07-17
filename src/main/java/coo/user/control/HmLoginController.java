@@ -40,22 +40,32 @@ public class HmLoginController {
 	
 	@PostMapping("/user/log/joinForm")
 	String joinComplete(HttpServletRequest request, Model mm, HmDogsDTO dog, HmMemberDTO dto, HmFileData fd) {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		dto.setEmail(dto.getEmail()+"@"+fd.getEmail2());
-		dto.setTel(fd.getTel1()+"-"+fd.getTel2()+"-"+fd.getTel3());
-	    try {
-	        Date birthDate = format.parse(fd.getBirthstr());
-	        dto.setBirth(birthDate);
-	    } catch (ParseException e) {
-	        // 날짜 변환 실패 시
-	        e.printStackTrace();
-	    }
-	    String res = fileSave(fd.getDogimg(), request);
-        dog.setPhoto(res);
-		lm.insertDog(dog);
-	    dto.setDog1(dog.getDname());
-	    lm.insert(dto);
 		
+		
+	    if(fd.getDogimg().getContentType().startsWith("image/")) {
+	    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			dto.setEmail(dto.getEmail()+"@"+fd.getEmail2());
+			dto.setTel(fd.getTel1()+"-"+fd.getTel2()+"-"+fd.getTel3());
+		    try {
+		        Date birthDate = format.parse(fd.getBirthstr());
+		        dto.setBirth(birthDate);
+		    } catch (ParseException e) {
+		        // 날짜 변환 실패 시
+		        e.printStackTrace();
+		    }
+		    String res = fileSave(fd.getDogimg(), request);
+	        dog.setPhoto(res);
+			lm.insertDog(dog);
+		    dto.setDog1(dog.getDname());
+		    lm.insert(dto);
+		} 
+		
+		else {
+			mm.addAttribute("msg","파일은 이미지 파일만 업로드할 수 있습니다.");
+			mm.addAttribute("goUrl","/user/log/joinForm");
+			return "user/log/alert";
+		}
+	    
 		mm.addAttribute("msg","회원가입이 완료되었습니다.");
 		mm.addAttribute("goUrl","/user");
 		return "user/log/alert";

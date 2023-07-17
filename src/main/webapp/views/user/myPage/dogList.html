@@ -26,7 +26,7 @@ layout:decorate="total/userTemp">
 	</tr>
 	<tr th:each="dto, dtoStat : ${dogData}">
 		<td th:text="${dtoStat.index}+1"/>
-		<td><a th:href="@{|/user/myPage/dogDetail/${dto.dname}|}" th:text="${dto.dname}"/></td>
+		<td class="linknocolor"><a th:href="@{|/user/myPage/dogDetail/${dto.dname}|}" th:text="${dto.dname}"/></td>
 		<td th:text="${dto.breed}"></td>
 	</tr>
 	<tr>
