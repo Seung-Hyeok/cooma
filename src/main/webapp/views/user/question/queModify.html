@@ -7,40 +7,63 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+function frmChk() {
+	
+	if ($("#title").val().trim()=="") {//13
+		alert("제목을 입력해주세요");
+		return false;
+	}
+	
+	if ($("#content").val().trim()=="") {//13
+		alert("문의내용을 입력해주세요");
+		return false;
+	}
+	
+	return true;
+}
+</script>
 <div class="myPageMenu">
 <a href="/user/myPage/memPage">내정보</a>
 <a href="/user/myPage/dogJoinChk">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmqueModify">
 <h1>문의 수정</h1>
-<form method="post" th:object="${myqna}">
-	<table border="">
+<form method="post" th:object="${myqna}" onsubmit="return frmChk()">
+	<table>
 	<input type="hidden" th:field="*{no}"/>
-		<tr>
-			<td>제목</td>
-			<td><input type="text" th:field="*{title}"/></td>
+		<tr class="hmtitlekind">
+			<td colspan="4">문의 수정</td>
 		</tr>
 		<tr>
-			<td>아이디</td>
+			<td>제목</td>
+			<td>
+				<input type="text" id="title" th:field="*{title}"/>
+			</td>
+			<td align="right">아이디</td>
 			<td th:text="${myqna.pid}" />
 		</tr>
 		<tr>
-			<td>내용</td>
-			<td><textarea th:field="*{content}"/></td>
+			<td colspan="4" align="center">
+				<textarea id="content" th:field="*{content}"/>
+			</td>
 		</tr>
 		<!-- <tr>
 			<td>작성일</td>
 			<td th:text="${myqna.reg_date}" />
 		</tr> -->
 		<tr>
-			<td colspan="2" align="center"> 
+			<td colspan="4" align="center"> 
 				<input type="submit" value="수정" />
 				<a th:href="|/user/question/queList/1|" th:text="뒤로"/>
 			</td>
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

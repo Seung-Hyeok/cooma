@@ -29,36 +29,40 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmdogDetail">
 <h1>나의 애견 정보</h1>
-<table border="">
+<table>
 	<tr>
-		<td>이름</td><td th:text="${dogData.dname}" />
+		<td colspan="2" align=center class="hmtitlekind">애견정보</td>
 	</tr>
 	<tr>
-		<td>견종</td><td th:text="${dogData.breed}" />
+		<td class="tt">이름</td><td th:text="${dogData.dname}" />
 	</tr>
 	<tr>
-		<td>무게</td><td th:text="${dogData.weight}" /> 
+		<td class="tt">견종</td><td th:text="${dogData.breed}" />
 	</tr>
 	<tr>
-		<td>사이즈</td><td th:text="${dogData.dogsize}" />
+		<td class="tt">무게</td><td th:text="${dogData.weight}" /> 
 	</tr>
 	<tr>
-		<td>성별</td><td th:text="${dogData.gender}" />
+		<td class="tt">사이즈</td><td th:text="${dogData.dogsize}" />
 	</tr>
 	<tr>
-		<td>나이</td>
-		<td>
+		<td class="tt">성별</td><td th:text="${dogData.gender}" />
+	</tr>
+	<tr>
+		<td class="tt t1" >나이</td>
+		<td class="t1">
 			<span th:if="${dYear != 0}">[[${dYear}]]년</span>
 		  	<span th:if="${dMonth != 0}">[[${dMonth}]]개월</span>
 		  	<span th:if="${dYear != 0 || dMonth != 0}">생</span>
   		</td>
 	</tr>
 	<tr>
-		<td>사진</td><td><img th:src="|/dimg/${dogData.photo}|" alt="" width="500px"/></td>
+		<td colspan="2" align="center" class="hmimg"><img th:src="|/dimg/${dogData.photo}|" alt="" width="500px"/></td>
 	</tr>
 	<tr>
-		<td>특이사항</td><td th:text="${dogData.notes}" />
+		<td class="tt">특이사항</td><td th:text="${dogData.notes}" />
 	</tr>
 	<tr>
 		<td colspan="2" align="right">
@@ -68,6 +72,7 @@ layout:decorate="total/userTemp">
 		</td>
 	</tr>
 </table>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

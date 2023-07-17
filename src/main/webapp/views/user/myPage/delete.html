@@ -7,18 +7,48 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+//비밀번호 유효성
+function validPw(pw = $("#pw").val().trim()) {
+	
+	var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^-_]).{8,16}$/;
+	var isValid = regex.test(pw);
+
+	if (isValid) {
+		document.getElementById('pw').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		document.getElementById('pw').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+function frmChk() {
+	
+	if(!validPw()){//2
+		alert("비밀번호를 정확히 입력해주세요.");
+		return false;
+	}
+	
+	return true;
+}
+</script>
 <div class="myPageMenu">
 <a href="/user/myPage/memPage">내정보</a>
 <a href="/user/myPage/dogJoinChk">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmDelete">
 <h1>회원탈퇴</h1>
-<form method="post" th:object="${myData}">
-	<table border="">
+<form method="post" th:object="${myData}" onsubmit="return frmChk()">
+	<table>
 		<tr>
-			<td>비밀번호</td>
-			<td><input type="text" name="pw" /></td>
+			<td colspan="2" align=center class="hmtitlekind">회원탈퇴</td>
+		</tr>
+		<tr>
+			<td class="tt" align=center >비밀번호</td>
+			<td align=center><input type="password" id="pw" name="pw" oninput="validPw(this.value)" /></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"> 
@@ -28,6 +58,7 @@ layout:decorate="total/userTemp">
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

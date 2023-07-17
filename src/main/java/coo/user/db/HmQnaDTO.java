@@ -6,6 +6,8 @@ import java.util.Date;
 
 import coo.user.model.HmPData;
 import jakarta.annotation.Resource;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -20,8 +22,11 @@ public class HmQnaDTO {
 	 
 	 int ano;
 	 
+	 @NotEmpty(message = "제목을 입력해주세요")
+	 @Size(max = 15, message = "제목은 15글자 이하로 입력해주세요")
 	 String title;
 	 
+	 @NotEmpty(message = "문의내용을 입력해주세요")
 	 String content;
 	 
 	 String pid;

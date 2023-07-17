@@ -14,11 +14,19 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/gsMyList">내 이용권</a>
 <a href="/user/question/questionInsert">1:1 문의</a>
 </div>
+<div class="hmqueList">
 <h1>내질문 리스트</h1>
-<table border="">
-<form action="" th:object="${hmQnaDTO}">
+<table>
+	<tr>
+		<td colspan="5" align=center class="hmtitlekind">내 문의내역</td>
+	</tr>
+	<form action="" th:object="${hmQnaDTO}">
 		<tr>
-			<td colspan="5" align="center">
+			<td colspan="2" class="schselect" align="center">
+				<a href="/user/question/a/1/1">답변완료</a>
+				<a href="/user/question/a/2/1">미답변</a>
+			</td>
+			<td colspan="3" >
 				제목
 				<input type="text" th:field="*{sch}" />
 				<input type="submit" value="검색" />
@@ -26,47 +34,41 @@ layout:decorate="total/userTemp">
 		</tr>
 	</form>
 	
-	<tr>
-		<td colspan="5">
-			<a href="/user/question/a/1/1">답변완료</a>
-			<a href="/user/question/a/2/1">미답변</a>
-		</td>
-	</tr>
-	
-	<tr>
+	<tr class="quetitle">
 		<td>번호</td>
 		<td>제목</td>
 		<td>작성자</td>
 		<td>작성일</td>
 		<td>상태</td>
 	</tr>
-	<tr th:each="dto, dtoStat : ${myqnalist}">
+	<tr th:each="dto, dtoStat : ${myqnalist} "class="quelist">
 		<td th:text="${dtoStat.index}+1"/>
 		<td><a th:href="@{|/user/question/queDetail/${dto.no}|}" th:text="${dto.title}"/></td>
 		<td th:text="${dto.pid}"/>
 		<td th:text="${dto.rDate()}"/>
-		<td th:if="${dto.getAnswer != null}" th:text="답변완료"/>
-		<td th:if="${dto.getAnswer == null}" th:text="답변확인중"/>
+		<td th:if="${dto.getAnswer != null}" th:text="답변완료" class="hman"/>
+		<td th:if="${dto.getAnswer == null}" th:text="답변확인중" class="hmnoan"/>
 	</tr>
 	
 	<tr> 
-		<td colspan="5" align="center" >
-			<th:block th:if="${hp.startPage > 1}"><a th:href="${hp.nowPage-1}" th:text="이전"></a></th:block>
+		<td colspan="5" align="center"  class="hmpagelink">
+			<th:block th:if="${hp.startPage > 1}"><a class="hmpage" th:href="${hp.nowPage-1}" th:text="이전"></a></th:block>
 				<span th:each="p : ${#numbers.sequence(hp.startPage, hp.endPage, 1)}" th:href="${p}">
-					<th:block th:if="${hp.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
-					<th:block th:unless="${hp.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
+					<th:block th:if="${hp.nowPage == p}"><button class="hmnowpage" th:text="${p}">[[${p}]]</button></th:block>
+					<th:block th:unless="${hp.nowPage == p}"><a class="hmpage" th:href="${p}" th:text="${p}"></a></th:block>
 				</span>
-			<th:block th:if="${hp.endPage < hp.totalPage}"><a th:href="${hp.endPage+1}" th:text="다음"></a></th:block>
+			<th:block th:if="${hp.endPage < hp.totalPage}"><a class="hmpage" th:href="${hp.endPage+1}" th:text="다음"></a></th:block>
 		</td>
 	</tr>
 	
 	<tr>
-		<td colspan="5" align="right">
+		<td colspan="5" align="right" class="hmlink">
 			<a th:href="|/user/myPage/memPage|" th:text="뒤로" />
 			<a th:href="|/user/question/questionInsert|" th:text="문의작성"/>
 		</td>
 	</tr>
 </table>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

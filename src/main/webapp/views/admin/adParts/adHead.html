@@ -43,5 +43,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <a href="/admin/sales/1">매출관리</a>
 <a href="/admin/notice/1">공지사항관리</a>
 <a href="/admin/answer">1:1 답변</a>
+<a href="/user" th:if="${pid != null && pid.startsWith('ad')}">유저페이지</a>
+<a href="/user/log/logout" th:if="${pid != null}">로그아웃</a>
 </div>
 </head>

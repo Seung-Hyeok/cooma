@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import coo.user.db.HmQnaDTO;
 import coo.user.db.HmQuestionMapper;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class HmQuestionController {
@@ -28,13 +30,21 @@ public class HmQuestionController {
 		return "user/question/questionInsert";
 	}
 	
+	@Resource
+	HmQnaChk qnaChk;
+	
 	@PostMapping("/user/question/questionInsert")
-	String QuestionComplete(HttpSession session, Model mm, HmQnaDTO qna) {
+	String QuestionComplete(HttpSession session, Model mm, @Valid HmQnaDTO qna, BindingResult bRes) {
 		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		qna.setPid(pid);
-		qm.queInsert(qna);
-		int no = qm.maxNo();
 		
+		if(qnaChk.hasErrors(qna, bRes)) {
+			return "user/question/questionInsert";
+		} else{
+			qm.queInsert(qna);
+		}
+		int no = qm.maxNo();
 		mm.addAttribute("msg","문의등록이 완료되었습니다.");
 		mm.addAttribute("goUrl","/user/question/queDetail/"+no);
 		return "user/question/alert";

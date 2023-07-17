@@ -13,21 +13,29 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmdogList">
 <h1>나의 애견 목록</h1>
-<table border="">
+<table>
 	<tr>
-		<td>번호</td>
-		<td>이름</td>
-		<td>견종</td>
-		<td>나이</td>
+		<td colspan="3" align=center class="hmtitlekind">등록된 강아지</td>
+	</tr>
+	<tr>
+		<td class="tt">번호</td>
+		<td class="tt">이름</td>
+		<td class="tt">견종</td>
 	</tr>
 	<tr th:each="dto, dtoStat : ${dogData}">
 		<td th:text="${dtoStat.index}+1"/>
 		<td><a th:href="@{|/user/myPage/dogDetail/${dto.dname}|}" th:text="${dto.dname}"/></td>
 		<td th:text="${dto.breed}"></td>
-		<td th:text="${dto.dyear}"></td>
+	</tr>
+	<tr>
+		<td colspan="3" align="right" class="hmtagCss">
+			<a th:href="|/user/myPage/memPage|" th:text="뒤로" />
+			<a th:href="|/user/myPage/dogJoinChk|" th:text="애견등록"/>
 	</tr>
 </table>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

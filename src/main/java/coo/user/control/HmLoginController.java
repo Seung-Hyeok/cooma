@@ -42,6 +42,7 @@ public class HmLoginController {
 	String joinComplete(HttpServletRequest request, Model mm, HmDogsDTO dog, HmMemberDTO dto, HmFileData fd) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		dto.setEmail(dto.getEmail()+"@"+fd.getEmail2());
+		dto.setTel(fd.getTel1()+"-"+fd.getTel2()+"-"+fd.getTel3());
 	    try {
 	        Date birthDate = format.parse(fd.getBirthstr());
 	        dto.setBirth(birthDate);
@@ -78,7 +79,7 @@ public class HmLoginController {
 			mm.addAttribute("msg",memData.getPname()+"님 로그인 되었습니다.");
 			mm.addAttribute("goUrl","/user");
 			if(memData.getGrade().equals("관리자")) {
-				mm.addAttribute("goUrl","/admin");
+				mm.addAttribute("goUrl","/user/log/adminSelect");
 			}
 			session.setAttribute("pid", memData.getPid());
 			session.setAttribute("pname", memData.getPname());
@@ -208,5 +209,13 @@ public class HmLoginController {
 			mm.addAttribute("goUrl", "/user");
 			
 			return  "/user/log/alert";
+		}
+		
+		@RequestMapping("/user/log/adminSelect")
+		String adselcet(HttpSession session, Model mm) {
+			String pid = (String)session.getAttribute("pid");
+			mm.addAttribute("pid", pid);
+			
+			return "user/log/adminSelect";
 		}
 }

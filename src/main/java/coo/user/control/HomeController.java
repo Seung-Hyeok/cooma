@@ -56,7 +56,7 @@ public class HomeController {
 		}
 		
         mm.addAttribute("today",todayInfo); //링크추가
-		Object pname = session.getAttribute("pname");
+		String pname = (String)session.getAttribute("pname");
 		
 		if(pname!=null) {
 			mm.addAttribute("msg",pname+"님 반갑습니다.");

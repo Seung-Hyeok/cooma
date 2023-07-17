@@ -15,28 +15,32 @@ layout:decorate="total/userTemp">
 <a href="/user/question/questionInsert">1:1 문의</a>
 <a href="/user/question/queList/1">질문리스트</a>
 </div>
+<div class="hmmemPage">
 <h1>마이페이지</h1>
-<table border="">
+<table>
 	<tr>
-		<td>아이디</td><td th:text="${myData.pid}"/>
+			<td colspan="2" align=center class="hmtitlekind">내 정보</td>
+		</tr>
+	<tr>
+		<td class="tt">아이디</td><td th:text="${myData.pid}"/>
 	</tr>
 	<tr>
-		<td>이름</td><td th:text="${myData.pname}"/>
+		<td class="tt">이름</td><td th:text="${myData.pname}"/>
 	</tr>
 	<tr>
-		<td>전화번호</td><td th:text="${myData.tel}"/>
+		<td class="tt">전화번호</td><td th:text="${myData.tel}"/>
 	</tr>
 	<tr>
-		<td>생년월일</td><td>[[${birth}]]</td>
+		<td class="tt">생년월일</td><td>[[${birth}]]</td>
 	</tr>
 	<tr>
-		<td>주소</td><td th:text="${myData.addr1}"/>
+		<td class="tt">주소</td><td th:text="${myData.addr1}"/>
 	</tr>
 	<tr>
-		<td>주소</td><td th:text="${myData.addr2}"/>
+		<td class="tt">주소</td><td th:text="${myData.addr2}"/>
 	</tr>
 	<tr>
-		<td>이메일</td><td th:text="${myData.email}"/>
+		<td class="tt">이메일</td><td th:text="${myData.email}"/>
 	</tr>
 	<tr>
 		<td colspan="2" align="right">
@@ -47,6 +51,7 @@ layout:decorate="total/userTemp">
 		</td>
 	</tr>
 </table>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">
