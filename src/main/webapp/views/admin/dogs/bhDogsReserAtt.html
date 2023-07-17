@@ -9,7 +9,11 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 
-	
+<div>
+	<span th:text="${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - 교육없음'"/>
+</div>
+
+<div class="bhBigCal">
 	<div th:each="rd : ${days}" class="bhCalendar">
 		<div class="bhMonthHead"><span th:text="${rd[0]+'월'}"/></div>
 		<div class="bhmonth">
@@ -37,7 +41,7 @@ layout:decorate="total/adTemp">
 			</div>
 		</div>
 	</div>
-	
+</div>
 	
 </th:block>
 

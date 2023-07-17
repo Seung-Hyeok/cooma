@@ -55,6 +55,7 @@ layout:decorate="total/adTemp">
 				<a th:href="|/admin/memPid/${bhDogData.pid}|" th:if="${beforePage.equals('mem')}" class="bhBigButton">뒤로</a>
 				<a th:href="|/admin/dogs|" th:if="${beforePage.equals('dogs')}" class="bhBigButton">애견목록</a>
 				<a th:href="|/admin|" th:if="${beforePage.equals('admin')}" class="bhBigButton">오늘등원리스트</a>
+				<a th:href="|/admin/attList|" th:if="${beforePage.equals('attList')}" class="bhBigButton">뒤로</a>
 				<a th:href="|/admin/dogModi/${bhDogData.dname}/${bhDogData.pid}|" th:text="수정" class="bhBigButton"></a>
 				<a th:href="|/admin/dogDelete/${bhDogData.dname}/${bhDogData.pid}|" th:text="삭제" class="bhBigButton"></a>	
 			</td>
