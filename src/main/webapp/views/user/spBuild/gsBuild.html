@@ -11,6 +11,28 @@ layout:decorate="total/userTemp">
 <th:block layout:fragment="content">
 <h1>시설 안내</h1>
 <img src="/dimg/building.png" alt="" width="1200px"/>
+
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2d6a1bdd8412bb95510991ae4dad99a2"></script>
+		
+		<script>
+		    var container = document.getElementById('map');
+		    var options = {
+		        center: new kakao.maps.LatLng(37.5001, 127.029),
+		        level: 3
+		    };
+		    var map = new kakao.maps.Map(container, options);
+		 	// 마커가 표시될 위치입니다 
+		    var markerPosition  = new kakao.maps.LatLng(37.5001, 127.029); 
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        position: markerPosition
+		    });
+		    // 마커가 지도 위에 표시되도록 설정합니다
+		    marker.setMap(map);
+		    //교통정보
+		    map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
+		</script>
+		<div id="map" style="width:790px;height:350px;" ></div>
 </th:block>
 
 <th:block layout:fragment="add-content">

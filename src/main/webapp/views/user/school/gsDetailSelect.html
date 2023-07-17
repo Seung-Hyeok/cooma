@@ -9,6 +9,9 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<h1>상세정보 입력</h1>
+<hr>
+<div class="gsDetail">
 	<form action="/user/school/gsBuy" th:object="${gsReserDTO}" method="post">
 		<input type="hidden" th:field="*{dname}"/>
 		<input type="hidden" th:field="*{weeks}"/>
@@ -16,8 +19,14 @@ layout:decorate="total/userTemp">
 		<input type="hidden" th:field="*{gap}"/>
 		<input type="hidden" th:field="*{pay}"/>
 		<input type="hidden" th:field="*{dogsize}"/>
-		
-		<h2>요청사항</h2>
+		<h2>정규 교육</h2>
+		<select name="edu" id="edu">
+			<option value="-" selected="selected">일반</option>
+			<option value="배변">배변 교육 (일일 2,900원)</option>
+			<option value="분리불안">분리불안 교육 (일일 4,900원)</option>
+			<option value="공격성">공격성 교육 (일일 5,900원)</option>
+		</select>
+		<h2>요청 사항</h2>
 		<textarea name="reque"></textarea>
 		<h2>등원 날짜</h2>
 		<input type="date" name="startD" required="required"/>
@@ -25,19 +34,13 @@ layout:decorate="total/userTemp">
 		<input type="text" th:field="*{bank}"/>
 		<h2>계좌</h2>
 		<input type="text" th:field="*{account}"/>
-		<h2>고정 추가 교육</h2>
-		<select name="edu" id="edu">
-			<option value="-" selected="selected">훈련없음</option>
-			<option value="배변">배변 교육 (일일 2,900원)</option>
-			<option value="분리불안">분리불안 교육 (일일 4,900원)</option>
-			<option value="공격성">공격성 교육 (일일 5,900원)</option>
-		</select>
-		<input type="submit" value="결제"/>
+		</br></br>
+		<input class="gsButton"  type="submit" value="결제"/>
 	</form>
+	</div>
 </th:block>
 
 <th:block layout:fragment="add-content">
-	<h3>나는 추가내용</h3>
 </th:block>
 
 </html>

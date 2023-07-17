@@ -11,49 +11,59 @@ layout:decorate="total/userTemp">
 
 <th:block layout:fragment="content">
 	
-	<h3>공지사항</h3>
-	
-	<table border="" align="center" style="">
-		<form action="" th:object="${PData}" method="post">
-			<tr>
-				<td colspan="5" align="right">
-					제목
-					<input type="text" th:field="*{sch}" /> 
-					
-					<input type="submit" value="검색" />
-				</td>
-			</tr>
-		</form>
+<h1>공지사항</h1>
+<hr>
+	<div  class ="notice_search">
+<form action="" th:object="${PData}" method="post">
+					<input type="text" th:field="*{sch}" /> &nbsp;&nbsp;&nbsp;
+					<input  class="gsButton" type="submit" value="검색" />
+</form>
+</div>
+<div class ="notice_list">
+	<ul>
+	<th:block th:each="dto, dtostat : ${mainData}">
+		<li>
+			<div class ="ll">No<hr style="width:30px; margin:10px 40px 10px 30px;"><span th:text="${dto.num}"></span></div>
+			<div class = "rr">
+				<a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"/>
+					<ul class="listul">	
+						<li><span th:text="${dto.date()}"></span></li>
+						<li>조회수 : <span th:text="${dto.cnt}"></span></li>
+					</ul>
+			</div>
+		</li>	
+		<hr style="margin-top:10px; margin-bottom:20px;">
 		
-		<tr style=""align="center">
-			<td>번호</td>
-			<td>제목</td>
-			<td>작성자</td>
-			<td>등록일</td>
-			<td>조회수</td>
-			
-		</tr>
-		<tr th:each="dto, dtostat : ${mainData}" align="center">
-			<td th:text="${dtostat.index}"/>
-			<td><a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"/></td>
-			<td th:text="${dto.id}"/>
-			<td th:text="${dto.date()}"/>
-			<td th:text="${dto.cnt}"/>
-		</tr>
-		<tr> 
-			<td colspan="5" align="center" >
-				<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
+		</th:block>
+	</ul>
+		<div class="button_container">
+	    	<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
 					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
 						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
 						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
 					</span>
 					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
-			</td>
-		</tr>
-	
-	</table>
+        </div>
+</div>
 	
 	
 </th:block>
 
+
+
+
+
+
+
 </html>
+
+
+
+
+
+
+
+
+
+
+

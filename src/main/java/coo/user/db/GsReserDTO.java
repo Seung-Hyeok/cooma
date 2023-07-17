@@ -18,13 +18,13 @@ public class GsReserDTO {
 	public String gap() {
 
         if(this.gap == 84) {
-            return "3개월권";
+            return "3개월권 (84일)";
         }else if(this.gap == 28) {
-            return "1개월권";
+            return "1개월권 (28일)";
         }else if(this.gap == 14) {
-            return "2주권";
+            return "2주권 (14일)";
         }else if(this.gap == 0) {
-            return "일일권";
+            return "1일";
         }else {
             return "aaaa";
         }

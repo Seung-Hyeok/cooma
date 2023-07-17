@@ -9,16 +9,27 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<h1>이용권 구매</h1>
 	<div class="prDog">
-		<div><img  src="/dimg/pprice.jpg" alt="" width="300px"></div>
 		<div class="dogMenu">
 			
-			<div  th:each="dto , dtoStat: ${dogData}">
-				<span th:text="${dto.dname}"></span></br>
+			<div  th:each="dto: ${dogData}">
+				<h2><span class="gsName123" th:text="${dto.dname}"></span></h2>
+				<div class="gsDog123">
 				<a th:href="@{|/user/school/packSelect/${dto.dname}|}" >
 				  <img  th:src="@{|/dimg/${dto.photo}|}" alt="" width="200px">
-				  </a>
+				  </a><br>
+				  종류 : <span th:text="${dto.dogsize}"></span><br>
+				  현재 이용권 : <br> 5일권 <br>
+				  </div>
 			</div>
+		</div>
+		<div class="prMenu">
+		<h1>&#60;정규반&gt;</h1>
+		<h2>-3개월 패키지 (84일)</h2>&nbsp;&nbsp;&nbsp;5일권 대형 240만원, 중/소형 180만원<br>&nbsp;&nbsp;&nbsp;3일권 대형 155만원, 중/소형 120만원<br>&nbsp;&nbsp;&nbsp;2일권 대형 105만원, 중/소형 82만원<br>
+		<h2>-1개월 패키지 (28일)</h2>&nbsp;&nbsp;&nbsp;5일권 대형 90만원, 중/소형 70만원<br>&nbsp;&nbsp;&nbsp;3일권 대형 55만원, 중/소형 43만원<br>&nbsp;&nbsp;&nbsp;2일권 대형 37만원, 중/소형 28만원<br>
+		<h2>-2주 패키지 (14일)</h2>&nbsp;&nbsp;&nbsp;5일권 대형 48만원, 중/소형 38만원<br>&nbsp;&nbsp;&nbsp;3일권 대형 29만원, 중/소형 23만원<br>&nbsp;&nbsp;&nbsp;2일권 대형 19.5만원, 중/소형 15.5만원<br>
+		<h1>&#60;일일반&gt;</h1>&nbsp;&nbsp;&nbsp;1일권 대형 5만원, 중/소형 4만원
 		</div>
 	</div>
 </th:block>
