@@ -19,12 +19,13 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	position: fixed; /* 고정 위치 설정 */
 	background: #fff;
 		width: 1150px;
-		height: 130px;
+		height: 110px;
 		padding-left: 50px;
 		box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+		z-index: 9999;
 	}
 	.main{
-		margin-top:100px;
+		margin-top:90px;
 		width: 1200px;
 		min-height: 1000px;
 	}
@@ -39,7 +40,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	}
 	.menu>div{
 		width:1150px;
-		height: 70px;
+		height: 50px;
 	}
 	.menu>div>a{
 		line-height:70px;
@@ -64,15 +65,16 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <div class="menu">
 <th:block layout:fragment="title"></th:block>
 	<div>
+	<a href="/admin" th:if="${pid != null && pid.startsWith('ad')}">관리자페이지</a>
 	<a href="/user/log/logout" th:if="${pid != null}">로그아웃</a>
 	<a href="/user/log/login" th:if="${pid == null}">로그인</a>
 	</div>
-<a class="menuCookie" href="/user">Cookie Maruʕᴥʔ</a>
+<a class="menuCookie" href="/user">Cookie Maru</a>
 <a href="/user/diary">출석 달력</a>
 <a href="/user/build">시설안내</a>
 <a href="/user/school">유치원</a>
 <a href="/user/notice/1">공지사항</a>
-<a href="/user/myPage/memPage" th:if="${pid != null}">마이페이지</a>
+<a href="/user/myPage/memPage" th:if="${pid != null && !pid.startsWith('ad')}">마이페이지</a>
 
 </div>
 </head>

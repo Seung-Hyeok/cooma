@@ -78,14 +78,17 @@
          }
          .myGsDiary{
          	height: 1000px;
-         	width:1200px;
+         	width:1000px;
          	padding-top:50px;
-
+         	border: 5px solid  #324182;
+         	border-radius:50px;
+         	margin-left: 100px;
          }
          .myGsDiary>div{
          height: 120px;
+         font-size:13px;
            float: left;
-         	width:169px;
+         	width:139px;
          	text-align: center;
          	color:#324182;
          	overflow: auto;
@@ -124,6 +127,7 @@
  .gsCalSch{
  width:1200px;
  text-align: center;
+ height: 80px;
  }
  
 
@@ -373,17 +377,42 @@ input[type="text"][readonly] {
     .mainMaru{
      width:700px;
       color: #FFC107;
-      height: 150px;
+      height: 60px;
     font-size: 40px;
+    }
+     .mainInfo{
+     margin-right:140px;
+  	  width:530px;
+      height: 70px;
+      font-size: 20px;
+      color: #ccc;
+    
     }
     .aram{
     margin-right:140px;
     width:530px;
-      height: 200px;
+      height: 160px;
       border: 5px solid #fff;
       padding-left: 20px;
       color: #fff;
     
     }
-    
+   
+    .gsFoot{
+    background-color: #534E52;
+    padding: 30px 60px ;
+    width: 1080px;
+    height: 200px;
+    }
+    .gsFoot>div{
+    float:left;
+    width:260px;
+    height:150px;
+    color:#fff;
+    font-size: 10px;
+    }
+    .gsFoot>.FooCoo{
+    	font-size: 40px;
+    	font-weight: bold;
+    }
     

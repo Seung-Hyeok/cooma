@@ -32,14 +32,13 @@ layout:decorate="total/userTemp">
 		    <span id="gsNum" th:text="${no}" ></span></br>
 		    <th:block th:each="sh : ${show}">
 		    	 <th:block th:if="${sh.oneD == no+''}">
-		    		<span class="gsSmile">☻</span> <span th:text="${ sh.dname}" ></span>
-		    		-등원 :<span th:text="${sh.attendTimeStr()}" ></span></br>
-		    		-하원 :<span th:text="${sh.goHomeStr()}" ></span></br>
+		    		<span class="gsSmile">☻</span> <span th:text="${ sh.dname+' (출석)'}" ></span></br>
+		    		<span th:text="${sh.attendTimeStr()+'~'+sh.goHomeStr()}" ></span></br>
 		   		 </th:block>
 		    </th:block> 
 		    <th:block th:each="ns : ${noShow}">
 		    	 <th:block th:if="${ns.oneD == no+''}">
-		    		<span class="gsSad">☻</span> <span th:text="${ ns.dname+' -결석'}" ></span>
+		    		<span class="gsSad">☻</span> <span th:text="${ ns.dname+' (결석)'}" ></span>
 		    		</br>
 		   		 </th:block>
 		    </th:block> 
