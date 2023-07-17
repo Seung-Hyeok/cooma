@@ -75,23 +75,26 @@ public class BhAttendReserDTO {
         Date updatedDate = calendar.getTime();
 		return updatedDate;
 	}
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 EEE");
+	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 E");
 	SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy년 MM월 dd일");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("hh:mm:ss");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
 	
 //오늘 등원 리스트 상단 날짜 표시
-	//Calendar calendar = Calendar.getInstance(); //오늘 요일 번호 알아내는 코드
-	//int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1(일요일)부터 7(토요일)까지의 값
-	int dayOfWeek = 6;
-	String dayStr = "일월화수목금토".substring(dayOfWeek-1, dayOfWeek);
-	
+	Calendar cal = Calendar.getInstance(); //오늘 요일 번호 알아내는 코드
+
 	public String todayStr() {
-		String todayStr = sdf.format(today); // today => 포맷팅할 날짜 객체
+		cal.setTime(today);
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1(일요일)부터 7(토요일)까지의 값
+		String dayStr = "일월화수목금토".substring(dayOfWeek-1, dayOfWeek);
+		String todayStr = sdf1.format(today)+" ("+dayStr+")"; // today => 포맷팅할 날짜 객체
 		return todayStr;
 	}
 	
 	public String schDate() {
-		String schDate = sdf.format(this.schDate); 
+		cal.setTime(schDate);
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK); // 1(일요일)부터 7(토요일)까지의 값
+		String dayStr = "일월화수목금토".substring(dayOfWeek-1, dayOfWeek);
+		String schDate = sdf1.format(this.schDate)+" ("+dayStr+")"; 
 		return schDate;
 	}
 //애견디테일 예약날짜 표시
@@ -164,14 +167,14 @@ public class BhAttendReserDTO {
 	public int onedayM() {
 		calendar.setTime(oneDay);
 		int onedayM = calendar.get(Calendar.MONTH)+1;
-		System.out.println("onedayM:"+onedayM);
+	//	System.out.println("onedayM:"+onedayM);
 		return onedayM;
 	}
 	
 	public int onedayD() {
 		calendar.setTime(oneDay);
 		int onedayD = calendar.get(Calendar.DAY_OF_MONTH);
-		System.out.println("onedayD:"+onedayD);
+	//	System.out.println("onedayD:"+onedayD);
 		return onedayD;
 	}
 }

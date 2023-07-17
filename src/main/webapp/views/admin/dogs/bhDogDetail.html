@@ -9,60 +9,55 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
-	<h2 th:text="${bhDogData.dname}+' 강아지 정보'"> </h2>
+	<h2 th:text="${bhDogData.dname}+' 강아지 정보'" class="bhH2"> </h2>
 
-	<table border="" align="center">
+	<table align="center" class="bhTableD">
 		<tr>
-			<td>강아지이름</td><td th:text="${bhDogData.dname}"/>
+			<td class="bhTableDColor">강아지이름</td><td th:text="${bhDogData.dname}"/>
+			<td class="bhTableDColor">견종</td><td th:text="${bhDogData.breed}" />
 		</tr><tr>
-			<td>사진</td>
-			<td>
+			<td class="bhTableDColor">사진</td>
+			<td colspan="3">
 				<img th:src="@{'/dimg/'+${bhDogData.photo}}" width="200px" alt="Image">
 			</td>
 		</tr><tr>
-			<td>견종</td><td th:text="${bhDogData.breed}" />
+			<td class="bhTableDColor">회원아이디</td><td th:text="${bhDogData.pid}" />
+			<td class="bhTableDColor">회원이름</td><td th:text="${bhMemData.pname}" />
 		</tr><tr>
-			<td>회원아이디</td><td th:text="${bhDogData.pid}" />
+			<td class="bhTableDColor">무게</td><td th:text="${bhDogData.weight}"/>
+			<td class="bhTableDColor">사이즈</td><td th:text="${bhDogData.dogsize}"/>
 		</tr><tr>
-			<td>회원이름</td><td th:text="${bhMemData.pname}" />
+			<td class="bhTableDColor">성별</td><td th:text="${bhDogData.gender}" />
+			<td class="bhTableDColor">나이</td><td th:text="${bhDogData.dogBirthStr()}" />
 		</tr><tr>
-			<td>무게</td><td th:text="${bhDogData.weight}"/>
+			<td class="bhTableDColor">특이사항</td><td th:text="${bhDogData.notes}" />
+			<td class="bhTableDColor">등급</td><td th:text="${bhDogData.grade}" />
 		</tr><tr>
-			<td>사이즈</td><td th:text="${bhDogData.dogsize}"/>
-		</tr><tr>
-			<td>성별</td><td th:text="${bhDogData.gender}" />
-		</tr><tr>
-			<td>개월수</td><td th:text="${bhDogData.dyear}" />
-		</tr><tr>
-			<td>특이사항</td><td th:text="${bhDogData.notes}" />
-		</tr><tr>
-			<td>등급</td><td th:text="${bhDogData.grade}" />
-		</tr><tr>
-			<td>관리자메모</td><td th:text="${bhDogData.adminMemo}" />
+			<td class="bhTableDColor">관리자메모</td><td colspan="3" th:text="${bhDogData.adminMemo}" />
 		</tr>
-
 			<tr>
-				<td colspan="2">예약 내역</td>
+				<td colspan="4" class="bhbold">예약 내역</td>
 			</tr>
 			<tr th:each="dto, dtoStat: ${bhDogsReser}">
-				<td th:text="${dtoStat.index+1}"/>
+				<td th:text="${dtoStat.index+1}" class="bhTableDColor"/>
 				<th:block th:if="${dto.edu.equals('-')}">
-					<td><a th:href="|/admin/dogsReser/${dto.reserNo}|" 
-					th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - 교육없음'"/></td>
+					<td colspan="3"><a th:href="|/admin/dogsReser/${dto.reserNo}|" class="bhTA" 
+					th:text="${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - 교육없음'"/></td>
 				</th:block>
 				<th:block th:unless="${dto.edu.equals('-')}">
-					<td><a th:href="|/admin/dogsReser/${dto.reserNo}|" 
-					th:text="${dto.kind}+${dto.getTerm()}+' : '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - '+${dto.edu}"/></td>
+					<td colspan="3"><a th:href="|/admin/dogsReser/${dto.reserNo}|" class="bhTA" 
+					th:text="${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - '+${dto.edu}"/></td>
 				</th:block>
 			</tr>
 
 		<tr>
-			<td colspan="2" align="center">
-				<a th:href="|/admin/memPid/${bhDogData.pid}|" th:if="${beforePage.equals('mem')}">뒤로</a>
-				<a th:href="|/admin/dogs|" th:if="${beforePage.equals('dogs')}">애견목록</a>
-				<a th:href="|/admin|" th:if="${beforePage.equals('admin')}">오늘등원리스트</a>
-				<a th:href="|/admin/dogModi/${bhDogData.dname}/${bhDogData.pid}|" th:text="수정" ></a>
-				<a th:href="|/admin/dogDelete/${bhDogData.dname}/${bhDogData.pid}|" th:text="삭제" ></a>	
+			<td colspan="4" align="center">
+				<a th:href="|/admin/memPid/${bhDogData.pid}|" th:if="${beforePage.equals('mem')}" class="bhBigButton">뒤로</a>
+				<a th:href="|/admin/dogs|" th:if="${beforePage.equals('dogs')}" class="bhBigButton">애견목록</a>
+				<a th:href="|/admin|" th:if="${beforePage.equals('admin')}" class="bhBigButton">오늘등원리스트</a>
+				<a th:href="|/admin/attList|" th:if="${beforePage.equals('attList')}" class="bhBigButton">뒤로</a>
+				<a th:href="|/admin/dogModi/${bhDogData.dname}/${bhDogData.pid}|" th:text="수정" class="bhBigButton"></a>
+				<a th:href="|/admin/dogDelete/${bhDogData.dname}/${bhDogData.pid}|" th:text="삭제" class="bhBigButton"></a>	
 			</td>
 		</tr>
 	</table>

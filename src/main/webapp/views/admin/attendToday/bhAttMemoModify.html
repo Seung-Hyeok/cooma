@@ -1,4 +1,4 @@
-ㄴ<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="total/adTemp">
@@ -9,30 +9,24 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
-	<h2 th:text="${bhDogData.todayStr()}+' '+${bhDogData.dname}+' 메모 수정'"> </h2>
+	<h2 class="bhH2" th:text="${bhDogData.todayStr()}+' '+${bhDogData.dname}+' 일일기록 수정'"> </h2>
 	
 	<form method="post" th:object="${bhDogData}">
-		<table border="" align="center">
+		<table align="center" class="bhTableD">
 			<tr>
-				<td>강아지이름</td><td th:text="${bhDogData.dname}"/>
+				<td class="bhTableDColor">강아지이름</td><td th:text="${bhDogData.dname}"/>
 			</tr>
-<!--			<tr>
-				<td>사진</td>
-				<td>
-					<img th:src="@{'/dimg/'+${bhDogData.photo}}" width="200px" alt="Image">
-				</td>
-			</tr>	-->
 			<tr>
-				<td>회원아이디</td><td th:text="${bhDogData.pid}" />
+				<td class="bhTableDColor">회원아이디</td><td th:text="${bhDogData.pid}" />
 			</tr><tr>
-				<td>일일메모</td>
-				<td><textarea th:field="*{memo}" /></td>
+				<td class="bhTableDColor">일일메모</td>
+				<td><textarea th:field="*{memo}" class="bhTextA" /></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" value="입력" />
-					<input type="reset" value="초기화" />
-					<a th:href="|/admin/attendMemo/*{todayNo}|" th:text="뒤로" ></a>
+					<input type="submit" value="입력" class="bhBigButton"/>
+					<input type="reset" value="초기화" class="bhBigButton"/>
+					<a th:href="|/admin/attendMemo/*{todayNo}|" th:text="뒤로" class="bhBigButton"></a>
 				</td>
 			</tr>
 		</table>

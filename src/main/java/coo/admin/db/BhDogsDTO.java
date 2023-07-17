@@ -1,5 +1,8 @@
 package coo.admin.db;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
 import lombok.Data;
 
@@ -32,5 +35,17 @@ public class BhDogsDTO {
 			qus = "○";
 		}
 		return qus;
+	}
+	
+	Date today = new Date();
+	Calendar calendar = Calendar.getInstance();
+
+	public String dogBirthStr() {
+		calendar.setTime(today);
+		int thisTotM = calendar.get(Calendar.YEAR)*12+calendar.get(Calendar.MONTH);
+		int birthTotM = dyear*12+dmonth;
+		int getY = (thisTotM-birthTotM)/12;
+		int getM = (thisTotM-birthTotM)-getY*12;
+		return getY+"년 "+getM+"개월 생";
 	}
 }

@@ -9,47 +9,57 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
-	<h2 th:text="${bhMemData.pname}+' 고객님의 정보 수정'"> </h2>
+	<h2 class="bhH2" th:text="${bhMemData.pname}+' 님의 정보 수정'"> </h2>
 	
 	<form method="post" th:object="${bhMemData}">
-		<table border="" align="center">
+		<table align="center" class="bhTableD">
 			<tr>
-				<td>아이디</td><td colspan="3"><span th:text="${bhMemData.pid}"></span></td>
+				<td class="bhTableDColor">아이디</td><td><span th:text="${bhMemData.pid}"></span></td>
+				<td class="bhTableDColor">이름</td><td th:text="${bhMemData.pname}" />
 			</tr><tr>
-				<td>이름</td><td colspan="3" th:text="${bhMemData.pname}" />
+				<td class="bhTableDColor">전화번호</td><td th:text="${bhMemData.tel}" />
+				<td class="bhTableDColor">이메일</td><td th:text="${bhMemData.email}" />
 			</tr><tr>
-				<td>전화번호</td><td colspan="3" th:text="${bhMemData.tel}" />
-			</tr><tr>
-				<td>이메일</td><td colspan="3" th:text="${bhMemData.email}" />
-			</tr><tr>
-				<td>생년월일</td><td colspan="3" th:text="${bhMemData.birth}" />
-			</tr><tr>
-				<td>주소</td><td colspan="3" th:text="${bhMemData.addr1}+' '+${bhMemData.addr2}"/>
-			</tr><tr>
-				<td>등급</td>
-				<td colspan="3">
-					<select th:field="*{grade}">
+				<td class="bhTableDColor">생년월일</td><td th:text="${bhMemData.birthStr()}" />
+				<td class="bhTableDColor">등급</td>
+				<td>
+					<select th:field="*{grade}" class="bhSelShort">
 						<option value="일반">일반</option>
 						<option value="블랙">블랙</option>
 						<option value="관리자">관리자</option>
 					</select>
 				</td>
 			</tr><tr>
-				<td>가입일</td><td colspan="3" th:text="${bhMemData.reg_date}" />
+				<td class="bhTableDColor">주소</td>
+				<td colspan="3" th:text="${bhMemData.addr1}+' '+${bhMemData.addr2}"/>
+			</tr><tr>
+				<td class="bhTableDColor">가입일</td>
+				<td colspan="3" th:text="${bhMemData.reg_dateStr()}" />
 			</tr>
-			<tr>
-				<td>강아지</td>
-				<td th:each="dto, dtoStat: ${bhDogData}">
-					<div>
-						<div th:text="${dto.dname}"><a href=""></a></div>
-						<img th:src="@{'/dimg/'+${dto.photo}}" width="200px" alt="Image">
-					</div>
-				</td>
-			</tr>
+			<tr th:if="${!bhMemData.grade.equals('관리자')}">
+			<td class="bhTableDColor">강아지</td>
+			<th:block th:each="dto: ${bhDogData}">
+			<th:block th:if="${bhDogData.size() == 1}">
+				<td colspan="3">
+			</th:block>
+			<th:block th:if="${bhDogData.size() == 2}">
+				<td colspan="2">
+			</th:block>
+			<th:block th:if="${bhDogData.size() == 3}">
+				<td>
+			</th:block>
+				<div>
+					<div th:text="${dto.dname}" class="bhTA"/>
+					<img th:src="@{'/dimg/'+${dto.photo}}" 
+					width="200px" alt="Image" style="margin:5px;">
+				</div>
+			</td>
+			</th:block>
+		</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<input type="submit" value="수정" />
-					<a th:href="|/admin/memPid/${bhMemData.pid}|" th:text="뒤로" ></a>
+					<input type="submit" value="수정" class="bhBigButton" />
+					<a th:href="|/admin/memPid/${bhMemData.pid}|" th:text="뒤로" class="bhBigButton" ></a>
 				</td>
 			</tr>
 		</table>

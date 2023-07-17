@@ -8,27 +8,29 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
-	<h2>애견관리</h2>
+	<h2 class="bhH2">애견관리</h2>
 	<div>
-		<table border="" align="center">
+		<table align="center" class="bhTable">
+			<thead>
 <!--검색폼-->
 			<form action="" th:object="${bhDogsDTO}">
 				<tr>
 					<td colspan="9" align="center">
-						<select th:field="*{kind}">
+						<select th:field="*{kind}" class="bhSelLong">
 							<option value="dname">강아지이름</option>
 							<option value="breed">견종</option>
 							<option value="pid">회원아이디</option>
 							<option value="dogsize">사이즈</option>
 						</select>
-						<input type="text" th:field="*{sch}"/>
-						강아지그룹
-						<select th:field="*{grade}">
+						<input type="text" th:field="*{sch}" class="bhInput"/>
+						&nbsp;&nbsp; 강아지그룹
+						<select th:field="*{grade}" class="bhSelShort">
 							<option value="전체" th:text="전체"></option>
 							<option value="일반" th:text="일반"></option>
 							<option value="블랙" th:text="블랙"></option>
 						</select>
-						<input type="submit" value="검색" />
+						&nbsp;
+						<input type="submit" value="검색" class="bhSearSub"/>
 					</td>
 				</tr>
 			</form>
@@ -40,21 +42,25 @@ layout:decorate="total/adTemp">
 				<td>회원이름</td>
 				<td>회원아이디</td>
 				<td>사이즈</td>
-				<td>개월수</td>
+				<td>나이</td>
 				<td>등급</td>
-				<td>관리자메모</td>
+				<td>관리메모</td>
 			</tr>
+			</thead>
+			
+			<tbody>
 			<tr th:each="dto, dtoStat: ${bhDogData}">
 				<td th:text="${dtoStat.index+1}"/>
-				<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}"/></td>
+				<td><a th:href="@{|/admin/dogInform/${dto.dname}/${dto.pid}|}" th:text="${dto.dname}" class="bhTA"/></td>
 				<td th:text="${dto.breed}"/>
 				<td th:text="${dto.pname}"/>
 				<td th:text="${dto.pid}"/>
 				<td th:text="${dto.dogsize}"/>
-				<td th:text="${dto.dyear}+'년 '+${dto.dmonth}+'월'"/>
+				<td th:text="${dto.dogBirthStr()}"/>
 				<td th:text="${dto.grade}"/>
 				<td th:text="${dto.memoChk()}"/>
 			</tr>
+			</tbody>
 		</table>
 		
 	</div>

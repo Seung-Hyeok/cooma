@@ -18,7 +18,6 @@ public interface BhAttendMapper {
 	ArrayList<BhAttendReserDTO> dayEduRageListSmall(BhAttendReserDTO reser);
 	ArrayList<BhAttendReserDTO> dayEduPoopListSmall(BhAttendReserDTO reser);
 	ArrayList<BhAttendReserDTO> dayEduAnxietyListSmall(BhAttendReserDTO reser);
-		
 	
 	//출석부 정보 
 	List<BhAttendReserDTO> dayListBig(BhAttendReserDTO reser);
@@ -53,5 +52,5 @@ public interface BhAttendMapper {
 	List<BhAttendReserDTO> bhAttYes(BhAttendReserDTO getDaybydayData);
 	List<BhAttendReserDTO> bhAttNo(BhAttendReserDTO getDaybydayData);
 	List<BhAttendReserDTO> bhAttNotyet(BhAttendReserDTO getDaybydayData);
-	
+	int bhAttTot(BhAttendReserDTO getDaybydayData);
 }

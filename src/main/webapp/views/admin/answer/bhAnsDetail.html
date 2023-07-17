@@ -8,36 +8,33 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
-	<h2>1:1 문의상세</h2>
+	<h2 class="bhH2">1:1 문의상세</h2>
 
-	<table border="" align="center">
+	<table align="center" class="bhTableD">
 		<tr>
-			<td>작성자</td><td th:text="${bhAnsData.pid}"/>
+			<td class="bhTableDColor">제목</td><td th:text="${bhAnsData.title}" />
+			<td class="bhTableDColor">작성자</td><td th:text="${bhAnsData.pid}"/>
 		</tr><tr>
-			<td>질문등록일</td><td th:text="${bhAnsData.reg_dateStr()}" />
+			<td class="bhTableDColor">질문등록일</td><td th:text="${bhAnsData.reg_dateStr()}" />
+			<td class="bhTableDColor">조회수</td><td th:text="${bhAnsData.cnt}" />
 		</tr><tr>
-			<td>제목</td><td th:text="${bhAnsData.title}" />
-		</tr><tr>
-			<td>조회수</td><td th:text="${bhAnsData.cnt}" />
-		</tr><tr>
-			<td>내용</td><td th:text="${bhAnsData.content}"/>
+			<td class="bhTableDColor">내용</td><td colspan="3" th:text="${bhAnsData.content}"/>
 		</tr>
 	<th:block th:if="${bhAnsData.getAnswer != null}">
-		<tr><td colspan="2"> --- 답변 --- </td></tr>
+		<tr><td colspan="4"> --- 답변 --- </td></tr>
 		<tr>
-			<td>답변</td><td th:text="${bhAnsData.getAnswer}" />
+			<td class="bhTableDColor">답변</td><td colspan="3" th:text="${bhAnsData.getAnswer}" />
 		</tr><tr>
-			<td>답변 등록일</td><td th:text="${bhAnsData.answerDateStr()}" />
-		</tr><tr>
-			<td>작성관리자</td><td th:text="${bhAnsData.adminId}" />
+			<td class="bhTableDColor">작성관리자</td><td th:text="${bhAnsData.adminId}" />
+			<td class="bhTableDColor">답변 등록일</td><td th:text="${bhAnsData.answerDateStr()}" />
 		</tr>
 	</th:block>
 		<tr>
-			<td colspan="2" align="center">
-				<a th:href="|/admin/answer|">뒤로</a>
-				<a th:href="|/admin/ansInsert/${bhAnsData.no}|"  th:if="${bhAnsData.getAnswer == null}">답변작성</a>
-				<a th:href="|/admin/ansModi/${bhAnsData.no}|"  th:if="${bhAnsData.getAnswer != null}">수정</a>
-				<a th:href="|/admin/ansDelete/${bhAnsData.no}|" >삭제</a>	
+			<td colspan="4" align="center">
+				<a th:href="|/admin/answer|" class="bhBigButton">뒤로</a>
+				<a th:href="|/admin/ansInsert/${bhAnsData.no}|"  th:if="${bhAnsData.getAnswer == null}" class="bhBigButton">답변작성</a>
+				<a th:href="|/admin/ansModi/${bhAnsData.no}|"  th:if="${bhAnsData.getAnswer != null}" class="bhBigButton">수정</a>
+				<a th:href="|/admin/ansDelete/${bhAnsData.no}|" class="bhBigButton" >삭제</a>	
 			</td>
 		</tr>
 	</table>

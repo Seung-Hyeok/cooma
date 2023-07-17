@@ -9,58 +9,53 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
-	<h2 th:text="${bhDogData.dname}+' 강아지 정보 수정'"> </h2>
+	<h2 th:text="${bhDogData.dname}+' 강아지 정보 수정'" class="bhH2"> </h2>
 	
 	<form method="post" th:object="${bhDogData}">
-		<table border="" align="center">
+		<table align="center" class="bhTableD">
 			<tr>
-				<td>강아지이름</td><td th:text="${bhDogData.dname}"/>
+				<td class="bhTableDColor">강아지이름</td><td th:text="${bhDogData.dname}"/>
+				<td class="bhTableDColor">견종</td><td th:text="${bhDogData.breed}" />
 			</tr><tr>
-				<td>사진</td>
-				<td>
+				<td class="bhTableDColor">사진</td>
+				<td colspan="3">
 					<img th:src="@{'/dimg/'+${bhDogData.photo}}" width="200px" alt="Image">
 				</td>
 			</tr><tr>
-				<td>견종</td><td th:text="${bhDogData.breed}" />
+				<td class="bhTableDColor">회원아이디</td><td th:text="${bhDogData.pid}" />
+				<td class="bhTableDColor">회원이름</td><td th:text="${bhMemData.pname}" />
 			</tr><tr>
-				<td>회원아이디</td><td th:text="${bhDogData.pid}" />
-			</tr><tr>
-				<td>회원이름</td><td th:text="${bhMemData.pname}" />
-			</tr><tr>
-				<td>무게</td>
-				<td><input type="text" th:field="*{weight}" /></td>
-			</tr><tr>
-				<td>사이즈</td>
+				<td class="bhTableDColor">무게</td>
+				<td><input type="text" th:field="*{weight}" class="bhInput"/></td>
+				<td class="bhTableDColor">사이즈</td>
 				<td>
-					<select th:field="*{dogsize}">
+					<select th:field="*{dogsize}" class="bhSelShort">
 						<option value="소형견">소형견</option>
 						<option value="중형견">중형견</option>
 						<option value="대형견">대형견</option>
 					</select>
 				</td>
 			</tr><tr>
-				<td>성별</td><td th:text="${bhDogData.gender}" />
+				<td class="bhTableDColor">성별</td><td th:text="${bhDogData.gender}" />
+				<td class="bhTableDColor">나이</td><td th:text="${bhDogData.dogBirthStr()}" />
 			</tr><tr>
-				<td>개월수</td><td th:text="${bhDogData.dyear}" />
-			</tr><tr>
-				<td>특이사항</td><td th:text="${bhDogData.notes}" />
-			</tr><tr>
-				<td>등급</td>
+				<td class="bhTableDColor">특이사항</td><td th:text="${bhDogData.notes}" />
+				<td class="bhTableDColor">등급</td>
 				<td>
-					<select th:field="*{grade}">
+					<select th:field="*{grade}" class="bhSelShort">
 						<option value="일반">일반</option>
 						<option value="블랙">블랙</option>
 					</select>
 				</td>
 			</tr><tr>
-				<td>관리자메모</td>
-				<td><textarea th:field="*{adminMemo}" /></td>
+				<td class="bhTableDColor">관리자메모</td>
+				<td colspan="3" ><textarea th:field="*{adminMemo}" class="bhTextA"/></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="수정" />
-					<input type="reset" value="초기화" />
-					<a th:href="|/admin/dogInform/*{dname}/*{pid}|" th:text="뒤로" ></a>
+				<td colspan="4" align="center">
+					<input type="submit" value="수정" class="bhBigButton"/>
+					<input type="reset" value="초기화" class="bhBigButton" />
+					<a th:href="|/admin/dogInform/*{dname}/*{pid}|" th:text="뒤로" class="bhBigButton" ></a>
 				</td>
 			</tr>
 		</table>
