@@ -179,6 +179,10 @@ html{
   transition: color 0.3s ease;
 }
 
+.hmJoinForm .hm_selectBox,  .hmJoinForm .hmno{
+	 border-bottom: none;
+}
+
 /*회원정보수정*/
 .hmmodify table {
 	width: 70%;
@@ -475,7 +479,6 @@ html{
 	font-size: 0.8rem;
 }
 
-
 /*마이페이지*/
 .hmmemPage table {
 	width: 70%;
@@ -731,7 +734,7 @@ html{
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 37px;
+  height: 40px;
   color: #FFC107;
 }
 
@@ -1059,11 +1062,6 @@ html{
   transition: color 0.3s ease;
 }
 
-.hmpwchange a {
-	text-decoration: none;
-	font-size: 0.8rem;
-}
-
 .hmpwchange input[type="password"] {
 	margin-right: 5px;
 	width: 200px;
@@ -1119,11 +1117,6 @@ html{
 .hmDelete a:hover {
 	 color: #FFC107;
   transition: color 0.3s ease;
-}
-
-.hmDelete a {
-	text-decoration: none;
-	font-size: 0.8rem;
 }
 
 .hmDelete input[type="password"] {
