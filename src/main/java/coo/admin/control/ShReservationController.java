@@ -1,6 +1,5 @@
 package coo.admin.control;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class ShReservationController {
 		
 		System.out.println(mainData);
 		System.out.println("reservation 진입");
-		
 		
 		System.out.println(pd.getTotalPage());
 		System.out.println(pd.getStart());

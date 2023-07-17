@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import coo.admin.db.BhDogsDTO;
 import coo.admin.db.BhMemDTO;
 import coo.admin.db.BhMemMapper;
+import coo.admin.model.BhPData;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 
@@ -24,8 +25,9 @@ public class BhMemController {
 	BhMemMapper mm;
 	
 //회원리스트
-	@RequestMapping("/member")
-	String bhMemList(Model mo, BhMemDTO mem) {
+	@RequestMapping("/member") // /{nowPage}
+	String bhMemList(Model mo, BhMemDTO mem, BhPData pd) {
+		//pd.setTotal(mm.bhMemTotal(pd));
 		List<BhMemDTO> bhMemData = mm.bhMemList(mem);
 		System.out.println("bhMemList() 진입");
 		mo.addAttribute("bhMemData",bhMemData);
@@ -33,7 +35,7 @@ public class BhMemController {
 	}
 	
 //회원상세
-	@RequestMapping("/memPid/{pid}")
+	@RequestMapping("/memPid/{pid}") // /{nowPage}
 	String bhMemDetail(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
 		System.out.println("bhMemDetail() 진입");
 		session.setAttribute("beforePage", "mem");

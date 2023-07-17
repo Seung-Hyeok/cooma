@@ -5,7 +5,7 @@
 
 .bhada{
 	color: white;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	margin: 5px;
 }
 
@@ -42,7 +42,7 @@
 
 .bhMidMenu > div > a{
 	color: #216A35;
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 
 /*------관리자 등하원,출석부 화면 css------*/
@@ -103,7 +103,7 @@
 	height: 30px;
 	background: #438c57;
 	color: white;
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 .bhAttTable > thead > tr > td,
 .bhAttTable > tbody > tr > td {
@@ -133,7 +133,7 @@
 	border: none;
 	border-radius: 4px;
 	color: ghostwhite;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	cursor: pointer;
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 
 			4px 4px 4px -1px rgba(0, 0, 0, 0.1);
@@ -148,7 +148,7 @@
 	border: none;
 	border-radius: 4px;
 	color: ghostwhite;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	cursor: pointer;
 	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 
 			4px 4px 4px -1px rgba(0, 0, 0, 0.1);
@@ -157,13 +157,13 @@
 
 .bhPanelty{
 	color: red;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	font-size: 0.8em;
 }
 
 .bhGoDone{
 	color: #438c57;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	font-size: 0.8em;
 }
 
@@ -211,7 +211,7 @@ input[data-placeholder]::before{
 	border: none;
 	border-radius: 4px;
 	color: ghostwhite;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	cursor: pointer;
 }
 /*삭제버튼*/
@@ -223,7 +223,7 @@ input[data-placeholder]::before{
 	border: none;
 	border-radius: 4px;
 	color: ghostwhite;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	cursor: pointer;
 }
 
@@ -283,12 +283,12 @@ input[data-placeholder]::before{
 /*일별 등하원지각출결*/
 .bhMonthHead{
 	font-size: 1.2em;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	padding: 10px;
 }
-.bhMonthNo{
+/*.bhMonthNo{
 	margin: 2px;
-}
+}*/
 .bhAtSpan{
 	font-size: 0.8em;
 }
@@ -299,7 +299,7 @@ input[data-placeholder]::before{
 .bhEmSpan{ /*결석*/
 	font-size: 0.8em;
 	color: red;
-	font-weight: bold;
+	/*font-weight: bold;*/
 }
 .bhNySpan{ /*예정*/
 	font-size: 0.8em;
@@ -360,7 +360,7 @@ input[data-placeholder]::before{
 .bhTable > thead > tr:last-child{
     background: #438c57;
     color: white;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 .bhTable > thead > tr > td,
 .bhTable > tbody > tr > td {
@@ -385,7 +385,7 @@ input[data-placeholder]::before{
 .bhTableDColor{
     background: #438c57;
     color: white;
-    font-weight: bold;
+    /*font-weight: bold;*/
     width: 100px;
 }
 

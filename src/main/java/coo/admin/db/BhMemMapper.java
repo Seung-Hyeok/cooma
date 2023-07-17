@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import coo.admin.model.BhPData;
+
 @Mapper
 public interface BhMemMapper {
 
+	int bhMemTotal(BhPData pd);
 	List<BhMemDTO> bhMemList(BhMemDTO mem);
 	
 	BhMemDTO bhMemDetail(BhMemDTO mem);

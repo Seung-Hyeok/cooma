@@ -29,7 +29,7 @@ layout:decorate="total/adTemp">
 					<th:block th:if="${y.onedayM()==rd[0] and y.onedayD()==no}">
 						<span th:text="${'등원 '+y.attendTime()}" class="bhAtSpan"></span>
 						<span th:text="${'하원 '+y.goHome()}" class="bhAtSpan"></span>
-						<span th:text="${'지각 '+y.penalty+'원'}" th:if="${y.penalty > 0}" class="bhMMSpan"></span>
+						<span th:text="${'지각 '+y.penaltyStr()+'원'}" th:if="${y.penalty > 0}" class="bhMMSpan"></span>
 					</th:block>
 				</th:block>
 				<th:block th:each="n : ${none}">
