@@ -18,18 +18,18 @@ layout:decorate="total/adTemp">
 	</div>
 	
 	<h3>환불리스트</h3>
-	<table border="" align="center" style="">
+	<table border="" align="center" class="shtable">
 		<form action="" th:object="${PData}" >
 			<tr>
-				<td colspan="11" align="right">
+				<td colspan="11" align="right" style="height:35px;">
 					환불 조회 기간 <input type="date" th:field="*{startD}"/>~
                 	<input type="date" th:field="*{endD}" />
-                	<input type="submit" value="검색">
+                	<input type="submit" value="검색" class="shb">
 					
 				</td>
 			</tr>
 		</form>
-		<tr style=""align="center">
+		<tr align="center" class="shtitle">
 			<td>예약번호</td>
 			<td>아이디</td>
 			<td>강아지이름</td>
@@ -42,10 +42,10 @@ layout:decorate="total/adTemp">
 			<td>환불일자</td>
 			<td>환불금액</td>
 		</tr>
-		<tr th:each="dto, dtostat : ${mainData}">
+		<tr th:each="dto, dtostat : ${mainData}" style="height:30px;">
 			<td th:text="${dto.reserNo}" align="center"/>
-			<td th:text="${dto.pid}"/>
-			<td th:text="${dto.dname}"/>
+			<td th:text="${dto.pid}" style="font-weight: bold; "/>
+			<td th:text="${dto.dname}" style="font-weight: bold; "/>
 			<td th:text="|${dto.kind} (${dto.gap()})|"/>
 			<td th:text="${dto.edu}" align="center"/>
 			<td th:text="${dto.pDate()}"/>
@@ -53,13 +53,13 @@ layout:decorate="total/adTemp">
 			<td th:text="${dto.bank}"/>
 			<td th:text="${dto.account}"/>
 			<td th:text="${dto.rDate()}"/>
-			<td th:text="${dto.refund()}" style="color:red;"/>
+			<td th:text="${dto.refund()}" style="color:red; font-weight: bold;"/>
 		</tr>
 		<tr> 
-			<td colspan="11" align="center" >
+			<td colspan="11" align="center" style="height:30px;">
 				<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
 					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
-						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
+						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}" class="shp">[[${p}]]</button></th:block>
 						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
 					</span>
 					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>

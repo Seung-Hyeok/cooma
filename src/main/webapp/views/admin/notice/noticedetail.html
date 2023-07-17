@@ -28,28 +28,28 @@ layout:decorate="total/adTemp">
 	
 	
 	<h3>공지상세</h3>
-	<table border="">
+	<table border="" align="center" class="shdetail" style="width: 1000px;">
 		<tr>
-			<td>제목</td><td th:text="${mainData.title}"/>
+			<td class="shtd" align="center">제목</td><td th:text="${mainData.title}" class="shtd2"/>
 		</tr><tr>
-			<td>작성자</td><td th:text="${mainData.id}"/>
+			<td class="shtd" align="center">작성자</td><td th:text="${mainData.id}" class="shtd2"/>
 		</tr><tr>
-			<td>등록일</td><td th:text="${mainData.date()}"/>
+			<td class="shtd" align="center">등록일</td><td th:text="${mainData.date()}" class="shtd2"/>
 		</tr><tr>
-			<td>조회수</td><td th:text="${mainData.cnt}"/>
+			<td class="shtd" align="center">조회수</td><td th:text="${mainData.cnt}" class="shtd2"/>
 		</tr><tr>
 		<th:block th:if="${dd}">
-				<td>이미지</td><td><img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="" width="500px" height="500px"><!-- <br/>[[${mainData.content}]] --></td>
+				<td class="shtdr">이미지</td><td class="shtd2"><img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="" width="500px" height="500px" class="shtd2"><!-- <br/>[[${mainData.content}]] --></td>
 			</th:block>
 			<th:block th:unless="${dd}">
-				<td>이미지</td><td><!-- <br/>[[${mainData.content}]] --></td>
+				<td class="shtdr">이미지</td><td class="shtd2"><!-- <br/>[[${mainData.content}]] --></td>
 		</th:block>
 		</tr><tr >
-			<td >내용</td><td th:text="${mainData.content}" style="width:700px; height:300px"/>
+			<td class="shtdr">내용</td><td th:text="${mainData.content}" style="width:700px; height:300px" class="shtd2"/>
 		</tr><tr>
-			<td colspan="2" align="right">
-				<a th:href="|/admin/notice/1|" th:text="뒤로"/>
-				<a th:href="|/admin/notice/modify/${mainData.num}|" th:text="수정"/>
+			<td colspan="2" align="right" class="shtt">
+				<button onclick="location.href='/admin/notice/1'" >뒤로</button>
+				<button th:onclick="|window.location.href='/admin/notice/modify/${mainData.num}'|">수정</button>
 				<button onclick="showConfirmation()">삭제</button>
 			</td>
 		</tr>

@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	</select>
 	
 	<update id="modify" parameterType="rDTO">
-		update reser set dname = #{dname}, reque = #{reque}
+		update reser set reque = #{reque}
 		<include refid="wid"/>
 	</update>
 	
