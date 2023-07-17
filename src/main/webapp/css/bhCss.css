@@ -9,11 +9,11 @@
 	margin: 5px;
 }
 
-.menu{
+.admenu{
 	background: #216A35;
 }
 
-.menu > div{
+.admenu > div{
 	width: 150px;
 	height: 100%;
 	float: left;
@@ -22,7 +22,7 @@
 	line-height: 100px;
 }
 
-.menu > div > a{
+.admenu > div > a{
 	color: white;
 	/*font-weight: bold;*/
 

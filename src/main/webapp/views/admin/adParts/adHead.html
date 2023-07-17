@@ -14,9 +14,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		
 		border: 1px solid#000;
 	}
-	.menu{
+	.admenu{
 		width: 1200px;
-		height: 100px;
+		height: 150px;
 		/*border: 1px solid#0aa;*/
 		
 	}
@@ -44,7 +44,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <a href="/user/log/login" th:if="${pid == null}" class="bhada">로그인</a>
 </div>
 
-<div class="menu">
+<div class="admenu">
 <th:block layout:fragment="adTitle"></th:block>
 <div><a href="/admin">관리자</a></div>
 <div><a href="/admin/member">회원</a></div>
