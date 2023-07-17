@@ -7,21 +7,40 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+
+
+function frmChk() {
+	
+	if ($("#pname").val().trim()=="") {//13
+		alert("이름을 입력해주세요");
+		return false;
+	}
+	
+	if ($("#tel").val().trim()=="") {//13
+		alert("전화번호를 입력해주세요");
+		return false;
+	}
+	
+	return true;
+}
+</script>
 <div class="myPageMenu">
 <a href="/user/myPage/dogJoinForm">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
 <h1>아이디찾기</h1>
-<form method="post" th:object="${hmMemberDTO}">
+<form method="post" th:object="${hmMemberDTO}" onsubmit="return frmChk()">
 	<table border="">
 		<tr>
 			<td>이름</td>
-			<td><input type="text" th:field="*{pname}"/></td>
+			<td><input type="text" id="pname" th:field="*{pname}"/></td>
 		</tr>
 		<tr>
 			<td>전화번호</td>
-			<td><input type="text" th:field="*{tel}"/></td>
+			<td><input type="text" id="tel" th:field="*{tel}"/></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"> 

@@ -26,8 +26,11 @@ public class AdminHomeController {
 	
 	//관리자 메인 화면 및 오늘 등원 강아지 리스트
 	@RequestMapping("/admin")
-	String bhTodayList(Model mo, BhAttendReserDTO reser, HttpSession session) {
+	String bhTodayList(Model mo, BhAttendReserDTO reser, HttpSession session, Model mm) {
 		System.out.println("bhTodayList() 진입");
+		//혜미 추가
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		
 		session.setAttribute("beforePage", "admin");
 		List<ArrayList<BhAttendReserDTO>> totBig = new ArrayList<ArrayList<BhAttendReserDTO>>();

@@ -14,31 +14,37 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/gsMyList">내 이용권</a>
 <a href="/user/question/questionInsert">1:1 문의</a>
 </div>
+<div class="hmqueInsert">
 <h1>질문작성</h1>
 <form method="post" th:object="${hmQnaDTO}">
-	<table border="">
-		<tr>
-			<td>제목</td>
-			<td><input type="text" th:field="*{title}" /></td>
+	<table>
+		<tr class="hmtitlekind">
+			<td colspan="4">문의 작성</td>
 		</tr>
 		<tr>
-			<td>아이디</td>
+			<td>제목</td>
+			<td>
+				<input type="text" th:field="*{title}" />
+				<p class="hme_msg"  th:if="${#fields.hasErrors('title')}" th:errors="*{title}">에러다</p>
+			</td>
+			<td align="right">아이디</td>
 			<td>[[${pid}]]</td>
 		</tr>
 		<tr>
-			<td>문의 내용</td>
-			<td>
+			<td colspan="4" align="center">
 				<textarea th:field="*{content}"/>
+				<p class="hme_msg"  th:if="${#fields.hasErrors('content')}" th:errors="*{content}">에러다</p>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" align=center>
+			<td colspan="4" align=center>
 				<a th:href="|/user/question/queList/1|" th:text="뒤로" />
 				<input type="submit" value="등록하기" />
 			</td>
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 <th:block layout:fragment="add-content">
 </th:block>

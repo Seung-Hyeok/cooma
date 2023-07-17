@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	
 	<update id="modify" parameterType="hmMemberDTO">
 		update member set pname =  #{pname}, pw =  #{pw}, tel = #{tel},
-		addr1 =  #{addr1}, addr2 =  #{addr2}, email =  #{email}, dog1 =  #{dog1}, dog2 =  #{dog2}, dog3 =  #{dog3}
+		addr1 =  #{addr1}, addr2 =  #{addr2}, email =  #{email}
 		where pid = #{pid} and pw = #{pw}
 	</update>
 	

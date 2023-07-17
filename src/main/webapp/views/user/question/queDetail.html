@@ -29,36 +29,38 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
 <h1>질문</h1>
-<table border="">
+<div class="hmqueDetail">
+<table>
+	<tr class="hmtitlekind">
+		<td colspan="4">문의</td>
+	</tr>
 	<tr>
 		<td>제목</td><td th:text="${myqna.title}" />
+		<td align="right">아이디</td><td th:text="${myqna.pid}" />
 	</tr>
-	<tr>
-		<td>아이디</td><td th:text="${myqna.pid}" />
-	</tr>
-	<tr>
-		<td>내용</td><td th:text="${myqna.content}" /> 
-	</tr>
-	<tr>
+	<tr class="hmnonborder">
 		<td>작성일</td><td th:text="${myqna.rDate()}" />
+		<td align="right">조회수</td><td th:text="${myqna.cnt}" />
 	</tr>
 	<tr>
-		<td>조회수</td><td th:text="${myqna.cnt}" />
+		<td class="hmcontent" colspan="4" ><div th:text="${myqna.content}"></div></td> 
+	</tr>
+	<tr th:if="${myqna.getAnswer != null}" >
+		<td colspan="2" class="hmAnswertitle">답변</td>
+		<td colspan="2" class="hmAnsweradmin"><span>담당자</span>&nbsp;<span th:text="${myqna.adminId}" />
 	</tr>
 	<tr th:if="${myqna.getAnswer != null}">
-		<td>담당자</td><td th:text="${myqna.adminId}" />
-	</tr>
-	<tr th:if="${myqna.getAnswer != null}">
-		<td>답변</td><td th:text="${myqna.getAnswer}" />
+		<td class="hmAnswer" colspan="4"  ><div th:text="${myqna.getAnswer}"></div></td>
 	</tr>
 	<tr>
-		<td colspan="2" align="right">
+		<td colspan="4" align="right">
 			<a th:href="|/user/question/queList/1|" th:text="목록으로" />
 			<a th:if="${myqna.getAnswer == null}" th:href="|/user/question/queModify/${myqna.no}|" th:text="수정"/>
 			<button onclick="deleteConfirm()">삭제</button>
 		</td>
 	</tr>
 </table>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

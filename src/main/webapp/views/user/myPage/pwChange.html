@@ -7,26 +7,100 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+
+//비밀번호 유효성
+function validPw1(pw1 = $("#pw1").val().trim()) {
+	
+	var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^-_]).{8,16}$/;
+	var isValid = regex.test(pw1);
+
+	if (isValid) {
+		document.getElementById('pw1').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		document.getElementById('pw1').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+//비밀번호 유효성
+function validPw(pw = $("#pw").val().trim()) {
+	
+	var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^-_]).{8,16}$/;
+	var isValid = regex.test(pw);
+
+	if (isValid) {
+		document.getElementById('pw').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		document.getElementById('pw').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+//비밀번호 확인	
+function checkPw(pw2 = $("#pw2").val().trim()) {
+	var isValid = false;
+
+	if ($("#pw").val().trim() == pw2) {
+		document.getElementById('pw2').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+		isValid = true;
+	} else {
+		document.getElementById('pw2').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+function frmChk() {
+	
+	if(!validPw1()){//2
+		alert("기존 비밀번호를 정확히 입력해주세요");
+		return false;
+	}
+	
+	if(!validPw()){//2
+		alert("비밀번호 양식을 맞춰주세요.");
+		return false;
+	}
+	
+	if(!checkPw()){//3
+		alert("비밀번호 확인 값이 일치하지 않습니다.");
+		return false;
+	}
+	
+	return true;
+}
+</script>
 <div class="myPageMenu">
 <a href="/user/myPage/memPage">내정보</a>
 <a href="/user/myPage/dogJoinChk">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmpwchange">
 <h1>비밀번호 변경</h1>
-<form method="post" th:object="${hmMemberDTO}">
-	<table border="">
+<form method="post" th:object="${hmMemberDTO}" onsubmit="return frmChk()">
+	<table>
 		<tr>
-			<td>현재 비밀번호</td>
-			<td><input type="text" name="pw1"/></td>
+			<td colspan="2" align=center class="hmtitlekind">비밀번호 변경</td>
 		</tr>
 		<tr>
-			<td>새 비밀번호</td>
-			<td><input type="text" th:field="*{pw}"/></td>
+			<td class="tt">기존 비밀번호</td>
+			<td><input type="password" id="pw1" name="pw1" oninput="validPw1(this.value)"/></td><!--  oninput="validPw1(this.value)" -->
 		</tr>
 		<tr>
-			<td>비밀번호 확인</td>
-			<td><input type="text" name="pw2"/></td>
+			<td class="tt">새 비밀번호</td>
+			<td>
+				<input type="password" id="pw" th:field="*{pw}" oninput="validPw(this.value)" /><br/>
+				<font size="2">* 영어 대소문자, 숫자, 특수문자 ~!@#$%^-_ 8~16자</font>
+			</td>
+		</tr>
+		<tr>
+			<td class="tt">비밀번호 확인</td>
+			<td>
+				<input type="password" id="pw2" name="pw2" oninput="checkPw(this.value)"/><br/>
+				<font size="2">* 새 비밀번호를 한번 더 입력해주세요</font>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"> 
@@ -36,6 +110,7 @@ layout:decorate="total/userTemp">
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

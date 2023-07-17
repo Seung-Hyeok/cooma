@@ -42,44 +42,44 @@ public class HmMyPageController {
 			return "user/myPage/memPage";
 		}
 	
-	//회원정보수정///////////////////////////////////////
-	@GetMapping("/user/myPage/modifyForm")
-	String modifyForm(HttpSession session, Model mm, HmMemberDTO dto) {
-		
-		String pid = (String)session.getAttribute("pid");
-		mm.addAttribute("pid", pid);
-		HmMemberDTO myData =  mp.my(pid);
-		mm.addAttribute("myData", myData);
-		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy년MM월dd일");
-		mm.addAttribute("birth",format.format(myData.getBirth()));
-		
-		return "user/myPage/modifyForm";
-	}  
-	
-	@PostMapping("/user/myPage/modifyForm")
-	String modifyComplete(HttpSession session, Model mm, HmMemberDTO dto) {
-		
-		String pid = (String)session.getAttribute("pid");
-		dto.setPid(pid);
-		int cnt = mp.modify(dto);
-		
-		String msg = "비밀번호가 일치하지 않습니다.";
-		String goUrl = "/user/myPage/modifyForm";
-		
-		if(cnt>0) {
-			msg = "회원정보가 수정되었습니다.";
-			goUrl = "/user/myPage/memPage";
+		//회원정보수정///////////////////////////////////////
+		@GetMapping("/user/myPage/modifyForm")
+		String modifyForm(HttpSession session, Model mm, HmMemberDTO dto) {
 			
-			HmMemberDTO memData = mp.logchk(dto);
-			session.setAttribute("pname", memData.getPname());
+			String pid = (String)session.getAttribute("pid");
+			mm.addAttribute("pid", pid);
+			HmMemberDTO myData =  mp.my(pid);
+			mm.addAttribute("myData", myData);
+			
+			SimpleDateFormat format = new SimpleDateFormat("yyyy년MM월dd일");
+			mm.addAttribute("birth",format.format(myData.getBirth()));
+			
+			return "user/myPage/modifyForm";
+		}  
+		
+		@PostMapping("/user/myPage/modifyForm")
+		String modifyComplete(HttpSession session, Model mm, HmMemberDTO dto) {
+			
+			String pid = (String)session.getAttribute("pid");
+			dto.setPid(pid);
+			int cnt = mp.modify(dto);
+			
+			String msg = "비밀번호가 일치하지 않습니다.";
+			String goUrl = "/user/myPage/modifyForm";
+			
+			if(cnt>0) {
+				msg = "회원정보가 수정되었습니다.";
+				goUrl = "/user/myPage/memPage";
+				
+				HmMemberDTO memData = mp.logchk(dto);
+				session.setAttribute("pname", memData.getPname());
+			}
+			
+			mm.addAttribute("msg", msg);
+			mm.addAttribute("goUrl", goUrl);
+			
+			return "user/myPage/alert";
 		}
-		
-		mm.addAttribute("msg", msg);
-		mm.addAttribute("goUrl", goUrl);
-		
-		return "user/myPage/alert";
-	}
 	
 	//회원탈퇴///////////////////////////////////////
 	@GetMapping("/user/myPage/delete")

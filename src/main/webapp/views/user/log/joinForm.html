@@ -6,9 +6,10 @@ layout:decorate="total/userTemp">
 <title>joinForm</title>
 </th:block>
 
-<th:block layout:fragment="content">
+<th:block layout:fragment="content" >
 <script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
 <script th:inline="javascript">
+var idchkchke = false;
 $(function(){
     $("#checkId").click(function(){
     
@@ -20,18 +21,35 @@ $(function(){
             data: {"pid":pid}, // 원하는 값을 중복확인하기위해서  JSON 형태로 DATA 전송
             success: function(data){ 
             	console.log(data);
+            	var regex = /^(?=.*[a-z])(?=.*[0-9])[-_a-z0-9]{4,10}$/; //[-_a-z0-9] -_는 사용가능하지만 없어도 된다.
+				//(?=.*[a-z]) : 반드시 소문자 알파벳이 최소한 한 개 이상 존재해야 합니다.
+				if(!regex.test($("#pid").val().trim())){
+					alert("영어 소문자, 숫자, (_)(-) 4~10자로 적어주세요.")
+					document.getElementById('pid').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+					result="아이디를 정확히 적어주세요.";
+                    $("#result_checkId").html(result).css("color","red");
+					return
+				}
              if(data == "N"){ // 만약 성공할시
                     result = "사용 가능한 아이디입니다.";
                     $("#result_checkId").html(result).css("color", "green");
+                    document.getElementById('pid').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+                    checkDuplateId = $("#pid").val()
+                    idchkchke = true;
                  
              }else if(data == "Y"){ // 만약 실패할시
                  result="이미 사용중인 아이디입니다.";
                      $("#result_checkId").html(result).css("color","red");
+                     document.getElementById('pid').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
                      $("#pid").val("").trigger("focus");
+                     idchkchke = false;
+                     
              }else{ // 만약 실패할시
                  result="아이디를 적어주세요.";
                  $("#result_checkId").html(result).css("color","red");
+                 document.getElementById('pid').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
                  $("#pid").val("").trigger("focus");
+                 idchkchke = false;
          }
                  
          },
@@ -61,47 +79,301 @@ window.onload = function() {
 
 }
 </script>
+<script th:inline="javascript">
+var checkDuplateId = "";
+//유효성 실시간 검사
+//비밀번호 유효성
+function validPw(pw = $("#pw").val().trim()) {
+	
+	var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^-_]).{8,16}$/;
+	var isValid = regex.test(pw);
 
+	if (isValid) {
+		document.getElementById('pw').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		document.getElementById('pw').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+//비밀번호 확인	
+function checkPw(pw2 = $("#pw2").val().trim()) {
+	var isValid = false;
+
+	if ($("#pw").val().trim() == pw2) {
+		document.getElementById('pw2').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+		isValid = true;
+	} else {
+		document.getElementById('pw2').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+//이름 유효성
+function validPname(pname = $("#pname").val().trim()) {
+	
+	var regex = /^[가-힣]{2,4}$/;
+	var isValid = regex.test(pname);
+
+	if (isValid) {
+		document.getElementById('pname').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		document.getElementById('pname').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+//생년월일 유효성 => 오늘 날짜 이후는 불가능
+function validBirth(birth = $("#birth").val().trim()) {
+	
+	var isValid = false;
+	
+	if (!$("#birth").val().trim().length == 0) {
+		document.getElementById('birth').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+		isValid = true;
+	} else {
+		document.getElementById('birth').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+//전화번호 유효성
+function validTel(tel2 = $("#tel2").val().trim(), tel3 = $("#tel3").val().trim()) {
+	
+	var regex = /^[0-9]{4}$/;
+	
+	var isValid2 = regex.test(tel2);
+	var isValid3 = regex.test(tel3);
+
+	if (isValid2) {
+		document.getElementById('tel2').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		document.getElementById('tel2').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	
+	if (isValid3) {
+		document.getElementById('tel3').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		document.getElementById('tel3').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	
+	if (isValid3 && isValid2) {
+		document.getElementById('tel1').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		document.getElementById('tel1').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid2&&isValid3;
+}
+
+//이메일 유효성
+function validEmail(email = $("#email").val().trim()) {
+
+	var regex = /^[a-zA-Z0-9._+-]{2,}$/;
+	var isValid = regex.test(email);
+
+	if (isValid) {
+		// 유효한 이메일 주소인 경우
+		document.getElementById('email').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+	} else {
+		// 유효하지 않은 이메일 주소인 경우
+		document.getElementById('email').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+//주소 유효성
+function validAddr2(addr2 = $("#addr2").val().trim()) {
+	
+	var isValid = false;
+	
+	if (!$("#addr2").val().trim().length == 0) {
+		document.getElementById('addr2').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+		isValid = true;
+	} else {
+		document.getElementById('addr2').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+function validPwanswer(pwanswer = $("#pwanswer").val().trim()) {
+	
+	var isValid = false;
+	
+	if (!$("#pwanswer").val().trim().length == 0) {
+		document.getElementById('pwanswer').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+		isValid = true;
+	} else {
+		document.getElementById('pwanswer').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+	}
+	return isValid;
+}
+
+function validWeight(weight = $("#weight").val().trim()) {
+    var regex = /^\d+(\.\d+)?$/; // Allows positive decimal or integer values
+    var isValid = regex.test(weight);
+    
+    return isValid;
+}
+
+function validBreed(breed = $("#breed").val().trim()) {
+    var regex = /^[가-힣a-zA-Z]{1,}$/;
+    var isValid = regex.test(breed);
+    return isValid;
+}
+
+function frmChk() {
+	 if (checkDuplateId != $("#pid").val().trim() || !idchkchke) {
+	        alert("아이디 중복확인 검사를 해주세요.");
+	        return false;
+	    }
+	
+	if(!validPw()){//2
+		alert("비밀번호 양식을 맞춰주세요.");
+		return false;
+	}
+	
+	if(!checkPw()){//3
+		alert("비밀번호 확인 값이 일치하지 않습니다.");
+		return false;
+	}
+	if(!validPname()){ //4
+		alert("이름은 한글 2~4자 입니다.");
+		return false;
+	}
+	
+	if(!validTel()){ //5
+		alert("입력하신 전화번호를 확인해주세요");
+		return false;
+	}
+	
+	if($("#address").val().trim()==""){ //6
+		alert("주소를 입력해주세요");
+		return
+	}
+	
+	if(!validAddr2()){ //7
+		alert("상세주소를 입력해주세요");
+		return false;
+	}
+	
+	if(!validEmail()){ //8
+		alert("입력하신 이메일을 확인해주세요");
+		return false;
+	}
+	
+	if($("#email2").val().trim()==""){ //9
+		alert("이메일 도메인을 선택해주세요");
+		return false;
+	}
+	
+	if(!validBirth()){ //10
+		alert("생년월일은 선택해주세요");
+		return false;
+	}
+	
+	if($("#pwquestion").val().trim()==""){ //11
+		alert("비밀번호 찾기 질문을 선택해주세요");
+		return false;
+	}
+	
+	if(!validPwanswer()){ //12
+		alert("비밀번호 찾기 답변을 입력해주세요");
+		return false;
+	}
+	
+	if ($("#dname").val().trim()=="") {//13
+		alert("강아지이름을 입력해주세요");
+		return false;
+	}
+	
+	 if (!validWeight()) {//14
+		 alert("무게는 숫자 형식으로 입력해주세요");
+		 return false;
+	    }
+	
+	if(!$('input[name="dogsize"]:checked').length){ //15
+		alert("강아지의 사이즈를 선택해주세요");
+		return false;
+	}
+	
+	if (!$('input[name="gender"]:checked').length) { //16
+        alert("강아지의 성별을 선택해주세요");
+        return false;
+    }
+	
+	if (!validBreed()) {//17
+		alert("견종은 한글 또는 영어로 한 글자 이상 입력해주세요.");
+		return false;
+	}
+	
+	if($("#dyear").val().trim()==""){ //18
+		alert("강아지가 태여난 년도를 선택해주세요");
+		return false;
+	}
+	
+	if($("#dmonth").val().trim()==""){ //19
+		alert("강아지가 태어난 달을 선택해주세요");
+		return false;
+	}
+	
+	/*if ($("#dogimg").val().trim()=="") {
+		alert("강아지의 사진을 업로드해주세요");
+		return
+	}*/
+	
+	 return true;
+}
+</script>
+<div class="hmJoinForm">
 <h1>회원가입</h1>
-<form method="post" th:object="${hmMemberDTO}" enctype="multipart/form-data">
-	<table border="">
+<form method="post" th:object="${hmMemberDTO}" enctype="multipart/form-data"  onsubmit="return frmChk()">
+	<table>
 		<tr>
-			<td colspan="2" align=center>회원정보</td>
+			<td colspan="2" align=center class="hmtitlekind">회원정보</td>
 		</tr>
 		<tr>
-			<td>아이디</td>
+			<td class="tt">아이디</td>
 			<td>
-				<input type="text"  id="pid" th:field="*{pid}" /><br/>
+				<input type="text"  id="pid" th:field="*{pid}" />
 			    <input type="button" id="checkId" value="중복검사"><br/>
 			    <div><span id="result_checkId" style="font-size:12px;"></span></div>
 			</td>
 		</tr>
 		<tr>
-			<td>비밀번호</td>
-			<td><input type="text" th:field="*{pw}" /></td>
+			<td class="tt">비밀번호</td>
+			<td>
+				<input type="password" id="pw" th:field="*{pw}" oninput="validPw(this.value)" /><br/>
+				<font size="2">* 영어 대소문자, 숫자, 특수문자 ~!@#$%^-_ 8~16자</font>
+			</td>
 		</tr>
 		<tr>
-			<td>비밀번호 확인</td>
-			<td><input type="text" name="pw2" /></td>
+			<td class="tt">비밀번호 확인</td>
+			<td>
+				<input type="password" id="pw2" name="pw2" oninput="checkPw(this.value)" /><br/>
+				<font size="2">* 비밀번호를 한번 더 입력해주세요</font>
+			</td>
 		</tr>
 		<tr>
-			<td>이름</td>
-			<td><input type="text" th:field="*{pname}" /></td>
+			<td class="tt">이름</td>
+			<td><input type="text" id="pname" th:field="*{pname}" oninput="validPname(this.value)" /></td>
 		</tr>
 		
 		<tr>
-			<td>전화번호</td>
-			<td><input type="text" th:field="*{tel}" /></td>
+			<td class="tt">전화번호</td>
+			<td>
+				<input type="text" id="tel1" name="tel1" value="010" readonly />-
+				<input type="text" id="tel2" name="tel2" oninput="validTel(this.value)" />-
+				<input type="text" id="tel3" name="tel3" oninput="validTel(this.value)" />
+			</td>
 		</tr>
 		
 		<tr>
-			<td>주소</td>
+			<td class="tt">주소</td>
 			<td>
 				<div class="form-container">
 		        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=12a21b08156b2f3c3a0967fbcc61ed3b"></script>
 		        <div class="form-control" id="schbox">
 		        <label for="address_kakao">
-		            <input type="text"  th:field="*{addr1}" id="address" placeholder="주소 입력" readonly>
+		            <input type="text"  th:field="*{addr1}" id="address" placeholder="주소 입력" required readonly>
 		            <input type="text" name="roadAddress" id="roadAddress" hidden>
 		            <input type="button" id="addressSch" value="검색">
             	</label>
@@ -110,14 +382,15 @@ window.onload = function() {
 			</td>
 		</tr>
 		<tr>
-			<td>상세주소</td>
-			<td><input type="text" th:field="*{addr2}" /></td>
+			<td class="tt">상세주소</td>
+			<td><input type="text" id="addr2" th:field="*{addr2}" oninput="validAddr2(this.value)" /></td>
 		</tr>
 		<tr>
-			<td>이메일</td>
-			<td>
-			<input type="text" th:field="*{email}" />@
-				<select name="email2" >
+			<td class="tt">이메일</td>
+			<td class="hm_selectBox2" >
+			<input type="text" id="email" th:field="*{email}" oninput="validEmail(this.value)" />@
+				<select id="email2" name="email2" class="hm_select">
+					<option value="" selected>선택</option>
 					<option value="naver.com" th:text="naver.com"></option>
 					<option value="gmail.com" th:text="gmail.com"></option>
 					<option value="daum.net" th:text="daum.net"></option>
@@ -127,73 +400,77 @@ window.onload = function() {
 			</td>
 		</tr>
 		<tr>
-			<td>생년월일</td>
-			<td><input type="date" name="birthstr" max="2004-12-31" /></td>
+			<td class="tt">생년월일</td>
+			<td><input type="date" id="birth" name="birthstr" max="2004-12-31" oninput="validBirth(this.value)" /></td>
 		</tr>
 		<tr>
-			<td>비밀번호 찾기 질문</td>
-			<td>
-				<select name="pwquestion">
+			<td class="tt">비밀번호 찾기 질문</td>
+			<td class="hm_selectBox">
+				<select id="pwquestion" name="pwquestion" class="hm_select">
+					<option value="" selected>선택</option>
 					<option value="기억에 남는 추억의 장소는?" >기억에 남는 추억의 장소는?</option>
 					<option value="가장 좋아하는 동물은?" >가장 좋아하는 동물은?</option>
-					<option value="초등학교떄 다녔던 학교는?" >초등학교떄 다녔던 학교는?</option>
+					<option value="초등학교때 다녔던 학교는?" >초등학교때 다녔던 학교는?</option>
 					<option value="가장 아끼는 물건은?" >가장 아끼는 물건은?</option>
 					<option value="나의 보물 제 1호는?" >나의 보물 제 1호는?</option>
-				</select><br/>
-				<input type="text" th:field="*{pwanswer}" />
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align=center>애견정보</td>
-		</tr>
-		<tr>
-			<td>강아지 이름</td>
-			<td><input type="text" name="dname" /></td>
-		</tr>
-		<tr>
-			<td>무게</td>
-			<td><input type="text" name="weight" />kg</td>
-		</tr>
-		<tr>
-			<td>사이즈</td>
-			<td>
-				<label><input type="radio" name="dogsize" value="소형견" />소형견</label>
-				<label><input type="radio" name="dogsize" value="중형견" />중형견</label>
-				<label><input type="radio" name="dogsize" value="대형견" />대형견</label>
-			</td>
-		</tr>
-		<tr>
-			<td>성별</td>
-			<td>
-				<label><input type="radio" name="gender" value="암컷" />암컷</label>
-				<label><input type="radio" name="gender" value="수컷" />수컷</label>
-			</td>
-		</tr>
-		<tr>
-			<td>견종</td>
-			<td><input type="text" name="breed" /></td>
-		</tr>
-		<tr>
-			<td>태어난 날짜</td>
-			<td>
-				<select name="dyear">
-					<option th:each="num: ${#numbers.sequence(2000,#dates.year(#dates.createNow()))}" th:value="${num}" th:text="${num}" ></option>
 				</select>
-				<select name="dmonth">
-					<option th:each="num: ${#numbers.sequence(1,12)}" th:value="${num}" th:text="${num}" ></option>
-				</select>
+				<br/>
+				<input type="text" id="pwanswer" th:field="*{pwanswer}" oninput="validPwanswer(this.value)" />
+			</td>
+		</tr>
+		<tr class="hmtitletr">
+			<td colspan="2" align=center  class="hmtitlekind">애견정보</td>
+		</tr>
+		<tr>
+			<td class="tt">강아지 이름</td>
+			<td><input class="hm_inputcolor" type="text" id="dname" name="dname" /></td>
+		</tr>
+		<tr>
+			<td class="tt">무게</td>
+			<td><input class="hm_inputcolor" type="text" id="weight" name="weight" oninput="validWeight(this.value)" />kg</td>
+		</tr>
+		<tr>
+			<td class="tt">사이즈</td>
+			<td>
+				<label><input type="radio" id="dogsize1" name="dogsize" value="소형견" />소형견</label>
+				<label><input type="radio" id="dogsize2" name="dogsize" value="중형견" />중형견</label>
+				<label><input type="radio" id="dogsize3" name="dogsize" value="대형견" />대형견</label>
 			</td>
 		</tr>
 		<tr>
-			<td>사진</td>
-			<td><input type="file" name="dogimg"/></td>
+			<td class="tt">성별</td>
+			<td class="hm_checks">
+				<label><input type="radio" id="gender1" name="gender" value="암컷" />암컷</label>
+				<label><input type="radio" id="gender2" name="gender" value="수컷" />수컷</label>
+			</td>
 		</tr>
 		<tr>
-			<td>특이사항</td>
-			<td><textarea name="notes"></textarea></td>
+			<td class="tt">견종</td>
+			<td><input class="hm_inputcolor" type="text" id="breed" name="breed" oninput="validBreed(this.value)" /></td>
 		</tr>
 		<tr>
-			<td>중성화 여부</td>
+			<td class="tt">태어난 날짜</td>
+			<td class="hm_selectBox3">
+				<select  id="dyear" name="dyear" class="hm_select">
+					<option value="" selected>선택</option><option th:each="num: ${#numbers.sequence(2000,#dates.year(#dates.createNow()))}" th:value="${num}" th:text="${num}" ></option>
+				</select>
+				년
+				<select  id="dmonth" name="dmonth" class="hm_select">
+					<option value="" selected>선택</option><option th:each="num: ${#numbers.sequence(1,12)}" th:value="${num}" th:text="${num}" ></option>
+				</select>
+				월
+			</td>
+		</tr>
+		<tr>
+			<td class="tt">사진</td>
+			<td><input type="file" name="dogimg" required/></td>
+		</tr>
+		<tr>
+			<td class="tt">특이사항</td>
+			<td><textarea id="notes" name="notes" placeholder="강아지에게 특이사항이 있다면 여기에 적어주세요"></textarea></td>
+		</tr>
+		<tr>
+			<td class="tt">중성화 여부</td>
 			<td>
 				<label><input type="checkbox" name="chk" required/>중성화한 강아지 입니다.</label>
 				<br/> <font size="2">*쿠키마루는 중성화한 강아지만 등록할 수 있습니다.</font>
@@ -207,6 +484,7 @@ window.onload = function() {
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

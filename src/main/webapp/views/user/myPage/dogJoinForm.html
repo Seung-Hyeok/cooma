@@ -7,73 +7,135 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+
+function validWeight(weight = $("#weight").val().trim()) {
+    var regex = /^\d+(\.\d+)?$/; // Allows positive decimal or integer values
+    var isValid = regex.test(weight);
+    
+    return isValid;
+}
+function validBreed(breed = $("#breed").val().trim()) {
+    var regex = /^[가-힣a-zA-Z]{1,}$/;
+    var isValid = regex.test(breed);
+    return isValid;
+}
+
+function frmChk() {
+	
+	if ($("#dname").val().trim()=="") {//13
+		alert("강아지이름을 입력해주세요");
+		 return false;
+	}
+	
+	 if (!validWeight()) {//14
+		 alert("무게는 숫자 형식으로 입력해주세요");
+		 return false;
+	    }
+	
+	if(!$('input[name="dogsize"]:checked').length){ //15
+		alert("강아지의 사이즈를 선택해주세요");
+		 return false;
+	}
+	
+	if (!$('input[name="gender"]:checked').length) { //16
+        alert("강아지의 성별을 선택해주세요");
+        return false;
+    }
+	
+	if (!validBreed()) {//17
+		 alert("견종은 한글 또는 영어로 한 글자 이상 입력해주세요.");
+		 return false;
+	}
+	if($("#dyear").val().trim()==""){ //18
+		alert("강아지가 태여난 년도를 선택해주세요");
+		 return false;
+	}
+	if($("#dmonth").val().trim()==""){ //19
+		alert("강아지가 태어난 달을 선택해주세요");
+		 return false;
+	}
+	return true;
+}
+</script>
 <div class="myPageMenu">
 <a href="/user/myPage/memPage">내정보</a>
 <a href="/user/myPage/dogJoinForm">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmdogJoin">
 <h1>강아지 등록</h1>
-<form method="post" th:object="${hmDogsDTO}" enctype="multipart/form-data">
-	<table border="">
+<form method="post" th:object="${hmDogsDTO}" enctype="multipart/form-data"  onsubmit="return frmChk()">
+	<table>
 		<tr>
-			<td>강아지 이름</td>
-			<td><input type="text" th:field="*{dname}" /></td>
+			<td colspan="2" align=center class="hmtitlekind">강아지 등록</td>
 		</tr>
 		<tr>
-			<td>무게</td>
-			<td><input type="text" th:field="*{weight}" />kg</td>
+			<td class="tt">강아지 이름</td>
+			<td><input class="hm_inputcolor" type="text" id="dname" name="dname" /></td>
 		</tr>
 		<tr>
-			<td>사이즈</td>
+			<td class="tt">무게</td>
+			<td><input class="hm_inputcolor" type="text" id="weight" name="weight" oninput="validWeight(this.value)" />kg</td>
+		</tr>
+		<tr>
+			<td class="tt">사이즈</td>
 			<td>
-				<label><input type="radio" th:field="*{dogsize}" value="소형견" />소형견</label>
-				<label><input type="radio" th:field="*{dogsize}" value="중형견" />중형견</label>
-				<label><input type="radio" th:field="*{dogsize}" value="대형견" />대형견</label>
+				<label><input type="radio" id="dogsize1" name="dogsize" value="소형견" />소형견</label>
+				<label><input type="radio" id="dogsize2" name="dogsize" value="중형견" />중형견</label>
+				<label><input type="radio" id="dogsize3" name="dogsize" value="대형견" />대형견</label>
 			</td>
 		</tr>
 		<tr>
-			<td>성별</td>
+			<td class="tt">성별</td>
 			<td>
-				<label><input type="radio" th:field="*{gender}" value="암컷" />암컷</label>
-				<label><input type="radio" th:field="*{gender}" value="수컷" />수컷</label>
+				<label><input type="radio" id="gender1" name="gender" value="암컷" />암컷</label>
+				<label><input type="radio" id="gender2" name="gender" value="수컷" />수컷</label>
 			</td>
 		</tr>
 		<tr>
-			<td>견종</td>
-			<td><input type="text" th:field="*{breed}" /></td>
+			<td class="tt">견종</td>
+			<td><input class="hm_inputcolor" type="text" id="breed" name="breed" oninput="validBreed(this.value)" /></td>
 		</tr>
 		<tr>
-			<td>태어난 날짜</td>
-			<td>
-				<select th:field="*{dyear}">
-					<option th:each="num: ${#numbers.sequence(2000,2023)}" th:value="${num}" th:text="${num}" ></option>
+			<td class="tt">태어난 날짜</td>
+			<td class="hm_selectBox3">
+				<select  id="dyear" name="dyear" class="hm_select">
+					<option value="" selected>선택</option><option th:each="num: ${#numbers.sequence(2000,#dates.year(#dates.createNow()))}" th:value="${num}" th:text="${num}" ></option>
 				</select>
-				<select th:field="*{dmonth}">
-					<option th:each="num: ${#numbers.sequence(1,12)}" th:value="${num}" th:text="${num}" ></option>
+				년
+				<select  id="dmonth" name="dmonth" class="hm_select">
+					<option value="" selected>선택</option><option th:each="num: ${#numbers.sequence(1,12)}" th:value="${num}" th:text="${num}" ></option>
 				</select>
+				월
 			</td>
 		</tr>
 		<tr>
-			<td>사진</td>
-			<td><input type="file" name="dogimg"/></td>
+			<td class="tt">사진</td>
+			<td><input type="file" name="dogimg" required/></td>
 		</tr>
 		<tr>
-			<td>특이사항</td>
-			<td><textarea th:field="*{notes}"/></td>
+			<td class="tt">특이사항</td>
+			<td><textarea id="notes" name="notes"  placeholder="강아지에게 특이사항이 있다면 여기에 적어주세요"></textarea></td>
 		</tr>
 		<tr>
-			<td>중성화 여부</td>
+			<td class="tt">중성화 여부</td>
 			<td>
 				<label><input type="checkbox" name="chk" required/>중성화한 강아지 입니다.</label>
 				<br/> <font size="2">*쿠키마루는 중성화한 강아지만 등록할 수 있습니다.</font>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" align=center><input type="submit" value="등록하기" /></td>
+			<td colspan="2" align=center>
+				<input type="submit" value="등록하기" />
+				<a th:href="|/user/myPage/memPage|" th:text="뒤로"/>
+			</td>
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

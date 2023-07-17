@@ -7,59 +7,83 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+function validWeight(weight = $("#weight").val().trim()) {
+    var regex = /^\d+(\.\d+)?$/; // Allows positive decimal or integer values
+    var isValid = regex.test(weight);
+    
+    return isValid;
+}
+
+function frmChk(){
+	 if (!validWeight()) {//14
+		 alert("무게는 숫자 형식으로 입력해주세요");
+	        return false;
+	    }
+
+	    return true;
+}
+</script>
 <div class="myPageMenu">
 <a href="/user/myPage/memPage">내정보</a>
 <a href="/user/myPage/dogJoinChk">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
+<div class="hmdogModi">
 <h1>애견 정보 수정</h1>
-<form method="post" enctype="multipart/form-data" th:object="${dogData}">
-	<table border="">
+<form method="post" enctype="multipart/form-data" th:object="${dogData}" onsubmit="return frmChk()">
+	<table>
+		<tr class="hmtitletr">
+			<td colspan="2" align=center  class="hmtitlekind">애견정보수정</td>
+		</tr>
 		<tr>
-			<td>이름</td>
+			<td class="tt">이름</td>
 			<td th:text="${dogData.dname}"/>
 		</tr>
 		<tr>
-			<td>견종</td>
+			<td class="tt">견종</td>
 			<td th:text="${dogData.breed}"/>
 		</tr>
 		<tr>
-			<td>무게</td>
-			<td><input type="text" th:field="*{weight}"/></td>
+			<td class="tt">무게</td>
+			<td><input class="hm_inputcolor" type="text" th:field="*{weight}" id="weight" oninput="validWeight(this.value)"/>kg</td>
 		</tr>
 		<tr>
-			<td>사이즈</td>
+			<td class="tt">사이즈</td>
 			<td th:text="${dogData.dogsize}"/>
 		</tr>
 		<tr>
-			<td>성별</td>
+			<td class="tt">성별</td>
 			<td th:text="${dogData.gender}"/>
 		</tr>
 		<tr>
-			<td>태어난 해</td>
+			<td class="tt">태어난 해</td>
 			<td th:text="${dogData.dyear}"/>
 		</tr>
 		<tr>
-			<td>태어난 달</td>
+			<td class="tt">태어난 달</td>
 			<td th:text="${dogData.dmonth}"/>
 		</tr>
 		<tr>
-			<td>사진</td>
+			<td class="tt">사진</td>
 			<td><input type="file" name="dogimg"/></td>
 		</tr>
 		<tr>
-			<td>특이사항</td>
+			<td class="tt">특이사항</td>
 			<td><textarea th:field="*{notes}"/></td>
 		</tr>
 		<tr>
 				<td colspan="2" align="center"> 
 				<input type="submit" value="수정" />
+				<input type="reset" value="초기화" />
 				<a th:href="|/user/myPage/dogDetail/${dogData.dname}|" th:text="뒤로"/>
 			</td>
 		</tr>
 	</table>
 </form>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

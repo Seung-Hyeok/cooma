@@ -7,26 +7,48 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+
+
+function frmChk() {
+	
+	if ($("#pid").val().trim()=="") {//13
+		alert("아이디를 입력해주세요");
+		return false;
+	}
+	
+	if ($("#pw").val().trim()=="") {//13
+		alert("비밀번호를 입력해주세요");
+		return false;
+	}
+	
+	return true;
+}
+</script>
 <h1>로그인</h1>
-<form method="post" th:object="${hmMemberDTO}">
+<form method="post" th:object="${hmMemberDTO}" onsubmit="return frmChk()">
 	<div class="hm_loginWrapper">
-		<div>
-			<h3>LOGIN</h3>
+		<img src="/decoimg/dog1.png" alt="" />
+		<div class="hmLogo">
+			Cookie Maru
 		</div>
-		<div>
-			<input type="text" th:field="*{pid}" />
+		<div align="center" class="hmloginid">
+			<img src="/decoimg/icon2.png" alt="" /><input type="text" id="pid" th:field="*{pid}"  placeholder="아이디"/>
 		</div>
-		<div>
-			<input type="text" th:field="*{pw}" />
+		<div align="center" class="hmloginpw">
+			<img src="/decoimg/icon1.png" alt="" /><input type="password" id="pw" th:field="*{pw}" placeholder="비밀번호" />
 		</div>
-		<div>
+		<div align="center">
 			<input type="submit" value="로그인" /><br/>
+			<div align="right" class="hmLoginLink">
 			<a href="/user/log/joinForm">회원가입</a>
 			<a href="/user/log/findId">아이디찾기</a>
 			<a href="/user/log/findPw">비밀번호찾기</a>
+			</div>
 		</div>
 	</div>
-</form>
+</form> 
 </th:block>
 
 <th:block layout:fragment="add-content">

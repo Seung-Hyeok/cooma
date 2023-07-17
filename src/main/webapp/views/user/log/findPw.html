@@ -7,29 +7,54 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+
+
+function frmChk() {
+	
+	if ($("#pid").val().trim()=="") {//13
+		alert("아이디를 입력해주세요");
+		return false;
+	}
+	
+	if($("#pwquestion").val().trim()==""){ //11
+		alert("비밀번호 찾기 질문을 선택해주세요");
+		return false;
+	}
+	
+	if($("#pwanswer").val().trim()==""){ 
+		alert("비밀번호 찾기 답변을 입력해주세요");
+		return false;//12
+	}
+	
+	return true;
+}
+</script>
 <div class="myPageMenu">
 <a href="/user/myPage/dogJoinForm">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 </div>
 <h1>비밀번호찾기</h1>
-<form method="post" th:object="${hmMemberDTO}">
+<form method="post" th:object="${hmMemberDTO}" onsubmit="return frmChk()">
 	<table border="">
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" th:field="*{pid}"/></td>
+			<td><input type="text"  id="pid" th:field="*{pid}"/></td>
 		</tr>
 		<tr>
 			<td>비밀번호 찾기 질문</td>
 			<td>
-				<select name="pwquestion">
+				<select id="pwquestion" name="pwquestion">
+					<option value="" selected>선택</option>
 					<option value="기억에 남는 추억의 장소는?" >기억에 남는 추억의 장소는?</option>
 					<option value="가장 좋아하는 동물은?" >가장 좋아하는 동물은?</option>
 					<option value="초등학교떄 다녔던 학교는?" >초등학교떄 다녔던 학교는?</option>
 					<option value="가장 아끼는 물건은?" >가장 아끼는 물건은?</option>
 					<option value="나의 보물 제 1호는?" >나의 보물 제 1호는?</option>
 				</select><br/>
-				<input type="text" th:field="*{pwanswer}" />
+				<input type="text" id="pwanswer" th:field="*{pwanswer}" />
 			</td>
 		</tr>
 		<tr>
