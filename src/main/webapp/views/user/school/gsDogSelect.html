@@ -17,7 +17,7 @@ layout:decorate="total/userTemp">
 				<h2><span class="gsName123" th:text="${dto.dname}"></span></h2>
 				<div class="gsDog123">
 				<a th:href="@{|/user/school/packSelect/${dto.dname}|}" >
-				  <img  th:src="@{|/dimg/${dto.photo}|}" alt="" width="200px">
+				  <img  th:src="@{|/dimg/${dto.photo}|}" alt="" width="200px" height="200px">
 				  </a><br>
 				  종류 : <span th:text="${dto.dogsize}"></span><br>
 				  현재 이용권 : <br> 5일권 <br>
