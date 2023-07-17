@@ -213,12 +213,12 @@ public class AdminHomeController {
 		mo.addAttribute("dayName", dayName); //문자열이 바로 들어가면 안된다. 변수명으로 입력
 		//예약 테이블에서 정보 가져오기
 		reser = am.bhReserData(reser);
-		mo.addAttribute("reserData",reser);
+		mo.addAttribute("reserData", reser);
 		
 		List<ArrayList<Integer>> days = new ArrayList<ArrayList<Integer>>();
 		ArrayList<Integer> startNend; 
 		
-		// ex) 3 ~ 6 => [3 4 5 6]
+		// 전체 개월수 ex) 3 ~ 6 => [3 4 5 6]
 		Calendar day = Calendar.getInstance();
 		for (int i = reser.stMonth(); i <= reser.enMonth(); i++) {
 			startNend = new ArrayList<Integer>();
@@ -241,15 +241,18 @@ public class AdminHomeController {
 		//System.out.println("none:"+none);
 		List<BhAttendReserDTO> notyet = am.bhAttNotyet(reser); //아직
 		//System.out.println("notyet:"+notyet);
-		mo.addAttribute("yes",yes);
-//		for(BhAttendReserDTO dd: yes) {
-//			System.out.println("dd.onedayM:"+dd.onedayM());
-//			System.out.println("dd.onedayD:"+dd.onedayD());
-//			System.out.println();
-//		}
+		
 		mo.addAttribute("yes",yes);
 		mo.addAttribute("none",none);
 		mo.addAttribute("notyet",notyet);
+
+		//출석률
+		int totDay = am.bhAttTot(reser);
+		System.out.println("yes.size(): "+(yes.size()));
+		System.out.println("출석률: "+((double)yes.size()/(double)totDay)*100);
+		//mo.addAttribute("percent",yes.size()/totDay);
+		mo.addAttribute("totDay",totDay);
+		mo.addAttribute("percent",((double)yes.size()/(double)totDay)*100+"%");
 		
 		return "admin/dogs/bhDogsReserAtt";
 	}

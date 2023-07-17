@@ -11,21 +11,22 @@ layout:decorate="total/adTemp">
 	<h2 class="bhH2">회원관리</h2>
 	<!--<span th:text="'회원수: '+${bhMemData.size()}+' 명'"></span>-->
 	<div>
-		<table border="" align="center">
+		<table align="center" class="bhTable">
+			<thead>
 <!--검색폼-->
 			<form action="" th:object="${bhMemDTO}">
 				<tr>
 					<td colspan="7" align="center">
 						회원이름
-						<input type="text" th:field="*{sch}"/>
-						회원그룹
-						<select th:field="*{grade}">
+						<input type="text" th:field="*{sch}" class="bhInput"/>
+						&nbsp;&nbsp; 회원그룹
+						<select th:field="*{grade}" class="bhSelShort">
 							<option value="전체" th:text="전체"></option>
 							<option value="일반" th:text="일반"></option>
 							<option value="블랙" th:text="블랙"></option>
 							<option value="관리자" th:text="관리자"></option>
 						</select>
-						<input type="submit" value="검색" />
+						<input type="submit" value="검색" class="bhSearSub"/>
 					</td>
 				</tr>
 			</form>
@@ -39,6 +40,9 @@ layout:decorate="total/adTemp">
 				<td>등급</td>
 				<td>강아지등록수</td>
 			</tr>
+			</thead>
+			
+			<tbody>
 			<tr th:each="dto, dtoStat: ${bhMemData}">
 				<td th:text="${dtoStat.index+1}"/>
 				<td><a th:href="@{|/admin/memPid/${dto.pid}|}" th:text="${dto.pid}"/></td>
@@ -48,6 +52,7 @@ layout:decorate="total/adTemp">
 				<td th:text="${dto.grade}"/>
 				<td th:text="${dto.dogTotalCnt()}"/>
 			</tr>
+			</tbody>
 		</table>
 		
 	</div>

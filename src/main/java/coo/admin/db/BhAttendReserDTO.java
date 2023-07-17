@@ -167,14 +167,14 @@ public class BhAttendReserDTO {
 	public int onedayM() {
 		calendar.setTime(oneDay);
 		int onedayM = calendar.get(Calendar.MONTH)+1;
-		System.out.println("onedayM:"+onedayM);
+	//	System.out.println("onedayM:"+onedayM);
 		return onedayM;
 	}
 	
 	public int onedayD() {
 		calendar.setTime(oneDay);
 		int onedayD = calendar.get(Calendar.DAY_OF_MONTH);
-		System.out.println("onedayD:"+onedayD);
+	//	System.out.println("onedayD:"+onedayD);
 		return onedayD;
 	}
 }

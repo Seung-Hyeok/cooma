@@ -202,5 +202,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	<select id="bhAttNotyet" parameterType="bhAtDTO" resultType="bhAtDTO">
 		select * from daybyday where reserNo = #{reserNo} and oneday >= sysdate();
 	</select>
-
+	<select id="bhAttTot" parameterType="bhAtDTO" resultType="Integer">
+		select count(*) from daybyday where reserNo = #{reserNo};
+	</select>
 </mapper>

@@ -8,11 +8,15 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
-
-<div>
-	<span th:text="${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - 교육없음'"/>
-</div>
-
+<h2 class="bhH2">
+	<th:block th:if="${reserData.edu.equals('-')}">
+		<span th:text="${reserData.kind}+${reserData.getTerm()}+': '+${reserData.startDStr()}+'~'+${reserData.endDStr()}+' ('+${reserData.weeks}+') - 교육없음'"/>
+	</th:block>
+	<th:block th:unless="${reserData.edu.equals('-')}">
+		<span th:text="${reserData.kind}+${reserData.getTerm()}+': '+${reserData.startDStr()}+'~'+${reserData.endDStr()}+' ('+${reserData.weeks}+') - '+${reserData.edu}"/>
+	</th:block>
+</h2>
+<h3 class="bhH2">출석률 : <span th:text="${percent}"/> ( <span th:text="${yes.size()}+'/'+${totDay}"/> )</h3>
 <div class="bhBigCal">
 	<div th:each="rd : ${days}" class="bhCalendar">
 		<div class="bhMonthHead"><span th:text="${rd[0]+'월'}"/></div>
@@ -42,7 +46,10 @@ layout:decorate="total/adTemp">
 		</div>
 	</div>
 </div>
-	
+<div style="width: 1120px; height: 40px; margin:40px; text-align: center;">
+	<a th:href="|/admin/dogInform/${reserData.dname}/${reserData.pid}|" 
+	class="bhBigButton">뒤로</a>
+</div>
 </th:block>
 
 <th:block layout:fragment="adAdd-content">
