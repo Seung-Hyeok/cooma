@@ -7,10 +7,23 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
-<h1>메인페이지</h1>
-[[${msg}]]<br/>
-[[${today}]]<br/>
-
+<div class="gsHome">
+	<div class="maindog1">
+		<img src="../dimg/dogPP.png" alt="" width="300px" />
+	</div>
+	<div class="mainCoo">
+		Cookie Maru
+	</div>
+	<div class="mainMaru">
+		Premium DOG Preschool
+	</div>
+	<div class="aram">
+	<h1>&nbsp;&nbsp;[ 오늘의 알림 ]</h1>
+		-[[${msg}]]<br/>
+		-[[${today}]]<br/>
+	</div>
+	
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

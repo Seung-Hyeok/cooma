@@ -9,40 +9,74 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
-gsbuy~~~~~~~~~~~~~~~~~~~~~
-<h1>이용권 정보</h1>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script> 
+<script>
 
-	<form action="/user/school/gsFin" th:object="${gsReserDTO}" method="post">
+var IMP = window.IMP;
+IMP.init('imp58784867');
+
+function Pay() {
+   //iamport 대신 자신의 "가맹점 식별코드"를 사용
+  IMP.request_pay({
+    pg: "html5_inicis",
+    pay_method: "card",
+    merchant_uid : 'merchant_'+new Date().getTime(),
+    name : '결제테스트',
+    amount : 100,
+    buyer_email : 'iamport@siot.do',
+    buyer_name : '구매자',
+    buyer_tel : '010-1234-5678',
+    buyer_addr : '서울특별시 강남구 삼성동',
+    buyer_postcode : '123-456'
+  },
+  
+  function (rsp) { // callback
+	  if (rsp.success) {
+	      var msg = '결제가 완료되었습니다.';
+	      alert(msg);
+	      gsFrm.submit()
+	    } else {
+	      var msg = '결제에 실패하였습니다.';
+	      msg += ' ' + rsp.error_msg;
+	      alert(msg);
+	    }
+  });
+}
+</script>
+<h1>이용권 정보</h1>
+<hr>
+<div class="gsDetail">
+	<form name="gsFrm" action="/user/school/gsFin" th:object="${gsReserDTO}" method="post">
 		<h2>결제자 아이디</h2>
-		<input type="text" th:field="*{pid}"/>
+		<input type="text" th:field="*{pid}"readonly/>
 		<h2>강아지이름</h2>
-		<input type="text" th:field="*{dname}"/>
+		<input type="text" th:field="*{dname}"readonly/>
 		<h2>요일</h2>
-		<input type="text" th:field="*{weeks}"/>
+		<input type="text" th:field="*{weeks}"readonly/>
 		<h2>이용권 종류</h2>
-		<input type="text" th:field="*{kind}"/>
+		<input type="text" th:field="*{kind}"readonly/>
 		<h2>이용권 기간</h2>
 		
-		<input type="hidden" th:field="*{gap}"/>
-		<input type="text" th:value="${gapStr}"/>
+		<input type="hidden" th:field="*{gap}"readonly/>
+		<input type="text" th:value="${gapStr}"readonly/>
 		<h2>이용권금액</h2>
-		<input type="text" th:field="*{pay}"/>
+		<input type="text" th:field="*{pay}"readonly/>
 		<h2>교육추가금액</h2>
-		<input type="text" th:field="*{eduFee}"/>
+		<input type="text" th:field="*{eduFee}"readonly/>
 		<h2>총 금액</h2>
-		<input type="text" th:field="*{totFee}"/>
+		<input type="text" th:field="*{totFee}"readonly/>
 		<h2>강아지 크기</h2>
-		<input type="text" th:field="*{dogsize}"/>
+		<input type="text" th:field="*{dogsize}"readonly/>
 		<h2>추가교육</h2>
-		<input type="text" th:field="*{edu}"/>
+		<input type="text" th:field="*{edu}"readonly/>
 		<h2>은행</h2>
-		<input type="text" th:field="*{bank}"/>
+		<input type="text" th:field="*{bank}"readonly/>
 		<h2>계좌</h2>
-		<input type="text" th:field="*{account}"/>
+		<input type="text" th:field="*{account}"readonly/>
 		<h2>등원 일짜</h2>
-		<input type="text" th:field="*{startD}"/>
+		<input type="text" th:field="*{startD}"readonly/>
 		<h2>요청사항</h2>
-		<input type="text" th:field="*{reque}"/>
+		<input type="text" th:field="*{reque}"readonly/>
 		<h1>
 			------------------환불 약정------------------
 		</h1>
@@ -57,9 +91,9 @@ gsbuy~~~~~~~~~~~~~~~~~~~~~
 			50% 이하 이용 시 환불   20%</br>
 			50% 이상 이용 시 환불불가 </br>
 		</h2>
-		
-		<input type="submit" value="결제"/>
 	</form> 
+	<input class="gsButton" type="button" id="gg" value="정산하기" onclick="Pay()" />
+	</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

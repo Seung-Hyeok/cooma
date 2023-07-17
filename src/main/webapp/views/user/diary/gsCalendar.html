@@ -10,47 +10,46 @@ layout:decorate="total/userTemp">
 
 
 <h1><span th:text="${todd}"></span></h1>
+	<hr>
+<div class="gsCalSch">
 	<form action="" method="post">	
-		<input type="month" id="monthInput" name="month" min="2000-01" max="2030-12" required="required">
-		
+		<input type="month" id="monthInput" name="month" min="2000-01" max="2030-12" required="required">&nbsp;&nbsp;&nbsp;
 		<select name="dname" id="dname">
 			<option value="전체">전체</option>
 			 <option th:each="dnames : ${dnamess}" th:value="${dnames}" th:text="${dnames}"></option>
-		</select>
-		
-		<input type="submit" value="검색"/>
+		</select>&nbsp;&nbsp;&nbsp;
+		<input  class="gsButton"  type="submit" value="검색"/>
 	</form>
+</div>
     <div class="myGsDiary">
-    <div>일</div>
-    <div>월</div>
-    <div>화</div>
-    <div>수</div>
-    <div>목</div>
-    <div>금</div>
-    <div>토</div>
-    <div th:each="no : ${#numbers.sequence(1,old-1,1)}"></div>
-    <div th:each="no : ${#numbers.sequence(1,datt,1)}">
-	    <span th:text="${no}" ></span></br>
-	    <th:block th:each="sh : ${show}">
-	    	 <th:block th:if="${sh.oneD == no+''}">
-	    		<span th:text="${sh.dname}" ></span>
-	    		-등원 :<span th:text="${sh.attendTimeStr()}" ></span>
-	    		-하원 :<span th:text="${sh.goHomeStr()}" ></span></br>
-	   		 </th:block>
-	    </th:block> 
-	    <th:block th:each="ns : ${noShow}">
-	    	 <th:block th:if="${ns.oneD == no+''}">
-	    		<span th:text="${ns.dname+' -결석'}" ></span>
-	    		</br>
-	   		 </th:block>
-	    </th:block> 
-	    <th:block th:each="fu : ${future}">
-	    	 <th:block th:if="${fu.oneD == no+''}">
-	    		<span th:text="${fu.dname}" ></span>
-	    		 등교일!</br>
-	   		 </th:block>
-	    </th:block> 
-    </div>
+	    <div id="gsWk" th:each="wk : ${#numbers.sequence(0,6,1)}">
+	     <span  th:text="${'일월화수목금토'.split('')[wk]}" ></span>
+	    </div>
+	    <div th:each="no : ${#numbers.sequence(old-2,0,-1)}">
+	    	<span class="gsNumBefo" th:text="${ dattBefo-no}" ></span></br>
+	    </div>
+	    <div th:each="no : ${#numbers.sequence(1,datt,1)}">
+		    <span id="gsNum" th:text="${no}" ></span></br>
+		    <th:block th:each="sh : ${show}">
+		    	 <th:block th:if="${sh.oneD == no+''}">
+		    		<span class="gsSmile">☻</span> <span th:text="${ sh.dname}" ></span>
+		    		-등원 :<span th:text="${sh.attendTimeStr()}" ></span></br>
+		    		-하원 :<span th:text="${sh.goHomeStr()}" ></span></br>
+		   		 </th:block>
+		    </th:block> 
+		    <th:block th:each="ns : ${noShow}">
+		    	 <th:block th:if="${ns.oneD == no+''}">
+		    		<span class="gsSad">☻</span> <span th:text="${ ns.dname+' -결석'}" ></span>
+		    		</br>
+		   		 </th:block>
+		    </th:block> 
+		    <th:block th:each="fu : ${future}">
+		    	 <th:block th:if="${fu.oneD == no+''}">
+		    		<span>☻</span> <span th:text="${ fu.dname+' -등교일!'}" ></span>
+		    		 </br>
+		   		 </th:block>
+		    </th:block> 
+	    </div>
     </div>
      
 </th:block>

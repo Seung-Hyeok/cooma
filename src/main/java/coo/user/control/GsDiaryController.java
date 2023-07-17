@@ -41,9 +41,11 @@ public class GsDiaryController {
 		mm.addAttribute("pid", pid);
 	
 		String todd = "이번달 출석부";
-		Calendar today = Calendar.getInstance();
+		Calendar today= Calendar.getInstance(),befoMon = Calendar.getInstance();
 		today.set(Calendar.DAY_OF_MONTH, 1);
+		befoMon.set(Calendar.DAY_OF_MONTH, -1);
 		String ymChk = today.get(Calendar.YEAR)+"";
+		String befoChk = befoMon.get(Calendar.YEAR)+"";
 		if(today.get(Calendar.MONTH)+1 >=10) {
 			ymChk +="-"+(today.get(Calendar.MONTH)+1);
 		}
@@ -82,6 +84,7 @@ public class GsDiaryController {
 		mm.addAttribute("noShow", noShowBuf);
 		mm.addAttribute("future", futureBuf);
 		mm.addAttribute("datt", today.getActualMaximum(Calendar.DATE));
+		mm.addAttribute("dattBefo", befoMon.getActualMaximum(Calendar.DATE));
 		mm.addAttribute("old", today.get(Calendar.DAY_OF_WEEK));
 		mm.addAttribute("todd", todd);
         return "user/diary/gsCalendar";
@@ -100,11 +103,12 @@ public class GsDiaryController {
 		gdto.setPid(pid);
 		mm.addAttribute("pid", pid);
 	
-		Calendar today = Calendar.getInstance();
+		Calendar today= Calendar.getInstance(),befoMon = Calendar.getInstance();
 		
 		int year = Integer.parseInt(month.split("-")[0]);
 		int mon = Integer.parseInt(month.split("-")[1]);
 		today.set(year,mon-1, 1);
+		befoMon.set(year,mon-1, -1);
 		String todd = year+"년 "+mon+"월 출석부";
 		String ymChk = month;
 
@@ -138,6 +142,7 @@ public class GsDiaryController {
 		mm.addAttribute("noShow", noShowBuf);
 		mm.addAttribute("future", futureBuf);
 		mm.addAttribute("datt", today.getActualMaximum(Calendar.DATE));
+		mm.addAttribute("dattBefo", befoMon.getActualMaximum(Calendar.DATE));
 		mm.addAttribute("old", today.get(Calendar.DAY_OF_WEEK));
 		mm.addAttribute("todd", todd);
         return "user/diary/gsCalendar";

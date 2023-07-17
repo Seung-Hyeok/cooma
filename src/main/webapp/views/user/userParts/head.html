@@ -14,32 +14,68 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		
 		border: 3px solid#000;
 	}
+	a{
+	text-decoration: none;
+	}
 	.menu{
-		width: 1200px;
-		height: 100px;
-		border: 1px solid#0aa;
-		background: #aaa;
+	position: fixed; /* 고정 위치 설정 */
+	background: #fff;
+		width: 1150px;
+		height: 130px;
+		padding-left: 50px;
+		box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
 	}
 	.main{
+		margin-top:100px;
 		width: 1200px;
 		min-height: 1000px;
-		border: 1px solid#0ff;
 	}
-
-
+	.menu>a{
+		margin:30px;
+		font-size: 25px;
+		color: #324182;
+	}
+	.menu>a:hover{
+	    transition: color 0.5s ease;
+		color: #FFC107;
+	}
+	.menu>div{
+		width:1150px;
+		height: 70px;
+	}
+	.menu>div>a{
+		line-height:70px;
+		float: right;
+		margin-right: 30px;
+		color:  #808080;
+	}
+	.menu>div>a:hover{
+	color:  #000;
+	}
+	.menu>.menuCookie{
+	font-size: 35px;
+		color: #FFC107;
+		font-weight: bold;
+	}
+	.menu>.menuCookie:hover{
+	    transition: color 0.5s ease;
+		color:  #324182;
+	}
 
 </style>
 <div class="menu">
 <th:block layout:fragment="title"></th:block>
-<a href="/user">쿠키마루</a>
+	<div>
+	<a href="/user/log/logout" th:if="${pid != null}">로그아웃</a>
+	<a href="/user/log/login" th:if="${pid == null}">로그인</a>
+	</div>
+<a class="menuCookie" href="/user">Cookie Maruʕᴥʔ</a>
 <a href="/user/diary">출석 달력</a>
 <a href="/user/build">시설안내</a>
 <a href="/user/school">유치원</a>
-<a href="/user/special">전문가들</a>
 <a href="/user/notice/1">공지사항</a>
 <a href="/user/myPage/memPage" th:if="${pid != null}">마이페이지</a>
-<a href="/user/log/logout" th:if="${pid != null}">로그아웃</a>
-<a href="/user/log/login" th:if="${pid == null}">로그인</a>
+
 </div>
 </head>
 </html>

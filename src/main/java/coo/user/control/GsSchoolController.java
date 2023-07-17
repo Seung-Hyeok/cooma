@@ -75,6 +75,21 @@ public class GsSchoolController {
 			drto.setTotFee(drto.getEduFee()+drto.getPay());
 		}
 		drto.setPid(pid);
+		Date start = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            start = sdf.parse(drto.getStartD());
+        } catch (Exception e) {}
+        // Calendar 객체 생성 및 기준 날짜 설정
+        
+        if(drto.getWeeks().equals("0")) {
+        	System.out.println("일일권 진입~~~~~~~~");
+        	int kk = start.getDay();
+        	System.out.println("kk"+kk);
+        	String weeks = "일월화수목금토";
+        	System.out.println("weeks.split(\"\")[kk]:"+weeks.split("")[kk]);
+        	drto.setWeeks(weeks.split("")[kk]);
+		}
 		System.out.println("gsBuy 진입");
 		System.out.println("drto : "+drto.gap());
 		

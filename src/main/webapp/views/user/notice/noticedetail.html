@@ -9,33 +9,27 @@ layout:decorate="total/userTemp">
 
 <th:block layout:fragment="content">
 	
-	<h3>공지상세</h3>
-	<table border="">
-		<tr>
-			<td>제목</td><td th:text="${mainData.title}"/>
-		</tr><tr>
-			<td>작성자</td><td th:text="${mainData.id}"/>
-		</tr><tr>
-			<td>등록일</td><td th:text="${mainData.date()}"/>
-		</tr><tr>
-			<td>조회수</td><td th:text="${mainData.cnt}"/>
-		</tr><tr>
-		<th:block th:if="${dd}">
-				<td>이미지</td><td><img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="" width="500px" height="500px"><!-- <br/>[[${mainData.content}]] --></td>
-			</th:block>
-			<th:block th:unless="${dd}">
-				<td>이미지</td><td><!-- <br/>[[${mainData.content}]] --></td>
-		</th:block>
-		</tr><tr>
-			<td>내용</td><td th:text="${mainData.content}" style="width:700px; height:300px"/>
-		</tr><tr>
-			<td colspan="2" align="right">
-				<a th:href="|/user/notice/1|" th:text="뒤로"/>
-			</td>
-		</tr>
-	</table>
+	<h1>상세보기</h1>
+	<hr>
 	
 	
+	  <div class="container">
+        <div class="notice_title"><span th:text="${mainData.title}"></span></div>
+        <div class="notice_info">
+            ● No : <span th:text="${mainData.num}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             ● 조회수 : <span th:text="${mainData.cnt}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+             ● 등록일 : <span th:text="${mainData.date()}"></span>
+        </div>
+        <div class="notice_content">
+            <span th:text="${mainData.content}"></span>
+        </div>
+            <div class="notice_image">
+            <img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="이미지" />
+            </div>
+    </div>
+    <div class="button_container">
+       <a class="gsButton" th:href="|/user/notice/1|" th:text="뒤로"/>
+    </div>
 	
 </th:block>
 
