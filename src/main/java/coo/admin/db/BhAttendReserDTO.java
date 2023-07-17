@@ -1,5 +1,6 @@
 package coo.admin.db;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +55,12 @@ public class BhAttendReserDTO {
 	String memo;
 	Integer todayNo, penalty, timeGap;
 	Date oneDay, attendTime, goHome; 
+	
+	DecimalFormat df = new DecimalFormat("#,###");
+	public String penaltyStr() {
+		return df.format(penalty); 
+	}
+	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date schDate; //schDate:출석부 검색 날짜값 저장 변수

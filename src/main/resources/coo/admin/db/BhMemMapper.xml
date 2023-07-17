@@ -17,21 +17,8 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 		</where>
 	</select>
 
-		<!-- 추가 : prefix 접두사 suffix 접미사 + 
-		  	 삭제 : prefixOverrides, suffixOverrides -->
-<!-- 
-			<trim prefix=" " suffixOverrides="and | or"> 
-				<if test="sch != null">
-					pname like concat('%',#{sch},'%') and 
-				</if>
-				<if test="grade != null">
-					grade like #{grade} and
-				</if>
-				<if test="grade != ''">
-					grade like #{grade}
-				</if>
-			</trim>
- -->
+<!-- 추가 : prefix 접두사 suffix 접미사 + 
+  	 삭제 : prefixOverrides, suffixOverrides -->
 
 <!-- 디테일 -->
 	<sql id="wid">

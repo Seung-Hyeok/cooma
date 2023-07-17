@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface BhAttendMapper {
-	
-	//일일 등원 리스트 교육별
+
+//일일 등원 리스트 교육별
 	//대형견 => 교육없음, 공격성, 배변, 분리불안
 	ArrayList<BhAttendReserDTO> dayEduNotListBig(BhAttendReserDTO reser);
 	ArrayList<BhAttendReserDTO> dayEduRageListBig(BhAttendReserDTO reser);
@@ -53,4 +53,8 @@ public interface BhAttendMapper {
 	List<BhAttendReserDTO> bhAttNo(BhAttendReserDTO getDaybydayData);
 	List<BhAttendReserDTO> bhAttNotyet(BhAttendReserDTO getDaybydayData);
 	int bhAttTot(BhAttendReserDTO getDaybydayData);
+	
+	
+	
+	
 }
