@@ -24,7 +24,7 @@ $(function(){
             	var regex = /^(?=.*[a-z])(?=.*[0-9])[-_a-z0-9]{4,10}$/; //[-_a-z0-9] -_는 사용가능하지만 없어도 된다.
 				//(?=.*[a-z]) : 반드시 소문자 알파벳이 최소한 한 개 이상 존재해야 합니다.
 				if(!regex.test($("#pid").val().trim())){
-					alert("영어 소문자, 숫자, (_)(-) 4~10자로 적어주세요.")
+					alert("영어 소문자, 숫자 4~10자로 적어주세요.")
 					document.getElementById('pid').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
 					result="아이디를 정확히 적어주세요.";
                     $("#result_checkId").html(result).css("color","red");
@@ -247,7 +247,7 @@ function frmChk() {
 	
 	if($("#address").val().trim()==""){ //6
 		alert("주소를 입력해주세요");
-		return
+		return false;
 	}
 	
 	if(!validAddr2()){ //7
@@ -315,6 +315,16 @@ function frmChk() {
 		return false;
 	}
 	
+	if ($("#dogimg").get(0).files.length === 0) { // Check if no files selected for upload
+        alert("사진을 업로드해주세요");
+        return false;
+    }
+	
+	if (!$('#formchk').is(':checked')) { // Check if checkbox is not checked
+        alert("중성화 여부를 체크해주세요");
+        return false;
+    }
+	
 	/*if ($("#dogimg").val().trim()=="") {
 		alert("강아지의 사진을 업로드해주세요");
 		return
@@ -336,6 +346,7 @@ function frmChk() {
 				<input type="text"  id="pid" th:field="*{pid}" />
 			    <input type="button" id="checkId" value="중복검사"><br/>
 			    <div><span id="result_checkId" style="font-size:12px;"></span></div>
+			    <font size="2">* 영어 소문자, 숫자 4~10자</font>
 			</td>
 		</tr>
 		<tr>
@@ -463,7 +474,7 @@ function frmChk() {
 		</tr>
 		<tr>
 			<td class="tt">사진</td>
-			<td><input type="file" name="dogimg" required/></td>
+			<td><input type="file" id="dogimg" name="dogimg"/></td>
 		</tr>
 		<tr>
 			<td class="tt">특이사항</td>
@@ -472,7 +483,7 @@ function frmChk() {
 		<tr>
 			<td class="tt">중성화 여부</td>
 			<td>
-				<label><input type="checkbox" name="chk" required/>중성화한 강아지 입니다.</label>
+				<label><input type="checkbox" id="formchk"/>중성화한 강아지 입니다.</label>
 				<br/> <font size="2">*쿠키마루는 중성화한 강아지만 등록할 수 있습니다.</font>
 			</td>
 		</tr>

@@ -67,7 +67,7 @@ public class HmLoginController {
 		}
 	    
 		mm.addAttribute("msg","회원가입이 완료되었습니다.");
-		mm.addAttribute("goUrl","/user");
+		mm.addAttribute("goUrl","/user/log/login");
 		return "user/log/alert";
 	}
 	
@@ -89,7 +89,7 @@ public class HmLoginController {
 			mm.addAttribute("msg",memData.getPname()+"님 로그인 되었습니다.");
 			mm.addAttribute("goUrl","/user");
 			if(memData.getGrade().equals("관리자")) {
-				mm.addAttribute("goUrl","/user/log/adminSelect");
+				mm.addAttribute("goUrl","/admin");
 			}
 			session.setAttribute("pid", memData.getPid());
 			session.setAttribute("pname", memData.getPname());

@@ -37,4 +37,6 @@ public class HmMemberDTO {
 	String pwquestion;
 	
 	String pwanswer;
+	
+	Date today = new Date();
 }

@@ -56,6 +56,16 @@ function frmChk() {
 		alert("강아지가 태어난 달을 선택해주세요");
 		 return false;
 	}
+	
+	if ($("#dogimg").get(0).files.length === 0) { // Check if no files selected for upload
+        alert("사진을 업로드해주세요");
+        return false;
+    }
+	
+	if (!$('#formchk').is(':checked')) { // Check if checkbox is not checked
+        alert("중성화 여부를 체크해주세요");
+        return false;
+    }
 	return true;
 }
 </script>
@@ -114,7 +124,7 @@ function frmChk() {
 		</tr>
 		<tr>
 			<td class="tt">사진</td>
-			<td><input type="file" name="dogimg" required/></td>
+			<td><input type="file" id="dogimg" name="dogimg"/></td>
 		</tr>
 		<tr>
 			<td class="tt">특이사항</td>
@@ -123,7 +133,7 @@ function frmChk() {
 		<tr>
 			<td class="tt">중성화 여부</td>
 			<td>
-				<label><input type="checkbox" name="chk" required/>중성화한 강아지 입니다.</label>
+				<label><input type="checkbox"  id="formchk"/>중성화한 강아지 입니다.</label>
 				<br/> <font size="2">*쿠키마루는 중성화한 강아지만 등록할 수 있습니다.</font>
 			</td>
 		</tr>
