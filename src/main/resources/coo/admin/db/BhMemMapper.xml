@@ -38,6 +38,10 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 		where pid = #{pid}
 	</update>
 <!-- 삭제 -->
+	<select id="bhMemBeforeDelete" parameterType="bhmDTO" resultType="Integer">
+		select count(*) from reser where pid = #{pid} and endD >= #{today}
+	</select>
+	
 	<delete id="bhMemDelete" parameterType="bhmDTO">
 		delete from member where pid = #{pid}
 	</delete>

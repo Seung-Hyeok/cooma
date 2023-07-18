@@ -20,6 +20,9 @@ public interface BhDogMapper {
 //수정
 	int bhDogModify(BhDogsDTO dog);
 //삭제
+	//삭제전 예약 여부 확인
+	int bhDogBeforeDelete(BhDogsDTO dog);
+	//강아지 삭제
 	int bhDogDelete(BhDogsDTO dog);
 	//강아지 정보 삭제시 BhDogsDTO를 사용해 회원정보를 가져오고
 	BhMemDTO bhGetMemInform(BhDogsDTO dog);

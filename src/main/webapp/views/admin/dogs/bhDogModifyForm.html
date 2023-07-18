@@ -26,7 +26,7 @@ layout:decorate="total/adTemp">
 				<td class="bhTableDColor">회원이름</td><td th:text="${bhMemData.pname}" />
 			</tr><tr>
 				<td class="bhTableDColor">무게</td>
-				<td><input type="text" th:field="*{weight}" class="bhInput"/></td>
+				<td><input type="text" th:field="*{weight}" class="bhInput" required/></td>
 				<td class="bhTableDColor">사이즈</td>
 				<td>
 					<select th:field="*{dogsize}" class="bhSelShort">

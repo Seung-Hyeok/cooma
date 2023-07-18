@@ -8,6 +8,21 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
+	
+<script>
+	function trimInput() {
+		var inputElement = document.getElementById('getAnswer');
+		var trimmedValue = inputElement.value.trim();
+		
+		if (trimmedValue === "") {
+			alert("답변 입력바랍니다.")
+			return false; // Submit 막기
+		} else {
+			return true; // Submit 진행
+		}
+	}
+</script>
+
 	<h2 class="bhH2">1:1 문의 답변</h2>
 
 	<form method="post" th:object="${bhAnsData}">
@@ -26,13 +41,15 @@ layout:decorate="total/adTemp">
 			
 			<tr>
 				<td class="bhTableDColor">답변</td>
-				<td colspan="3"><textarea th:field="*{getAnswer}" class="bhTextA"/></td>
+				<td colspan="3">
+					<textarea th:field="*{getAnswer}" class="bhTextA" required/>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<input type="submit" value="등록" class="bhBigButton"/>
-					<input type="reset" value="초기화" class="bhBigButton"/>
 					<a th:href="|/admin/answer/${bhAnsData.no}|" th:text="뒤로" class="bhBigButton"></a>
+					<input type="reset" value="초기화" class="bhBigButton"/>
+					<input type="submit" value="등록" class="bhBigButton" onclick="return trimInput()"/>
 				</td>
 			</tr>
 		</table>
