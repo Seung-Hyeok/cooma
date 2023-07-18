@@ -25,14 +25,14 @@ public class BhAnswerController {
 	String bhAnsList(Model mo, BhPData pd, BhQnADTO qna, HttpSession session) {
 		String pid = (String)session.getAttribute("pid");
 		mo.addAttribute("pid", pid);
-		
-		pd.setTotal(qm.bhQnaTotal(pd));
-		List<BhQnADTO> bhAnsData = qm.bhAnsList(pd);
 		System.out.println("bhAnsList() 진입");
 		
-		mo.addAttribute("bhAnsData",bhAnsData);
+		pd.setTotal(qm.bhQnaTotal(pd));
 		mo.addAttribute("pd", pd);
 		
+		List<BhQnADTO> bhAnsData = qm.bhAnsList(pd);
+		mo.addAttribute("bhAnsData",bhAnsData);
+
 		return "admin/answer/bhAnsList";
 	}
 	
@@ -51,7 +51,10 @@ public class BhAnswerController {
 
 //답변 작성
 	@GetMapping("/admin/ansInsert/{no}")
-	String bhAnsInsert(Model mo, BhQnADTO qna) {
+	String bhAnsInsert(Model mo, BhQnADTO qna, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhAnsInsert() 진입");
 		mo.addAttribute("bhAnsData", qm.bhAnsDetail(qna));
 		System.out.println("아이디"+qna.getAdminId());
@@ -94,6 +97,8 @@ public class BhAnswerController {
 	@PostMapping("/admin/ansModi/{no}")
 	String bhAnsModiDone(Model mo, BhQnADTO qna, HttpSession session) {
 		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+
 		qna.setAdminId(pid);
 		int cnt = qm.bhAnsModi(qna);
 		System.out.println("bhAnsModiDone() 진입");
@@ -112,14 +117,20 @@ public class BhAnswerController {
 	
 //삭제 전 재확인 페이지
 	@GetMapping("/admin/ansDelete/{no}")
-	String bhAnsDelete(BhQnADTO qna, Model mo) {
+	String bhAnsDelete(BhQnADTO qna, Model mo, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		mo.addAttribute("bhAnsData",qna);
 		System.out.println("bhAnsDelete() 진입");
 		return "admin/answer/bhAnsDelete";
 	}
 //삭제완료
 	@PostMapping("/admin/ansDelete/{no}")
-	String bhAnsDeleteDone(Model mo, BhQnADTO qna) { //, BhDogsDTO dog
+	String bhAnsDeleteDone(Model mo, BhQnADTO qna, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		int chk = qm.bhAnsDelete(qna);
 		System.out.println("bhAnsDeleteDone() 진입");
 

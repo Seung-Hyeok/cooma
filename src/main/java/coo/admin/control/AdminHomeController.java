@@ -84,6 +84,9 @@ public class AdminHomeController {
 	//메모출력
 	@RequestMapping("/admin/attendMemo/{todayNo}")
 	String attendMemo(Model mo, BhAttendReserDTO reser, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("attendMemo() 진입");
 		reser = am.bhAttMemo(reser);
 		mo.addAttribute("bhDogData", reser);
@@ -103,6 +106,9 @@ public class AdminHomeController {
 	//메모수정완료
 	@PostMapping("/admin/attMemoModi/{todayNo}")
 	String attendMemoModiDone(Model mo, BhAttendReserDTO reser, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		int chk = am.bhAttMemoModi(reser);
 		System.out.println("attendMemoModiDone() 진입");
 		String msg = "수정이 되지 않았습니다.";
@@ -182,6 +188,9 @@ public class AdminHomeController {
 	//출석부
 	@RequestMapping("/admin/attList")
 	String bhAttendList(Model mo, BhAttendReserDTO reser, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhAttendList() 진입");
 		
 		List<BhAttendReserDTO> bigDog = am.dayListBig(reser);
@@ -209,7 +218,10 @@ public class AdminHomeController {
 	
 	//강아지 이용권별 출석 내역 확인
 	@RequestMapping("/admin/dogsReser/{reserNo}")
-	String bhDogsReserAtt(Model mo, BhAttendReserDTO reser) {
+	String bhDogsReserAtt(Model mo, BhAttendReserDTO reser, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhDogsReserAtt() 진입");
 		
 		String dayName = "일월화수목금토";

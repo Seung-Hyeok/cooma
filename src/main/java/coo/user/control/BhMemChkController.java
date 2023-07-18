@@ -52,7 +52,7 @@ public class BhMemChkController {
 	
 	@Resource
 	BhDogMapper dm;
-	
+/*
 //애견리스트
 	@RequestMapping("/dogs")
 	String bhDogList(Model mo, BhDogsDTO dog, HttpSession session) {
@@ -67,7 +67,7 @@ public class BhMemChkController {
 		mo.addAttribute("bhDogData",bhDogData);
 		return "admin/dogs/bhDogList";
 	}
-	
+	*/
 	
 	
 }

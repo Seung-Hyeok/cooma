@@ -13,6 +13,7 @@ import coo.admin.db.BhAttendReserDTO;
 import coo.admin.db.BhDogMapper;
 import coo.admin.db.BhDogsDTO;
 import coo.admin.db.BhMemDTO;
+import coo.admin.model.BhPData;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 
@@ -24,23 +25,34 @@ public class BhDogController {
 	BhDogMapper dm;
 	
 //애견리스트
-	@RequestMapping("/dogs")
-	String bhDogList(Model mo, BhDogsDTO dog, HttpSession session) {
-		List<BhDogsDTO> bhDogData = dm.bhDogList(dog);
+	@RequestMapping("/dogs/{nowPage}")
+	String bhDogList(Model mo, BhDogsDTO dog, BhPData pd, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
+		System.out.println("bhDogList() 진입");
+		
+		pd.setTotal(dm.bhDogsTotal(pd));
+		mo.addAttribute("pd", pd);
+		
+		List<BhDogsDTO> bhDogData = dm.bhDogList(pd);
 		for (BhDogsDTO dto : bhDogData) {
 			String name = dm.bhFindMemName(dto);
 			dto.setPname(name);
 			System.out.println("dto.getPname(): "+dto.getPname());
 		}
-		session.setAttribute("beforePage", "dogs");
-		System.out.println("bhDogList() 진입");
 		mo.addAttribute("bhDogData",bhDogData);
+		session.setAttribute("beforePage", "dogs");
+		
 		return "admin/dogs/bhDogList";
 	}
 		
 //애견상세
 	@RequestMapping("/dogInform/{dname}/{pid}")
 	String bhDogDetail(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhDogDetail() 진입");
 		mo.addAttribute("bhDogData", dm.bhDogDetail(dog));
 		BhMemDTO bhMemData = dm.bhDogsMem(dog);
@@ -55,7 +67,10 @@ public class BhDogController {
 	
 //애견수정
 	@GetMapping("/dogModi/{dname}/{pid}")
-	String bhDogModifyForm(Model mo, BhMemDTO mem, BhDogsDTO dog) {
+	String bhDogModifyForm(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhDogModifyForm() 진입");
 
 		mo.addAttribute("bhDogData", dm.bhDogDetail(dog));
@@ -66,7 +81,10 @@ public class BhDogController {
 
 //애견수정완료
 	@PostMapping("/dogModi/{dname}/{pid}")
-	String bhDogModifyDone(Model mo, BhMemDTO mem, BhDogsDTO dog) {
+	String bhDogModifyDone(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		int cnt = dm.bhDogModify(dog);
 		System.out.println("bhDogModifyDone() 진입");
 
@@ -84,16 +102,21 @@ public class BhDogController {
 	
 //애견 삭제 전 재확인 페이지
 	@GetMapping("/dogDelete/{dname}/{pid}")
-	String bhDogDeleteForm(@PathVariable String dname, @PathVariable String pid, Model mo) {
-		mo.addAttribute("dname",dname);
-		mo.addAttribute("pid",pid);
+	String bhDogDeleteForm(BhDogsDTO dog, Model mo, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
+		mo.addAttribute("dogData",dog);
 		System.out.println("bhDogDeleteForm() 진입");
 		return "admin/dogs/bhDogDeleteForm";
 	}
 	
 //애견 삭제완료
 	@PostMapping("/dogDelete/{dname}/{pid}")
-	String bhDogDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog) {
+	String bhDogDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhDogDeleteDone() 진입");
 		
 		int chkReser = dm.bhDogBeforeDelete(dog);

@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class BhPData {
 
-	Integer limit = 15, pageLimit=5, start, nowPage;
+	Integer limit = 10, pageLimit=5, start, nowPage;
 	Integer startPage, endPage, totalPage;
-	String sch, startD, endD, cate, kind;
+	String sch, startD, endD, cate, kind, grade;
 	
 
 	public void setTotal(int total) {

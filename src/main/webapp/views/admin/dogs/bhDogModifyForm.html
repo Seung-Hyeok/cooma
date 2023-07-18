@@ -9,6 +9,20 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 	
+<script>
+	function trimInput() {
+		var inputElement = document.getElementById('weight');
+		var trimmedValue = inputElement.value.trim();
+		
+		if (trimmedValue === "") {
+			alert("무게 입력바랍니다.")
+			return false; // Submit 막기
+		} else {
+			return true; // Submit 진행
+		}
+	}
+</script>
+	
 	<h2 th:text="${bhDogData.dname}+' 강아지 정보 수정'" class="bhH2"> </h2>
 	
 	<form method="post" th:object="${bhDogData}">
@@ -53,9 +67,9 @@ layout:decorate="total/adTemp">
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<input type="submit" value="수정" class="bhBigButton"/>
+					<input type="submit" value="수정" class="bhBigButton" onclick="return trimInput()"/>
 					<input type="reset" value="초기화" class="bhBigButton" />
-					<a th:href="|/admin/dogInform/*{dname}/*{pid}|" th:text="뒤로" class="bhBigButton" ></a>
+					<a th:href="|/admin/dogInform/*{dname}/*{pid}|" th:text="뒤로" class="bhBigButton"></a>
 				</td>
 			</tr>
 		</table>

@@ -42,7 +42,12 @@ layout:decorate="total/adTemp">
 				<td><a th:href="@{|/admin/answer/${dto.no}|}" th:text="${dto.title}" class="bhTA"/></td>
 				<td th:text="${dto.pid}"/>
 				<td th:text="${dto.reg_dateStr()}"/>
+				<th:block th:if="${dto.AnsOrNot().equals('답변대기중')}">
+				<td th:text="${dto.AnsOrNot()}" style="color: red;"/>
+				</th:block>
+				<th:block th:unless="${dto.AnsOrNot().equals('답변대기중')}">
 				<td th:text="${dto.AnsOrNot()}"/>
+				</th:block>
 			</tr>
 			
 			<tr> 

@@ -10,7 +10,7 @@ import coo.admin.model.BhPData;
 public interface BhMemMapper {
 //리스트
 	int bhMemTotal(BhPData pd);
-	List<BhMemDTO> bhMemList(BhMemDTO mem);
+	List<BhMemDTO> bhMemList(BhPData pd);
 //디테일
 	BhMemDTO bhMemDetail(BhMemDTO mem);
 	//강아지들

@@ -15,6 +15,7 @@ import coo.admin.db.ShSalesMapper;
 import coo.admin.db.ShStatisticsRepository;
 import coo.admin.model.PData;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ShSalesController {
@@ -26,7 +27,10 @@ public class ShSalesController {
 	private ShStatisticsRepository sr;
 	
 	@RequestMapping("/admin/sales/{nowPage}")
-	String sales(Model mm, PData pd) {
+	String sales(Model mm, PData pd, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		
 		System.out.println("sales 진입");
 		pd.setTotal(sm.salestotal(pd));
@@ -71,7 +75,10 @@ public class ShSalesController {
 	}
 	
 	@GetMapping("/admin/statistics")
-	String statistic(Model mm) {
+	String statistic(Model mm, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		
 		System.out.println("statistics 진입");
 		

@@ -27,7 +27,7 @@ public class BhDogsDTO {
 	//sch 검색을 위해 추가
 	String dname, dogsize, gender, breed, photo, pid, notes, grade, adminMemo;
 	String kind, sch, pname;
-	Integer weight, dyear, dmonth;
+	Integer weight, dyear, dmonth, nowPage;
 	
 
 	public String memoChk() {
