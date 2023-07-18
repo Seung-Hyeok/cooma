@@ -30,7 +30,7 @@ public class BhMemDTO {
 	//dname => 관리자가 애견정보를 삭제했을때 회원 테이블 칼럼에서도 삭제되게 하기 위해 추가
 	String pid, pw, pname, tel, addr1, addr2, email, grade, dog1, dog2, dog3, sch, dname;
 	Date birth, reg_date, today = new Date();
-	Integer dogCnt;
+	Integer dogCnt, nowPage;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	public int dogTotalCnt() {

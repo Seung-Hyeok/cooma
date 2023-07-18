@@ -25,10 +25,15 @@ public class BhMemController {
 	BhMemMapper mm;
 	
 //회원리스트
-	@RequestMapping("/member") // /{nowPage}
-	String bhMemList(Model mo, BhMemDTO mem, BhPData pd) {
-		//pd.setTotal(mm.bhMemTotal(pd));
-		List<BhMemDTO> bhMemData = mm.bhMemList(mem);
+	@RequestMapping("/member/{nowPage}")
+	String bhMemList(Model mo, BhMemDTO mem, BhPData pd, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
+		pd.setTotal(mm.bhMemTotal(pd));
+		mo.addAttribute("pd",pd);
+		
+		List<BhMemDTO> bhMemData = mm.bhMemList(pd);
 		System.out.println("bhMemList() 진입");
 		mo.addAttribute("bhMemData",bhMemData);
 		return "admin/mems/bhMemList";
@@ -37,6 +42,9 @@ public class BhMemController {
 //회원상세
 	@RequestMapping("/memPid/{pid}") // /{nowPage}
 	String bhMemDetail(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhMemDetail() 진입");
 		session.setAttribute("beforePage", "mem");
 		mo.addAttribute("bhMemData", mm.bhMemDetail(mem));
@@ -48,7 +56,10 @@ public class BhMemController {
 	
 //회원수정
 	@GetMapping("/memModi/{pid}")
-	String bhMemModifyForm(Model mo, BhMemDTO mem, BhDogsDTO dog) {
+	String bhMemModifyForm(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhMemModifyForm() 진입");
 		
 		mo.addAttribute("bhMemData", mm.bhMemDetail(mem));
@@ -59,7 +70,10 @@ public class BhMemController {
 
 //회원수정완료
 	@PostMapping("/memModi/{pid}")
-	String bhMemModifyDone(Model mo, BhMemDTO mem) {
+	String bhMemModifyDone(Model mo, BhMemDTO mem, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		int cnt = mm.bhMemModify(mem);
 		System.out.println("bhMemModifyDone() 진입");
 
@@ -77,14 +91,21 @@ public class BhMemController {
 	
 //삭제 전 재확인 페이지
 	@GetMapping("/memDelete/{pid}")
-	String bhMemDeleteForm(@PathVariable String pid, Model mo) {
-		mo.addAttribute("pid",pid);
+	String bhMemDeleteForm(BhMemDTO mem, Model mo, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
+		mo.addAttribute("memData", mem);
+		
 		System.out.println("bhMemDeleteForm() 진입");
 		return "admin/mems/bhMemDeleteForm";
 	}
 //삭제완료
 	@PostMapping("/memDelete/{pid}")
-	String bhMemDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog) {
+	String bhMemDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mo.addAttribute("pid", pid);
+		
 		System.out.println("bhMemDeleteDone() 진입");
 		int chkReser = mm.bhMemBeforeDelete(mem);
 		

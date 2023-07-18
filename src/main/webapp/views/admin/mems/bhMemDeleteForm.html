@@ -13,13 +13,13 @@ layout:decorate="total/adTemp">
 	<h2 class="bhH2">회원삭제</h2>
 	
 	<div class="bhH2">
-		정말로 <span th:text="${pid}"/>님의 정보를 삭제하시겠습니까?
+		정말로 <span th:text="${memData.pid}"/>님의 정보를 삭제하시겠습니까?
 		<br/>
 		<br/>
 		<form method="post">
 			<table align="center" class="bhDeletT">
 				<tr>
-					<td><a th:href="@{/admin/memPid/{pid}(pid=${pid})}" th:text="뒤로" class="bhBigButton"></a></td>
+					<td><a th:href="|/admin/memPid/${memData.pid}|" th:text="뒤로" class="bhBigButton"></a></td>
 					<td><input type="submit" value="삭제" class="bhRedButton" /></td>
 				</tr>
 			</table>

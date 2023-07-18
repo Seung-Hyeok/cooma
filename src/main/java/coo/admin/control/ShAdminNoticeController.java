@@ -27,7 +27,10 @@ public class ShAdminNoticeController {
 	ShNoticeMapper nm;
 	
 	@RequestMapping("/admin/notice/{nowPage}")
-	String notice(Model mm, PData pd) {
+	String notice(Model mm, PData pd, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		pd.setTotal(nm.ntotal(pd));
 		System.out.println("관리자 공지사항 진입");
 		List<ShNoticeDTO> mainData = nm.list(pd);
@@ -41,7 +44,10 @@ public class ShAdminNoticeController {
 	
 	
 	@RequestMapping("/admin/notice/detail/{num}")
-	String detail(Model mm, ShNoticeDTO dto) {
+	String detail(Model mm, ShNoticeDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		
 		System.out.println("detail 진입");
 		
@@ -64,7 +70,10 @@ public class ShAdminNoticeController {
 	}
 	
 	@GetMapping("/admin/notice/modify/{num}")
-	String modifyForm(Model mm, ShNoticeDTO dto) {
+	String modifyForm(Model mm, ShNoticeDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		System.out.println("modifyForm 진입");
 		System.out.println(dto.getPhotoFile());
 		mm.addAttribute("mainData", nm.detail(dto));
@@ -74,6 +83,9 @@ public class ShAdminNoticeController {
 	
 	@PostMapping("/admin/notice/modify/{num}")
 	String modifyComplete(Model mm, ShNoticeDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		System.out.println("modipost 진입");
 		System.out.println(dto.getPhotoFile());
 		
@@ -100,7 +112,10 @@ public class ShAdminNoticeController {
 	}
 	
 	@RequestMapping("/admin/notice/delete/{num}")
-	String delete(Model mm, ShNoticeDTO dto) {
+	String delete(Model mm, ShNoticeDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		
 		System.out.println("delete 진입");
 		
@@ -123,7 +138,10 @@ public class ShAdminNoticeController {
 	}
 	
 	@PostMapping("/admin/notice/insert")
-	String insertComplete(Model mm, ShNoticeDTO dto, HttpServletRequest request) {
+	String insertComplete(Model mm, ShNoticeDTO dto, HttpServletRequest request, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		
 		System.out.println("insertComplete 진입");
 		

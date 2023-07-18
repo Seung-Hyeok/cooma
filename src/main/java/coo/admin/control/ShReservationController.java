@@ -14,6 +14,7 @@ import coo.admin.db.ShReservationMapper;
 import coo.admin.model.PData;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ShReservationController {
@@ -22,7 +23,10 @@ public class ShReservationController {
 	ShReservationMapper rm;
 	
 	@RequestMapping("/admin/reservation/{nowPage}")
-	String reser(Model mm, PData pd) {
+	String reser(Model mm, PData pd, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		pd.setTotal(rm.total(pd));
 		List<ShReservationDTO> mainData = rm.list(pd);
 		
@@ -46,7 +50,10 @@ public class ShReservationController {
 	}
 	
 	@RequestMapping("/admin/endreservation/{nowPage}")
-	String endreser(Model mm, PData pd, HttpServletRequest request) {
+	String endreser(Model mm, PData pd, HttpServletRequest request, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		System.out.println("request"+request.getParameter("sch"));
 		pd.setTotal(rm.endtotal(pd));
 		List<ShReservationDTO> mainData = rm.endlist(pd);
@@ -64,7 +71,10 @@ public class ShReservationController {
 		return "admin/reser/endreservation";
 	}
 	@RequestMapping("/admin/endreservation/detail/{reserNo}")
-    String endreserdetail(Model mm, ShReservationDTO dto) {
+    String endreserdetail(Model mm, ShReservationDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
         System.out.println(rm.detail(dto));
         mm.addAttribute("mainData", rm.detail(dto));
 
@@ -75,7 +85,10 @@ public class ShReservationController {
         return "admin/reser/endreserdetail";
     }
 	@RequestMapping("/admin/reservation/detail/{reserNo}")
-	String detail(Model mm, ShReservationDTO dto) {
+	String detail(Model mm, ShReservationDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		
 		System.out.println(rm.detail(dto));
 		mm.addAttribute("mainData", rm.detail(dto));
@@ -88,14 +101,20 @@ public class ShReservationController {
 	}
 	
 	@GetMapping("/admin/modify/{reserNo}")
-	String modifyForm(Model mm, ShReservationDTO dto) {
+	String modifyForm(Model mm, ShReservationDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		System.out.println("modifyForm 진입");
 		mm.addAttribute("mainData", rm.detail(dto));
 		return "admin/reser/modifyForm";
 	}
 	
 	@PostMapping("/admin/modify/{reserNo}")
-	String modifyComplete(Model mm, ShReservationDTO dto) {
+	String modifyComplete(Model mm, ShReservationDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		System.out.println("modipost 진입");
 		int cnt = rm.modify(dto);
 		String msg = "에러";
@@ -111,7 +130,10 @@ public class ShReservationController {
 	}
 	
 	@RequestMapping("/admin/delete/{reserNo}")
-	String delete(Model mm, ShReservationDTO dto) {
+	String delete(Model mm, ShReservationDTO dto, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		System.out.println("delete 진입");
 		dto = rm.detail(dto);
 		System.out.println(dto);
@@ -152,7 +174,10 @@ public class ShReservationController {
 	
 	
 	@RequestMapping("/admin/refund/{nowPage}")
-	String refund(Model mm, PData pd) {
+	String refund(Model mm, PData pd, HttpSession session) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		
 		pd.setTotal(rm.refundtotal(pd));
 		List<ShReservationDTO> mainData = rm.refundList(pd);
 		

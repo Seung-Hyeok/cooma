@@ -11,13 +11,13 @@ layout:decorate="total/adTemp">
 	<h2 class="bhH2">애견삭제</h2>
 	
 	<div class="bhH2">
-		정말로 <span th:text="${pid}"/>님의 <span th:text="${dname}"/> 정보를 삭제하시겠습니까?
+		정말로 <span th:text="${dogData.pid}"/>님의 <span th:text="${dogData.dname}"/> 정보를 삭제하시겠습니까?
 		<br/>
 		<br/>
 		<form method="post">
 			<table align="center" class="bhDeletT">
 				<tr>
-					<td><a th:href="|/admin/dogInform/${dname}/${pid}|" th:text="뒤로" class="bhBigButton"></a></td>
+					<td><a th:href="|/admin/dogInform/${dogData.dname}/${dogData.pid}|" th:text="뒤로" class="bhBigButton"></a></td>
 					<td><input type="submit" value="삭제" class="bhRedButton"/></td>
 				</tr>
 			</table>
