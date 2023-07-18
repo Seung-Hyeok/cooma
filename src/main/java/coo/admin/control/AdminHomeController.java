@@ -1,5 +1,6 @@
 package coo.admin.control;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -264,10 +265,13 @@ public class AdminHomeController {
 		//출석률
 		int totDay = am.bhAttTot(reser);
 		System.out.println("yes.size(): "+(yes.size()));
-		System.out.println("출석률: "+((double)yes.size()/(double)totDay)*100);
-		//mo.addAttribute("percent",yes.size()/totDay);
 		mo.addAttribute("totDay",totDay);
-		mo.addAttribute("percent",((double)yes.size()/(double)totDay)*100+"%");
+		
+		DecimalFormat df = new DecimalFormat("#.##");
+        double number = ((double)yes.size()/(double)totDay)*100;
+        double percent = Double.parseDouble(df.format(number));
+        System.out.println("출석률: "+percent);
+		mo.addAttribute("percent",percent+"%");
 		
 		return "admin/dogs/bhDogsReserAtt";
 	}

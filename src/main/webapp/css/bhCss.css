@@ -277,7 +277,7 @@ input[data-placeholder]::before{
 .bhmonth > div:nth-child(1),
 .bhmonth > div:nth-child(7n),
 .bhmonth > div:nth-child(7n+1) {
-	width: 20px;
+	width: 25px;
 	height: 80px;
 	display: flex;
 	flex-direction: column;

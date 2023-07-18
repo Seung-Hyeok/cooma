@@ -16,7 +16,7 @@ layout:decorate="total/adTemp">
 		<span th:text="${reserData.kind}+${reserData.getTerm()}+': '+${reserData.startDStr()}+'~'+${reserData.endDStr()}+' ('+${reserData.weeks}+') - '+${reserData.edu}"/>
 	</th:block>
 </h2>
-<h3 class="bhH2">출석률 : <span th:text="${percent}"/> ( <span th:text="${yes.size()}+'/'+${totDay}"/> )</h3>
+<h3 class="bhH2">출석률 : <span th:text="${percent}"/> ( <span th:text="${yes.size()}+' / '+${totDay}"/> )</h3>
 <div class="bhBigCal">
 	<div th:each="rd : ${days}" class="bhCalendar">
 		<div class="bhMonthHead"><span th:text="${rd[0]+'월'}"/></div>
