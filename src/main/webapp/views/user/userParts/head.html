@@ -14,19 +14,22 @@ html{
 		margin: auto;
 		width: 1200px;
 		
-		border: 3px solid#000;
+		border: 1px solid#000;
 	}
 	a{
 	text-decoration: none;
 	}
 	.menu{
-	position: fixed; /* 고정 위치 설정 */
-	background: #fff;
-		width: 1150px;
+		position: fixed; /* 고정 위치 설정 */
+		background: #fff;
+		width: 1200px;
 		height: 110px;
-		padding-left: 50px;
+		/*padding-left: 50px;*/
 		box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
 		z-index: 9999;
+		float: left;
+    	display: flex;
+		justify-content: space-around;
 	}
 	.main{
 		margin-top:90px;
@@ -34,27 +37,32 @@ html{
 		min-height: 1000px;
 	}
 	.menu>a{
-		margin:30px;
+		margin:auto;
 		font-size: 25px;
 		color: #324182;
+	}
+	
+	.menu>a>img{
+		margin-top:10px;
 	}
 	.menu>a:hover{
 	    transition: color 0.5s ease;
 		color: #FFC107;
 	}
-	.menu>div{
-		width:1150px;
-		height: 50px;
+	.userTopMenu{
+		width: 180px;
+		height: 110px;
 	}
-	.menu>div>a{
-		line-height:70px;
+	.userTopMenu > a{
+		line-height:50px;
 		float: right;
-		margin-right: 30px;
+		margin-right: 10px;
 		color:  #808080;
 	}
-	.menu>div>a:hover{
+	.userTopMenu > a:hover{
 	color:  #000;
 	}
+/*
 	.menu>.menuCookie{
 	font-size: 35px;
 		color: #FFC107;
@@ -64,21 +72,26 @@ html{
 	    transition: color 0.5s ease;
 		color:  #324182;
 	}
-
+*/
 </style>
+
+
+
 <div class="menu">
 <th:block layout:fragment="title"></th:block>
-	<div>
-	<a href="/admin" th:if="${pid != null && pid.startsWith('ad')}">관리자페이지</a>
-	<a href="/user/log/logout" th:if="${pid != null}">로그아웃</a>
-	<a href="/user/log/login" th:if="${pid == null}">로그인</a>
+
+	<a class="menuCookie" href="/user"><img src="/dimg/logo3.png" width="120px" /></a>
+	<a href="/user/diary">출석 달력</a>
+	<a href="/user/build">시설안내</a>
+	<a href="/user/school">유치원</a>
+	<a href="/user/notice/1">공지사항</a>
+	<a href="/user/myPage/memPage" th:if="${pid != null && !pid.startsWith('ad')}">마이페이지</a>
+
+	<div class="userTopMenu">
+		<a href="/admin" th:if="${pid != null && pid.startsWith('ad')}">관리자페이지</a>
+		<a href="/user/log/logout" th:if="${pid != null}">로그아웃</a>
+		<a href="/user/log/login" th:if="${pid == null}">로그인</a>
 	</div>
-<a class="menuCookie" href="/user">Cookie Maru</a>
-<a href="/user/diary">출석 달력</a>
-<a href="/user/build">시설안내</a>
-<a href="/user/school">유치원</a>
-<a href="/user/notice/1">공지사항</a>
-<a href="/user/myPage/memPage" th:if="${pid != null && !pid.startsWith('ad')}">마이페이지</a>
 
 </div>
 </head>

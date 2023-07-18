@@ -21,7 +21,7 @@ public class BhAnswerController {
 	BhQnAMapper qm;
 	
 //질문리스트
-	@RequestMapping("/admin/answer/{nowPage}")
+	@RequestMapping("/admin/answerList/{nowPage}")
 	String bhAnsList(Model mo, BhPData pd, BhQnADTO qna, HttpSession session) {
 		String pid = (String)session.getAttribute("pid");
 		mo.addAttribute("pid", pid);
@@ -37,14 +37,14 @@ public class BhAnswerController {
 	}
 	
 //질문상세
-	@RequestMapping("/admin/answer/{no}/{nowPage}")
+	@RequestMapping("/admin/answer/{no}")
 	String bhAnsDetail(Model mo, BhPData pd, BhQnADTO qna, HttpSession session) {
 		System.out.println("bhAnsDetail() 진입");
 		String pid = (String)session.getAttribute("pid");
 		mo.addAttribute("pid", pid);
 		
-		pd.setTotal(qm.bhQnaTotal(pd));
-		mo.addAttribute("pd", pd);
+		//pd.setTotal(qm.bhQnaTotal(pd));
+		//mo.addAttribute("pd", pd);
 		mo.addAttribute("bhAnsData", qm.bhAnsDetail(qna));
 		return "admin/answer/bhAnsDetail";
 	}

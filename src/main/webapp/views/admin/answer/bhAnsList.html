@@ -39,7 +39,7 @@ layout:decorate="total/adTemp">
 			<tbody>
 			<tr th:each="dto, dtoStat: ${bhAnsData}">
 				<td th:text="${pd.start}+${dtoStat.index}+1"/>
-				<td><a th:href="@{|/admin/answer/${dto.no}/${pd.nowPage}|}" th:text="${dto.title}" class="bhTA"/></td>
+				<td><a th:href="@{|/admin/answer/${dto.no}|}" th:text="${dto.title}" class="bhTA"/></td>
 				<td th:text="${dto.pid}"/>
 				<td th:text="${dto.reg_dateStr()}"/>
 				<td th:text="${dto.AnsOrNot()}"/>

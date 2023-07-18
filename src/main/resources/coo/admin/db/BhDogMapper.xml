@@ -53,6 +53,11 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	</update>
 
 <!-- 삭제 -->
+
+	<select id="bhDogBeforeDelete" parameterType="bhdDTO" resultType="Integer">
+		select count(*) from reser where dname = #{dname} and pid = #{pid} and endD >= #{today}
+	</select>
+
 	<delete id="bhDogDelete" parameterType="bhdDTO">
 		delete from dogs  
 		where dname = #{dname} and pid = #{pid}

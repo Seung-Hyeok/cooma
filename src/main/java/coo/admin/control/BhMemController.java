@@ -84,13 +84,19 @@ public class BhMemController {
 	}
 //삭제완료
 	@PostMapping("/memDelete/{pid}")
-	String bhMemDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog) { //, BhDogsDTO dog
-		int chk1 = mm.bhMemDelete(mem);
-		int chk2 = mm.bhMemsDogDelete(mem);
+	String bhMemDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog) {
 		System.out.println("bhMemDeleteDone() 진입");
-
-		String msg = "삭제 되지 않았습니다.";
+		int chkReser = mm.bhMemBeforeDelete(mem);
+		
+		int chk1=0, chk2=0;
+		String msg = "예약이 남아 있어 삭제되지 않습니다.";
 		String goUrl = "/admin/memDelete/"+mem.getPid();
+		
+		if(chkReser == 0) {
+			chk1 = mm.bhMemDelete(mem);
+			chk2 = mm.bhMemsDogDelete(mem);
+		}
+		
 		if((chk1+chk2) >= 2) {
 			msg = "삭제되었습니다.";
 			goUrl = "/admin/member"; //회원리스트

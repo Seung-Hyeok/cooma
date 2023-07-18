@@ -31,7 +31,7 @@ layout:decorate="total/adTemp">
 	</th:block>
 		<tr>
 			<td colspan="4" align="center">
-				<a th:href="|/admin/answer/${bhAnsData.nowPage}|" class="bhBigButton">뒤로</a>
+				<a th:href="|/admin/answerList/1|" class="bhBigButton">뒤로</a>
 				<a th:href="|/admin/ansInsert/${bhAnsData.no}|"  th:if="${bhAnsData.getAnswer == null}" class="bhBigButton">답변작성</a>
 				<a th:href="|/admin/ansModi/${bhAnsData.no}|"  th:if="${bhAnsData.getAnswer != null}" class="bhBigButton">수정</a>
 				<a th:href="|/admin/ansDelete/${bhAnsData.no}|" class="bhBigButton" >삭제</a>	

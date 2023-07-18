@@ -28,6 +28,7 @@ public class BhDogsDTO {
 	String dname, dogsize, gender, breed, photo, pid, notes, grade, adminMemo;
 	String kind, sch, pname;
 	Integer weight, dyear, dmonth;
+	
 
 	public String memoChk() {
 		String qus = "";

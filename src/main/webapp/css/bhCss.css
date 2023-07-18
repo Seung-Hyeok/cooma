@@ -1,5 +1,6 @@
 /*------상단 메뉴 css------*/
 .bhUserLog{
+	width: 150px;
 	float: right;
 }
 
@@ -14,18 +15,25 @@
 }
 
 .admenu > div{
-	width: 150px;
+	width: 1050px;
 	height: 100%;
 	float: left;
 	font-size: 1.5em;
 	text-align: center;
 	line-height: 100px;
+	display: flex;
+	justify-content: space-evenly;
+	flex-direction: row;
 }
 
 .admenu > div > a{
 	color: white;
 	/*font-weight: bold;*/
+	margin: auto;
+}
 
+.admenu > div > a > img{
+	margin-top: 10px;
 }
 /*------중간 메뉴 css------*/
 .bhMidMenu{
@@ -98,7 +106,7 @@
 
 .bhAttTable > thead {
 	border-bottom: 1px solid #444444;
-	border-left: 1px solid #444444;
+	border-left: 1px solid #fff;
 	padding: 5px;
 	height: 30px;
 	background: #438c57;
@@ -108,7 +116,7 @@
 .bhAttTable > thead > tr > td,
 .bhAttTable > tbody > tr > td {
 	border-bottom: 1px solid #444444;
-	border-left: 1px solid #444444;
+	border-left: 1px solid #fff;
 	padding: 5px;
 	height: 30px;
 }
@@ -365,7 +373,7 @@ input[data-placeholder]::before{
 .bhTable > thead > tr > td,
 .bhTable > tbody > tr > td {
 	border-bottom: 1px solid #444444;
-	border-left: 1px solid #444444;
+	border-left: 1px solid #fff;
 	height: 30px;
 	padding: 5px;
 }
@@ -392,7 +400,7 @@ input[data-placeholder]::before{
 .bhTableD > thead > tr > td,
 .bhTableD > tbody > tr > td {
 	border-bottom: 1px solid #444444;
-	border-left: 1px solid #444444;
+	border-left: 1px solid #fff;
 	height: 30px;
 	padding: 5px;
 }

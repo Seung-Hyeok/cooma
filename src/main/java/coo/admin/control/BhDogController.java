@@ -96,16 +96,19 @@ public class BhDogController {
 	String bhDogDeleteDone(Model mo, BhMemDTO mem, BhDogsDTO dog) {
 		System.out.println("bhDogDeleteDone() 진입");
 		
-		int chk1 = dm.bhDogDelete(dog);
+		int chkReser = dm.bhDogBeforeDelete(dog);
 		
-		BhMemDTO dogsMemData = dm.bhGetMemInform(dog);
-		dogsMemData.setDname(mem.getDname());
-		int chk2 = dm.bhDogsNameDelete(dogsMemData);
-		//System.out.println("dogsMemData.getDname(): "+dogsMemData.getDname());
-		//System.out.println("dogsMemData.getDog1(): "+dogsMemData.getDog1());
+		int chk1=0, chk2=0;
+		String msg = "예약이 남아 있어 삭제되지 않습니다.";
+		String goUrl = "/admin/dogDelete/"+dog.getDname()+"/"+dog.getPid();
 		
-		String msg = "삭제 되지 않았습니다.";
-		String goUrl = "/admin/dogDelete/"+dog.getDname()+dog.getPid();
+		if(chkReser == 0) {
+			chk1 = dm.bhDogDelete(dog);
+			BhMemDTO dogsMemData = dm.bhGetMemInform(dog);
+			dogsMemData.setDname(mem.getDname());
+			chk2 = dm.bhDogsNameDelete(dogsMemData);
+		}
+		
 		if((chk1+chk2) >= 2) {
 			msg = "삭제되었습니다.";
 			goUrl = "/admin/dogs"; //애견리스트

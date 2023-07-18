@@ -16,12 +16,12 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		margin: auto;
 		width: 1200px;
 		
-		border: 1px solid#000;
+		/*border: 1px solid#000;*/
 	}
 	.admenu{
 		width: 1200px;
-		height: 150px;
-		/*border: 1px solid#0aa;*/
+		height: 120px;
+		border-radius: 10px;
 		
 	}
 	.main{
@@ -50,13 +50,15 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <div class="admenu">
 <th:block layout:fragment="adTitle"></th:block>
-<div><a href="/admin">관리자</a></div>
-<div><a href="/admin/member">회원</a></div>
-<div><a href="/admin/dogs">애견</a></div>
-<div><a href="/admin/reservation/1">이용권</a></div>
-<div><a href="/admin/sales/1">매출</a></div>
-<div><a href="/admin/notice/1">공지사항</a></div>
-<div><a href="/admin/answer/1">1:1 답변</a></div>
+<div>
+	<a href="/admin"><img src="/dimg/dogBowl2.png" width="120px" /></a>
+	<a href="/admin/member">회원</a>
+	<a href="/admin/dogs">애견</a>
+	<a href="/admin/reservation/1">이용권</a>
+	<a href="/admin/sales/1">매출</a>
+	<a href="/admin/notice/1">공지사항</a>
+	<a href="/admin/answerList/1">1:1 답변</a>
+</div>
 </div>
 
 </head>
