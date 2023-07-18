@@ -45,7 +45,7 @@ public class HmQuestionController {
 			qm.queInsert(qna);
 		}
 		int no = qm.maxNo();
-		mm.addAttribute("msg","문의등록이 완료되었습니다.");
+		mm.addAttribute("msg","문의가 등록되었습니다");
 		mm.addAttribute("goUrl","/user/question/queDetail/"+no);
 		return "user/question/alert";
 	}
@@ -120,7 +120,7 @@ public class HmQuestionController {
 			qna.setPid(pid);
 			qm.queModify(qna);
 			
-			mm.addAttribute("msg", "질문이 수정되었습니다.");
+			mm.addAttribute("msg", "문의가 수정되었습니다.");
 			mm.addAttribute("goUrl", "/user/question/queDetail/"+qna.getNo());
 			
 			return "user/myPage/alert";
@@ -133,7 +133,7 @@ public class HmQuestionController {
 			qna.setPid(pid);
 			qm.queDelete(qna);
 			
-			mm.addAttribute("msg","질문이 삭제되었습니다.");
+			mm.addAttribute("msg","문의가 삭제되었습니다.");
 			mm.addAttribute("goUrl","/user/question/queList/1");
 			
 			return "user/question/alert";

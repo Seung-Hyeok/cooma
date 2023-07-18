@@ -42,4 +42,10 @@ public interface HmMyPageMapper {
 	
 	//강아지삭제
 	void dogDelete(HmDogsDTO dsf);
+	
+	//삭제전 내예약확인
+	int myReser(String sdf);
+	
+	//강아지 삭제전 내예약확인
+	int dogReser(HmDogsDTO sdf);
 }

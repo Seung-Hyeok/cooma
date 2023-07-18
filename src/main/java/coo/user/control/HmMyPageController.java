@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -19,6 +20,7 @@ import coo.user.db.HmFileData;
 import coo.user.db.HmDogsDTO;
 import coo.user.db.HmMemberDTO;
 import coo.user.db.HmMyPageMapper;
+import coo.user.db.HmReserDTO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -97,27 +99,35 @@ public class HmMyPageController {
 		String pid = (String)session.getAttribute("pid");
 		dto.setPid(pid);
 		dog.setPid(pid);
-		HmMemberDTO memData = mp.my(pid);
 		
-		int cnt = mp.delete(dto);
+		int reserChk =  mp.myReser(pid);
 		
-		String msg = "비밀번호가 일치하지 않습니다.";
-		String goUrl = "/user/myPage/delete";
-		
-		if(cnt>0) {
-			msg = "회원탈퇴가 완료되었습니다.";
-			goUrl = "/user";
-			dog.setDname(memData.getDog1());
-			mp.dogDelete(dog);
-			dog.setDname(memData.getDog2());
-			mp.dogDelete(dog);
-			dog.setDname(memData.getDog3());
-			mp.dogDelete(dog);
-			session.invalidate();
-		}
-		
-		mm.addAttribute("msg", msg);
-		mm.addAttribute("goUrl", goUrl);
+		if(reserChk >= 1) {
+			mm.addAttribute("msg", "회원탈퇴는 예약기간 종료 또는 환불 이후 가능합니다");
+			mm.addAttribute("goUrl", "/user/myPage/gsMyList");
+		} else {
+		    	
+	    	HmMemberDTO memData = mp.my(pid);
+			
+			int cnt = mp.delete(dto);
+			
+			String msg = "비밀번호가 일치하지 않습니다.";
+			String goUrl = "/user/myPage/delete";
+			
+			if(cnt>0) {
+				msg = "회원탈퇴가 완료되었습니다.";
+				goUrl = "/user";
+				dog.setDname(memData.getDog1());
+				mp.dogDelete(dog);
+				dog.setDname(memData.getDog2());
+				mp.dogDelete(dog);
+				dog.setDname(memData.getDog3());
+				mp.dogDelete(dog);
+				session.invalidate();
+			}
+			mm.addAttribute("msg", msg);
+			mm.addAttribute("goUrl", goUrl);
+	    }
 		
 		return "user/myPage/alert";
 	}
@@ -285,25 +295,37 @@ public class HmMyPageController {
 		System.out.println("ddddd");
 		String pid = (String)session.getAttribute("pid");
 		dto.setPid(pid);
-		mp.dogDelete(dto);
 		
-		HmMemberDTO memData = mp.my(pid);
+		HmDogsDTO dogData = mp.dogDetail(dto);
 		
-		if(memData.getDog1().equals(dto.getDname())) {
-			memData.setDog1("");
-			mp.dnameset(memData);
-		}
-		else if(memData.getDog2().equals(dto.getDname())) {
-			memData.setDog2("");
-			mp.dnameset(memData);
-		}
-		else if(memData.getDog3().equals(dto.getDname())) {
-			memData.setDog3("");
-			mp.dnameset(memData);
-		}
-		
-		mm.addAttribute("msg","애견등록이 해제되었습니다.");
-		mm.addAttribute("goUrl","/user/myPage/dogList");
+		int reserChk =  mp.dogReser(dogData);
+			
+	    if (reserChk >= 1) {
+	    	mm.addAttribute("msg", "등록해제는 예약기간 종료 또는 환불 이후 가능합니다");
+			mm.addAttribute("goUrl", "/user/myPage/gsMyList");
+			
+	    } else {
+	    	
+			mp.dogDelete(dto);
+			
+			HmMemberDTO memData = mp.my(pid);
+			
+			if(memData.getDog1().equals(dto.getDname())) {
+				memData.setDog1("");
+				mp.dnameset(memData);
+			}
+			else if(memData.getDog2().equals(dto.getDname())) {
+				memData.setDog2("");
+				mp.dnameset(memData);
+			}
+			else if(memData.getDog3().equals(dto.getDname())) {
+				memData.setDog3("");
+				mp.dnameset(memData);
+			}
+			
+			mm.addAttribute("msg","애견등록이 해제되었습니다.");
+			mm.addAttribute("goUrl","/user/myPage/dogList");
+	    }
 		
 		return "user/myPage/alert";
 	}

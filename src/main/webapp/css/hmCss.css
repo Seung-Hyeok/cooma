@@ -582,6 +582,10 @@ html{
 	text-decoration: none;
 }
 
+.hmdogList .linknocolor > a:hover {
+	color: #ffc107;
+}
+
 /*강아지디테일*/
 .hmdogDetail table {
 	width: 70%;

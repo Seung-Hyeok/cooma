@@ -1,6 +1,8 @@
 package coo.user.db;
 
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -27,4 +29,6 @@ public class HmDogsDTO {
 	String notes;
 	
 	String grade;
+	
+	Date today = new Date();
 }
