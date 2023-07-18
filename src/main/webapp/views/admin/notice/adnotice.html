@@ -34,7 +34,7 @@ layout:decorate="total/adTemp">
 			
 		</tr>
 		<tr th:each="dto, dtostat : ${mainData}" align="center" style="border-bottom: 1px solid#438c57; height:35px;">
-			<td th:text="${dtostat.index}"/>
+			<td th:text="|${dtostat.index+1}|"/>
 			<td><a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"style="font-weight: bold; " /></td>
 			<td th:text="${dto.id}"/>
 			<td th:text="${dto.date()}"/>
