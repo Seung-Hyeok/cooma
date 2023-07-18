@@ -40,7 +40,7 @@ html{
 
 .hmJoinForm label {
 	margin-right: 20px;
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	font-weight: bold;
 }
 
@@ -150,6 +150,10 @@ html{
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.hmJoinForm a {
+	padding: 6px 10px;
 }
 
 .hmJoinForm input[type="submit"]:hover,
@@ -266,7 +270,9 @@ html{
 	border: 2px solid rgb(233, 233, 233);
 }
 
- 
+ .hmmodify a {
+	padding: 6px 10px;
+}
  /*강아지정보수정*/
  .hmdogModi table {
 	width: 70%;
@@ -355,7 +361,9 @@ html{
   transition: color 0.3s ease;
 }
 
-	
+.hmdogModi a {
+	padding: 6px 10px;
+}	
 /*강아지등록*/
 .hmdogJoin table {
 	width: 70%;
@@ -387,7 +395,7 @@ html{
 
 .hmdogJoin label {
 	margin-right: 20px;
-	font-size: 0.8rem;
+	font-size: 0.9rem;
 	font-weight: bold;
 }
 
@@ -478,6 +486,10 @@ html{
 	text-decoration: none;
 	font-size: 0.8rem;
 }
+
+.hmdogJoin a {
+	padding: 6px 10px;
+}	
 
 /*마이페이지*/
 .hmmemPage table {
@@ -644,6 +656,11 @@ html{
   transition: color 0.3s ease;
 }
 
+.hmdogDetail a {
+	padding: 6px 10px;
+}	
+
+
 /*질문리스트*/
 .hmqueList table {
   width: 80%;
@@ -683,7 +700,7 @@ html{
 }
 
 .hmqueList .hman {
-  color: #216A35;
+  color: #00f;
 }
 
 .hmqueList .hmnoan {
@@ -742,7 +759,7 @@ html{
   color: #FFC107;
 }
 
-.hmqueList .schselect a:hover {
+.hmqueList .schselect a:hover, .hmqueList .hmpage:hover {
    color: #FFC107;
   transition: color 0.3s ease;
 }
@@ -781,6 +798,10 @@ html{
 
 .hmqueList input[type="text"]:focus {
   border: 2px solid #FFC107;
+}
+
+.hmqueList .linknocolor > a:hover {
+	color: #ffc107;
 }
 
  /*질문디테일*/
@@ -863,6 +884,10 @@ html{
   text-align: center;
 }
 
+.hmqueDetail a {
+	padding: 6.5px 10px;
+}
+
  /*문의수정*/
  	.hmqueModify table {
   width: 70%;
@@ -940,6 +965,10 @@ html{
   border: 2px solid #FFC107;
   background: #FFF5B8;
   outline: none;
+}
+
+.hmqueModify a {
+	padding: 6.5px 10px;
 }
 
 /*문의작성*/
@@ -1021,6 +1050,10 @@ html{
   outline: none;
 }
 
+.hmqueInsert a {
+	padding: 6.5px 10px;
+}
+
 /*비밀번호 변경*/
 	.hmpwchange table {
 	width: 60%;
@@ -1078,7 +1111,9 @@ html{
 	background-color: rgb(233, 233, 233);
 	border: 2px solid rgb(233, 233, 233);
 }
-
+.hmpwchange a {
+	padding: 6.5px 10px;
+}
  /*탈퇴*/
  	.hmDelete table {
 	width: 50%;
@@ -1302,6 +1337,15 @@ html{
 		background-color: rgb(233, 233, 233);
 		border: 2px solid rgb(233, 233, 233);
 	}
+	.hmfindid input[type="text"]:focus {
+	  border: 2px solid #FFC107;
+	  background: #FFF5B8;
+	  outline: none;
+	}
+	
+	.hmfindid a {
+		padding: 6.5px 10px;
+	}
 /*비번찾기*/
 	.hmfindpw table {
 	width: 50%;
@@ -1380,6 +1424,15 @@ html{
 		color: #fff;
 		padding: 10px 0;
 	}
+	
+	.hmfindpw input[type="text"]:focus {
+	  border: 2px solid #FFC107;
+	  background: #FFF5B8;
+	  outline: none;
+	}
+	.hmfindpw a {
+		padding: 6.5px 10px;
+	}
 /*비번재설정*/
 	.hmrepw table {
 	width: 50%;
@@ -1390,12 +1443,12 @@ html{
 	.hmrepw td {
 		border-bottom: 1px solid #324182;
 		padding: 10px;
-		text-align:center;
 	}
 	
 	.hmrepw .tt {
 		width: 180px;
 		font-weight: bold;
+		text-align:center;
 	}
 	
 	.hmrepw .hmtitlekind {
@@ -1435,3 +1488,128 @@ html{
 		background-color: rgb(233, 233, 233);
 		border: 2px solid rgb(233, 233, 233);
 	}
+	.hmrepw a {
+		padding: 6.5px 10px;
+	}
+
+/*메인페이지*/
+
+.hm_maindiv{
+	width:1200px;
+	height: 500px;
+	background: #324182;
+}
+
+.hm_shape1{
+	width: 300px;
+	height: 300px;
+	background: #f00;
+	border: 10px solid #fff;
+	border-radius: 300px;
+	overflow: hidden;
+}
+.hm_shape1 > img{
+	width: 300px;
+}
+.hm_shape2{
+	width: 300px;
+	height: 300px;
+	background: #324182;
+	border: 10px solid #fff;
+	border-radius: 500px;
+	overflow: hidden;
+}
+.hm_shape2 > img{
+	width: 340px;
+}
+.hm_shape3{
+	width: 300px;
+	height: 300px;
+	background: #f00;
+	border: 10px solid #fff;
+	border-radius: 500px;
+	overflow: hidden;
+}
+.hm_shape3 > img{
+	width: 310px;
+}
+.hm_shape4{
+	width: 300px;
+	height: 300px;
+	background: #f00;
+	border: 10px solid #fff;
+	border-radius: 500px;
+	overflow: hidden;
+}
+.hm_shape4 > img{
+	width: 380px;
+}
+.hm_shape5{
+	width: 300px;
+	height: 300px;
+	background: #f00;
+	border: 10px solid #fff;
+	border-radius: 500px;
+	overflow: hidden;
+}
+.hm_shape5 > img{
+	width: 300px;
+}
+
+/*시설*/
+.hm_build{
+	width: 800px;
+	height: 350px;
+	border: 10px solid #ffc107;
+	padding: 50px;
+	background: #324182;
+	margin: 0 auto;
+	padding-top: 70px;
+	margin-top: 10px;
+	border-radius: 10px;
+	padding-left: 130px;
+}
+.hm_button{
+	width: 27px;
+	height: 27px;
+	background: #FF7F00;
+	border-radius: 50px;
+	text-align: center;
+	border: 3px solid #fff;
+	float: left;
+	line-height: 26px;
+	margin-right: 10px;
+}
+.hm_blist{
+	font-size: 1.2rem;
+	float: left;
+	width: 260px;
+	color: #fff;
+	margin: 20px 0;
+}
+.buildImg{
+	margin-left: 90px;
+	margin-top: 20px;
+}
+.build_logo{
+	position: absolute;
+	background:#fff;
+	width: 227px;
+	height:220px;
+	border-radius: 200px;
+	left: 900px;
+	top: 720px;
+}
+.build_logoImg{
+	width: 200px;
+	position: absolute;
+	left: 910px;
+	top: 720px;
+}
+.build_con{
+	margin: 0 auto;
+	text-align:center;
+}
+.build_con h2, .build_con h3{
+	color: #324182;
+}

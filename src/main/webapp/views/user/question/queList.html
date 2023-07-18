@@ -13,6 +13,7 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
 <a href="/user/question/questionInsert">1:1 문의</a>
+<a href="/user/question/queList/1">문의내역</a>
 </div>
 <div class="hmqueList">
 <h1>내질문 리스트</h1>
@@ -42,7 +43,7 @@ layout:decorate="total/userTemp">
 		<td>상태</td>
 	</tr>
 	<tr th:each="dto, dtoStat : ${myqnalist} "class="quelist">
-		<td th:text="${dtoStat.index}+1"/>
+		<td th:text="${hp.start}+${dtoStat.index}+1"/>
 		<td class="linknocolor"><a th:href="@{|/user/question/queDetail/${dto.no}|}" th:text="${dto.title}"/></td>
 		<td th:text="${dto.pid}"/>
 		<td th:text="${dto.rDate()}"/>
@@ -60,7 +61,6 @@ layout:decorate="total/userTemp">
 			<th:block th:if="${hp.endPage < hp.totalPage}"><a class="hmpage" th:href="${hp.endPage+1}" th:text="다음"></a></th:block>
 		</td>
 	</tr>
-	
 	<tr>
 		<td colspan="5" align="right" class="hmlink">
 			<a th:href="|/user/myPage/memPage|" th:text="뒤로" />

@@ -47,9 +47,9 @@ function frmChk() {
 			<td><input type="text" id="tel" th:field="*{tel}"/></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"> 
+			<td colspan="2" align="center">
+			<a th:href="|/user/log/login|" th:text="뒤로"/>
 				<input type="submit" value="입력" />
-				<a th:href="|/user/log/login|" th:text="뒤로"/>
 			</td>
 		</tr>
 	</table>

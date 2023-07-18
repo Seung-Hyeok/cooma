@@ -67,7 +67,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		delete from dogs where pid = #{pid} and dname = #{dname}
 	</delete>
 	
-	<select id="myReser"  parameterType="String" resultType="int">
+	<select id="myReser"  parameterType="hmMemberDTO" resultType="int">
 		select count(*) from reser where pid = #{pid} and endD >= #{today}
 	</select>
 	

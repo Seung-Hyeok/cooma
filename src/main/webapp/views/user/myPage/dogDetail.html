@@ -28,6 +28,8 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/dogJoinChk">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
+<a href="/user/question/questionInsert">1:1 문의</a>
+<a href="/user/question/queList/1">문의내역</a>
 </div>
 <div class="hmdogDetail">
 <h1>나의 애견 정보</h1>
@@ -61,7 +63,7 @@ layout:decorate="total/userTemp">
 	<tr>
 		<td colspan="2" align="center" class="hmimg"><img th:src="|/dimg/${dogData.photo}|" alt="" width="500px"/></td>
 	</tr>
-	<tr>
+	<tr th:if="${dogData.notes != null and dogData.notes != ''}">
 		<td class="tt">특이사항</td><td th:text="${dogData.notes}" />
 	</tr>
 	<tr>
