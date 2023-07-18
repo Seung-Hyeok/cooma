@@ -1,5 +1,7 @@
 package coo.user.control;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -60,11 +62,37 @@ public class GsMyPageController {
 			all=1;
 		}
 		int dng = gmm.attend(gdto);
+		int dngAll = gmm.attendAll(gdto);
 		System.out.println(dng+"/"+all);
 		mm.addAttribute("myDetail", gdto);
 		System.out.println("myDetail 진입"+gdto);
-		mm.addAttribute("att",	dng+"/"+all);
+		  int att = (int) Math.round(100*dng/all);
+		  int attAll = (int) Math.round(100*dngAll/all);
+	
+		mm.addAttribute("att",	att+"% ("+dng+"/"+all+")");
+		mm.addAttribute("attAll",	attAll+"% ("+dngAll+"/"+all+")");
 		return "user/myPage/gsBuyDetail";
+	}
+	@RequestMapping("/user/myPage/oldDetail/{reserNo}")
+	String oldDetail(HttpSession session,Model mm,GsReserDTO gdto) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		gdto = gmm.buyDetail(gdto);
+		int all = gdto.getGap()/7*gdto.getWeeks().length();
+		if(all ==0) {
+			all=1;
+		}
+		int dng = gmm.attend(gdto);
+		int dngAll = gmm.attendAll(gdto);
+		System.out.println(dng+"/"+all);
+		mm.addAttribute("myDetail", gdto);
+		System.out.println("myDetail 진입"+gdto);
+		 int att = (int) Math.round(100*dng/all);
+		  int attAll = (int) Math.round(100*dngAll/all);
+	
+		mm.addAttribute("att",	att+"% ("+dng+"/"+all+")");
+		mm.addAttribute("attAll",	attAll+"% ("+dngAll+"/"+all+")");
+		return "user/myPage/gsOldDetail";
 	}
 	
 	@RequestMapping("/user/myPage/myAttend/{reserNo}")
@@ -81,11 +109,21 @@ public class GsMyPageController {
 		return "user/myPage/gsMyAttend";
 	}
 	
-	@RequestMapping("/user/myPage/myRefund/{reserNo}")
+	@GetMapping("/user/myPage/myRefund/{reserNo}")
 	String myRefund(HttpSession session,Model mm,GsReserDTO gdto) {
+		System.out.println("@GetMapping(\"/user/myPage/myRefund/{reserNo}\") 진입~~~~~~~~");
 		String pid = (String)session.getAttribute("pid");
 		mm.addAttribute("pid", pid);
 		gdto = gmm.buyDetail(gdto);
+		int all = gdto.getGap()/7*gdto.getWeeks().length();
+		if(all ==0) {
+			all=1;
+		}
+		System.out.println("all"+all);
+		int dngAll = gmm.attendAll(gdto);
+		
+		System.out.println("myDetail 진입"+gdto);
+		  int attAll = (int) Math.round(100*dngAll/all);
 		Date today = new Date();
 		Date start = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -109,28 +147,38 @@ public class GsMyPageController {
 	        }
         }
         else {
-	    	if(-chk <= gdto.getGap()/10*3) {
+	    	if(attAll<=30) {
 	        	gdto.setRefund(gdto.getTotFee()/5*2);
 	    	}
-	    	else if(-chk <= gdto.getGap()/2) {
+	    	else if(attAll<=50) {
 	        	gdto.setRefund(gdto.getTotFee()/5*1);
 	    	}
-	    	else if(-chk < gdto.getGap()) {
+	    	else{
 	    		gdto.setRefund(0);
 	    	}
         }
+        System.out.println("gdto"+gdto);
+        mm.addAttribute("attAll",	attAll+"% ("+dngAll+"/"+all+")");
+        mm.addAttribute("myDetail", gdto);
+		
+		return "user/myPage/gsMyRef";
+	}
+	
+	@PostMapping("/user/myPage/myRefund/{reserNo}")
+	String myRefundfin(HttpSession session,Model mm,GsReserDTO gdto) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		gdto.setPid(pid);
 
         gmm.dayRefun(gdto);
 		int refun = gmm.myRefun(gdto);
 		System.out.println("myRefund 진입"+refun);
 		
 		mm.addAttribute("msg", "환불되었습니다");
-		mm.addAttribute("goUrl", "/user/myPage/buyDetail/"+gdto.getReserNo());
+		mm.addAttribute("goUrl", "/user/myPage/oldDetail/"+gdto.getReserNo());
 		
 		return "user/myPage/alert";
 	}
-	
-
 	
 	 
 

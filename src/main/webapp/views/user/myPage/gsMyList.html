@@ -19,7 +19,7 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/gsMyList">현재 이용권</a>
 <a href="/user/myPage/gsMyOld">만료 이용권</a>
 </div>
-<h1>회원 이용권</h1>
+<!-- <h1>회원 이용권</h1>
 	<div class="buyList">
 		<div  th:each="dto , dtoStat: ${buyList}">
 			번호 : <a th:href="@{|/user/myPage/buyDetail/${dto.reserNo}|}" ><span th:text="${dto.reserNo}"></span></a>&nbsp;&nbsp;&nbsp;
@@ -31,8 +31,37 @@ layout:decorate="total/userTemp">
 			요일 : <span th:text="${dto.weeks}"></span> &nbsp;&nbsp;&nbsp;
 			가격 : <span th:text="${dto.totFee}">원</span> &nbsp;&nbsp;&nbsp;
 		</div>
-	</div>
-
+	</div> -->
+<div class="hmqueList">
+<h1>회원 이용권</h1>
+<table>
+	<tr>
+		<td colspan="7" align=center class="hmtitlekind">현재 사용, 사용 예정인 이용권</td>
+	</tr>
+	<tr class="quetitle">
+		<td class="tt">번호</td>
+		<td class="tt">시작, 종료일</td>
+		<td class="tt">종류</td>
+		<td class="tt">강아지</td>	
+		<td class="tt">요일</td>
+		<td class="tt">상태</td>
+	</tr>
+	<tr class="quetitle" th:each="dto , dtoStat: ${buyList}">
+		<td class="linknocolor"><a th:href="@{|/user/myPage/buyDetail/${dto.reserNo}|}" ><span th:text="${dto.reserNo}"></span></a></td>
+		<td th:text="${dto.startD+'~'+dto.endD}"></td>
+		<td th:text="${dto.kind}"></td>
+		<td th:text="${dto.dname}"></td>
+		<td th:text="${dto.weeks}"></td>
+		<th:block th:if="${dto.startDate()}">
+		<td style="color:dodgerblue;" th:text="${'현재 이용중'}"></td>
+		</th:block>
+		<th:block th:unless="${dto.startDate()}">
+		<td style="color:#808080;" th:text="${'사용 예정'}"></td>
+		</th:block>
+	</tr>
+	
+</table>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

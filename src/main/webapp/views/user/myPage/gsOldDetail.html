@@ -76,8 +76,7 @@ layout:decorate="total/userTemp">
 	<tr>
 		<td colspan="2" align="right">
 		<a th:href="@{|/user/myPage/myAttend/${myDetail.reserNo}|}" >출석 상세보기</a>
-			<a th:href="|/user/myPage/gsMyList|" th:text="뒤로" />
-			<a th:href="@{|/user/myPage/myRefund/${myDetail.reserNo}|}" >환불</a>
+			<a th:href="|/user/myPage/gsoldList|" th:text="뒤로" />
 		</td>
 	</tr>
 </table>
@@ -85,23 +84,7 @@ layout:decorate="total/userTemp">
 
 
 
-<!-- 		<h2>
-			------------------환불 약정------------------
-		</h2>
-		<h3>
-			[시작 전]</br>
-			10일 전 환불 100%</br>
-			5일 전 환불 90%</br>
-			1일 전 환불 80%</br>
-			[시작 후]</br>
-			총 기간의 </br>
-			30% 이하 이용 시 환불  40%</br>
-			50% 이하 이용 시 환불   20%</br>
-			50% 이상 이용 시 환불불가 </br>
-		</h3> -->
-		
 	
-
 <th:block layout:fragment="add-content">
 </th:block>
 </html>

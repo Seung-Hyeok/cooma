@@ -9,6 +9,26 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+
+<script>
+// 오늘 날짜를 가져옵니다.
+var today = new Date();
+var year = today.getFullYear();
+var month = today.getMonth();
+var day = today.getDate();
+
+// 최소 날짜: 오늘 날짜
+var minDate = new Date(year, month, day).toISOString().split('T')[0];
+
+// 최대 날짜: 오늘 날짜로부터 3개월 후
+var maxDate = new Date(year, month + 3, day).toISOString().split('T')[0];
+
+// 최소 날짜와 최대 날짜를 설정합니다.
+var inputDate = document.getElementById('myDate');
+inputDate.setAttribute('min', minDate);
+inputDate.setAttribute('max', maxDate);
+</script>
+
 <h1>상세정보 입력</h1>
 <hr>
 <div class="gsDetail">
@@ -29,11 +49,7 @@ layout:decorate="total/userTemp">
 		<h2>요청 사항</h2>
 		<textarea name="reque"></textarea>
 		<h2>등원 날짜</h2>
-		<input type="date" name="startD" required="required"/>
-		<h2>은행</h2>
-		<input type="text" th:field="*{bank}"/>
-		<h2>계좌</h2>
-		<input type="text" th:field="*{account}"/>
+		<input type="date" id="myDate" name="startD" required="required"/>
 		</br></br>
 		<input class="gsButton"  type="submit" value="결제"/>
 	</form>

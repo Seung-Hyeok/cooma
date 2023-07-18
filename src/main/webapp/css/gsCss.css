@@ -11,6 +11,21 @@
 		padding: 20px;
 		color:#E7E7E7;
 	}
+	.myBuyMenu{
+	    padding:20px;
+        float: left;
+        width: 1200px;
+        height: 20px;
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+    }
+    .myBuyMenu>a{
+    	font-size: 14px;
+    	margin:0px 20px;
+    	color: #000;
+    }
+    .myBuyMenu>a:hover{
+    color:#324182;
+    }
 	.prMenu>h1{
 		color:#fff;
 	}
@@ -208,7 +223,7 @@
 	color: #FFC107;
 }
 .gsCalSch>form>input[type="month"],
-.gsCalSch>form>select ,
+.gsCalSch>form>select ,input[type="password"],
 input[type="text"],textarea,select,input[type="date"] {
   padding: 10px;
   font-size: 16px;
@@ -217,6 +232,7 @@ input[type="text"],textarea,select,input[type="date"] {
 }
 .gsCalSch>form>input[type="month"]:focus,
 textarea:focus,
+input[type="password"]:focus,
 input[type="text"]:focus,
 input[type="month"]:focus,
 input[type="date"]:focus,
@@ -423,4 +439,8 @@ padding-bottom:5px;
     	font-size: 40px;
     	font-weight: bold;
     }
-    
+    .gsRefInfo{
+   text-align:center;
+    	width:300px;
+    	margin: auto;
+    }

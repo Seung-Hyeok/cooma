@@ -42,19 +42,24 @@ layout:decorate="total/userTemp">
 	</tr>
 	<tr class="quetitle">
 		<td class="tt">번호</td>
-		<td class="tt">강아지</td>
-		<td class="tt">종류</td>
 		<td class="tt">시작, 종료일</td>
+		<td class="tt">종류</td>
+		<td class="tt">강아지</td>
 		<td class="tt">요일</td>
 		<td class="tt">상태</td>
 	</tr>
-	<tr th:each="dto , dtoStat: ${oldList}">
-		<td class="linknocolor"><a th:href="@{|/user/myPage/buyDetail/${dto.reserNo}|}" ><span th:text="${dto.reserNo}"></span></a></td>
-		<td th:text="${dto.dname}"></td>
+	<tr class="quetitle" th:each="dto , dtoStat: ${oldList}">
+		<td class="linknocolor"><a th:href="@{|/user/myPage/oldDetail/${dto.reserNo}|}" ><span th:text="${dto.reserNo}"></span></a></td>
+		<td th:text="${dto.startD+'~'+dto.endD}"></td>
 		<td th:text="${dto.kind}"></td>
-		<td th:text="${dto.startD+'~'+dto.startD}"></td>
+		<td th:text="${dto.dname}"></td>
 		<td th:text="${dto.weeks}"></td>
-		<td th:text="${dto.weeks}"></td>
+		<th:block th:if="${dto.refund != 0}">
+		<td style="color:tomato;" th:text="${'환불'}"></td>
+		</th:block>
+		<th:block th:if="${dto.refund == 0}">
+		<td style="color:#808080;" th:text="${'사용 완료'}"></td>
+		</th:block>
 	</tr>
 	
 </table>

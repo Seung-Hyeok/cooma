@@ -10,6 +10,7 @@ import coo.admin.db.ShNoticeDTO;
 import coo.admin.db.ShNoticeMapper;
 import coo.admin.model.PData;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ShUserNoticeController {
@@ -18,7 +19,9 @@ public class ShUserNoticeController {
 	ShNoticeMapper nm;
 	
 	@RequestMapping("/user/notice/{nowPage}")
-	String notice(Model mm, PData pd) {
+	String notice(HttpSession session,Model mm, PData pd) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		pd.setLimit(7);
 		pd.setTotal(nm.ntotal(pd));
 		System.out.println("유저공지사항 진입");
@@ -33,7 +36,9 @@ public class ShUserNoticeController {
 	}
 	
 	@RequestMapping("/user/notice/detail/{num}")
-	String detail(Model mm, ShNoticeDTO dto) {
+	String detail(HttpSession session,Model mm, ShNoticeDTO dto) {
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
 		
 		System.out.println("userdetail 진입");
 		

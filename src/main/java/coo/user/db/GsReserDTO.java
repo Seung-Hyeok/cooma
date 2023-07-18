@@ -1,5 +1,7 @@
 package coo.user.db;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -33,6 +35,19 @@ public class GsReserDTO {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat sdfYM = new SimpleDateFormat("yyyy-MM");
 	SimpleDateFormat sdfD = new SimpleDateFormat("d");
+	SimpleDateFormat sdfStr = new SimpleDateFormat("yyyy년 MM월 dd일");
+	public boolean startDate() {
+		Date startDate=null;
+		Date currentDate =null;
+		try {
+			startDate = sdf.parse(startD);
+			currentDate = new Date();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return startDate.before(currentDate);
+	}
 	public String oneDayStr() {
 		String oneStr = sdf.format(oneDay);
 		return oneStr;
@@ -52,4 +67,35 @@ public class GsReserDTO {
 	public String goHomeStr() {
 		return goHome.split(" ")[1].substring(0, 5);
 	}
+	
+	DecimalFormat df = new DecimalFormat("#,###");
+	
+	public String payStr() {
+		String pp = df.format(pay);
+		return pp+'원';
+	}
+	
+	public String refundStr() {
+		if(refund == 0) {
+			return "";
+		}else {
+			String pp = df.format(refund);
+			return pp+'원';
+		}
+	}
+	public String eduFeeStr() {
+	
+			String pp = df.format(eduFee);
+			return pp+'원';
+		
+	}
+	public String totFeeStr() {
+		
+			String pp = df.format(totFee);
+			return pp+'원';
+		
+	}
+
+	
+	
 }
