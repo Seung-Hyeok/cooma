@@ -13,6 +13,7 @@ import coo.admin.db.ShReservationDTO;
 import coo.admin.db.ShReservationMapper;
 import coo.admin.model.PData;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class ShReservationController {
@@ -45,7 +46,8 @@ public class ShReservationController {
 	}
 	
 	@RequestMapping("/admin/endreservation/{nowPage}")
-	String endreser(Model mm, PData pd) {
+	String endreser(Model mm, PData pd, HttpServletRequest request) {
+		System.out.println("request"+request.getParameter("sch"));
 		pd.setTotal(rm.endtotal(pd));
 		List<ShReservationDTO> mainData = rm.endlist(pd);
 		

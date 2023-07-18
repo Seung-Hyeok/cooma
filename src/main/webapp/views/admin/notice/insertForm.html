@@ -8,13 +8,23 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+function frmChk() {
+	if ($("#img").get(0).files.length === 0 && $("#con").val().trim()=="") {
+		alert("사진이나 내용을 하나 이상 등록해주세요");
+		return false;
+	}
 	
+ 	return true;
+}
+</script>	
 	<h2 class="bhH2">공지등록</h2>
-	<form method="post" th:object="${shNoticeDTO}" enctype="multipart/form-data">
+	<form method="post" th:object="${shNoticeDTO}" enctype="multipart/form-data" onsubmit="return frmChk()">
 		<table align="center" class="shdetail" style="width: 1000px;">
 			<tr>
 				<td class="shtd" align="center">제목</td>
-				<td class="shtd2"><input type="text" th:field="*{title}" style="width:850px; height:40px;" required/></td>
+				<td class="shtd2"><input type="text" th:field="*{title}" style="width:850px; height:40px;" required placeholder="제목을 입력해 주세요."/></td>
 			</tr>
 			<tr>
 				<td class="shtd" align="center">작성자</td>
@@ -22,11 +32,11 @@ layout:decorate="total/adTemp">
 			</tr>
 			<tr>
 				<td class="shtd" align="center">이미지</td>
-				<td class="shtd2"><input type="file" th:field="*{noticeImg}"/></td>
+				<td class="shtd2"><input type="file" th:field="*{noticeImg}" id="img"/></td>
 			</tr>
 			<tr>
 				<td class="shtdr">내용</td>
-				<td class="shtd2"><textarea th:field="*{content}" cols="120" rows="20"/></td>
+				<td class="shtd2"><textarea id="con" th:field="*{content}" cols="120" rows="20" style="resize: none;" placeholder="내용을 입력해 주세요."/></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="shtt"> 
