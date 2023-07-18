@@ -19,11 +19,12 @@ layout:decorate="total/userTemp">
 					<input  class="gsButton" type="submit" value="검색" />
 </form>
 </div>
+<div class ="notice_wrapper">
 <div class ="notice_list">
 	<ul>
 	<th:block th:each="dto, dtostat : ${mainData}">
 		<li>
-			<div class ="ll">No<hr style="width:30px; margin:10px 40px 10px 30px;"><span th:text="${dto.num}"></span></div>
+			<div class ="ll">No<hr style="width:40px; margin:6px 30px 6px 25px;"><span th:text="${dtostat.index+1}"></span></div>
 			<div class = "rr">
 				<a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"/>
 					<ul class="listul">	
@@ -32,20 +33,20 @@ layout:decorate="total/userTemp">
 					</ul>
 			</div>
 		</li>	
-		<hr style="margin-top:10px; margin-bottom:20px;">
+		<hr style="margin-top:0px; margin-bottom:10px;">
 		
 		</th:block>
 	</ul>
 		<div class="button_container">
-	    	<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
+	    	<th:block th:if="${pd.startPage > 1}"><a class="gsPButton" th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
 					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
-						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}">[[${p}]]</button></th:block>
-						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
+						<th:block th:if="${pd.nowPage == p}"><button class="gsPButton" th:text="${p}">[[${p}]]</button></th:block>
+						<th:block th:unless="${pd.nowPage == p}"><a class="gsPButton" th:href="${p}" th:text="${p}"></a></th:block>
 					</span>
-					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
+					<th:block th:if="${pd.endPage < pd.totalPage}"><a class="gsPButton" th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
         </div>
 </div>
-	
+</div>
 	
 </th:block>
 

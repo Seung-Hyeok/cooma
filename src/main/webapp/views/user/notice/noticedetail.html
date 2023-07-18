@@ -20,12 +20,13 @@ layout:decorate="total/userTemp">
              ● 조회수 : <span th:text="${mainData.cnt}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
              ● 등록일 : <span th:text="${mainData.date()}"></span>
         </div>
-        <div class="notice_content">
-            <span th:text="${mainData.content}"></span>
-        </div>
+       
             <div class="notice_image">
             <img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="이미지" />
             </div>
+             <div class="notice_content">
+            <span th:text="${mainData.content}"></span>
+        </div>
     </div>
     <div class="button_container">
        <a class="gsButton" th:href="|/user/notice/1|" th:text="뒤로"/>

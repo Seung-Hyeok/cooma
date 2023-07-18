@@ -35,10 +35,16 @@ public class GsDiaryController {
 		String pid = "";
 		if(session.getAttribute("pid") !=null) {
 			pid = (String)session.getAttribute("pid");
+			mm.addAttribute("pid", pid);
+		}
+		else {
+			mm.addAttribute("msg","로그인 후 이용 가능합니다.");
+			mm.addAttribute("goUrl","/user/log/login");
+			return "user/log/alert";
 		}
 		gdto.setPid(pid);
 		gdto.setDname("전체");
-		mm.addAttribute("pid", pid);
+		
 	
 		String todd = "이번달 출석부";
 		Calendar today= Calendar.getInstance(),befoMon = Calendar.getInstance();
@@ -99,9 +105,14 @@ public class GsDiaryController {
 		String pid = "";
 		if(session.getAttribute("pid") !=null) {
 			pid = (String)session.getAttribute("pid");
+			mm.addAttribute("pid", pid);
+		}
+		else {
+			mm.addAttribute("msg","로그인 후 이용 가능합니다.");
+			mm.addAttribute("goUrl","/user/log/login");
+			return "user/log/alert";
 		}
 		gdto.setPid(pid);
-		mm.addAttribute("pid", pid);
 	
 		Calendar today= Calendar.getInstance(),befoMon = Calendar.getInstance();
 		

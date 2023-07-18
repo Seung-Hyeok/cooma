@@ -21,8 +21,17 @@
         padding:20px;
         float: left;
         width: 1200px;
-        height: 100px;
-        background: #faf;
+        height: 30px;
+        background: #fff;
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+    }
+    .myPageMenu>a{
+    	font-size: 17px;
+    	margin:0px 30px;
+    	color: #000;
+    }
+    .myPageMenu>a:hover{
+    	color: #FFC107;
     }
 	.dogMenu>div{
 		float: left;
@@ -131,7 +140,7 @@
  }
  
 
-.gsCalSch>form>input[type="month"],
+/* .gsCalSch>form>input[type="month"],
 .gsCalSch>form>select {
   padding: 10px;
   font-size: 16px;
@@ -139,7 +148,7 @@
   border-radius: 4px;
   background-color: #f7f7f7;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+} */
 .gsButton,
 .packWrapper>div>form>input[type="submit"]{
   padding: 10px 20px;
@@ -151,6 +160,17 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.gsPButton{
+	padding: 7px 10px;
+  font-size: 10px;
+    background-color: #324182;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.gsPButton:hover,
 .gsButton:hover,
 .packWrapper>div>form>input[type="submit"]:hover{
   color: #FFC107;
@@ -187,13 +207,15 @@
 .gsDetail>form>h2:nth-of-type(2n){
 	color: #FFC107;
 }
-/*input[type="text"],textarea,select,input[type="date"] {
+.gsCalSch>form>input[type="month"],
+.gsCalSch>form>select ,
+input[type="text"],textarea,select,input[type="date"] {
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
+.gsCalSch>form>input[type="month"]:focus,
 textarea:focus,
 input[type="text"]:focus,
 input[type="month"]:focus,
@@ -202,7 +224,7 @@ select:focus {
   border-color: #FFC107;
   outline: none;
   box-shadow: 0 0 5px #b3d4fc;
-}*/
+}
 input[type="text"][readonly] {
   background-color: transparent;
   border: none;
@@ -215,27 +237,36 @@ input[type="text"][readonly] {
 
 
 
-
-
+li::marker {
+  display: none;
+}
+.notice_wrapper{
+	border: 5px solid  #324182;
+         	border-radius:50px;
+		padding:50px;
+		width:600px;
+		margin:auto;
+}
 
 	.notice_list{
-		width:750px;
-		height:1000px;
+		width:600px;
+		padding-bottom:60px;
 		overflow: hidden;
 		margin:auto;
+		
 	}
 	.notice_list>ul>li{
-		height:100px;
+		height:60px;
 	}
 	.notice_list>ul>li>div{
 		float:left;
 	}
 	.ll{
-	padding-top:10px;
 	width:100px;
-	font-size:25px;
+	font-size:15px;
 	text-align:center;
 	color:  #FFC107;
+padding-bottom:5px;
 	border-right:1px dotted #ccc;
 	}
 	.notice_search{
@@ -245,8 +276,8 @@ input[type="text"][readonly] {
 		text-align: center;
 	}
 	.rr>a{
-	font-size:30px;
-	margin-left: 30px;
+	font-size:18px;
+	margin-left: 22px;
 	color:  #324182;
 	  cursor: pointer;
 	}
@@ -258,6 +289,7 @@ input[type="text"][readonly] {
 	}
 	.listul>li{
 	color:#808080;
+	font-size: 10px;
 	}
 	  .form-container {
     display: flex;
@@ -275,33 +307,6 @@ input[type="text"][readonly] {
     border-radius: 3px;
   }
 
-  .form-submit {
- 	 margin-left: 10px;
-    padding: 8px 10px;
-    border-radius: 3px;
-    background-color: #FF8c00;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  .form-submit:hover{
-  background-color: #FFa500;
-  }
-	    .button_container {
-        text-align: center;
-        margin-bottom:20px;
-    }
-    .page_btn{
-    	padding:3px 8px;
-    	color:#fff;
-    	 border-radius: 3px;
-   	 background-color: #FF8c00;
-   	 font-size:18px
-    }
-     .page_btn:hover{
-      background-color: #FFa500;
-     }
-     
      
      
      
@@ -309,11 +314,12 @@ input[type="text"][readonly] {
      
      
         .container {
-        max-width: 900px;
+        max-width: 700px;
         min-height:500px;
         margin: 50px auto;
-        padding: 20px;
-        border: 7px solid  #324182;
+        padding: 40px;
+        border: 5px solid  #324182;
+        border-radius:50px;
         background-color: #fff;
         box-sizing: border-box;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -322,18 +328,20 @@ input[type="text"][readonly] {
     .notice_title {
    	 color: #324182;
     	padding:20px;
-    	height:50px;
-    	line-height:50px;
-        font-size: 33px;
+    	padding-bottom:0px;
+    	height:30px;
+    	line-height:26px;
+        font-size: 28px;
         font-weight: bold;
-        background-color:  #FFC107;
+        background-color:  #Fff;
     }
     
     .notice_info {
-        color: #696969;
+        color: #FFC107;
         padding:20px;
         margin-bottom: 20px;
-        background-color: #FFC107;
+        background-color: #Fff;
+         font-size: 14px;
     }
     
     .notice_content {

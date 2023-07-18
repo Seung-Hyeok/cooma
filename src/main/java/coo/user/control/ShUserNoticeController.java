@@ -19,6 +19,7 @@ public class ShUserNoticeController {
 	
 	@RequestMapping("/user/notice/{nowPage}")
 	String notice(Model mm, PData pd) {
+		pd.setLimit(7);
 		pd.setTotal(nm.ntotal(pd));
 		System.out.println("유저공지사항 진입");
 		List<ShNoticeDTO> mainData = nm.list(pd);

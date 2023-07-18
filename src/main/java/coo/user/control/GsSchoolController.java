@@ -27,7 +27,12 @@ public class GsSchoolController {
 	@RequestMapping("/user/school")
 	String dogSelect(HttpSession session,Model mm) {
 		String pid = (String)session.getAttribute("pid");
-		mm.addAttribute("pid", pid);
+		mm.addAttribute("pid", pid); 
+		if(session.getAttribute("pid") ==null) {
+			mm.addAttribute("msg","로그인 후 이용 가능합니다.");
+			mm.addAttribute("goUrl","/user/log/login");
+			return "user/log/alert";
+		}
 		List<GsDogDTO> dogData = grm.dogArr(pid);
 		System.out.println("dogSelect 진입");
 		System.out.println("dogData"+dogData);
