@@ -10,29 +10,32 @@ layout:decorate="total/userTemp">
 
 <th:block layout:fragment="content">
 <h1>시설 안내</h1>
-<img src="/dimg/building.png" alt="" width="1200px"/>
-
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2d6a1bdd8412bb95510991ae4dad99a2"></script>
-		
-		<script>
-		    var container = document.getElementById('map');
-		    var options = {
-		        center: new kakao.maps.LatLng(37.5001, 127.029),
-		        level: 3
-		    };
-		    var map = new kakao.maps.Map(container, options);
-		 	// 마커가 표시될 위치입니다 
-		    var markerPosition  = new kakao.maps.LatLng(37.5001, 127.029); 
-		    // 마커를 생성합니다
-		    var marker = new kakao.maps.Marker({
-		        position: markerPosition
-		    });
-		    // 마커가 지도 위에 표시되도록 설정합니다
-		    marker.setMap(map);
-		    //교통정보
-		    map.addOverlayMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
-		</script>
-		<div id="map" style="width:790px;height:350px;" ></div>
+<div class="build_con">
+	<h2>반려견의 자유롭고 행복한 삶을 위한</h2>
+	<h3>쿠키마루 프리미엄 라이프스타일 센터</h3>
+	350평 규모에 오직 반려견을 위한 다양한 공간들이 마련되어 있습니다.<br/>
+	강아지유치원, 호텔, 미용, 베이커리 등<br/>
+	우리 아이가 행복하고 안전하게 머무를 수 있는 최고의 공간입니다.<br/>
+</div>
+<div class="build_logo">
+</div>
+<img src="/decoimg/logo2.png" alt="" width="200px" class="build_logoImg"/>
+<div class="buildImg">
+<img src="/decoimg/facility_01.png" alt="" width="1000px"/>
+</div>
+<div class="hm_build">
+	<div class="hm_blist"><div class="hm_button">1</div>입구</div>
+	<div class="hm_blist"><div class="hm_button">2</div>안내데스크</div>
+	<div class="hm_blist"><div class="hm_button">3</div>애견용품샵</div>
+	<div class="hm_blist"><div class="hm_button">4</div>베이커리</div>
+	<div class="hm_blist"><div class="hm_button">5</div>애견미용실/그루밍</div>
+	<div class="hm_blist"><div class="hm_button">6</div>대운동장</div>
+	<div class="hm_blist"><div class="hm_button">7</div>쿠키마루 퍼니존</div>
+	<div class="hm_blist"><div class="hm_button">8</div>유치원전용 그루밍</div>
+	<div class="hm_blist"><div class="hm_button">9</div>유치원</div>
+	<div class="hm_blist"><div class="hm_button">10</div>호텔</div>
+	<div class="hm_blist"><div class="hm_button">11</div>크리에이터실</div>
+</div>
 </th:block>
 
 <th:block layout:fragment="add-content">

@@ -27,6 +27,8 @@ layout:decorate="total/userTemp">
 <a href="/user/myPage/dogJoinChk">애견등록</a>
 <a href="/user/myPage/dogList">내애견리스트</a>
 <a href="/user/myPage/gsMyList">내 이용권</a>
+<a href="/user/question/questionInsert">1:1 문의</a>
+<a href="/user/question/queList/1">문의내역</a>
 </div>
 <h1>질문</h1>
 <div class="hmqueDetail">
@@ -43,7 +45,7 @@ layout:decorate="total/userTemp">
 		<td align="right">조회수</td><td th:text="${myqna.cnt}" />
 	</tr>
 	<tr>
-		<td class="hmcontent" colspan="4" ><div th:text="${myqna.content}"></div></td> 
+		<td class="hmcontent" colspan="4" ><div th:utext="${myqna.contentBr}"></div></td> 
 	</tr>
 	<tr th:if="${myqna.getAnswer != null}" >
 		<td colspan="2" class="hmAnswertitle">답변</td>

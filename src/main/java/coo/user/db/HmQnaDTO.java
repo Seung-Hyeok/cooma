@@ -48,4 +48,11 @@ public class HmQnaDTO {
 		String pd = sdf.format(reg_date);
 		return pd;
 	}
+	 
+	 public String getContent() {
+			return content;
+	}
+	public String getContentBr() {
+		return content.replaceAll("\n", "<br/>"); //여기서 줄바꿈으로 출력될수있게 한다
+	}
 }

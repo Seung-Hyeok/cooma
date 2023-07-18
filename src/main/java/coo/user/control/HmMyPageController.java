@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +18,6 @@ import coo.user.db.HmFileData;
 import coo.user.db.HmDogsDTO;
 import coo.user.db.HmMemberDTO;
 import coo.user.db.HmMyPageMapper;
-import coo.user.db.HmReserDTO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -100,7 +97,7 @@ public class HmMyPageController {
 		dto.setPid(pid);
 		dog.setPid(pid);
 		
-		int reserChk =  mp.myReser(pid);
+		int reserChk =  mp.myReser(dto);
 		
 		if(reserChk >= 1) {
 			mm.addAttribute("msg", "회원탈퇴는 예약기간 종료 또는 환불 이후 가능합니다");

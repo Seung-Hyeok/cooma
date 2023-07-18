@@ -90,6 +90,7 @@ html{
 	<div class="userTopMenu">
 		<a href="/admin" th:if="${pid != null && pid.startsWith('ad')}">관리자페이지</a>
 		<a href="/user/log/logout" th:if="${pid != null}">로그아웃</a>
+		<a href="/user/log/joinForm" th:if="${pid == null}">회원가입</a>
 		<a href="/user/log/login" th:if="${pid == null}">로그인</a>
 	</div>
 

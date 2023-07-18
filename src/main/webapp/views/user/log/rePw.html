@@ -68,21 +68,21 @@ function frmChk() {
 		<tr>
 			<td class="tt">새 비밀번호</td>
 			<td>
-				<input type="password" id="pw" name="pw" oninput="validPw(this.value)"/>
+				<input type="password" id="pw" name="pw" oninput="validPw(this.value)"/><br/>
 				<font size="2">* 영어 대소문자, 숫자, 특수문자 ~!@#$%^-_ 8~16자</font>
 			</td>
 		</tr>
 		<tr>
 			<td class="tt">비밀번호 확인</td>
 			<td>
-				<input type="password" id="pw2" name="pw2" oninput="checkPw(this.value)"/>
+				<input type="password" id="pw2" name="pw2" oninput="checkPw(this.value)"/><br/>
 				<font size="2">* 비밀번호를 한번 더 입력해주세요</font>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="3" align="center"> 
-				<input type="submit" value="입력" />
+			<td colspan="3" align="center">
 				<a th:href="|/user/log/findPw|" th:text="뒤로"/>
+				<input type="submit" value="입력" />
 			</td>
 		</tr>
 	</table>
