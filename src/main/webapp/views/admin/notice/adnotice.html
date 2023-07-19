@@ -33,7 +33,7 @@ layout:decorate="total/adTemp">
 			<td>조회수</td>
 			
 		</tr>
-		<tr th:each="dto, dtostat : ${mainData}" align="center" style="border-bottom: 1px solid#438c57; height:35px;">
+		<tr th:each="dto, dtostat : ${mainData}" align="center" style="border-bottom: 1px solid#438c57; height:41px;">
 			<td th:text="|${dtostat.index+1}|"/>
 			<td><a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"style="font-weight: bold; " /></td>
 			<td th:text="${dto.id}"/>
