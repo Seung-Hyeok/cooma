@@ -259,37 +259,42 @@ public class HmMyPageController {
 	@PostMapping("/user/myPage/dogModify/{dname}")
 	String dogModifyComplete(HttpServletRequest request, HttpSession session, Model mm, HmDogsDTO dto, HmFileData fd) {
 		String pid = (String)session.getAttribute("pid");
-		String photo = (String)session.getAttribute("photo");
-		System.out.println("photo2"+photo);
 		
-		//System.out.println("dto.getPhoto()2"+dto.getPhoto());
-		dto.setPid(pid);
-		if(fd.getDogimg().isEmpty()) {
-			dto.setPhoto(photo);
+		if(fd.getDogimg().getContentType().startsWith("image/") || fd.getDogimg().isEmpty()) {
+			//System.out.println("dto.getPhoto()2"+dto.getPhoto());
+			dto.setPid(pid);
+			if(fd.getDogimg().isEmpty()) {
+				String photo = (String)session.getAttribute("photo");
+				System.out.println("photo2"+photo);
+				dto.setPhoto(photo);
+			}
+			else {
+				String res = fileSave(fd.getDogimg(), request);
+	            dto.setPhoto(res);
+			}
+			
+			mp.dogModify(dto);
+			//HmMemberDTO memData = mp.my(pid);
+			/*
+			if(memData.getDog1().equals(dname)) {
+				memData.setDog1(dto.getDname());
+				mp.dnameset(memData);
+			}
+			else if(memData.getDog2().equals(dname)) {
+				memData.setDog2(dto.getDname());
+				mp.dnameset(memData);
+			}
+			else if(memData.getDog3().equals(dname)) {
+				memData.setDog3(dto.getDname());
+				mp.dnameset(memData);
+			}*/
+			
+			mm.addAttribute("msg", "애견정보 수정이 완료되었습니다.");
+			mm.addAttribute("goUrl", "/user/myPage/dogDetail/"+dto.getDname());
+		} else {
+			mm.addAttribute("msg", "파일은 이미지 파일만 업로드할 수 있습니다.");
+			mm.addAttribute("goUrl", "/user/myPage/dogModify/"+dto.getDname());
 		}
-		else {
-			String res = fileSave(fd.getDogimg(), request);
-            dto.setPhoto(res);
-		}
-		
-		mp.dogModify(dto);
-		//HmMemberDTO memData = mp.my(pid);
-		/*
-		if(memData.getDog1().equals(dname)) {
-			memData.setDog1(dto.getDname());
-			mp.dnameset(memData);
-		}
-		else if(memData.getDog2().equals(dname)) {
-			memData.setDog2(dto.getDname());
-			mp.dnameset(memData);
-		}
-		else if(memData.getDog3().equals(dname)) {
-			memData.setDog3(dto.getDname());
-			mp.dnameset(memData);
-		}*/
-		
-		mm.addAttribute("msg", "애견정보 수정이 완료되었습니다.");
-		mm.addAttribute("goUrl", "/user/myPage/dogDetail/"+dto.getDname());
 		
 		return "user/myPage/alert";
 	}
