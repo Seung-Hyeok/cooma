@@ -81,7 +81,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 <!-- 삭제 -->
 
 	<select id="bhDogBeforeDelete" parameterType="bhdDTO" resultType="Integer">
-		select count(*) from reser where dname = #{dname} and pid = #{pid} and endD >= #{today}
+		select count(*) from reser where dname = #{dname} and pid = #{pid} and endD >= #{today} and refund=0
 	</select>
 
 	<delete id="bhDogDelete" parameterType="bhdDTO">
@@ -96,13 +96,13 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	<update id="bhDogsNameDelete" parameterType="bhmDTO">
 		update member set 
 		<if test="dog1 == dname">
-		dog1 = null 
+		dog1 = '' 
 		</if>
 		<if test="dog2 == dname">
-		dog2 = null 
+		dog2 = '' 
 		</if>
 		<if test="dog3 == dname">
-		dog3 = null 
+		dog3 = '' 
 		</if>
 		where pid = #{pid}
 	</update>
