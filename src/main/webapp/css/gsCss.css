@@ -449,6 +449,7 @@ padding-bottom:5px;
     padding: 30px 60px ;
     width: 1080px;
     height: 200px;
+    overflow: hidden;
     }
     .gsFoot>div{
     float:left;

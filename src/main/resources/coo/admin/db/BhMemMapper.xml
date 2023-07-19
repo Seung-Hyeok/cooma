@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 					pid like concat('%',#{sch},'%') and 
 				</if>
 				<if test="grade != null and grade != '전체'">
-					and grade = #{grade} 
+					grade = #{grade} 
 				</if>
 			</trim>
 		</where>
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 					pid like concat('%',#{sch},'%') and 
 				</if>
 				<if test="grade != null and grade != '전체'">
-					and grade = #{grade} 
+					grade = #{grade} 
 				</if>
 			</trim>
 		</where>
@@ -63,7 +63,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	</update>
 <!-- 삭제 -->
 	<select id="bhMemBeforeDelete" parameterType="bhmDTO" resultType="Integer">
-		select count(*) from reser where pid = #{pid} and endD >= #{today}
+		select count(*) from reser where pid = #{pid} and endD >= #{today} and refundD is null
 	</select>
 	
 	<delete id="bhMemDelete" parameterType="bhmDTO">
