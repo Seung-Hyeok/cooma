@@ -9,14 +9,22 @@ layout:decorate="total/adTemp">
 
 <th:block layout:fragment="adContent">
 <h2 class="bhH2">
-	<th:block th:if="${reserData.edu.equals('-')}">
+	<th:block th:if="${reserData.edu.equals('-') and reserData.refundD == null}">
 		<span th:text="${reserData.kind}+${reserData.getTerm()}+': '+${reserData.startDStr()}+'~'+${reserData.endDStr()}+' ('+${reserData.weeks}+') - 교육없음'"/>
 	</th:block>
-	<th:block th:unless="${reserData.edu.equals('-')}">
+	<th:block th:if="${!reserData.edu.equals('-') and reserData.refundD == null}">
 		<span th:text="${reserData.kind}+${reserData.getTerm()}+': '+${reserData.startDStr()}+'~'+${reserData.endDStr()}+' ('+${reserData.weeks}+') - '+${reserData.edu}"/>
 	</th:block>
+	<th:block th:if="${reserData.edu.equals('-') and reserData.refundD != null}">
+		<span th:text="${reserData.kind}+${reserData.getTerm()}+': '+${reserData.startDStr()}+'~'+${reserData.endDStr()}+' ('+${reserData.weeks}+') - 교육없음'"/>
+	</th:block>
+	<th:block th:if="${!reserData.edu.equals('-') and reserData.refundD != null}">
+		<span th:text="'(환불) '+${reserData.kind}+${reserData.getTerm()}+': '+${reserData.startDStr()}+'~'+${reserData.endDStr()}+' ('+${reserData.weeks}+') - '+${reserData.edu}"/>
+	</th:block>
 </h2>
-<h3 class="bhH2">출석률 : <span th:text="${percent}"/> ( <span th:text="${yes.size()}+'/'+${totDay}"/> )</h3>
+<h3 class="bhH2">출석률 : <span th:text="${percent}"/> ( <span th:text="${yes.size()}+' / '+${totDay}"/> )</h3>
+
+<th:block th:if="${(yes.size()+none.size()+notyet.size()) > 0}">
 <div class="bhBigCal">
 	<div th:each="rd : ${days}" class="bhCalendar">
 		<div class="bhMonthHead"><span th:text="${rd[0]+'월'}"/></div>
@@ -46,6 +54,14 @@ layout:decorate="total/adTemp">
 		</div>
 	</div>
 </div>
+</th:block>
+
+<th:block th:unless="${(yes.size()+none.size()+notyet.size()) > 0}">
+	<h2 class="bhH2" style="color: red;">
+		이용권을 시작 전에 환불하였습니다.
+	</h2>
+</th:block>
+
 <div style="width: 1120px; height: 40px; margin:40px; text-align: center;">
 	<a th:href="|/admin/dogInform/${reserData.dname}/${reserData.pid}|" 
 	class="bhBigButton">뒤로</a>

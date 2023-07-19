@@ -53,14 +53,14 @@ layout:decorate="total/adTemp">
 			<tr> 
 				<td colspan="7" align="center" style="height:30px;">
 					<th:block th:if="${pd.startPage > 1}">
-						<a th:href="${pd.nowPage-1}" th:text="이전"></a>
+						<a th:href="${pd.nowPage-1}" th:text="이전" class="bhPageA"></a>
 					</th:block>
 					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
 						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}" class="shp">[[${p}]]</button></th:block>
-						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
+						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}" class="bhPageA"></a></th:block>
 					</span>
 					<th:block th:if="${pd.endPage < pd.totalPage}">
-						<a th:href="${pd.endPage+1}" th:text="다음"></a>
+						<a th:href="${pd.endPage+1}" th:text="다음" class="bhPageA"></a>
 					</th:block>
 				</td>
 			</tr>

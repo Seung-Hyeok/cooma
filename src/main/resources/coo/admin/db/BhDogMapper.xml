@@ -69,7 +69,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	</select>	
 	
 	<select id="bhDogsReser" parameterType="bhdDTO" resultType="bhAtDTO">
-		select * from reser where dname = #{dname} and pid = #{pid} order by startD 
+		select * from reser where dname = #{dname} and pid = #{pid} order by startD <!--  and refundD is null -->
 	</select>	
 	
 <!-- 수정 -->

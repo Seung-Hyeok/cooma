@@ -134,7 +134,7 @@ public class BhDogController {
 		
 		if((chk1+chk2) >= 2) {
 			msg = "삭제되었습니다.";
-			goUrl = "/admin/dogs"; //애견리스트
+			goUrl = "/admin/dogs/1"; //애견리스트
 		}
 		System.out.println("삭제갯수:"+(chk1+chk2));
 		mo.addAttribute("msg", msg);
