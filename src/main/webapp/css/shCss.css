@@ -117,13 +117,13 @@
 	}
 	
 	.shtt > button{
-		width: 80px;
+		/*width: 80px;*/
 		color: #fff;
 		background-color: #216A35;
-		border: 1px solid#216A35;
+		/*border: 1px solid#216A35;*/
 		border-radius: 4px;
 		font-size :  1rem;
-		font-weight: bold;
+		/*font-weight: bold;*/
 	}
 	.shaa{
         text-decoration: none;

@@ -62,10 +62,10 @@ layout:decorate="total/adTemp">
 			<td class="shtdr">요청사항</td><td th:text="${mainData.reque}" class="shtd2" colspan="3"/>
 		</tr><tr>
 			<td colspan="4" align="center" class="shtt" >
-				<button onclick="location.href='/admin/reservation/1'" >뒤로</button>
-				<button th:onclick="|window.location.href='/admin/modify/${mainData.reserNo}'|">수정</button>
+				<button onclick="location.href='/admin/reservation/1'" class="bhBigButton">뒤로</button>
+				<button th:onclick="|window.location.href='/admin/modify/${mainData.reserNo}'|" class="bhBigButton">수정</button>
 				<!-- <a th:href="|/admin/delete/${mainData.reserNo}|" th:text="예약취소"/> -->
-				<button onclick="showConfirmation()" id="shbb">이용권취소</button>
+				<button onclick="showConfirmation()" id="shbb" class="bhBigButton">이용권취소</button>
 				
 			</td>
 		</tr>

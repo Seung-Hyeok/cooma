@@ -43,8 +43,8 @@ function frmChk() {
 				<td class="shtdr">내용</td><td class="shtd2"><textarea cols="120" rows="20" th:field="*{content}" style="resize: none;"></textarea>
 			</tr><tr>
 				<td colspan="2" align="right" class="shtt">
-					<a th:href="|/admin/notice/detail/${mainData.num}|" th:text="뒤로" class="shaa"/>
-					<button type="submit">등록</button>
+					<a th:href="|/admin/notice/detail/${mainData.num}|" th:text="뒤로"  class="bhBigButton"/>
+					<button type="submit" class="bhBigButton">등록</button>
 				</td>
 			</tr>
 		</table>
