@@ -75,4 +75,12 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		select count(*) from reser where pid = #{pid} and dname = #{dname} and endD >= #{today}
 	</select>
 	
+	<select id="mydogs"  parameterType="String" resultType="int">
+		select count(*) from dogs where pid = #{pid}
+	</select>
+	
+	<select id="dogNameChk" parameterType="hmDogsDTO" resultType="int">
+		select count(*) from dogs where dname = #{dname} and pid = #{pid}
+	</select>
+	
 </mapper>

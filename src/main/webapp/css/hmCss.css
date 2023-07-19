@@ -488,7 +488,7 @@ html{
 }
 
 .hmdogJoin a {
-	padding: 6px 10px;
+	padding: 6.5px 10px;
 }	
 
 /*마이페이지*/
@@ -657,7 +657,7 @@ html{
 }
 
 .hmdogDetail a {
-	padding: 6px 10px;
+	padding: 6.5px 10px;
 }	
 
 
@@ -700,11 +700,11 @@ html{
 }
 
 .hmqueList .hman {
-  color: #00f;
+  color: dodgerblue;
 }
 
 .hmqueList .hmnoan {
-  color: #f00;
+  color: tomato;
 }
 
 .hmqueList a {

@@ -48,4 +48,8 @@ public interface HmMyPageMapper {
 	
 	//강아지 삭제전 내예약확인
 	int dogReser(HmDogsDTO sdf);
+	
+	int mydogs(String sdf);
+	
+	int dogNameChk(HmDogsDTO dsf);
 }
