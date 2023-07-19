@@ -295,6 +295,7 @@ li::marker {
 		padding:50px;
 		width:600px;
 		margin:auto;
+	height: 500px;
 }
 
 	.notice_list{
