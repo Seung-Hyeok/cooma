@@ -41,7 +41,7 @@ function validPw(pw = $("#pw").val().trim()) {
 //이름 유효성
 function validPname(pname = $("#pname").val().trim()) {
 	
-	var regex = /^[가-힣]{2,4}$/;
+	var regex = /^[가-힣]{2,5}$/;
 	var isValid = regex.test(pname);
 
 	if (isValid) {
@@ -99,7 +99,7 @@ function validAddr2(addr2 = $("#addr2").val().trim()) {
 function frmChk() {
 	
 	if(!validPname()){ //4
-		alert("이름은 한글 2~4자 입니다.");
+		alert("이름은 한글 2~5자 입니다.");
 		return false;
 	}
 	
