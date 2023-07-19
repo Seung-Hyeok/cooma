@@ -297,6 +297,7 @@ input[data-placeholder]::before{
 	flex-direction: column;
 	box-sizing: border-box;
 	border-bottom: 1px solid #216A35;
+	color: #aaa;
 }
 .bhmonth > div:nth-child(-n+7){
 	height: 30px;

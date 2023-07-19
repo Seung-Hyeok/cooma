@@ -1,7 +1,7 @@
 html{
-		font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 }	 
-    .hme_msg{
+.hme_msg{
 	color: #f00;
 }
 
@@ -676,7 +676,7 @@ html{
 
 .hmqueList .quetitle td {
   text-align: center;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 
 .hmqueList .quetitle td:first-of-type {
@@ -775,6 +775,7 @@ html{
   background: #FFC107;
   border: 1px solid #324182;
   font-weight: bold;
+  border-radius: 5px;
   padding: 10px;
 }
 
@@ -1613,8 +1614,11 @@ html{
 .build_con h2, .build_con h3{
 	color: #324182;
 }
+
 h1:first-of-type{
-	margin: 10px 0px 50px 50px;
+	margin-left: 180px;
+	margin-bottom: 30px;
+	margin-top: 100px;
 }
 
 .aram{

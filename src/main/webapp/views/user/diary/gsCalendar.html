@@ -10,7 +10,7 @@ layout:decorate="total/userTemp">
 
 
 <h1><span th:text="${todd}"></span></h1>
-	<hr>
+	
 <div class="gsCalSch">
 	<form action="" method="post">	
 		<input type="month" id="monthInput" name="month" min="2000-01" max="2030-12" required="required">&nbsp;&nbsp;&nbsp;
@@ -32,7 +32,7 @@ layout:decorate="total/userTemp">
 		    <span id="gsNum" th:text="${no}" ></span></br>
 		    <th:block th:each="sh : ${show}">
 		    	 <th:block th:if="${sh.oneD == no+''}">
-		    		<span class="gsSmile">☻</span> <span th:text="${ sh.dname+' (출석)'}" ></span></br>
+		    		<span class="gsSmile">☻</span> <span th:text="${ sh.dname+' (출석)'}" ></span>
 		    		<span th:text="${sh.attendTimeStr()+'~'+sh.goHomeStr()}" ></span></br>
 		   		 </th:block>
 		    </th:block> 
