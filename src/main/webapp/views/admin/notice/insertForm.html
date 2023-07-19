@@ -14,6 +14,11 @@ function frmChk() {
 	var imgFile = $("#img").get(0).files[0];
     var allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
+    if ($("#tit").val().trim() === "") {
+        alert("제목을 입력해주세요(공백불가)");
+        return false;
+    }
+    
     if (imgFile) {
         if (allowedTypes.indexOf(imgFile.type) === -1) {
             alert("이미지 파일만 등록이 가능합니다.");
@@ -32,7 +37,7 @@ function frmChk() {
 		<table align="center" class="shdetail" style="width: 1000px;">
 			<tr>
 				<td class="shtd" align="center">제목</td>
-				<td class="shtd2"><input type="text" th:field="*{title}" style="width:850px; height:40px;" required placeholder="제목을 입력해 주세요."/></td>
+				<td class="shtd2"><input type="text" th:field="*{title}" style="width:850px; height:40px;" required placeholder="제목을 입력해 주세요." id="tit"/></td>
 			</tr>
 			<tr>
 				<td class="shtd" align="center">작성자</td>
