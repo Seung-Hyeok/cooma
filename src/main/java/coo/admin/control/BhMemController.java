@@ -120,7 +120,7 @@ public class BhMemController {
 		
 		if((chk1+chk2) >= 2) {
 			msg = "삭제되었습니다.";
-			goUrl = "/admin/member"; //회원리스트
+			goUrl = "/admin/member/1"; //회원리스트
 		}
 		System.out.println("삭제갯수:"+(chk1+chk2));
 		mo.addAttribute("msg", msg);
