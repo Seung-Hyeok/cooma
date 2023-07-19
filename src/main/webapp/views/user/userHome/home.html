@@ -19,23 +19,31 @@ layout:decorate="total/userTemp">
 	<!--<div class="mainInfo">
 		반려견을 위한 <br>
 		최고의 유치원 서비스
-	</div>
-	<div class="aram">
-	<h1>&nbsp;&nbsp;[ 오늘의 알림 ]</h1>
-		-[[${msg}]]<br/>
-		-[[${today}]]<br/>
 	</div>-->
+	<div class="aram"  th:if="${pid != null}">
+	<h2>&nbsp;&nbsp;[ 오늘의 알림 ]</h2>
+		- [[${msg}]]<br/>
+		- [[${today}]]<br/>
+	</div>
 	
+	<div class="main_info" th:if="${pid == null}">
+		<h2>쿠키마루</h2>
+		반려견을 위한 <br>
+		최고의 유치원 서비스!
+	</div>
+	
+
 </div>
+<div class="hmhome"><img src="/decoimg/hm_mainimg.png" alt="" width="1200px"/></div>
 </th:block>
 
-<th:block layout:fragment="add-content">
-<div class="hm_maindiv">
+<!--<th:block layout:fragment="add-content">
+ <div class="hm_maindiv">
 	<div class="hm_shape1"><img src="/decoimg/main_dog1.jpg" alt="" /></div>
 	<div class="hm_shape2"><img src="/decoimg/main_dog2.jpg" alt="" /></div>
 	<div class="hm_shape3"><img src="/decoimg/main_dog3.jpg" alt="" /></div>
 	<div class="hm_shape4"><img src="/decoimg/main_dog4.jpg" alt="" /></div>
 	<div class="hm_shape5"><img src="/decoimg/main_dog5.jpg" alt="" /></div>
 </div>
-</th:block>
+</th:block> -->
 </html>

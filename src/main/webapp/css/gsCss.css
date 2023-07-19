@@ -395,7 +395,7 @@ padding-bottom:5px;
     .gsHome{
     transition: background-color 1s ease;
     width: 1000px;
-    height: 1000px;
+    height: 650px;
     padding:100px;
     background: url(/dimg/back.jpg);
     background-size: 1200px;
@@ -422,12 +422,10 @@ padding-bottom:5px;
     
     }
     .aram{
-    margin-right:140px;
-    width:530px;
+      width:530px;
       height: 160px;
       border: 5px solid #fff;
       padding-left: 20px;
-      color: #fff;
     
     }
    

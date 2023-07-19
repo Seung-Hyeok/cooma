@@ -30,7 +30,7 @@ layout:decorate="total/userTemp">
 <a href="/user/question/questionInsert">1:1 문의</a>
 <a href="/user/question/queList/1">문의내역</a>
 </div>
-<h1>질문</h1>
+<h1>문의내용</h1>
 <div class="hmqueDetail">
 <table>
 	<tr class="hmtitlekind">
@@ -52,7 +52,7 @@ layout:decorate="total/userTemp">
 		<td colspan="2" class="hmAnsweradmin"><span>담당자</span>&nbsp;<span th:text="${myqna.adminId}" />
 	</tr>
 	<tr th:if="${myqna.getAnswer != null}">
-		<td class="hmAnswer" colspan="4"  ><div th:text="${myqna.getAnswer}"></div></td>
+		<td class="hmAnswer" colspan="4"  ><div th:utext="${myqna.getAnswerBr}"></div></td>
 	</tr>
 	<tr>
 		<td colspan="4" align="right" >
