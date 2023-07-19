@@ -17,6 +17,9 @@ layout:decorate="total/adTemp">
 		if (trimmedValue === "") {
 			alert("무게 입력바랍니다.")
 			return false; // Submit 막기
+		} else if (parseInt(trimmedValue) <= 0) {
+			alert("정확한 무게 입력바랍니다.")
+			return false; // Submit 막기
 		} else {
 			return true; // Submit 진행
 		}
