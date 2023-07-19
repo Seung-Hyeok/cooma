@@ -241,62 +241,62 @@ function frmChk() {
 	}
 	
 	if(!validTel()){ //5
-		alert("전화번호를 양식에 맞게 입력해주세요");
+		alert("전화번호를 양식에 맞게 입력해주세요.");
 		return false;
 	}
 	
 	if($("#address").val().trim()==""){ //6
-		alert("주소를 입력해주세요");
+		alert("주소를 입력해주세요.");
 		return false;
 	}
 	
 	if(!validAddr2()){ //7
-		alert("상세주소를 입력해주세요");
+		alert("상세주소를 입력해주세요.");
 		return false;
 	}
 	
 	if(!validEmail()){ //8
-		alert("이메일을 양식에 맞게 입력해주세요");
+		alert("이메일을 양식에 맞게 입력해주세요.");
 		return false;
 	}
 	
 	if($("#email2").val().trim()==""){ //9
-		alert("이메일 도메인을 선택해주세요");
+		alert("이메일 도메인을 선택해주세요.");
 		return false;
 	}
 	
 	if(!validBirth()){ //10
-		alert("생년월일을 선택해주세요");
+		alert("생년월일을 선택해주세요.");
 		return false;
 	}
 	
 	if($("#pwquestion").val().trim()==""){ //11
-		alert("비밀번호 찾기 질문을 선택해주세요");
+		alert("비밀번호 찾기 질문을 선택해주세요.");
 		return false;
 	}
 	
 	if(!validPwanswer()){ //12
-		alert("비밀번호 찾기 답변을 입력해주세요");
+		alert("비밀번호 찾기 답변을 입력해주세요.");
 		return false;
 	}
 	
 	if ($("#dname").val().trim()=="") {//13
-		alert("강아지이름을 입력해주세요");
+		alert("강아지이름을 입력해주세요.");
 		return false;
 	}
 	
 	 if (!validWeight()) {//14
-		 alert("무게는 숫자 형식으로 입력해주세요");
+		 alert("무게는 숫자 형식으로 입력해주세요.");
 		 return false;
 	    }
 	
 	if(!$('input[name="dogsize"]:checked').length){ //15
-		alert("강아지의 사이즈를 선택해주세요");
+		alert("강아지의 사이즈를 선택해주세요.");
 		return false;
 	}
 	
 	if (!$('input[name="gender"]:checked').length) { //16
-        alert("강아지의 성별을 선택해주세요");
+        alert("강아지의 성별을 선택해주세요.");
         return false;
     }
 	
@@ -306,22 +306,22 @@ function frmChk() {
 	}
 	
 	if($("#dyear").val().trim()==""){ //18
-		alert("강아지가 태여난 년도를 선택해주세요");
+		alert("강아지가 태여난 년도를 선택해주세요.");
 		return false;
 	}
 	
 	if($("#dmonth").val().trim()==""){ //19
-		alert("강아지가 태어난 달을 선택해주세요");
+		alert("강아지가 태어난 달을 선택해주세요.");
 		return false;
 	}
 	
 	if ($("#dogimg").get(0).files.length === 0) { // Check if no files selected for upload
-        alert("사진을 업로드해주세요");
+        alert("사진을 업로드해주세요.");
         return false;
     }
 	
 	if (!$('#formchk').is(':checked')) { // Check if checkbox is not checked
-        alert("중성화 여부를 체크해주세요");
+        alert("중성화 여부를 체크해주세요.");
         return false;
     }
 	

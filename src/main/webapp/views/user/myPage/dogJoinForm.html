@@ -25,22 +25,22 @@ function validBreed(breed = $("#breed").val().trim()) {
 function frmChk() {
 	
 	if ($("#dname").val().trim()=="") {//13
-		alert("강아지이름을 입력해주세요");
+		alert("강아지이름을 입력해주세요.");
 		 return false;
 	}
 	
 	 if (!validWeight()) {//14
-		 alert("무게는 숫자 형식으로 입력해주세요");
+		 alert("무게는 숫자 형식으로 입력해주세요.");
 		 return false;
 	    }
 	
 	if(!$('input[name="dogsize"]:checked').length){ //15
-		alert("강아지의 사이즈를 선택해주세요");
+		alert("강아지의 사이즈를 선택해주세요.");
 		 return false;
 	}
 	
 	if (!$('input[name="gender"]:checked').length) { //16
-        alert("강아지의 성별을 선택해주세요");
+        alert("강아지의 성별을 선택해주세요.");
         return false;
     }
 	
@@ -49,21 +49,21 @@ function frmChk() {
 		 return false;
 	}
 	if($("#dyear").val().trim()==""){ //18
-		alert("강아지가 태여난 년도를 선택해주세요");
+		alert("강아지가 태여난 년도를 선택해주세요.");
 		 return false;
 	}
 	if($("#dmonth").val().trim()==""){ //19
-		alert("강아지가 태어난 달을 선택해주세요");
+		alert("강아지가 태어난 달을 선택해주세요.");
 		 return false;
 	}
 	
 	if ($("#dogimg").get(0).files.length === 0) { // Check if no files selected for upload
-        alert("사진을 업로드해주세요");
+        alert("사진을 업로드해주세요.");
         return false;
     }
 	
 	if (!$('#formchk').is(':checked')) { // Check if checkbox is not checked
-        alert("중성화 여부를 체크해주세요");
+        alert("중성화 여부를 체크해주세요.");
         return false;
     }
 	return true;
