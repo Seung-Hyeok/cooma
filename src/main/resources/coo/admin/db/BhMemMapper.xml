@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 					pid like concat('%',#{sch},'%') and 
 				</if>
 				<if test="grade != null and grade != '전체'">
-					and grade = #{grade} 
+					grade = #{grade} 
 				</if>
 			</trim>
 		</where>
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 					pid like concat('%',#{sch},'%') and 
 				</if>
 				<if test="grade != null and grade != '전체'">
-					and grade = #{grade} 
+					grade = #{grade} 
 				</if>
 			</trim>
 		</where>
