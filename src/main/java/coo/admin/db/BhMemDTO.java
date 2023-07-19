@@ -28,16 +28,16 @@ public class BhMemDTO {
 	*/
 	
 	//dname => 관리자가 애견정보를 삭제했을때 회원 테이블 칼럼에서도 삭제되게 하기 위해 추가
-	String pid, pw, pname, tel, addr1, addr2, email, grade, dog1, dog2, dog3, sch, dname;
+	String pid, pw, pname, tel, addr1, addr2, email, grade, dog1, dog2, dog3, kind, sch, dname;
 	Date birth, reg_date, today = new Date();
 	Integer dogCnt, nowPage;
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	public int dogTotalCnt() {
-		int i = 0;
-		if(dog1!=null) { i += 1; }
-		if(dog2!=null) { i += 1; }
-		if(dog3!=null) { i += 1; }
+		int i = 3;
+		if(dog1==null || dog1.equals("")) { i -= 1; }
+		if(dog2==null || dog2.equals("")) { i -= 1; }
+		if(dog3==null || dog3.equals("")) { i -= 1; }
 		return i; //dogCnt = 
 	}
 

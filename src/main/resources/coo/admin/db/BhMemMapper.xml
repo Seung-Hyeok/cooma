@@ -8,24 +8,34 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	<select id="bhMemTotal" parameterType="bhPD" resultType="Integer">
 		select count(*) from member 
 		<where>
-			<if test="sch != null">
-				pname like concat('%',#{sch},'%')  
-			</if>
-			<if test="grade != null and grade != '전체'">
-				and grade = #{grade} 
-			</if>
+			<trim prefix=" " suffixOverrides="and | or"> 
+				<if test="kind == 'pname'" >
+					pname like concat('%',#{sch},'%') and 
+				</if>
+				<if test="kind == 'pid'" >
+					pid like concat('%',#{sch},'%') and 
+				</if>
+				<if test="grade != null and grade != '전체'">
+					and grade = #{grade} 
+				</if>
+			</trim>
 		</where>
 	</select>
 	
 	<select id="bhMemList" parameterType="bhPD" resultType="bhmDTO">
 		select * from member 
 		<where>
-			<if test="sch != null">
-				pname like concat('%',#{sch},'%')  
-			</if>
-			<if test="grade != null and grade != '전체'">
-				and grade = #{grade} 
-			</if>
+			<trim prefix=" " suffixOverrides="and | or"> 
+				<if test="kind == 'pname'" >
+					pname like concat('%',#{sch},'%') and 
+				</if>
+				<if test="kind == 'pid'" >
+					pid like concat('%',#{sch},'%') and 
+				</if>
+				<if test="grade != null and grade != '전체'">
+					and grade = #{grade} 
+				</if>
+			</trim>
 		</where>
 		order by pid  
 		limit #{start}, #{limit}
