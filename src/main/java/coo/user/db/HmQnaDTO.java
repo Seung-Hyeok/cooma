@@ -49,10 +49,10 @@ public class HmQnaDTO {
 		return pd;
 	}
 	 
-	 public String getContent() {
-			return content;
-	}
 	public String getContentBr() {
 		return content.replaceAll("\n", "<br/>"); //여기서 줄바꿈으로 출력될수있게 한다
+	}
+	public String getAnswerBr() {
+		return getAnswer.replaceAll("\n", "<br/>"); //여기서 줄바꿈으로 출력될수있게 한다
 	}
 }

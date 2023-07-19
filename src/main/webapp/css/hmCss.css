@@ -1613,3 +1613,6 @@ html{
 .build_con h2, .build_con h3{
 	color: #324182;
 }
+h1{
+	margin: 10px 0px 50px 50px;
+}
