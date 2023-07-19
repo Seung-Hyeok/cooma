@@ -48,9 +48,9 @@ layout:decorate="total/adTemp">
 			<td class="shtdr">내용</td><td th:text="${mainData.content}" style="width:700px; height:300px" class="shtd2"/>
 		</tr><tr>
 			<td colspan="2" align="right" class="shtt">
-				<button onclick="location.href='/admin/notice/1'" >뒤로</button>
-				<button th:onclick="|window.location.href='/admin/notice/modify/${mainData.num}'|">수정</button>
-				<button onclick="showConfirmation()">삭제</button>
+				<button onclick="location.href='/admin/notice/1'"  class="bhBigButton">뒤로</button>
+				<button th:onclick="|window.location.href='/admin/notice/modify/${mainData.num}'|"  class="bhBigButton">수정</button>
+				<button onclick="showConfirmation()"  class="bhBigButton">삭제</button>
 			</td>
 		</tr>
 	</table>
