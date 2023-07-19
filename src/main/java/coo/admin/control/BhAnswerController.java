@@ -138,7 +138,7 @@ public class BhAnswerController {
 		String goUrl = "/admin/ansDelete/"+qna.getNo();
 		if(chk==1) {
 			msg = "삭제되었습니다.";
-			goUrl = "/admin/answer/1"; //질문리스트
+			goUrl = "/admin/answerList/1"; //질문리스트
 		}
 		System.out.println("삭제갯수:"+chk);
 		mo.addAttribute("msg", msg);
