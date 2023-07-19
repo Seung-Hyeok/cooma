@@ -23,4 +23,6 @@ public class ShNoticeDTO {
 		String pp = sdf.format(reg_date);
 		return pp;
 	}
+	
+
 }

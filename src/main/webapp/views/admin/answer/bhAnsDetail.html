@@ -8,7 +8,7 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
-	<h2 class="bhH2">1:1 문의상세</h2>
+	<h2 class="bhH2">1:1 문의 상세</h2>
 
 	<table align="center" class="bhTableD">
 		<tr>
@@ -18,12 +18,12 @@ layout:decorate="total/adTemp">
 			<td class="bhTableDColor">질문등록일</td><td th:text="${bhAnsData.reg_dateStr()}" />
 			<td class="bhTableDColor">조회수</td><td th:text="${bhAnsData.cnt}" />
 		</tr><tr>
-			<td class="bhTableDColor">내용</td><td colspan="3" th:text="${bhAnsData.content}"/>
+			<td class="bhTableDColor">내용</td><td colspan="3" th:utext="${bhAnsData.getContentBr()}"/>
 		</tr>
 	<th:block th:if="${bhAnsData.getAnswer != null}">
 		<tr><td colspan="4"> --- 답변 --- </td></tr>
 		<tr>
-			<td class="bhTableDColor">답변</td><td colspan="3" th:text="${bhAnsData.getAnswer}" />
+			<td class="bhTableDColor">답변</td><td colspan="3" th:utext="${bhAnsData.getAnswerBr()}" />
 		</tr><tr>
 			<td class="bhTableDColor">작성관리자</td><td th:text="${bhAnsData.adminId}" />
 			<td class="bhTableDColor">답변 등록일</td><td th:text="${bhAnsData.answerDateStr()}" />

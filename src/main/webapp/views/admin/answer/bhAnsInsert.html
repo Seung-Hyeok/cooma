@@ -34,7 +34,7 @@ layout:decorate="total/adTemp">
 				<td class="bhTableDColor">질문등록일</td><td th:text="${bhAnsData.reg_dateStr()}" />
 				<td class="bhTableDColor">조회수</td><td th:text="${bhAnsData.cnt}" />
 			</tr><tr>
-				<td class="bhTableDColor">내용</td><td colspan="3" th:text="${bhAnsData.content}"/>
+				<td class="bhTableDColor">내용</td><td colspan="3" th:utext="${bhAnsData.getContentBr()}"/>
 			</tr>
 			
 			<tr><td colspan="4"> --- 답변 --- </td></tr>
