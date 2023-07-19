@@ -8,12 +8,13 @@
 		height: 550px;
 		background: #324182;
 		padding: 20px;
+		border-radius: 10px;
 		color:#E7E7E7;
 	}
 	.myBuyMenu{
 	    padding:20px;
         float: left;
-        width: 1200px;
+        width: 1160px;
         height: 20px;
         box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
     }
@@ -34,7 +35,7 @@
 	.myPageMenu{
         padding:20px;
         float: left;
-        width: 1200px;
+        width: 1160px;
         height: 30px;
         background: #fff;
         box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
@@ -113,10 +114,10 @@
          	height: 50px;
          }
          .myGsDiary{
-         	height: 1000px;
-         	width:1000px;
-         	padding-top:50px;
-         	border: 5px solid  #324182;
+         	height:800px;
+         	width: 1000px;
+         	padding: 60px 20px 20px 20px;
+         	border: 5px solid #324182;
          	border-radius:50px;
          	margin-left: 100px;
          }
@@ -124,12 +125,24 @@
          height: 120px;
          font-size:13px;
            float: left;
-         	width:139px;
+         	width:180px;
          	text-align: center;
          	color:#324182;
          	overflow: auto;
-         	padding-top: 10px;
          }
+         
+         .myGsDiary > div:nth-child(1),
+         .myGsDiary > div:nth-child(7n),
+         .myGsDiary > div:nth-child(7n+1){
+         	height: 120px;
+         	font-size:13px;
+    		float: left;
+         	width:50px;
+         	text-align: center;
+         	color:#aaa;
+         	overflow: auto;
+         }
+         
          #gsNum{
          text-align: center;
          font-size: 23px;
@@ -396,6 +409,7 @@ padding-bottom:5px;
     transition: background-color 1s ease;
     width: 1000px;
     height: 650px;
+    margin-top: -5px;
     padding:100px;
     background: url(/dimg/back.jpg);
     background-size: 1200px;
