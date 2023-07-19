@@ -16,10 +16,10 @@ layout:decorate="total/adTemp">
 		<a href="/admin/endreservation/1">만료이용권내역</a>
 		<a href="/admin/refund/1">환불내역</a>
 	</div>
-	<h2 class="bhH2">만료이용권리스트</h2>
+	<h2 class="bhH2">만료이용권내역</h2>
 	
 	<table align="center"  class="shtable">
-		<form action="" th:object="${PData}" method="get">
+		<form action="" th:object="${PData}" method="post">
 			<tr>
 				<td colspan="10" align="right" style="height:35px;">
 					<select th:field="*{cate}">
@@ -65,7 +65,6 @@ layout:decorate="total/adTemp">
 					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
 						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}" class="shp">[[${p}]]</button></th:block>
 						<th:block th:unless="${pd.nowPage == p}"><a th:href="${p}" th:text="${p}"></a></th:block>
-						<!-- <th:block th:unless="${pd.nowPage == p}"><button th:onclick="|window.location.href='/admin/endreservation/${p}'|">[[${p}]]</button></th:block> -->
 					</span>
 					<th:block th:if="${pd.endPage < pd.totalPage}"><a th:href="${pd.endPage+1}" th:text="다음"></a></th:block>
 			</td>

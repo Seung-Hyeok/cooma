@@ -150,12 +150,22 @@ public class ShAdminNoticeController {
 		System.out.println(dto.getNoticeImg());
 		System.out.println(dto.getNoticeImg().getOriginalFilename());
 		
+		
+		
 		if(dto.getNoticeImg().getOriginalFilename().isEmpty()) {
 			dto.setPhotoFile("");
 		}else {
+			if(!dto.getNoticeImg().getContentType().startsWith("image/")) {
+				mm.addAttribute("msg", "이미지파일만 등록이 가능합니다.");
+				mm.addAttribute("goUrl", "/admin/notice/insert");
+				return "admin/reser/alert";
+			 }
 			String res = fileSave(dto.getNoticeImg(), request);
+			System.out.println(res);
 	        dto.setPhotoFile(res);
 		}
+		
+		 
 		
 		
 		nm.insert(dto);

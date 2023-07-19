@@ -19,5 +19,5 @@ public interface ShReservationMapper {
 	int refundtotal(PData vvcxsftd);
 	int modify(ShReservationDTO refv);
 	int delete(ShReservationDTO efev45rtrg);
-
+	int attendAll(ShReservationDTO kk);
 }

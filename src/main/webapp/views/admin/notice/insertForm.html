@@ -11,12 +11,20 @@ layout:decorate="total/adTemp">
 <script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
 <script th:inline="javascript">
 function frmChk() {
-	if ($("#img").get(0).files.length === 0 && $("#con").val().trim()=="") {
-		alert("사진이나 내용을 하나 이상 등록해주세요");
-		return false;
-	}
-	
- 	return true;
+	var imgFile = $("#img").get(0).files[0];
+    var allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+    if (imgFile) {
+        if (allowedTypes.indexOf(imgFile.type) === -1) {
+            alert("이미지 파일만 등록이 가능합니다.");
+            return false;
+        }
+    } else if ($("#con").val().trim() === "") {
+        alert("사진이나 내용을 하나 이상 등록해주세요.");
+        return false;
+    }
+    
+    return true;
 }
 </script>	
 	<h2 class="bhH2">공지등록</h2>
