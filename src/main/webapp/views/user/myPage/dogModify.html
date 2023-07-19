@@ -13,6 +13,10 @@ function validWeight(weight = $("#weight").val().trim()) {
     var regex = /^\d+(\.\d+)?$/; // Allows positive decimal or integer values
     var isValid = regex.test(weight);
     
+    if(weight<=0){
+    	isValid = false;
+    }
+    
     return isValid;
 }
 

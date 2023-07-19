@@ -41,11 +41,12 @@ public class HmLoginController {
 	@PostMapping("/user/log/joinForm")
 	String joinComplete(HttpServletRequest request, Model mm, HmDogsDTO dog, HmMemberDTO dto, HmFileData fd) {
 		
-		
 	    if(fd.getDogimg().getContentType().startsWith("image/")) {
 	    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			dto.setEmail(dto.getEmail()+"@"+fd.getEmail2());
 			dto.setTel(fd.getTel1()+"-"+fd.getTel2()+"-"+fd.getTel3());
+			dto.setPwanswer(dto.getPwanswer().stripLeading());
+			dto.setAddr2(dto.getAddr2().stripLeading());
 		    try {
 		        Date birthDate = format.parse(fd.getBirthstr());
 		        dto.setBirth(birthDate);

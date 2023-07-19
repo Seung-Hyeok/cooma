@@ -112,7 +112,7 @@ function checkPw(pw2 = $("#pw2").val().trim()) {
 //이름 유효성
 function validPname(pname = $("#pname").val().trim()) {
 	
-	var regex = /^[가-힣]{2,4}$/;
+	var regex = /^[가-힣]{2,5}$/;
 	var isValid = regex.test(pname);
 
 	if (isValid) {
@@ -167,8 +167,7 @@ function validTel(tel2 = $("#tel2").val().trim(), tel3 = $("#tel3").val().trim()
 
 //이메일 유효성
 function validEmail(email = $("#email").val().trim()) {
-
-	var regex = /^[a-zA-Z0-9._+-]{2,}$/;
+	var regex = /^(?=.*[a-z])[a-zA-Z0-9._+-]{4,12}$/;
 	var isValid = regex.test(email);
 
 	if (isValid) {
@@ -207,15 +206,25 @@ function validPwanswer(pwanswer = $("#pwanswer").val().trim()) {
 	return isValid;
 }
 
+function validDname(dname = $("#dname").val().trim()) {
+    var regex = /^[가-힣a-zA-Z]{1,20}$/;
+    var isValid = regex.test(dname);
+    return isValid;
+}
+
 function validWeight(weight = $("#weight").val().trim()) {
     var regex = /^\d+(\.\d+)?$/; // Allows positive decimal or integer values
     var isValid = regex.test(weight);
+    
+    if(weight<=0){
+    	isValid = false;
+    }
     
     return isValid;
 }
 
 function validBreed(breed = $("#breed").val().trim()) {
-    var regex = /^[가-힣a-zA-Z]{1,}$/;
+    var regex = /^[가-힣a-zA-Z]{1,20}$/;
     var isValid = regex.test(breed);
     return isValid;
 }
@@ -224,7 +233,7 @@ function frmChk() {
 	 if (checkDuplateId != $("#pid").val().trim() || !idchkchke) {
 	        alert("아이디 중복확인 검사를 해주세요.");
 	        return false;
-	    }
+	 }
 	
 	if(!validPw()){//2
 		alert("비밀번호 양식을 맞춰주세요.");
@@ -236,7 +245,7 @@ function frmChk() {
 		return false;
 	}
 	if(!validPname()){ //4
-		alert("이름은 한글 2~4자 입니다.");
+		alert("이름은 한글 2~5자 입니다.");
 		return false;
 	}
 	
@@ -280,8 +289,8 @@ function frmChk() {
 		return false;
 	}
 	
-	if ($("#dname").val().trim()=="") {//13
-		alert("강아지이름을 입력해주세요.");
+	if (!validDname()) {//13
+		alert("강아지이름을 한글 또는 영어로 입력해주세요.");
 		return false;
 	}
 	
@@ -434,7 +443,7 @@ function frmChk() {
 		</tr>
 		<tr>
 			<td class="tt">강아지 이름</td>
-			<td><input class="hm_inputcolor" type="text" id="dname" name="dname" /></td>
+			<td><input class="hm_inputcolor" type="text" id="dname" oninput="validDname(this.value)" name="dname" /></td>
 		</tr>
 		<tr>
 			<td class="tt">무게</td>

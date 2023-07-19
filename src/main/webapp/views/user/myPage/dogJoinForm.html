@@ -10,23 +10,33 @@ layout:decorate="total/userTemp">
 <script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
 <script th:inline="javascript">
 
+function validDname(dname = $("#dname").val().trim()) {
+    var regex = /^[가-힣a-zA-Z]{1,20}$/;
+    var isValid = regex.test(dname);
+    return isValid;
+}
+
 function validWeight(weight = $("#weight").val().trim()) {
     var regex = /^\d+(\.\d+)?$/; // Allows positive decimal or integer values
     var isValid = regex.test(weight);
     
+    if(weight<=0){
+    	isValid = false;
+    }
+    
     return isValid;
 }
 function validBreed(breed = $("#breed").val().trim()) {
-    var regex = /^[가-힣a-zA-Z]{1,}$/;
+	var regex = /^[가-힣a-zA-Z]{1,20}$/;
     var isValid = regex.test(breed);
     return isValid;
 }
 
 function frmChk() {
 	
-	if ($("#dname").val().trim()=="") {//13
-		alert("강아지이름을 입력해주세요.");
-		 return false;
+	if (!validDname()) {//13
+		alert("강아지이름을 한글 또는 영어로 입력해주세요.");
+		return false;
 	}
 	
 	 if (!validWeight()) {//14
@@ -86,7 +96,7 @@ function frmChk() {
 		</tr>
 		<tr>
 			<td class="tt">강아지 이름</td>
-			<td><input class="hm_inputcolor" type="text" id="dname" name="dname" /></td>
+			<td><input class="hm_inputcolor" type="text" id="dname" oninput="validDname(this.value)" name="dname" /></td>
 		</tr>
 		<tr>
 			<td class="tt">무게</td>
