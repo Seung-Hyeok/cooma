@@ -22,19 +22,17 @@ layout:decorate="total/userTemp">
 <h1>출석표</h1>
 	<div class="gsAttends">
 		<div class="show"  >
-			<h2>출석 일자</h2>
+			<h2>출석 일자</h2></br>
 			<div th:each="sh : ${show}">
 			일자 : 
 			<span th:text="${sh.oneDayStr()}"></span></br>
-			등원시간 : 
-			<span th:text="${sh.attendTime}"></span></br>
-			퇴원시간 : 
-			<span th:text="${sh.goHome}"></span> 
+			등하교 시간 : 
+			<span th:text="${sh.attendTimeStr()+'~'+sh.goHomeStr()}"></span>
 			</div>
 
 		</div>
 		<div class="noShow" >
-			<h2>결석 일자</h2>
+			<h2>결석 일자</h2></br>
 			<div th:each="ns : ${noShow}">
 			일자 : 
 			<span th:text="${ns.oneDayStr()}"></span> 
@@ -42,7 +40,7 @@ layout:decorate="total/userTemp">
 
 		</div>
 		<div class="future" >
-			<h2>남은 출석일</h2>  
+			<h2>남은 출석일</h2>  </br>
 			<div th:each="fu : ${future}">
 			일자 : 
 			<span th:text="${fu.oneDayStr()}"></span>

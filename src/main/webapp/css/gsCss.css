@@ -1,7 +1,6 @@
 	.dogMenu{
 		width: 810px;
 		height: 550px;
-		background: #FFC107;
 		padding: 20px;
 	}
 	.prMenu{
@@ -51,14 +50,23 @@
 	.dogMenu>div{
 		float: left;
 		margin:20px;
-        color:#324182;
+       color:#324182;
+        
 	}
 	.dogMenu>div>h2{
 		margin-left: 80px;
-	}
+	} 
 	.gsDog123:hover{
-		color: #fff;
+		 color: #FFC107;
 		 transition: color 0.5s ease;
+	}
+	.gsDog123{
+	border-radius:30px;;
+}
+	.gsDog123>a>img{
+	border-radius:20px;;
+	width:200px;
+	height:200px;
 	}
 
     .buyList{
@@ -74,17 +82,21 @@
 
         .gsAttends{
       		
-        	margin-left:100px;
-        	width:1000px;
-        	height: 600px;
-        	border:3px solid #000;
+        	margin:auto;
+        	width:970px;
+        	height: 500px;
+        	border:5px solid #324182;
+        	border-radius: 50px;
+    			
         }
          .gsAttends>div{
          float: left;
          	margin:30px;
-         	width:270px;
-         	height: 500px;
+         	padding:20px;
+         	width:210px;
+         	height: 400px;
          	overflow:auto;
+         		border-radius: 30px;
          }
          .show{
          	border:5px solid #324182;
@@ -96,9 +108,9 @@
          	border:5px solid #324182;
          }
          .gsAttends>div>div{
-         	border:1px solid #000;
-         	width:230px;
-         	height: 80px;
+         	border-bottom:1px solid #000;
+         	width:200px;
+         	height: 50px;
          }
          .myGsDiary{
          	height: 1000px;
@@ -153,8 +165,16 @@
  text-align: center;
  height: 80px;
  }
- 
-
+ .gsDetail{
+ 	padding :50px;
+    border: 5px solid #324182;
+    border-radius: 40px;
+    width:500px;
+    margin: auto;
+ }
+.listul>li {
+	margin-left: 30px;
+	}
 /* .gsCalSch>form>input[type="month"],
 .gsCalSch>form>select {
   padding: 10px;
@@ -383,9 +403,7 @@ padding-bottom:5px;
     .gsHome>div{
     float: right;
     }
-    .mainCoo{    
-
-    }
+ 
     .maindog1{
     width:300px;
     }

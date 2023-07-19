@@ -7,6 +7,21 @@ layout:decorate="total/userTemp">
 </th:block>
 
 <th:block layout:fragment="content">
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var accountInput = document.querySelector('input[name="account"]');
+
+        accountInput.addEventListener('input', function (event) {
+          var value = event.target.value;
+          if (value.length >= 10 && value.length <= 16) {
+            accountInput.setCustomValidity('');
+          } else {
+            accountInput.setCustomValidity('계좌번호는 10~16자리 숫자로만 입력해야 합니다.');
+          }
+        });
+      });
+    </script>
 <div class="myPageMenu">
 <a href="/user/myPage/memPage">내정보</a>
 <a href="/user/myPage/dogJoinForm">애견등록</a>
@@ -56,7 +71,7 @@ layout:decorate="total/userTemp">
 		</td>
 	</tr>
 	<tr>
-		<td class="tt">환불 계좌</td><td><input name="account" type="text" placeholder="숫자만 (-제외)"/></td>
+		<td class="tt">환불 계좌</td><td><input name="account" type="text" pattern="[0-9]{8,}" placeholder="숫자만 (-제외)" required="required"/></td>
 	</tr>
 	<tr>
 		<td class="tt">시작일</td><td th:text="${myDetail.StartD}"/>

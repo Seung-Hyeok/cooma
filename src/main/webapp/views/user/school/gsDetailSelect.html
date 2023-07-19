@@ -10,25 +10,41 @@ layout:decorate="total/userTemp">
 
 <th:block layout:fragment="content">
 
-<script>
-// 오늘 날짜를 가져옵니다.
-var today = new Date();
-var year = today.getFullYear();
-var month = today.getMonth();
-var day = today.getDate();
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function () {
+      var today = new Date();
+      var threeMonthsLater = new Date();
+      threeMonthsLater.setMonth(today.getMonth() + 2);
 
-// 최소 날짜: 오늘 날짜
-var minDate = new Date(year, month, day).toISOString().split('T')[0];
+      var todayFormatted = formatDate(today);
+      var threeMonthsLaterFormatted = formatDate(threeMonthsLater);
 
-// 최대 날짜: 오늘 날짜로부터 3개월 후
-var maxDate = new Date(year, month + 3, day).toISOString().split('T')[0];
+      $('#myDate').attr('min', todayFormatted);
+      $('#myDate').attr('max', threeMonthsLaterFormatted);
+      $('#myDate').attr('onchange', 'validateDate(this)');
 
-// 최소 날짜와 최대 날짜를 설정합니다.
-var inputDate = document.getElementById('myDate');
-inputDate.setAttribute('min', minDate);
-inputDate.setAttribute('max', maxDate);
-</script>
+      var forbiddenDate = new Date("2023-08-25"); // 특정 날짜
 
+      function formatDate(date) {
+        var year = date.getFullYear();
+        var month = ('0' + (date.getMonth() + 1)).slice(-2);
+        var day = ('0' + date.getDate()).slice(-2);
+        return year + '-' + month + '-' + day;
+      }
+
+      function validateDate(input) {
+        var selectedDate = new Date(input.value);
+        var selectedDateFormatted = formatDate(selectedDate);
+
+        if (selectedDate.getTime() === forbiddenDate.getTime()) {
+          input.setCustomValidity('선택할 수 없는 날짜입니다.');
+        } else {
+          input.setCustomValidity('');
+        }
+      }
+    });
+    </script>
 <h1>상세정보 입력</h1>
 <hr>
 <div class="gsDetail">
