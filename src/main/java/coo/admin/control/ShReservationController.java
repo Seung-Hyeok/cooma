@@ -130,46 +130,66 @@ public class ShReservationController {
 	}
 	
 	@RequestMapping("/admin/delete/{reserNo}")
-	String delete(Model mm, ShReservationDTO dto, HttpSession session) {
-		String pid = (String)session.getAttribute("pid");
-		mm.addAttribute("pid", pid);
-		
-		System.out.println("delete 진입");
-		dto = rm.detail(dto);
-		System.out.println(dto);
-		Date today = new Date();
-		
+    String delete(Model mm, ShReservationDTO dto, HttpSession session) {
+        String pid = (String)session.getAttribute("pid");
+        mm.addAttribute("pid", pid);
+
+        System.out.println("delete 진입");
+        dto = rm.detail(dto);
+        System.out.println(dto);
+        
+        int all = dto.getGap()/7*dto.getWeeks().length();
+        if(all ==0) {
+            all=1;
+        }
+        System.out.println("all"+all);
+        int dngAll = rm.attendAll(dto);
+
+        System.out.println("myDetail 진입"+dto);
+        int attAll = (int) Math.round(100*dngAll/all);
+        
+        Date today = new Date();
+
         long diff = dto.getStartD().getTime() - today.getTime();
         int chk = (int)(diff / (24 * 60 * 60 * 1000));
-        
+
         if(chk>0) {
-	        if(chk<=1) {
-	        	dto.setRefund(dto.getTotFee()/5*4);
-	        }
-	        else if(chk<=5) {
-	        	dto.setRefund(dto.getTotFee()/10*9);
-	        }
-	        else {
-	        	dto.setRefund(dto.getTotFee());
-	        }
+            if(chk<=1) {
+                dto.setRefund(dto.getTotFee()/54);
+            }
+            else if(chk<=5) {
+                dto.setRefund(dto.getTotFee()/109);
+            }
+            else {
+                dto.setRefund(dto.getTotFee());
+            }
         }
         else {
-	    	if(-chk <= dto.getGap()/10*3) {
-	        	dto.setRefund(dto.getTotFee()/5*2);
-	    	}
-	    	else if(-chk <= dto.getGap()/2) {
-	        	dto.setRefund(dto.getTotFee()/5*1);
-	    	}
-	    	else if(-chk < dto.getGap()) {
-	    		dto.setRefund(0);
-	    	}
+            if(attAll<=30) {
+                dto.setRefund(dto.getTotFee()/52);
+            }
+            else if(attAll<=50) {
+                dto.setRefund(dto.getTotFee()/51);
+            }
+            else{
+                dto.setRefund(0);
+                mm.addAttribute("msg","이용권 진행률이 50%를 초과하여 환불이 불가합니다");
+                mm.addAttribute("goUrl", "/admin/reservation/detail/"+dto.getReserNo());
+                return "admin/reser/alert";
+            }
         }
+        
+        System.out.println(dto.getTotFee()/51);
+
+        System.out.println(diff);
+        System.out.println(chk);
+
         int cnt = rm.delete(dto);
-		System.out.println("삭제갯수:"+cnt);
-		mm.addAttribute("msg","삭제되었습니다.");
-		mm.addAttribute("goUrl", "/admin/reservation/1");
-		return "admin/reser/alert";
-	}
+        System.out.println("삭제갯수:"+cnt);
+        mm.addAttribute("msg","삭제되었습니다.");
+        mm.addAttribute("goUrl", "/admin/reservation/1");
+        return "admin/reser/alert";
+    }
 	
 	
 	

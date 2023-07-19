@@ -8,13 +8,29 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
+<script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
+<script th:inline="javascript">
+function frmChk() {
+	var imgFile = $("#img").get(0).files[0];
+    var allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+    if (imgFile) {
+        if (allowedTypes.indexOf(imgFile.type) === -1) {
+            alert("이미지 파일만 등록이 가능합니다.");
+            return false;
+        }
+    } 
+    
+    return true;
+}
+</script>
 	
 	
 	<h2 class="bhH2">공지수정</h2>
-	<form method="post" th:object="${mainData}">
+	<form method="post" th:object="${mainData}"  onsubmit="return frmChk()">
 		<table align="center" class="shdetail" style="width: 1000px;">
 			<tr>
-				<td class="shtd" align="center">제목</td><td><input th:field="*{title}" style="width:850px; height:50px;" class="shtd2" /></td>
+				<td class="shtd" align="center">제목</td><td><input th:field="*{title}" style="width:850px; height:50px;" class="shtd2" required /></td>
 			</tr><tr>
 				<td class="shtd" align="center">작성자</td><td th:text="${mainData.id}" class="shtd2"/>
 			</tr><tr>
@@ -22,7 +38,7 @@ layout:decorate="total/adTemp">
 			</tr><tr>
 				<td class="shtd" align="center">조회수</td><td th:text="${mainData.cnt}" class="shtd2"/>
 			</tr><tr>
-				<td class="shtdr">이미지</td><td class="shtd2"><img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="" width="300px" height="300px"><input type="file" th:field="*{photoFile}" /></td>
+				<td class="shtdr">이미지</td><td class="shtd2"><img  th:src="@{|/dimg/${mainData.photoFile}|}" alt="" width="300px" height="300px"><input type="file" th:field="*{photoFile}" id="img" /></td>
 			</tr><tr>
 				<td class="shtdr">내용</td><td class="shtd2"><textarea cols="120" rows="20" th:field="*{content}" style="resize: none;"></textarea>
 			</tr><tr>

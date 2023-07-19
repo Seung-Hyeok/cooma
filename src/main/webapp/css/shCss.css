@@ -126,16 +126,15 @@
 		font-weight: bold;
 	}
 	.shaa{
-		text-decoration: none;
-		color: #216A35;
-		padding: 0.1rem 0.6rem;
-		color: #fff;
-		background-color: #216A35;
-		border: 1px solid#216A35;
-		border-radius: 4px;
-		font-size :  1rem;
-		font-weight: bold;
-	}
+        text-decoration: none;
+        color: #216A35;
+        padding: 0.0rem 0.6rem;
+        color: #fff;
+        background-color: #216A35;
+        border: 1px solid#216A35;
+        border-radius: 4px;
+        font-size :  1rem;
+    }
 	.shzz{
 		width: 80px;
 		color: #fff;
@@ -155,3 +154,7 @@
 		font-size :  1rem;
 		font-weight: bold;
 	}
+	.shss{
+        margin: auto;
+        width: 1000px;
+    }

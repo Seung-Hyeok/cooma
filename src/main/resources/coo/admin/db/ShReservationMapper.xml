@@ -107,6 +107,12 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		order by refundD desc
 	</select>
 	
+	<select id="attendAll" parameterType="rDTO" resultType="int">
+        select count(*) from daybyday 
+        <where>
+            reserNo = #{reserNo} and oneDay &lt;= date_sub(sysdate(), interval 1 day)
+        </where>
+    </select>
 
 
 
