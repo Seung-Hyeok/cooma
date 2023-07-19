@@ -54,7 +54,7 @@ function validPname(pname = $("#pname").val().trim()) {
 
 //전화번호 유효성
 function validTel(tel = $("#tel").val().trim()) {
-  var regex = /^01[0-9]{1}-[0-9]{4}-[0-9]{4}$/;
+  var regex = /^010-[0-9]{4}-[0-9]{4}$/;
   var isValid = regex.test(tel);
 
   if (isValid) {
@@ -69,7 +69,7 @@ function validTel(tel = $("#tel").val().trim()) {
 
 //이메일 유효성
 function validEmail(email = $("#email").val().trim()) {
-  var regex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  var regex = /^[a-z]{1}[a-zA-Z0-9._+-]{3,11}@[a-zA-Z.-]{2,8}\.[a-z]{2,8}$/;
   var isValid = regex.test(email);
 
   if (isValid) {
