@@ -42,7 +42,7 @@ layout:decorate="total/adTemp">
 			<td>환불일자</td>
 			<td>환불금액</td>
 		</tr>
-		<tr th:each="dto, dtostat : ${mainData}" style="height:30px; border-bottom: 1px solid#438c57;">
+		<tr th:each="dto, dtostat : ${mainData}" style="height:40px; border-bottom: 1px solid#438c57;">
 			<td th:text="${dto.reserNo}" align="center"/>
 			<td th:text="${dto.pid}" style="font-weight: bold; "/>
 			<td th:text="${dto.dname}" style="font-weight: bold; "/>
