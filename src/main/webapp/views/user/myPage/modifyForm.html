@@ -104,26 +104,26 @@ function frmChk() {
 	}
 	
 	if (!validTel()) { // 수정된 유효성 검사 함수 호출
-		alert("입력하신 전화번호를 확인해주세요");
+		alert("전화번호를 형식에 맞게 입력해주세요.");
 		return false;
 	  }
 	
 	if($("#address").val().trim()==""){ //6
-		alert("주소를 입력해주세요");
+		alert("주소를 입력해주세요.");
 		return false;
 	}
 	
 	if(!validAddr2()){ //7
-		alert("상세주소를 입력해주세요");
+		alert("상세주소를 입력해주세요.");
 		return false;
 	}
 	
 	 if (!validEmail()) { // 수정된 유효성 검사 함수 호출
-		 alert("입력하신 이메일을 확인해주세요");
+		 alert("이메일을 형식에 맞게 입력해주세요.");
 		 return false;
 		  }
 	 if(!validPw()){//2
-		 alert("비밀번호를 정확히 입력해주세요");
+		 alert("비밀번호를 정확히 입력해주세요.");
 		 return false;
 		}
 		  

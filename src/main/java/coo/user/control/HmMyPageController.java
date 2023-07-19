@@ -190,12 +190,12 @@ public class HmMyPageController {
 				if(1>cnt) {
 					String res = fileSave(fd.getDogimg(), request);
 		            dto.setPhoto(res);
-		            mm.addAttribute("msg","강아지 등록이 완료되었습니다.");
+		            mm.addAttribute("msg","애견등록이 완료되었습니다.");
 					mm.addAttribute("goUrl","/user/myPage/dogList");
 					mp.dnameset(memData);
 					mp.insertDog(dto);
 				} else {
-					mm.addAttribute("msg","회원당 동일한 강아지이름은 사용하실 수 없습니다.");
+					mm.addAttribute("msg","회원당 동일한 애견이름은 사용하실 수 없습니다.");
 					mm.addAttribute("goUrl","/user/myPage/dogJoinForm");
 				}
 				
@@ -304,7 +304,7 @@ public class HmMyPageController {
 		int reserChk =  mp.dogReser(dogData);
 			
 	    if (reserChk >= 1) {
-	    	mm.addAttribute("msg", "등록해제는 예약기간 종료 또는 환불 이후 가능합니다");
+	    	mm.addAttribute("msg", "등록해제는 예약기간 종료 또는 환불 이후 가능합니다.");
 			mm.addAttribute("goUrl", "/user/myPage/gsMyList");
 			
 	    } else {
@@ -324,7 +324,7 @@ public class HmMyPageController {
 			int cnt = mp.mydogs(pid);
 			
 			if (cnt <= 1) {
-				mm.addAttribute("msg", "애견은 한마리 이상 등록되어야합니다");
+				mm.addAttribute("msg", "애견은 한마리 이상 등록되어야합니다.");
 				mm.addAttribute("goUrl", "/user/myPage/dogDetail/" + dto.getDname());
 			} else if (cnt > 1) {
 				mp.dnameset(memData);

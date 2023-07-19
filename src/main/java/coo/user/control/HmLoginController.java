@@ -95,7 +95,7 @@ public class HmLoginController {
 			session.setAttribute("pname", memData.getPname());
 		}
 		else {
-			mm.addAttribute("msg","없는 회원입니다.");
+			mm.addAttribute("msg","아이디 또는 비밀번호를 잘못 입력하였습니다.");
 			mm.addAttribute("goUrl","/user/log/login");
 		}
 		return "user/log/alert";
@@ -174,7 +174,7 @@ public class HmLoginController {
 			
 			HmMemberDTO myData = lm.findId(dto);
 			
-			String msg = "일치하는 회원정보가 없습니다.";
+			String msg = "이름 또는 전화번호가 일치하지 않습니다.";
 			String goUrl = "/user/log/findId";
 			
 			if(myData!=null) {
@@ -201,7 +201,7 @@ public class HmLoginController {
 			int cnt = lm.findPw(dto);
 			
 			if(cnt==0) {
-				mm.addAttribute("msg", "일치하는 회원정보가 없습니다.");
+				mm.addAttribute("msg", "아이디 또는 비밀번호 확인이 일치하지 않습니다.");
 				mm.addAttribute("goUrl", "/user/log/findPw");
 				return "user/log/alert";
 			}
