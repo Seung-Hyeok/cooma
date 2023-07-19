@@ -1,0 +1,161 @@
+	.shresermenu{
+		width: 100%;
+		height: 30px;
+	}
+	
+	.shresermenu > a{
+		margin-left:50px;
+		font-size: 1.2em;
+		text-align: center;
+		color: #216A35;
+		font-weight: bold;
+	}
+	
+	.shsales{
+		margin: auto;
+		overflow: auto;
+		width: 1020px;
+		height: 500px;
+	}
+	.shsales2{
+		height: 25px;
+		border-bottom: 1px solid#438c57;
+
+	}
+	.shsales2 > div{
+		/*border: 1px solid#216A35;*/
+		float:left;
+		text-align: center;
+		margin: 1px;
+	}
+	.shtable{
+		width: 1000px;
+		border-collapse: collapse;
+		border: 2px solid#438c57; 
+		border-left:none;
+		border-right:none;
+		text-align: center;
+	}
+	.shtable a{
+		text-decoration: none;
+		color: #216A35;
+	}
+	.shtable input{
+	    padding: 0 5px 0 5px;
+	    border-radius: 4px;
+	    box-sizing: border-box;
+	    font-size: 1em;
+	}
+	.shtable select{
+	    width: 120px;
+	    height: 30px;
+	    padding: 5px 5px 5px 5px;
+	    border-radius: 4px;
+	    font-size: 1em;
+	}
+	.shtitle{
+		border: 2px solid#438c57;
+		height: 35px;
+		border-left:none;
+		border-right:none;
+		font-weight: bold;
+		color: #fff;
+		background-color: #438c57;
+	}
+	.shtitle > td{
+		border: 1px solid#fff;
+
+	}
+	.shp{
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 20px;
+	}
+	.shb{
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-weight: bold;
+	}
+	.shdetail{
+		width: 60%;
+		border-top: 1px solid #444444;
+		border-left:none;
+		border-right:none;
+		border-collapse: collapse;
+		text-align: center;
+	}
+	.shtd{
+		border-bottom: 1px solid #444444;
+		height: 50px;
+		color: #fff;
+		background-color: #438c57;
+		font-weight: bold;
+	}
+	.shtd2{
+		border-bottom: 1px solid #444444;
+		font-weight: bold;
+		text-align: center;
+		width: 200px;
+	}
+	.shtdr{
+		border-bottom: 1px solid #444444;
+		color: #fff;
+		background-color: #438c57;
+		height: 200px;
+		text-align: center;
+	}
+	.shtt{
+		border-bottom: 1px solid #444444;
+		height: 50px;
+	}
+	
+	#shbb{
+		width: 100px;
+	}
+	
+	.shtt > button{
+		width: 80px;
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-size :  1rem;
+		font-weight: bold;
+	}
+	.shaa{
+		text-decoration: none;
+		color: #216A35;
+		padding: 0.1rem 0.6rem;
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-size :  1rem;
+		font-weight: bold;
+	}
+	.shzz{
+		width: 80px;
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-size :  1rem;
+		font-weight: bold;
+	}
+	.shnoticeb{
+		width: 80px;
+		height: 35px;
+		color: #fff;
+		background-color: #216A35;
+		border: 1px solid#216A35;
+		border-radius: 4px;
+		font-size :  1rem;
+		font-weight: bold;
+	}
+	.shss{
+        margin: auto;
+        width: 1000px;
+    }
