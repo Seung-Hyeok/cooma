@@ -1616,3 +1616,38 @@ html{
 h1:first-of-type{
 	margin: 10px 0px 50px 50px;
 }
+
+.aram{
+	left: 50%;
+	font-size: 1.2rem;
+	color: #000;
+	position: absolute;
+	margin-left: -277.5px;
+    margin-top: 500px;
+    border-radius: 10px;
+}
+
+.aram > h2{
+	margin: 20px 0px 25px 30px;
+}
+
+.gsHome{
+	position: relative;
+}
+
+.main_info{
+	width:500px;
+	height:200px;
+	left: 50%;
+	font-size: 1.2rem;
+	color: #000;
+	position: absolute;
+	margin-left: -250px;
+    margin-top: 800px;
+    border-radius: 10px;
+    text-align: center;
+}
+.main_info > h2{
+	margin-bottom: 10px;
+	color:#324182;
+}
