@@ -17,7 +17,11 @@ layout:decorate="total/adTemp">
 			<form action="" th:object="${bhMemDTO}">
 				<tr>
 					<td colspan="7" align="center">
-						회원이름
+						<select th:field="*{kind}" class="bhSelLong">
+							<option value="pname">회원이름</option>
+							<option value="pid">회원아이디</option>
+						</select>
+						
 						<input type="text" th:field="*{sch}" class="bhInput"/>
 						&nbsp;&nbsp; 회원그룹
 						<select th:field="*{grade}" class="bhSelShort">
