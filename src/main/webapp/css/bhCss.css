@@ -137,6 +137,11 @@
 	color: #216A35;
 }
 
+.bhTARed{
+	font-weight: bold;
+	color: red;
+}
+
 /*------등하원 버튼 css------*/
 
 .bhAtBtn{

@@ -35,21 +35,41 @@ layout:decorate="total/adTemp">
 		</tr><tr>
 			<td class="bhTableDColor">관리자메모</td><td colspan="3" th:text="${bhDogData.adminMemo}" />
 		</tr>
-			<tr>
-				<td colspan="4" class="bhbold">예약 내역</td>
-			</tr>
-			<tr th:each="dto, dtoStat: ${bhDogsReser}">
-				<td th:text="${dtoStat.index+1}" class="bhTableDColor"/>
-				<th:block th:if="${dto.edu.equals('-')}">
-					<td colspan="3"><a th:href="|/admin/dogsReser/${dto.reserNo}|" class="bhTA" 
-					th:text="${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - 교육없음'"/></td>
-				</th:block>
-				<th:block th:unless="${dto.edu.equals('-')}">
-					<td colspan="3"><a th:href="|/admin/dogsReser/${dto.reserNo}|" class="bhTA" 
-					th:text="${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - '+${dto.edu}"/></td>
-				</th:block>
-			</tr>
-
+		
+		<tr>
+			<td colspan="4" class="bhbold">예약 내역</td>
+		</tr>
+		
+		<tr th:each="dto, dtoStat: ${bhDogsReser}">
+			<td th:text="${dtoStat.index+1}" class="bhTableDColor"/>
+			
+			<th:block th:if="${dto.edu.equals('-') and dto.refundD == null}">
+				<td colspan="3"><a th:href="|/admin/dogsReser/${dto.reserNo}|" class="bhTA" 
+				th:text="${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - 교육없음'"/></td>
+			</th:block>
+			
+			<th:block th:if="${!dto.edu.equals('-') and dto.refundD == null}">
+				<td colspan="3"><a th:href="|/admin/dogsReser/${dto.reserNo}|" class="bhTA" 
+				th:text="${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - '+${dto.edu}"/></td>
+			</th:block>
+			
+			<th:block th:if="${dto.edu.equals('-') and dto.refundD != null}">
+				<td colspan="3"><a th:href="|/admin/dogsReser/${dto.reserNo}|" class="bhTARed" 
+				th:text="'(환불) '+${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - 교육없음'"/></td>
+			</th:block>
+			
+			<th:block th:if="${!dto.edu.equals('-') and dto.refundD != null}">
+				<td colspan="3"><a th:href="|/admin/dogsReser/${dto.reserNo}|" class="bhTARed" 
+				th:text="'(환불) '+${dto.kind}+${dto.getTerm()}+': '+${dto.startDStr()}+'~'+${dto.endDStr()}+' ('+${dto.weeks}+') - '+${dto.edu}"/></td>
+			</th:block>
+		</tr>
+		
+		<th:block th:if="${bhDogsReser.size() == 0}">
+		<tr>
+			<td colspan="4"><span class="bhTARed">예약없음</span></td>
+		</tr>
+		</th:block>
+			
 		<tr>
 			<td colspan="4" align="center">
 				<a th:href="|/admin/memPid/${bhDogData.pid}|" th:if="${beforePage.equals('mem')}" class="bhBigButton">뒤로</a>

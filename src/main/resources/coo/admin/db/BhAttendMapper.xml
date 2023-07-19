@@ -189,6 +189,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	<select id="bhReserData" parameterType="bhAtDTO" resultType="bhAtDTO">
 		select * from reser where reserNo = #{reserNo}; 
 	</select>
+	
 <!-- 등교정보 -->
 	<!-- 출석 -->
 	<select id="bhAttYes" parameterType="bhAtDTO" resultType="bhAtDTO">
@@ -202,7 +203,8 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	<select id="bhAttNotyet" parameterType="bhAtDTO" resultType="bhAtDTO">
 		select * from daybyday where reserNo = #{reserNo} and oneday >= sysdate();
 	</select>
-	<select id="bhAttTot" parameterType="bhAtDTO" resultType="Integer">
-		select count(*) from daybyday where reserNo = #{reserNo};
+	<!-- 전체 등교 에정일 -->
+	<select id="bhAttTot" parameterType="bhAtDTO" resultType="bhAtDTO">
+		select * from reser where reserNo = #{reserNo};
 	</select>
 </mapper>

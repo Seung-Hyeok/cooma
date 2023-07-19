@@ -52,7 +52,7 @@ public interface BhAttendMapper {
 	List<BhAttendReserDTO> bhAttYes(BhAttendReserDTO getDaybydayData);
 	List<BhAttendReserDTO> bhAttNo(BhAttendReserDTO getDaybydayData);
 	List<BhAttendReserDTO> bhAttNotyet(BhAttendReserDTO getDaybydayData);
-	int bhAttTot(BhAttendReserDTO getDaybydayData);
+	BhAttendReserDTO bhAttTot(BhAttendReserDTO getDaybydayData);
 	
 	
 	

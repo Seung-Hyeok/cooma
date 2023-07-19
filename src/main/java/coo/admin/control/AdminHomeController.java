@@ -262,11 +262,11 @@ public class AdminHomeController {
 		mo.addAttribute("none",none);
 		mo.addAttribute("notyet",notyet);
 
-		//출석률
-		int totDay = am.bhAttTot(reser);
-		System.out.println("yes.size(): "+(yes.size()));
+		//출석률		
+		int totDay = (reser.getGap()/7)*reser.getWeeks().length();
 		mo.addAttribute("totDay",totDay);
-		
+		System.out.println("yes.size(): "+(yes.size()));
+
 		DecimalFormat df = new DecimalFormat("#.##");
         double number = ((double)yes.size()/(double)totDay)*100;
         double percent = Double.parseDouble(df.format(number));
