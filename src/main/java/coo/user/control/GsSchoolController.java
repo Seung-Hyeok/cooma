@@ -1,6 +1,7 @@
 package coo.user.control;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -51,9 +52,21 @@ public class GsSchoolController {
 		return "user/school/gsPackSelect";
 	}
 	@PostMapping("/user/school/packSelect/{dname}")
-	String detailSelect(Model mm, GsReserDTO drto) {
+	String detailSelect(HttpSession session,Model mm, GsReserDTO drto) {
 		System.out.println("detailSelect 진입");
 		System.out.println("drto"+drto);
+		String pid = (String)session.getAttribute("pid");
+		mm.addAttribute("pid", pid);
+		drto.setPid(pid);
+		List<GsReserDTO> reserDArr = grm.reserDArr(drto);
+		String[][] reserDArrBuf = new String[reserDArr.size()][2];
+		for(int i = 0 ; i<reserDArr.size(); i++) {
+			reserDArrBuf[i][0] = reserDArr.get(i).getStartD();
+			reserDArrBuf[i][1] = reserDArr.get(i).getEndD();
+			System.out.println(reserDArrBuf[i][0]+"====="+reserDArrBuf[i][1]);
+		}
+		mm.addAttribute("dayArr", reserDArrBuf);
+		mm.addAttribute("gaps", drto.getGap());
 		return "user/school/gsDetailSelect";
 	}
 	

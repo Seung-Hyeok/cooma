@@ -155,6 +155,11 @@ public class GsMyPageController {
 	    	}
 	    	else{
 	    		gdto.setRefund(0);
+	    		mm.addAttribute("msg","이용권 진행률이 50%를 초과하여 환불이 불가합니다");
+                mm.addAttribute("goUrl", "/user/myPage/buyDetail/"+gdto.getReserNo());
+        		
+        		return "user/myPage/alert";
+                
 	    	}
         }
         System.out.println("gdto"+gdto);

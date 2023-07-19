@@ -9,6 +9,7 @@ public interface GsReserMapper {
 	void buy(GsReserDTO dasdaa);
 	void dayBuy(GsReserDTO dasdaa);
 	
+	List<GsReserDTO> reserDArr(GsReserDTO drto);
 	
 	List<GsDogDTO> dogArr(String dashkjdh);
 	

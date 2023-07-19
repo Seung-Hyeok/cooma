@@ -19,6 +19,15 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		</where>
 	</select>
 	
+	<select id="reserDArr" parameterType="gsrDTO" resultType="gsrDTO">
+		select * from reser 
+		<where>
+			pid = #{pid} and dname = #{dname} and refund = 0 and endD > date_sub(sysdate(), interval 1 day)
+		</where>
+	</select>
+	
+	
+	
 	
 	
 	<insert id="buy" parameterType="gsrDTO">

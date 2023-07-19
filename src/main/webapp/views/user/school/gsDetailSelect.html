@@ -11,39 +11,56 @@ layout:decorate="total/userTemp">
 <th:block layout:fragment="content">
 
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-    $(document).ready(function () {
-      var today = new Date();
-      var threeMonthsLater = new Date();
-      threeMonthsLater.setMonth(today.getMonth() + 2);
-
-      var todayFormatted = formatDate(today);
-      var threeMonthsLaterFormatted = formatDate(threeMonthsLater);
-
-      $('#myDate').attr('min', todayFormatted);
-      $('#myDate').attr('max', threeMonthsLaterFormatted);
-      $('#myDate').attr('onchange', 'validateDate(this)');
-
-      var forbiddenDate = new Date("2023-08-25"); // 특정 날짜
-
-      function formatDate(date) {
-        var year = date.getFullYear();
-        var month = ('0' + (date.getMonth() + 1)).slice(-2);
-        var day = ('0' + date.getDate()).slice(-2);
-        return year + '-' + month + '-' + day;
-      }
-
-      function validateDate(input) {
-        var selectedDate = new Date(input.value);
-        var selectedDateFormatted = formatDate(selectedDate);
-
-        if (selectedDate.getTime() === forbiddenDate.getTime()) {
-          input.setCustomValidity('선택할 수 없는 날짜입니다.');
-        } else {
-          input.setCustomValidity('');
-        }
-      }
-    });
+    <script th:inline="javascript">
+    
+    $(document).ready(function() {
+    	  var today = new Date();
+    	  var threeMonthsLater = new Date();
+    	  threeMonthsLater.setMonth(today.getMonth() + 3);
+    	  
+    	  var todayFormatted = today.toISOString().split('T')[0];
+    	  var threeMonthsLaterFormatted = threeMonthsLater.toISOString().split('T')[0];
+    	  var gaps = /*[[${gaps}]]*/
+    	  var dayArr = /*[[${dayArr}]]*/
+    		  console.log(gaps)
+    	  
+    	  $('#myDate').attr('min', todayFormatted);
+    	  $('#myDate').attr('max', threeMonthsLaterFormatted);
+    	  $('#myDate').change(function(){
+    		alert('validateDate(this) 진'+dayArr[0][0])
+      	    var selectedDate = new Date(this.value);
+    		var selecteEnd = new Date(this.value);
+    		selecteEnd.setDate(selecteEnd.getDate() + gaps);
+    		
+      	    var selectedDateFormatted = selectedDate.toISOString().split('T')[0];
+      	 	 var selecteEndFormatted = selecteEnd.toISOString().split('T')[0];
+      	    
+      		var cnt = 1;
+      	    for(var i = 0 ; i < dayArr.length ; i++){
+      	    	
+      	    	var startDate = new Date(dayArr[i][0]);
+          	    var startDateFormatted = startDate.toISOString().split('T')[0];
+          		var endDate = new Date(dayArr[i][1]);
+        	    var endDateFormatted = endDate.toISOString().split('T')[0];
+        	  	var sss = dayArr[i][0];
+        	  	var eee = dayArr[i][1];
+        	  	
+        	  	
+        	  console.log(selectedDateFormatted, sss, eee)
+      	    	 if (selectedDateFormatted >= dayArr[i][0] && selectedDateFormatted <= dayArr[i][1] 
+      	    	 && endDateFormatted >= dayArr[i][0] && endDateFormatted <= dayArr[i][1]) {
+      	  	    	this.setCustomValidity('현재 사용중인 패키지와 중복되는 날짜입니다.');
+      	  	   		 break;
+      	  	    } else {
+      	  	    	cnt++;
+      	  	    }
+      	    	if(cnt == dayArr.length){
+      	    		this.setCustomValidity('');
+      	    	}
+      	    } 
+    	  })
+    	  
+    	});
     </script>
 <h1>상세정보 입력</h1>
 <hr>
