@@ -21,6 +21,12 @@ layout:decorate="total/userTemp">
 				  </a><br>
 				  크기 : <span th:text="${dto.dogsize}"></span><br>
 				  견종 : <span th:text="${dto.breed}"></span><br>
+				  최근 이용권 : <br>
+				   <th:block th:each="kk: ${dogReser}">
+					  <th:block th:if="${kk.dname == dto.dname}">
+						<span th:text="${kk.startD+'~'+kk.endD}"></span><br>
+					  </th:block>
+				   </th:block>
 				  
 				  </div>
 			</div>

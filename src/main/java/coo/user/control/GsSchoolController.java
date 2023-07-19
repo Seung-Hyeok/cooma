@@ -35,9 +35,11 @@ public class GsSchoolController {
 			return "user/log/alert";
 		}
 		List<GsDogDTO> dogData = grm.dogArr(pid);
+		List<GsReserDTO> dogReser = grm.reserDog(pid);
 		System.out.println("dogSelect 진입");
 		System.out.println("dogData"+dogData);
 		mm.addAttribute("dogData", dogData);
+		mm.addAttribute("dogReser", dogReser);
 		return "user/school/gsDogSelect";
 	}
 	@GetMapping("/user/school/packSelect/{dname}")
@@ -65,6 +67,8 @@ public class GsSchoolController {
 			reserDArrBuf[i][1] = reserDArr.get(i).getEndD();
 			System.out.println(reserDArrBuf[i][0]+"====="+reserDArrBuf[i][1]);
 		}
+		List<GsReserDTO> dogReser = grm.reserDog(pid);
+		mm.addAttribute("dogReser", dogReser);
 		mm.addAttribute("dayArr", reserDArrBuf);
 		mm.addAttribute("gaps", drto.getGap());
 		return "user/school/gsDetailSelect";

@@ -11,6 +11,8 @@ public interface GsReserMapper {
 	
 	List<GsReserDTO> reserDArr(GsReserDTO drto);
 	
+	List<GsReserDTO> reserDog(String dashkjdh);
+	
 	List<GsDogDTO> dogArr(String dashkjdh);
 	
 	GsDogDTO pack(GsDogDTO dasdaa);

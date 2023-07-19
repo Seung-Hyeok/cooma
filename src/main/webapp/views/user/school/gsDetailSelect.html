@@ -35,27 +35,24 @@ layout:decorate="total/userTemp">
       	    var selectedDateFormatted = selectedDate.toISOString().split('T')[0];
       	 	 var selecteEndFormatted = selecteEnd.toISOString().split('T')[0];
       	    
-      		var cnt = 1;
+      		var cnt = 0;
       	    for(var i = 0 ; i < dayArr.length ; i++){
       	    	
-      	    	var startDate = new Date(dayArr[i][0]);
-          	    var startDateFormatted = startDate.toISOString().split('T')[0];
-          		var endDate = new Date(dayArr[i][1]);
-        	    var endDateFormatted = endDate.toISOString().split('T')[0];
-        	  	var sss = dayArr[i][0];
-        	  	var eee = dayArr[i][1];
+      	    	cnt++;
         	  	
-        	  	
-        	  console.log(selectedDateFormatted, sss, eee)
-      	    	 if (selectedDateFormatted >= dayArr[i][0] && selectedDateFormatted <= dayArr[i][1] 
-      	    	 && endDateFormatted >= dayArr[i][0] && endDateFormatted <= dayArr[i][1]) {
+        	  console.log(selectedDateFormatted, dayArr[i][0], dayArr[i][1])
+      	    	 if ((selectedDateFormatted >= dayArr[i][0] && selectedDateFormatted <= dayArr[i][1])
+      	    	 || (selecteEndFormatted >= dayArr[i][0] && selecteEndFormatted <= dayArr[i][1])) {
       	  	    	this.setCustomValidity('현재 사용중인 패키지와 중복되는 날짜입니다.');
-      	  	   		 break;
+      	  	  	  cnt=0;
+      	  	 	   break;
       	  	    } else {
-      	  	    	cnt++;
+      	  	    	
       	  	    }
       	    	if(cnt == dayArr.length){
       	    		this.setCustomValidity('');
+      	    		cnt=0;
+      	    		 break;
       	    	}
       	    } 
     	  })
@@ -81,6 +78,13 @@ layout:decorate="total/userTemp">
 		</select>
 		<h2>요청 사항</h2>
 		<textarea name="reque"></textarea>
+		<h2>현재 보유 이용권</h2>
+		  <th:block th:each="kk: ${dogReser}">
+			  <th:block th:if="${kk.dname == gsReserDTO.dname}">
+				<span th:text="${kk.startD+' ~ '+kk.endD}"></span><br>
+			  </th:block>
+		   </th:block>
+				  
 		<h2>등원 날짜</h2>
 		<input type="date" id="myDate" name="startD" required="required"/>
 		</br></br>

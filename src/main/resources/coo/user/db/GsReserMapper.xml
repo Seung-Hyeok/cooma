@@ -26,7 +26,12 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 		</where>
 	</select>
 	
-	
+	<select id="reserDog" parameterType="String" resultType="gsrDTO">
+		select * from reser 
+		<where>
+			pid = #{pid} and refund = 0 and endD > date_sub(sysdate(), interval 1 day)
+		</where>
+	</select>
 	
 	
 	
