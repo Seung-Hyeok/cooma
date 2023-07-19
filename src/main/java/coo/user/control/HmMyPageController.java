@@ -100,7 +100,7 @@ public class HmMyPageController {
 		int reserChk =  mp.myReser(dto);
 		
 		if(reserChk >= 1) {
-			mm.addAttribute("msg", "회원탈퇴는 예약기간 종료 또는 환불 이후 가능합니다");
+			mm.addAttribute("msg", "회원탈퇴는 예약기간 종료 또는 환불 이후 가능합니다.");
 			mm.addAttribute("goUrl", "/user/myPage/gsMyList");
 		} else {
 		    	

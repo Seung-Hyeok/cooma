@@ -153,7 +153,7 @@ html{
 }
 
 .hmJoinForm a {
-	padding: 6px 10px;
+	padding: 6.5px 10px;
 }
 
 .hmJoinForm input[type="submit"]:hover,
@@ -271,7 +271,7 @@ html{
 }
 
  .hmmodify a {
-	padding: 6px 10px;
+	padding: 6.5px 10px;
 }
  /*강아지정보수정*/
  .hmdogModi table {
@@ -362,8 +362,8 @@ html{
 }
 
 .hmdogModi a {
-	padding: 6px 10px;
-}	
+	padding: 6.5px 10px;
+}
 /*강아지등록*/
 .hmdogJoin table {
 	width: 70%;
@@ -1613,6 +1613,6 @@ html{
 .build_con h2, .build_con h3{
 	color: #324182;
 }
-h1{
+h1:first-of-type{
 	margin: 10px 0px 50px 50px;
 }
