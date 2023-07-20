@@ -54,10 +54,10 @@ layout:decorate="total/userTemp">
 		<td th:text="${dto.kind}"></td>
 		<td th:text="${dto.dname}"></td>
 		<td th:text="${dto.weeks}"></td>
-		<th:block th:if="${dto.refund != 0}">
-		<td style="color:tomato;" th:text="${'환불 대기'}"></td>
+		<th:block th:if="${!dto.refundChk && dto.refund != 0}">
+		<td style="color:dodgerblue;" th:text="${'환불 대기'}"></td>
 		</th:block>
-		<th:block th:if="${dto.refund != 0 }">
+		<th:block th:if="${dto.refundChk}">
 		<td style="color:tomato;" th:text="${'환불 완료'}"></td>
 		</th:block>
 		<th:block th:if="${dto.refund == 0}">

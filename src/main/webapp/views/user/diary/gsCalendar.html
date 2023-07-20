@@ -21,6 +21,7 @@ layout:decorate="total/userTemp">
 		<input  class="gsButton"  type="submit" value="검색"/>
 	</form>
 </div>
+
     <div class="myGsDiary">
 	    <div id="gsWk" th:each="wk : ${#numbers.sequence(0,6,1)}">
 	     <span  th:text="${'일월화수목금토'.split('')[wk]}" ></span>
@@ -29,7 +30,33 @@ layout:decorate="total/userTemp">
 	    	<span class="gsNumBefo" th:text="${ dattBefo-no}" ></span></br>
 	    </div>
 	    <div th:each="no : ${#numbers.sequence(1,datt,1)}">
+	  	  <th:block th:if="${todate == no}">
+		    <span id="gsNum" th:text="${no}" style="color:#32CD32;"></span></br>
+		     
+		     <th:block th:each="fu : ${future}">
+		    	 <th:block th:if="${fu.oneD == no+''}">
+		    		
+		    		<th:block th:if="${fu.goHomeStr() != ''}">
+		    		<span  class="gsSmile" >☻</span> 
+		    		<span th:text="${ fu.dname+' (출석)'}" ></span>
+		    		<span th:text="${fu.attendTimeStr()+'~'+fu.goHomeStr()}" ></span></br>
+		    		 </th:block>
+		    		 <th:block th:if="${fu.attendTimeStr() != '' && fu.goHomeStr() == ''}">
+		    		<span  style="color:#32CD32;" >☻</span> <span th:text="${ fu.dname+' (수업중) 등원-'+fu.attendTimeStr()}" ></span></br>
+		    		 </th:block>
+		    		 <th:block th:if="${fu.attendTimeStr() == ''}">
+		    		<span >☻</span> <span th:text="${ fu.dname+' (등교일!)'}" ></span></br>
+		    		 </th:block>
+		   		 </th:block>
+		    </th:block> 
+		    </th:block>
+		    
+		    
+		    
+		    
+		    <th:block th:if="${todate != no}">
 		    <span id="gsNum" th:text="${no}" ></span></br>
+		    
 		    <th:block th:each="sh : ${show}">
 		    	 <th:block th:if="${sh.oneD == no+''}">
 		    		<span class="gsSmile">☻</span> <span th:text="${ sh.dname+' (출석)'}" ></span>
@@ -44,10 +71,11 @@ layout:decorate="total/userTemp">
 		    </th:block> 
 		    <th:block th:each="fu : ${future}">
 		    	 <th:block th:if="${fu.oneD == no+''}">
-		    		<span>☻</span> <span th:text="${ fu.dname+' -등교일!'}" ></span>
+		    		<span>☻</span> <span th:text="${  fu.dname+' (등교일!)'}" ></span>
 		    		 </br>
 		   		 </th:block>
 		    </th:block> 
+		    </th:block>
 	    </div>
     </div>
      

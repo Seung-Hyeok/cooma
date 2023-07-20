@@ -48,6 +48,8 @@ public class GsDiaryController {
 	
 		String todd = "이번달 출석부";
 		Calendar today= Calendar.getInstance(),befoMon = Calendar.getInstance();
+		
+		mm.addAttribute("todate",today.get(Calendar.DAY_OF_MONTH));
 		today.set(Calendar.DAY_OF_MONTH, 1);
 		befoMon.set(Calendar.DAY_OF_MONTH, -1);
 		String ymChk = today.get(Calendar.YEAR)+"";
@@ -114,11 +116,19 @@ public class GsDiaryController {
 		}
 		gdto.setPid(pid);
 	
-		Calendar today= Calendar.getInstance(),befoMon = Calendar.getInstance();
+		Calendar today= Calendar.getInstance(),befoMon = Calendar.getInstance(),todate = Calendar.getInstance();
 		
 		int year = Integer.parseInt(month.split("-")[0]);
 		int mon = Integer.parseInt(month.split("-")[1]);
 		today.set(year,mon-1, 1);
+		
+		if(today.get(Calendar.YEAR)==todate.get(Calendar.YEAR) 
+		&& today.get(Calendar.MONTH)==todate.get(Calendar.MONTH)) {
+		mm.addAttribute("todate",todate.get(Calendar.DAY_OF_MONTH));
+		}
+		else {
+			mm.addAttribute("todate",0);
+		}
 		befoMon.set(year,mon-1, -1);
 		String todd = year+"년 "+mon+"월 출석부";
 		String ymChk = month;

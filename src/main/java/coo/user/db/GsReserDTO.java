@@ -16,6 +16,7 @@ public class GsReserDTO {
 	Integer reserNo,pay,refund,gap,totFee,eduFee;
 	String payD,startD,endD,attendTime,goHome;
 	Date oneDay;
+	boolean refundChk;
 	
 	public String gap() {
 
@@ -62,9 +63,15 @@ public class GsReserDTO {
 	}
 	
 	public String attendTimeStr() {
+		if(attendTime==null) {
+			return "";
+		}
 		return attendTime.split(" ")[1].substring(0, 5);
 	}
 	public String goHomeStr() {
+		if(goHome==null) {
+			return "";
+		}
 		return goHome.split(" ")[1].substring(0, 5);
 	}
 	
