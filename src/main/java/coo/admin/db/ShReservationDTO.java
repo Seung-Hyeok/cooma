@@ -16,6 +16,7 @@ public class ShReservationDTO {
 	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account, sch, month;
 	Integer reserNo, pay, refund, cnt, eduFee, totFee, gap, amount;
 	Date payD, startD, endD, refundD;
+	boolean refundChk;
 	
 	
 	public ShReservationDTO(String month, Integer amount) {
