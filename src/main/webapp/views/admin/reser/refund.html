@@ -80,7 +80,7 @@ layout:decorate="total/adTemp">
 			</th:block>
 			<th:block th:unless="${dto.refundChk}">
 				<td>
-					<button onclick="confirmation(this)" th:text="환불진행" th:value="${dto.reserNo}" class="bhAtBtn"/>
+					<button onclick="confirmation(this)" th:text="환불요청" th:value="${dto.reserNo}" class="bhAtBtn"/>
 				</td>
 			</th:block>
 		</tr>
