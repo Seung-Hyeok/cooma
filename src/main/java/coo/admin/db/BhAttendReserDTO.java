@@ -69,6 +69,8 @@ public class BhAttendReserDTO {
 	String pid, dname, edu, reque, kind, dogsize, weeks, bank, account;
 	Date payD, startD, endD, refundD, today = new Date();
 	Integer reserNo, pay, eduFee, totFee, gap, refund;
+	Boolean refundChk;
+	
 	public Date getToday() {
         // Calendar 객체를 사용하여 날짜를 0시 0분 0초로 설정
         Calendar calendar = Calendar.getInstance();

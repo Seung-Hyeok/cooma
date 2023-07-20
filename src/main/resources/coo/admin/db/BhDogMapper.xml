@@ -73,6 +73,10 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 	</select>	
 	
 <!-- 수정 -->
+	<select id="bhDogGradeChk" parameterType="bhdDTO" resultType="Integer">
+		select count(*) from reser where dname = #{dname} and pid = #{pid} and endD >= #{today} and refundD is null
+	</select>
+
 	<update id="bhDogModify" parameterType="bhdDTO">
 		update dogs set weight = #{weight}, dogsize = #{dogsize}, grade = #{grade}, adminMemo = #{adminMemo}, blackMemo = #{blackMemo}  
 		where dname = #{dname} and pid = #{pid}
@@ -81,7 +85,7 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 <!-- 삭제 -->
 
 	<select id="bhDogBeforeDelete" parameterType="bhdDTO" resultType="Integer">
-		select count(*) from reser where dname = #{dname} and pid = #{pid} and endD >= #{today} and refund=0
+		select count(*) from reser where dname = #{dname} and pid = #{pid} and endD >= #{today} and refundD is null
 	</select>
 
 	<delete id="bhDogDelete" parameterType="bhdDTO">

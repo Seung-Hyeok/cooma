@@ -74,16 +74,30 @@ public class BhMemController {
 		String pid = (String)session.getAttribute("pid");
 		mo.addAttribute("pid", pid);
 		
-		int cnt = mm.bhMemModify(mem);
 		System.out.println("bhMemModifyDone() 진입");
 
-		String msg = "수정이 되지 않았습니다.";
+		//예약이 있는지 확인 => 예약이 있으면 reserChk = 1
+		System.out.println("등급:"+mem.getGrade());
+		int reserChk = 0;
+		if(mem.getGrade().equals("블랙")) {
+			reserChk = mm.bhMemGradeChk(mem);
+		}
+		
+		//예약이 없으면 변경 
+		int cnt = 0;
+		if(reserChk == 0) {
+			cnt = mm.bhMemModify(mem);
+		}
+
+		String msg = "예약이 있어 블랙으로 변경되지 않았습니다.";
 		String goUrl = "/admin/memModi/"+mem.getPid();
+		
 		if(cnt==1) {
 			msg = "수정되었습니다.";
 			goUrl = "/admin/memPid/"+mem.getPid();
 		}
 		System.out.println("수정갯수:"+cnt);
+		
 		mo.addAttribute("msg", msg);
 		mo.addAttribute("goUrl", goUrl);
 		return "admin/mems/bhalert";
@@ -109,10 +123,10 @@ public class BhMemController {
 		System.out.println("bhMemDeleteDone() 진입");
 		int chkReser = mm.bhMemBeforeDelete(mem);
 		
-		int chk1=0, chk2=0;
 		String msg = "예약이 남아 있어 삭제되지 않습니다.";
 		String goUrl = "/admin/memDelete/"+mem.getPid();
 		
+		int chk1=0, chk2=0;
 		if(chkReser == 0) {
 			chk1 = mm.bhMemDelete(mem);
 			chk2 = mm.bhMemsDogDelete(mem);

@@ -14,12 +14,34 @@ layout:decorate="total/adTemp">
 		var inputElement = document.getElementById('weight');
 		var trimmedValue = inputElement.value.trim();
 		
-		if (trimmedValue === "") {
+		console.log(trimmedValue);
+		
+   var getGrade = document.getElementById('grade').value;
+
+    var inputChkBlackMemo = document.getElementById('blackMemo');
+    var trimMemo = inputChkBlackMemo.value.trim();
+		
+		console.log(getGrade);
+		console.log(inputChkBlackMemo);
+		
+		if(trimmedValue === "") {
 			alert("무게 입력바랍니다.")
 			return false; // Submit 막기
 		} else if (parseInt(trimmedValue) <= 0) {
 			alert("정확한 무게 입력바랍니다.")
 			return false; // Submit 막기
+		} 
+		
+		else if (getGrade === "일반") {
+			if(trimMemo !== ""){
+				alert("일반은 블랙 사유가 없어야 합니다.")
+				return false; // Submit 막기
+			}
+		} else if (getGrade === "블랙") {
+			if(trimMemo === ""){
+				alert("블랙 사유를 입력해 주세요.")
+				return false; // Submit 막기
+			}
 		} else {
 			return true; // Submit 진행
 		}
@@ -74,7 +96,7 @@ layout:decorate="total/adTemp">
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<input type="submit" value="수정" class="bhBigButton" onclick="return trimInput()"/>
+					<input onclick="return trimInput()" type="submit" value="수정" class="bhBigButton"/>
 					<input type="reset" value="초기화" class="bhBigButton" />
 					<a th:href="|/admin/dogInform/*{dname}/*{pid}|" th:text="뒤로" class="bhBigButton"></a>
 				</td>

@@ -57,6 +57,10 @@ PUBLIC "-//mybatis.org/DTO Mapper3.0//EN"
 		select * from dogs <include refid="wid" />
 	</select>
 <!-- 수정 -->
+	<select id="bhMemGradeChk" parameterType="bhmDTO" resultType="Integer">
+		select count(*) from reser where pid = #{pid} and endD >= #{today} and refundD is null
+	</select>
+	
 	<update id="bhMemModify" parameterType="bhmDTO">
 		update member set grade = #{grade} 
 		where pid = #{pid}

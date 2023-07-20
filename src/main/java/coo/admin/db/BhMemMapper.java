@@ -16,6 +16,7 @@ public interface BhMemMapper {
 	//강아지들
 	List<BhDogsDTO> bhMemsDog(BhMemDTO mem);
 //수정	
+	int bhMemGradeChk(BhMemDTO mem);
 	int bhMemModify(BhMemDTO mem);
 //삭제
 	//삭제전 예약 확인
