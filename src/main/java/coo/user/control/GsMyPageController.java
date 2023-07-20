@@ -134,16 +134,17 @@ public class GsMyPageController {
 		
         long diff = start.getTime() - today.getTime();
         int chk = (int)(diff / (24 * 60 * 60 * 1000));
-        
+        System.out.println("chk"+chk);
         if(chk>0) {
-	        if(chk<=1) {
+	        if(chk<=5) {
 	        	gdto.setRefund(gdto.getTotFee()/5*4);
 	        }
-	        else if(chk<=5) {
+	        else if(chk<=10) {
 	        	gdto.setRefund(gdto.getTotFee()/10*9);
 	        }
 	        else {
 	        	gdto.setRefund(gdto.getTotFee());
+	        System.out.println("ddddddddd");
 	        }
         }
         else {
