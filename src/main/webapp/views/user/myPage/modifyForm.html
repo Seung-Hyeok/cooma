@@ -103,10 +103,10 @@ function frmChk() {
 		return false;
 	}
 	
-	if (!validTel()) { // 수정된 유효성 검사 함수 호출
-		alert("전화번호를 형식에 맞게 입력해주세요.");
-		return false;
-	  }
+//	if (!validTel()) { // 수정된 유효성 검사 함수 호출
+//		alert("전화번호를 형식에 맞게 입력해주세요.");
+//		return false;
+//	  }
 	
 	if($("#address").val().trim()==""){ //6
 		alert("주소를 입력해주세요.");
@@ -153,7 +153,7 @@ function frmChk() {
 		</tr>
 		<tr>
 			<td class="tt">전화번호</td>
-			<td><input type="text" th:field="*{tel}" id="tel" oninput="validTel(this.value)" /></td>
+			<td th:text="${myData.tel}"/>
 		</tr>
 		<tr>
 			<td class="tt">생년월일</td>

@@ -10,8 +10,4 @@ public class HmFileData {
 	String birthstr;
 	
 	String email2;
-	
-	String tel1;
-	String tel2;
-	String tel3;
 }

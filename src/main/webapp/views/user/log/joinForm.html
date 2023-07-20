@@ -9,7 +9,10 @@ layout:decorate="total/userTemp">
 <th:block layout:fragment="content" >
 <script type="text/javascript" src="/qqq/jquery_3_6_3.js"></script>
 <script th:inline="javascript">
+
 var idchkchke = false;
+var teltelchk = false;
+
 $(function(){
     $("#checkId").click(function(){
     
@@ -28,6 +31,7 @@ $(function(){
 					document.getElementById('pid').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
 					result="아이디를 정확히 적어주세요.";
                     $("#result_checkId").html(result).css("color","red");
+                    $("#pid").val("").trigger("focus");
 					return
 				}
              if(data == "N"){ // 만약 성공할시
@@ -62,7 +66,63 @@ $(function(){
     });
     
 });
+
+$(function(){
+    $("#checkTel").click(function(){
+    
+        let tel = $("#tel").val();
+         
+        $.ajax({
+            type:'post', //post 형식으로 controller 에 보내기위함!!
+            url:"/user/checkTel.do", // 컨트롤러로 가는 mapping 입력
+            data: {"tel":tel}, // 원하는 값을 중복확인하기위해서  JSON 형태로 DATA 전송
+            success: function(data){ 
+            	console.log(data);
+            	var regex = /^010-[0-9]{4}-[0-9]{4}$/;
+            	
+				if(!regex.test($("#tel").val().trim())){
+					//alert("전화번호 양식에 맞게 적어주세요.")
+					document.getElementById('tel').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+					result="전화번호 양식에 맞게 적어주세요.";
+                    $("#result_checkTel").html(result).css("color","red");
+                    $("#tel").val("").trigger("focus");
+					return
+				}
+             if(data == "NN"){ // 만약 성공할시
+                    result = "사용 가능한 전화번호입니다.";
+                    $("#result_checkTel").html(result).css("color", "green");
+                    document.getElementById('tel').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+                    checkDuplateTel = $("#tel").val()
+                    teltelchk = true;
+                 
+             }else if(data == "YY"){ // 만약 실패할시
+                 result="이미 등록된 전화번호입니다.";
+                     $("#result_checkTel").html(result).css("color","red");
+                     document.getElementById('tel').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+                     $("#tel").val("").trigger("focus");
+                     teltelchk = false;
+                     
+             }else{ // 만약 실패할시
+                 result="전화번호를 적어주세요.";
+                 $("#result_checkTel").html(result).css("color","red");
+                 document.getElementById('tel').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+                 $("#tel").val("").trigger("focus");
+                 teltelchk = false;
+         }
+                 
+         },
+            error : function(error){
+            	alert(error);
+            	console.log(data);            	
+            }
+        });
+        
+    });
+    
+});
+
 </script>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script th:inline="javascript">
 window.onload = function() {
@@ -79,8 +139,10 @@ window.onload = function() {
 
 }
 </script>
+
 <script th:inline="javascript">
 var checkDuplateId = "";
+var checkDuplateTel = "";
 //유효성 실시간 검사
 //비밀번호 유효성
 function validPw(pw = $("#pw").val().trim()) {
@@ -138,32 +200,32 @@ function validBirth(birth = $("#birth").val().trim()) {
 }
 
 //전화번호 유효성
-function validTel(tel2 = $("#tel2").val().trim(), tel3 = $("#tel3").val().trim()) {
+// function validTel(tel2 = $("#tel2").val().trim(), tel3 = $("#tel3").val().trim()) {
 	
-	var regex = /^[0-9]{4}$/;
+// 	var regex = /^[0-9]{4}$/;
 	
-	var isValid2 = regex.test(tel2);
-	var isValid3 = regex.test(tel3);
+// 	var isValid2 = regex.test(tel2);
+// 	var isValid3 = regex.test(tel3);
 
-	if (isValid2) {
-		document.getElementById('tel2').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
-	} else {
-		document.getElementById('tel2').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
-	}
+// 	if (isValid2) {
+// 		document.getElementById('tel2').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+// 	} else {
+// 		document.getElementById('tel2').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+// 	}
 	
-	if (isValid3) {
-		document.getElementById('tel3').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
-	} else {
-		document.getElementById('tel3').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
-	}
+// 	if (isValid3) {
+// 		document.getElementById('tel3').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+// 	} else {
+// 		document.getElementById('tel3').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+// 	}
 	
-	if (isValid3 && isValid2) {
-		document.getElementById('tel1').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
-	} else {
-		document.getElementById('tel1').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
-	}
-	return isValid2&&isValid3;
-}
+// 	if (isValid3 && isValid2) {
+// 		document.getElementById('tel1').style.backgroundColor = 'rgba(0, 255, 100, 0.3)';
+// 	} else {
+// 		document.getElementById('tel1').style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+// 	}
+// 	return isValid2&&isValid3;
+// }
 
 //이메일 유효성
 function validEmail(email = $("#email").val().trim()) {
@@ -261,8 +323,8 @@ function frmChk() {
 		return false;
 	}
 	
-	if(!validTel()){ //5
-		alert("전화번호를 양식에 맞게 입력해주세요.");
+	if(checkDuplateTel != $("#tel").val().trim() || !teltelchk){ //5
+		alert("전화번호 중복확인 검사를 해주세요.");
 		return false;
 	}
 	
@@ -397,9 +459,9 @@ function frmChk() {
 		<tr>
 			<td class="tt">전화번호</td>
 			<td>
-				<input type="text" id="tel1" name="tel1" value="010" readonly />-
-				<input type="text" id="tel2" name="tel2" oninput="validTel(this.value)" />-
-				<input type="text" id="tel3" name="tel3" oninput="validTel(this.value)" />
+				<input type="text"  id="tel" th:field="*{tel}" />
+			    <input type="button" id="checkTel" value="중복검사"><br/>
+			    <div><span id="result_checkTel" style="font-size:12px;"></span></div>
 			</td>
 		</tr>
 		

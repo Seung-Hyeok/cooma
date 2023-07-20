@@ -69,7 +69,11 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 	</delete>
 	 
 	<select id="checkId" parameterType="String" resultType="int">
-	        select count(*) from member where pid=#{pid}
+	        select count(*) from member where pid = #{pid}
+    </select>
+    
+    <select id="checkTel" parameterType="String" resultType="int">
+	        select count(*) from member where tel = #{tel}
     </select>
     
     <select id="checkDay" parameterType="hmDaybydayDTO" resultType="hmDaybydayDTO">
@@ -77,11 +81,11 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
     </select>
 	
 	<select id="findId" parameterType="hmMemberDTO" resultType="hmMemberDTO">
-	        select * from member where pname=#{pname} and tel =#{tel}
+	        select * from member where pname=#{pname} and tel = #{tel}
     </select>
     
     <select id="findPw" parameterType="hmMemberDTO" resultType="int">
-	        select count(*) from member where pid=#{pid} and pwquestion =#{pwquestion} and pwanswer =#{pwanswer}
+	        select count(*) from member where pid=#{pid} and pwquestion = #{pwquestion} and pwanswer =#{pwanswer}
     </select>
     
     <update id="rePw" parameterType="hmMemberDTO" >

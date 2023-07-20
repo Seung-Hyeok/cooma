@@ -46,6 +46,9 @@ public interface HmLoginMapper {
 	//아이디중복확인
 	int checkId(String sfds);
 	
+	//전화번호중복확인
+	int checkTel(String sfds);
+	
 	List<HmDaybydayDTO> checkDay(String sfds);
 	
 	HmMemberDTO findId(HmMemberDTO sdf);
