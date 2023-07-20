@@ -62,7 +62,7 @@ public class HmMyPageController {
 			
 			String pid = (String)session.getAttribute("pid");
 			dto.setPid(pid);
-			dto.setAddr2(dto.getAddr2().stripLeading());
+			dto.setAddr2(dto.getAddr2().trim());
 			int cnt = mp.modify(dto);
 			
 			String msg = "비밀번호가 일치하지 않습니다.";

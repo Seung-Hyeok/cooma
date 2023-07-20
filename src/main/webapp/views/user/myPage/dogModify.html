@@ -20,6 +20,18 @@ function validWeight(weight = $("#weight").val().trim()) {
     return isValid;
 }
 
+//파일 확장자 체크 함수
+function checkDogImg(filename) {
+    var validExtensions = ["jpg", "jpeg", "png", "gif"]; // 허용할 이미지 확장자 목록
+    var ext = filename.split('.').pop().toLowerCase();
+
+    if (validExtensions.indexOf(ext) === -1) {
+        return false; // 허용하지 않는 확장자인 경우 false 반환
+    }
+
+    return true;
+}
+
 function frmChk(){
 	 if (!validWeight()) {//14
 		 alert("무게는 숫자 형식으로 입력해주세요.");
@@ -27,6 +39,11 @@ function frmChk(){
 	    }
 
 	    return true;
+	 
+    if (!checkDogImg($("#dogimg").val().trim()) && $("#dogimg").get(0).files.length != 0) {
+        alert("이미지 파일만 업로드 가능합니다 (jpg, jpeg, png, gif).");
+        return false;
+    }
 }
 </script>
 <div class="myPageMenu">

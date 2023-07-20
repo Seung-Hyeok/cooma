@@ -37,6 +37,9 @@ layout:decorate="total/userTemp">
 	<tr>
 		<td colspan="2" align=center class="hmtitlekind">애견정보</td>
 	</tr>
+	<tr th:if="${dogData.grade == '블랙'}" class="hmDogBlack">
+		<td class="tt">블랙사유</td><td th:utext="${dogData.blackMemoBr}" />
+	</tr>
 	<tr>
 		<td class="tt">이름</td><td th:text="${dogData.dname}" />
 	</tr>
@@ -69,7 +72,7 @@ layout:decorate="total/userTemp">
 	<tr>
 		<td colspan="2" align="right">
 			<a th:href="|/user/myPage/dogList|" th:text="목록으로" />
-			<a th:href="|/user/myPage/dogModify/${dogData.dname}|" th:text="수정"/>
+			<a th:if="${dogData.grade != '블랙'}" th:href="|/user/myPage/dogModify/${dogData.dname}|" th:text="수정"/>
 			<button onclick="dogConfirm()">등록해제</button>
 		</td>
 	</tr>

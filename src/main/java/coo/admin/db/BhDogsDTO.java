@@ -49,4 +49,10 @@ public class BhDogsDTO {
 		int getM = (thisTotM-birthTotM)-getY*12;
 		return getY+"년 "+getM+"개월 생";
 	}
+	
+	String blackMemo;
+	
+	public String blackMemoBr() {
+		return blackMemo.replaceAll("\n", "<br/>"); //여기서 줄바꿈으로 출력될수있게 한다
+	}
 }

@@ -436,6 +436,14 @@ input[data-placeholder]::before{
 	font-size: 1em;
 }
 
+.hmTextA{
+	width: 95%;
+	height: 30px;
+	box-sizing: content-box;
+	padding: 5px;
+	font-size: 1em;
+}
+
 /*삭제테이블*/
 .bhDeletT > td{
 	border: none;

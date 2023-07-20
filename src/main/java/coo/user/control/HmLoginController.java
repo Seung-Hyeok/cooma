@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
-import java.util.Random;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,8 +42,8 @@ public class HmLoginController {
 	    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			dto.setEmail(dto.getEmail()+"@"+fd.getEmail2());
 			dto.setTel(fd.getTel1()+"-"+fd.getTel2()+"-"+fd.getTel3());
-			dto.setPwanswer(dto.getPwanswer().stripLeading());
-			dto.setAddr2(dto.getAddr2().stripLeading());
+			dto.setPwanswer(dto.getPwanswer().trim());
+			dto.setAddr2(dto.getAddr2().trim());
 		    try {
 		        Date birthDate = format.parse(fd.getBirthstr());
 		        dto.setBirth(birthDate);
@@ -183,7 +180,7 @@ public class HmLoginController {
 			String goUrl = "/user/log/findId";
 			
 			if(myData!=null) {
-				msg = "아이디:"+myData.getPid();
+				msg = "아이디: "+myData.getPid();
 				goUrl = "/user/log/login";
 			}
 			

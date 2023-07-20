@@ -229,6 +229,18 @@ function validBreed(breed = $("#breed").val().trim()) {
     return isValid;
 }
 
+//파일 확장자 체크 함수
+function checkDogImg(filename) {
+    var validExtensions = ["jpg", "jpeg", "png", "gif"]; // 허용할 이미지 확장자 목록
+    var ext = filename.split('.').pop().toLowerCase();
+
+    if (validExtensions.indexOf(ext) === -1) {
+        return false; // 허용하지 않는 확장자인 경우 false 반환
+    }
+
+    return true;
+}
+
 function frmChk() {
 	 if (checkDuplateId != $("#pid").val().trim() || !idchkchke) {
 	        alert("아이디 중복확인 검사를 해주세요.");
@@ -315,7 +327,7 @@ function frmChk() {
 	}
 	
 	if($("#dyear").val().trim()==""){ //18
-		alert("강아지가 태여난 년도를 선택해주세요.");
+		alert("강아지가 태어난 년도를 선택해주세요.");
 		return false;
 	}
 	
@@ -323,6 +335,11 @@ function frmChk() {
 		alert("강아지가 태어난 달을 선택해주세요.");
 		return false;
 	}
+	
+	if (!checkDogImg($("#dogimg").val().trim())) {
+        alert("이미지 파일만 업로드 가능합니다 (jpg, jpeg, png, gif).");
+        return false;
+    }
 	
 	if ($("#dogimg").get(0).files.length === 0) { // Check if no files selected for upload
         alert("사진을 업로드해주세요.");
@@ -421,7 +438,7 @@ function frmChk() {
 		</tr>
 		<tr>
 			<td class="tt">생년월일</td>
-			<td><input type="date" id="birth" name="birthstr" max="2004-12-31" oninput="validBirth(this.value)" /></td>
+			<td><input type="date" id="birth" name="birthstr" min="1900-01-01" max="2004-12-31" oninput="validBirth(this.value)" /></td>
 		</tr>
 		<tr>
 			<td class="tt hmno">비밀번호 찾기 질문</td>
