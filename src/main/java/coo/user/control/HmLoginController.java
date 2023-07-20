@@ -37,13 +37,9 @@ public class HmLoginController {
 	
 	@PostMapping("/user/log/joinForm")
 	String joinComplete(HttpServletRequest request, Model mm, HmDogsDTO dog, HmMemberDTO dto, HmFileData fd) {
-		
+		System.out.println("회원가입 진입");
 	    if(fd.getDogimg().getContentType().startsWith("image/")) {
 	    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			dto.setEmail(dto.getEmail()+"@"+fd.getEmail2());
-			dto.setTel(fd.getTel1()+"-"+fd.getTel2()+"-"+fd.getTel3());
-			dto.setPwanswer(dto.getPwanswer().trim());
-			dto.setAddr2(dto.getAddr2().trim());
 		    try {
 		        Date birthDate = format.parse(fd.getBirthstr());
 		        dto.setBirth(birthDate);
@@ -53,9 +49,14 @@ public class HmLoginController {
 		    }
 		    String res = fileSave(fd.getDogimg(), request);
 	        dog.setPhoto(res);
-			lm.insertDog(dog);
+	        dto.setEmail(dto.getEmail()+"@"+fd.getEmail2());
+			dto.setPwanswer(dto.getPwanswer().trim());
+			dto.setAddr2(dto.getAddr2().trim());
+			dog.setDname(dog.getDname().trim());
+			dog.setBreed(dog.getBreed().trim());
 		    dto.setDog1(dog.getDname());
 		    lm.insert(dto);
+		    lm.insertDog(dog);
 		} 
 		
 		else {
@@ -160,6 +161,30 @@ public class HmLoginController {
             	result="N"; // "N"을 반환하여 사용 불가능한 아이디임을 알립니다.
             }
         }
+        //아이디가 있을시 Y 없을시 N 으로jsp view 로 보냄
+        return result;
+    }
+	
+	//전화번호 중복검사
+	@RequestMapping("/user/checkTel.do")
+	@ResponseBody
+    public String checkTel(@RequestParam("tel") String tel) {
+		System.out.println("전화번호중복검사");
+        String result="NN";
+        
+        if(tel.isEmpty()) {
+            return "FF"; // "F"를 반환하여 사용 불가능한 아이디임을 알립니다.
+        }
+        else {
+            int flag = lm.checkTel(tel);
+            if(flag == 1) {
+            	result="YY"; // "Y"를 반환하여 사용 가능한 아이디임을 알립니다.
+            }
+            else {
+            	result="NN"; // "N"을 반환하여 사용 불가능한 아이디임을 알립니다.
+            }
+        }
+        System.out.println("전화번호중복검사 끝");
         //아이디가 있을시 Y 없을시 N 으로jsp view 로 보냄
         return result;
     }
