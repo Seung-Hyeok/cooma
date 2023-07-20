@@ -10,6 +10,24 @@ layout:decorate="total/adTemp">
 </th:block>
 
 <th:block layout:fragment="adContent">
+
+	<script>
+		function showConfirmation() {
+		  var result = confirm("환불을 진행하시겠습니까?");
+
+		  if (result) {
+		    // 확인을 선택한 경우 처리할 작업
+		    
+		    location.href="/admin/delete/"+[[${mainData.reserNo}]];
+		   
+		    
+		  } else {
+		    // 취소를 선택한 경우 처리할 작업
+		    alert("취소하였습니다");
+		  }
+		}
+	</script>
+
 	
 	<div class="shresermenu">
 		<a href="/admin/reservation/1">이용권내역</a>
@@ -21,7 +39,7 @@ layout:decorate="total/adTemp">
 	<table align="center" class="shtable">
 		<form action="" th:object="${PData}" >
 			<tr>
-				<td colspan="11" align="right" style="height:35px;">
+				<td colspan="12" align="right" style="height:35px;">
 					환불 조회 기간 <input type="date" th:field="*{startD}" data-placeholder="연-월-일" class="bhDate" required style="width:120px"/>~
                 	<input type="date" th:field="*{endD}" data-placeholder="연-월-일" class="bhDate" required style="width:120px"/>
                 	<input type="submit" value="검색" class="bhSearSub">
@@ -41,6 +59,7 @@ layout:decorate="total/adTemp">
 			<td>환불계좌</td>
 			<td>환불일자</td>
 			<td>환불금액</td>
+			<td style="width:80px">상태</td>
 		</tr>
 		<tr th:each="dto, dtostat : ${mainData}" style="height:40px; border-bottom: 1px solid#438c57;">
 			<td th:text="${dto.reserNo}" align="center"/>
@@ -54,9 +73,20 @@ layout:decorate="total/adTemp">
 			<td th:text="${dto.account}"/>
 			<td th:text="${dto.rDate()}"/>
 			<td th:text="${dto.refund()}" style="color:red; font-weight: bold;"/>
+			<td>
+			
+				<button onclick="showConfirmation()" th:text="환불진행" class="bhAtBtn"/>
+			</td>
+			
+			<th:block th:if="${dto.state()}">
+				<td >진행예정</td>
+			</th:block>
+			<th:block th:unless="${dto.state()}">
+				<td >진행중</td>
+			</th:block>
 		</tr>
 		<tr> 
-			<td colspan="11" align="center" style="height:30px;">
+			<td colspan="12" align="center" style="height:30px;">
 				<th:block th:if="${pd.startPage > 1}"><a th:href="${pd.nowPage-1}" th:text="이전"></a></th:block>
 					<span th:each="p : ${#numbers.sequence(pd.startPage, pd.endPage, 1)}" th:href="${p}">
 						<th:block th:if="${pd.nowPage == p}"><button th:text="${p}" class="shp">[[${p}]]</button></th:block>

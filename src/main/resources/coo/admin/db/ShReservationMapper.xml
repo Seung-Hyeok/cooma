@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 			<trim prefix=" ">
 				<if test="sch != null and sch != ''  ">
 					<if test="cate != null and cate != ''  ">
-						and ${cate} like concat('%',#{sch},'%') 
+						and ${cate} like concat('%',#{sch},'%')
 					</if>
 				</if>
 			</trim>
