@@ -155,10 +155,7 @@ public class GsMyPageController {
 	    	}
 	    	else{
 	    		gdto.setRefund(0);
-	    		mm.addAttribute("msg","이용권 진행률이 50%를 초과하여 환불이 불가합니다");
-                mm.addAttribute("goUrl", "/user/myPage/buyDetail/"+gdto.getReserNo());
-        		
-        		return "user/myPage/alert";
+	    	
                 
 	    	}
         }
@@ -175,9 +172,19 @@ public class GsMyPageController {
 		mm.addAttribute("pid", pid);
 		gdto.setPid(pid);
 
+		if(gdto.getRefund()==0) {
+			mm.addAttribute("msg","이용권 진행률이 50%를 초과하여 환불이 불가합니다");
+            mm.addAttribute("goUrl", "/user/myPage/buyDetail/"+gdto.getReserNo());
+    		
+    		return "user/myPage/alert";
+		}
+		
+		
         gmm.dayRefun(gdto);
 		int refun = gmm.myRefun(gdto);
 		System.out.println("myRefund 진입"+refun);
+		
+		
 		
 		mm.addAttribute("msg", "환불되었습니다");
 		mm.addAttribute("goUrl", "/user/myPage/oldDetail/"+gdto.getReserNo());

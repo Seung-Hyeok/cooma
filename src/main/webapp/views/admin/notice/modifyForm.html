@@ -14,6 +14,11 @@ function frmChk() {
 	var imgFile = $("#img").get(0).files[0];
     var allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
+    if ($("#tit").val().trim() === "") {
+        alert("제목을 입력해주세요(공백불가)");
+        return false;
+    }
+    
     if (imgFile) {
         if (allowedTypes.indexOf(imgFile.type) === -1) {
             alert("이미지 파일만 등록이 가능합니다.");
@@ -30,7 +35,7 @@ function frmChk() {
 	<form method="post" th:object="${mainData}"  onsubmit="return frmChk()">
 		<table align="center" class="shdetail" style="width: 1000px;">
 			<tr>
-				<td class="shtd" align="center">제목</td><td><input th:field="*{title}" style="width:850px; height:50px;" class="shtd2" required /></td>
+				<td class="shtd" align="center">제목</td><td><input th:field="*{title}" style="width:850px; height:50px;" class="shtd2" required id="tit"/></td>
 			</tr><tr>
 				<td class="shtd" align="center">작성자</td><td th:text="${mainData.id}" class="shtd2"/>
 			</tr><tr>

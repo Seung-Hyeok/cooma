@@ -17,12 +17,13 @@ IMP.init('imp58784867');
 
 function Pay() {
    //iamport 대신 자신의 "가맹점 식별코드"를 사용
+   var prpr= /*[[${gsReserDTO.totFee/1000}]]*/
   IMP.request_pay({
     pg: "html5_inicis",
     pay_method: "card",
     merchant_uid : 'merchant_'+new Date().getTime(),
     name : '결제테스트',
-    amount : [[${gsReserDTO.totFee}]]/1000,
+    amount : prpr,
     buyer_email : 'iamport@siot.do',
     buyer_name : '구매자',
     buyer_tel : '010-1234-5678',
@@ -75,9 +76,10 @@ function Pay() {
 		<input type="text" th:field="*{startD}"readonly/>
 		<h2>요청사항</h2>
 		<input type="text" th:field="*{reque}"readonly/>
-		<h2>
+		<h1></h1>
+		<h1>
 			--------------환불 약정--------------
-		</h2>
+		</h1>
 		<h2>
 			[시작 전]</br>
 			10일 전 환불 100%</br>

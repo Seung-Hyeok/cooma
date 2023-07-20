@@ -185,6 +185,8 @@ public class ShReservationController {
         System.out.println(chk);
 
         int cnt = rm.delete(dto);
+        rm.dayRefun(dto);
+        
         System.out.println("삭제갯수:"+cnt);
         mm.addAttribute("msg","삭제되었습니다.");
         mm.addAttribute("goUrl", "/admin/reservation/1");
