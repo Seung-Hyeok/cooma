@@ -65,7 +65,7 @@ startDateInput.addEventListener("change", function() {
 				<th:block th:if="${dto.refund().isEmpty()}">
 					<div th:text="0" style="color:#fff; width:70px; "></div>
 				</th:block>
-				<th:block th:unless="${dto.refund().isEmpty()}">
+				<th:block th:unless="${dto.refund>0 && !dto.refundChk}">
 					<div th:text="${dto.refund()}" style="color:red; width:70px; font-weight: bold; "></div>
 				</th:block>
 				

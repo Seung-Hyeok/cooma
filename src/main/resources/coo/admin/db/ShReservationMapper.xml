@@ -113,6 +113,11 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
             reserNo = #{reserNo} and oneDay &lt;= date_sub(sysdate(), interval 1 day)
         </where>
     </select>
+    
+    <update id="clear" parameterType="rDTO">
+		update reser set refundChk = 1
+		<include refid="wid"/>
+	</update>
 
 
 

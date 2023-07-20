@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import coo.admin.model.PData;
-import coo.user.db.GsReserDTO;
 
 
 @Mapper
@@ -21,6 +20,5 @@ public interface ShReservationMapper {
 	int modify(ShReservationDTO refv);
 	int delete(ShReservationDTO efev45rtrg);
 	int attendAll(ShReservationDTO kk);
-	
-	void dayRefun(ShReservationDTO dashkjdh);
+	int clear(ShReservationDTO vxcvsd);
 }

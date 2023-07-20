@@ -12,13 +12,14 @@ layout:decorate="total/adTemp">
 <th:block layout:fragment="adContent">
 
 	<script>
-		function showConfirmation() {
+		function confirmation(button) {
+		  var reserNo = button.value;
 		  var result = confirm("환불을 진행하시겠습니까?");
 
 		  if (result) {
 		    // 확인을 선택한 경우 처리할 작업
 		    
-		    location.href="/admin/delete/"+[[${mainData.reserNo}]];
+			  location.href="/admin/refund/clear/"+reserNo;
 		   
 		    
 		  } else {
@@ -73,16 +74,14 @@ layout:decorate="total/adTemp">
 			<td th:text="${dto.account}"/>
 			<td th:text="${dto.rDate()}"/>
 			<td th:text="${dto.refund()}" style="color:red; font-weight: bold;"/>
-			<td>
 			
-				<button onclick="showConfirmation()" th:text="환불진행" class="bhAtBtn"/>
-			</td>
-			
-			<th:block th:if="${dto.state()}">
-				<td >진행예정</td>
+			<th:block th:if="${dto.refundChk}">
+				<td style="color:red;">환불완료</td>
 			</th:block>
-			<th:block th:unless="${dto.state()}">
-				<td >진행중</td>
+			<th:block th:unless="${dto.refundChk}">
+				<td>
+					<button onclick="confirmation(this)" th:text="환불진행" th:value="${dto.reserNo}" class="bhAtBtn"/>
+				</td>
 			</th:block>
 		</tr>
 		<tr> 
