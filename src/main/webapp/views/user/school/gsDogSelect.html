@@ -16,9 +16,17 @@ layout:decorate="total/userTemp">
 			<div  th:each="dto: ${dogData}">
 				<h2><span class="gsName123" th:text="${dto.dname}"></span></h2>
 				<div class="gsDog123">
-				<a th:href="@{|/user/school/packSelect/${dto.dname}|}" >
-				  <img  th:src="@{|/dimg/${dto.photo}|}" alt="" >
-				  </a><br>
+				
+				  <th:block th:if="${dto.grade=='블랙'}">
+					  <img style=" width:200px; height:200px;" th:src="@{|/dimg/${dto.photo}|}" alt="" >
+					  <br>
+					☻ 등급 : <span style="color:tomato; " th:text="${dto.grade+' (이용 불가)'}"></span><br>
+				   </th:block>
+				   <th:block th:if="${dto.grade=='일반'}">
+					  <a th:href="@{|/user/school/packSelect/${dto.dname}|}" >
+					  <img  th:src="@{|/dimg/${dto.photo}|}" alt="" >
+					  </a><br>
+				  </th:block>
 				  ☻ 크기 : <span th:text="${dto.dogsize}"></span><br>
 				  ☻ 견종 : <span th:text="${dto.breed}"></span><br>
 				  ☻ 최근 이용권 : <br>

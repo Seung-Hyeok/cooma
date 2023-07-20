@@ -79,7 +79,9 @@ layout:decorate="total/userTemp">
 		<td colspan="2" align="right">
 		<a th:href="@{|/user/myPage/myAttend/${myDetail.reserNo}|}" >출석 상세보기</a>
 			<a th:href="|/user/myPage/gsMyList|" th:text="뒤로" />
+			<th:block th:if="${attAllChk <= 50}">
 			<a th:href="@{|/user/myPage/myRefund/${myDetail.reserNo}|}" >환불</a>
+			</th:block>
 		</td>
 	</tr>
 </table>

@@ -71,6 +71,7 @@ public class GsMyPageController {
 	
 		mm.addAttribute("att",	att+"% ("+dng+"/"+all+")");
 		mm.addAttribute("attAll",	attAll+"% ("+dngAll+"/"+all+")");
+		mm.addAttribute("attAllChk",attAll);
 		return "user/myPage/gsBuyDetail";
 	}
 	@RequestMapping("/user/myPage/oldDetail/{reserNo}")

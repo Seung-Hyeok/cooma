@@ -55,7 +55,10 @@ layout:decorate="total/userTemp">
 		<td th:text="${dto.dname}"></td>
 		<td th:text="${dto.weeks}"></td>
 		<th:block th:if="${dto.refund != 0}">
-		<td style="color:tomato;" th:text="${'환불'}"></td>
+		<td style="color:tomato;" th:text="${'환불 대기'}"></td>
+		</th:block>
+		<th:block th:if="${dto.refund != 0 }">
+		<td style="color:tomato;" th:text="${'환불 완료'}"></td>
 		</th:block>
 		<th:block th:if="${dto.refund == 0}">
 		<td style="color:#808080;" th:text="${'사용 완료'}"></td>
