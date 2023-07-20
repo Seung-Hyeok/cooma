@@ -20,4 +20,5 @@ public interface ShReservationMapper {
 	int modify(ShReservationDTO refv);
 	int delete(ShReservationDTO efev45rtrg);
 	int attendAll(ShReservationDTO kk);
+	int clear(ShReservationDTO vxcvsd);
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import coo.admin.db.ShReservationDTO;
 import coo.admin.db.ShReservationMapper;
@@ -202,6 +203,11 @@ public class ShReservationController {
 		List<ShReservationDTO> mainData = rm.refundList(pd);
 		
 		System.out.println(mainData);
+		
+		for(Object e : mainData) {
+			System.out.println(e);
+		}
+		
 		System.out.println("refund 진입");
 		
 		mm.addAttribute("mainData", mainData);
@@ -211,5 +217,17 @@ public class ShReservationController {
 		System.out.println("환불내역 페이지 가기직전!!!");
 		return "admin/reser/refund";
 	}
+	
+	@RequestMapping("/admin/refund/clear/{reserNo}")
+    String clear(ShReservationDTO dto, Model mm) {
+
+        System.out.println("clear 진입");
+        int cnt = rm.clear(dto);
+    
+        System.out.println("갯수:"+cnt);
+        mm.addAttribute("msg","환불되었습니다.");
+        mm.addAttribute("goUrl", "/admin/refund/1");
+        return "admin/reser/alert";
+    }
 
 }

@@ -41,9 +41,13 @@ public class ShSalesController {
 		int rf = 0; // 환불 금액
 		int tot = 0; // 총 액
 		for(ShReservationDTO e : mainData) {
+			
 			cnt++;
 			tf += e.getTotFee();
-			rf += e.getRefund();
+			if(e.isRefundChk()) {
+				rf += e.getRefund();
+			}
+			
 		}
 		
 		tot = tf-rf;
