@@ -30,5 +30,11 @@ public class HmDogsDTO {
 	
 	String grade;
 	
+	String blackMemo;
+	
+	public String blackMemoBr() {
+		return blackMemo.replaceAll("\n", "<br/>"); //여기서 줄바꿈으로 출력될수있게 한다
+	}
+	
 	Date today = new Date();
 }
