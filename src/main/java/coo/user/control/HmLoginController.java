@@ -83,7 +83,11 @@ public class HmLoginController {
 		//int cnt = lm.logchk(dto);
 		HmMemberDTO memData = lm.logchk(dto);
 		
-		if(lm.logchk(dto)!=null && !memData.getGrade().equals("블랙")) {
+		if(memData.getGrade().equals("블랙")) {
+			mm.addAttribute("msg","블랙리스트 입니다.");
+			mm.addAttribute("goUrl","/user/log/login");
+		}
+		else if(lm.logchk(dto)!=null) {
 			mm.addAttribute("msg",memData.getPname()+"님 로그인 되었습니다.");
 			mm.addAttribute("goUrl","/user");
 			if(memData.getGrade().equals("관리자")) {

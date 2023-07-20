@@ -295,6 +295,7 @@ li::marker {
 		padding:50px;
 		width:600px;
 		margin:auto;
+	height: 500px;
 }
 
 	.notice_list{
@@ -448,6 +449,7 @@ padding-bottom:5px;
     padding: 30px 60px ;
     width: 1080px;
     height: 200px;
+    overflow: hidden;
     }
     .gsFoot>div{
     float:left;

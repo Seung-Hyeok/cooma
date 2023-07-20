@@ -116,4 +116,14 @@ PUBLIC "-//mybatis.org/DTD Mapper3.0//EN"
 
 
 
+
+	<delete id="dayRefun" parameterType="rDTO">
+		delete from daybyday 
+		<where>
+			reserNo = #{reserNo} and oneDay > date_sub(sysdate(), interval 1 day)
+		</where>
+	</delete>
+	
+
+
 </mapper>

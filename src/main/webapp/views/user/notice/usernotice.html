@@ -24,7 +24,7 @@ layout:decorate="total/userTemp">
 	<ul>
 	<th:block th:each="dto, dtostat : ${mainData}">
 		<li>
-			<div class ="ll">No<hr style="width:40px; margin:6px 30px 6px 25px;"><span th:text="${dtostat.index+1}"></span></div>
+			<div class ="ll">No<hr style="width:40px; margin:6px 30px 6px 25px;"><span th:text="${dto.num}"></span></div>
 			<div class = "rr">
 				<a th:href="@{|detail/${dto.num}|}" th:text="${dto.title}"/>
 					<ul class="listul">	

@@ -154,11 +154,11 @@ public class ShReservationController {
         int chk = (int)(diff / (24 * 60 * 60 * 1000));
 
         if(chk>0) {
-            if(chk<=1) {
-                dto.setRefund(dto.getTotFee()/54);
+            if(chk<=5) {
+                dto.setRefund(dto.getTotFee()/5*4);
             }
-            else if(chk<=5) {
-                dto.setRefund(dto.getTotFee()/109);
+            else if(chk<=10) {
+                dto.setRefund(dto.getTotFee()/10*9);
             }
             else {
                 dto.setRefund(dto.getTotFee());
@@ -166,10 +166,10 @@ public class ShReservationController {
         }
         else {
             if(attAll<=30) {
-                dto.setRefund(dto.getTotFee()/52);
+                dto.setRefund(dto.getTotFee()/5*2);
             }
             else if(attAll<=50) {
-                dto.setRefund(dto.getTotFee()/51);
+                dto.setRefund(dto.getTotFee()/5*1);
             }
             else{
                 dto.setRefund(0);
@@ -185,6 +185,8 @@ public class ShReservationController {
         System.out.println(chk);
 
         int cnt = rm.delete(dto);
+        rm.dayRefun(dto);
+        
         System.out.println("삭제갯수:"+cnt);
         mm.addAttribute("msg","삭제되었습니다.");
         mm.addAttribute("goUrl", "/admin/reservation/1");
