@@ -85,16 +85,34 @@ public class BhDogController {
 		String pid = (String)session.getAttribute("pid");
 		mo.addAttribute("pid", pid);
 		
-		int cnt = dm.bhDogModify(dog);
 		System.out.println("bhDogModifyDone() 진입");
-
-		String msg = "수정이 되지 않았습니다.";
+		
+		//예약이 있는지 확인 => 예약이 있으면 reserChk = 1
+		System.out.println("독등급:"+dog.getGrade());
+		int reserChk = 0;
+		if(dog.getGrade().equals("블랙")) {
+			reserChk = dm.bhDogGradeChk(dog);
+		}
+		//강아지 등급이 '일반'일때 블랙메모에 입력값이 있는지 확인
+		else {
+			
+		}
+		
+		//예약이 없으면 변경 
+		int cnt = 0;
+		if(reserChk == 0) {
+			cnt = dm.bhDogModify(dog);
+		}
+				
+		String msg = "예약이 있어 블랙으로 변경되지 않았습니다.";
 		String goUrl = "/admin/dogModi/"+dog.getDname()+"/"+dog.getPid();
+		
 		if(cnt==1) {
 			msg = "수정되었습니다.";
 			goUrl = "/admin/dogInform/"+dog.getDname()+"/"+dog.getPid();
 		}
 		System.out.println("수정갯수:"+cnt);
+		
 		mo.addAttribute("msg", msg);
 		mo.addAttribute("goUrl", goUrl);
 		return "admin/dogs/bhalert";

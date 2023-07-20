@@ -25,15 +25,15 @@ public class BhDogsDTO {
 	
 	//pname 리스트에 표시하기 위해 추가
 	//sch 검색을 위해 추가
-	String dname, dogsize, gender, breed, photo, pid, notes, grade, adminMemo;
+	String dname, dogsize, gender, breed, photo, pid, notes, grade, adminMemo, blackMemo;
 	String kind, sch, pname;
 	Integer weight, dyear, dmonth, nowPage;
 	
 
 	public String memoChk() {
-		String qus = "";
-		if(adminMemo != null) {
-			qus = "○";
+		String qus = "○";
+		if(adminMemo == null || adminMemo.equals("")) {
+			qus = "";
 		}
 		return qus;
 	}
@@ -50,7 +50,7 @@ public class BhDogsDTO {
 		return getY+"년 "+getM+"개월 생";
 	}
 	
-	String blackMemo;
+	
 	
 	public String blackMemoBr() {
 		return blackMemo.replaceAll("\n", "<br/>"); //여기서 줄바꿈으로 출력될수있게 한다

@@ -21,6 +21,7 @@ public interface BhDogMapper {
 	//선택한 강아지의 이전 예약내역을 확인한다.
 	List<BhAttendReserDTO> bhDogsReser(BhDogsDTO dog);
 //수정
+	int bhDogGradeChk(BhDogsDTO dog);
 	int bhDogModify(BhDogsDTO dog);
 //삭제
 	//삭제전 예약 여부 확인
