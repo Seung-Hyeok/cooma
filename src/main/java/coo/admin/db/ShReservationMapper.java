@@ -21,4 +21,7 @@ public interface ShReservationMapper {
 	int delete(ShReservationDTO efev45rtrg);
 	int attendAll(ShReservationDTO kk);
 	int clear(ShReservationDTO vxcvsd);
+	
+	int dayRefun(ShReservationDTO wh);
+	
 }
